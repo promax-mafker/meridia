@@ -4873,7 +4873,7 @@ function bookShellHTML(book) {
       <button class="book-edge next" data-book-next aria-label="下一页">›</button>
     </div>
     <div class="book-bottom">
-      <span class="book-hint">点击两侧 / ← → 翻页 · Home 回目录</span>
+      <span class="book-hint">点击左右页 / ← → 翻页 · Home 回目录</span>
       <span class="book-counter" data-book-counter>—</span>
       <div class="book-pager">
         <button data-book-prev aria-label="上一页">← 上一页</button>
@@ -4926,6 +4926,14 @@ function openBook(book, startPage) {
         if (e.target.closest("[data-book-prev]")) { bookTurn(-1); return; }
         if (e.target.closest("[data-book-next]")) { bookTurn(1); return; }
         if (e.target.closest("[data-book-lab]")) { openFormulas(); return; }
+        const page = e.target.closest(".book-page");
+        if (page && !e.target.closest("button, a")) {
+          if (bookMode() === "spread") bookTurn(page.classList.contains("left") ? -1 : 1);
+          else {
+            const r = page.getBoundingClientRect();
+            bookTurn(e.clientX < r.left + r.width / 2 ? -1 : 1);
+          }
+        }
       };
       root.addEventListener("click", click);
       BookState.cleanup = () => {
@@ -5137,7 +5145,7 @@ function openHelp() {
         <ul>
           <li><b>流派手册</b>：摊开的图版目录与八个章节，每章有核心思想、人物小传、流派关系、理论论证与沙盘参数。</li>
           <li><b>公式书</b>：十个公式的符号解释、逐步推导、理想化案例与常见误读。</li>
-          <li>两本书都支持点击两侧、← / → 翻页；顶部“目录”随时回到目录。</li>
+          <li>两本书都支持点击页面左右两侧、← / → 翻页；顶部“目录”随时回到目录。</li>
         </ul>
       </div>
       <div class="help-box">
