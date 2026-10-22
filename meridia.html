@@ -665,7 +665,368 @@ input[type=range]:disabled{opacity:.45}
 .map-label{font:8px/1.2 var(--mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-right:3px}
 .codex-tools{position:sticky;top:0;z-index:2;background:var(--bg);padding:2px 0 10px}
 
-/* ---------------- responsive ---------------- */
+/* ============================================================
+   BOOKS — school handbook & formula codex
+   A physical desk, two-page spreads, a working hinge.
+   ============================================================ */
+.overlay.book-overlay{
+  --b-ink:#2B241A;
+  --b-soft:#554836;
+  --b-muted:#7D6C55;
+  --b-paper:#F7EEDC;
+  --b-paper2:#EFE3C9;
+  --b-line:#D8C7A7;
+  --b-line-strong:#BAA37E;
+  --b-clay:#A94F34;
+  --b-olive:#5D7046;
+  --b-sky:#3E6382;
+  --b-gold:#8E6E24;
+  align-items:center;
+  padding:14px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(217,119,87,.13), transparent 55%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.018) 0 1px, transparent 1px 6px),
+    #171410;
+  overflow:auto;
+}
+.book-shell{
+  width:min(1180px,100%); margin:auto; color:#F3EFE4;
+  animation:bookIn .34s ease both;
+}
+.book-stage:focus{outline:none}
+.book-stage:focus-visible{outline:1px solid rgba(168,74,44,.5);outline-offset:4px}
+@keyframes bookIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.book-toolbar{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:0 4px 10px;flex-wrap:wrap}
+.book-brand{display:flex;align-items:center;gap:10px;min-width:0}
+.book-mark{color:#D97757;line-height:0;flex:0 0 auto}
+.book-brand .b-kicker{font:8px/1.2 var(--mono);letter-spacing:.2em;color:#9E8D74;text-transform:uppercase}
+.book-brand h2{font:400 21px/1.15 var(--serif);letter-spacing:-.015em;color:#F4EFE3;margin:2px 0 0}
+.book-brand .b-sub{font:8px/1.4 var(--mono);letter-spacing:.06em;color:#A6967D;margin-top:2px}
+.book-actions{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.book-btn{
+  border:1px solid rgba(247,238,220,.28);background:transparent;color:#EFE7D7;
+  font:9px/1 var(--mono);letter-spacing:.06em;padding:8px 9px;min-height:32px;
+  display:inline-flex;align-items:center;gap:5px;transition:background .12s,border-color .12s,color .12s;
+}
+.book-btn:hover{background:rgba(217,119,87,.16);border-color:#D97757;color:#FFF7E8}
+.book-btn:focus-visible{outline:1px solid #D97757;outline-offset:2px}
+.book-btn.close{padding:7px 9px;font-size:14px}
+.book-stage{position:relative;perspective:2400px;padding:0 48px;touch-action:pan-y}
+.book{
+  position:relative;display:grid;grid-template-columns:1fr 1fr;
+  height:min(72vh,690px);min-height:460px;
+  background:#D8C5A3;border:1px solid #0E0C09;
+  box-shadow:0 26px 65px rgba(0,0,0,.55),0 4px 0 #BFA477,0 8px 0 #9E8560;
+  transform-style:preserve-3d;
+}
+.book-kind-schools .book{height:min(68vh,640px)}
+.book::after{
+  content:"";position:absolute;left:8px;right:8px;bottom:-7px;height:6px;
+  background:repeating-linear-gradient(90deg,#E8D8B8 0 9px,#C9B48E 9px 11px);
+  z-index:-1;opacity:.8;
+}
+.book-page{
+  position:relative;background:
+    radial-gradient(ellipse at 15% 0%,rgba(255,255,255,.42),transparent 42%),
+    radial-gradient(ellipse at 90% 100%,rgba(116,88,45,.10),transparent 48%),
+    repeating-linear-gradient(0deg,rgba(90,65,30,.026) 0 1px,transparent 1px 4px),
+    var(--b-paper);
+  color:var(--b-ink);overflow:hidden;min-width:0;
+  padding:24px 29px 17px;display:flex;flex-direction:column;
+}
+.book-page.left{box-shadow:inset -20px 0 28px -27px rgba(50,34,15,.75)}
+.book-page.right{box-shadow:inset 20px 0 28px -27px rgba(50,34,15,.65)}
+.book-spine{
+  position:absolute;left:50%;top:0;bottom:0;width:28px;transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,rgba(38,24,10,.13) 30%,rgba(255,255,255,.2) 48%,rgba(38,24,10,.16) 66%,transparent);
+  z-index:4;pointer-events:none;
+}
+.book-edge{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:8;
+  width:34px;height:72px;padding:0;border:1px solid rgba(216,199,167,.55);
+  background:#F3E8D1;color:#4B3A25;box-shadow:0 4px 12px rgba(0,0,0,.28);
+  font:25px/1 var(--serif);display:flex;align-items:center;justify-content:center;
+  transition:background .12s,transform .12s,opacity .12s;
+}
+.book-edge.prev{left:4px}
+.book-edge.next{right:4px}
+.book-edge:hover{background:#D97757;color:#1A1310}
+.book-edge:disabled{opacity:.22;cursor:default}
+.book-edge:disabled:hover{background:#F3E8D1;color:#4B3A25}
+.book-edge:focus-visible{outline:1px solid #F3E8D1;outline-offset:2px}
+.book-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 6px 0;flex-wrap:wrap}
+.book-hint{font:8.5px/1.4 var(--mono);color:#9B8B72;letter-spacing:.04em}
+.book-counter{font:9px/1.4 var(--mono);color:#D8C7A7;letter-spacing:.08em}
+.book-pager{display:flex;align-items:center;gap:5px}
+.book-pager button{
+  border:1px solid rgba(247,238,220,.25);background:transparent;color:#EFE7D7;
+  font:9px/1 var(--mono);padding:7px 8px;min-height:29px;
+}
+.book-pager button:hover:not(:disabled){border-color:#D97757;background:rgba(217,119,87,.14)}
+.book-pager button:disabled{opacity:.3;cursor:not-allowed}
+.book-pager .num{font:9px/1 var(--mono);color:#D8C7A7;padding:0 4px;min-width:86px;text-align:center}
+
+/* --- page typography --- */
+.bp{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;min-height:0}
+.bp-top{
+  display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  border-bottom:1px solid var(--b-line);padding-bottom:6px;flex:0 0 auto;
+  font:7.5px/1.3 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--b-muted);
+}
+.bp-top span:last-child{text-align:right}
+.bp-body{flex:1;min-height:0;overflow:auto;padding:12px 1px 8px;scrollbar-width:thin;scrollbar-color:#C7AE86 transparent}
+.bp-body::-webkit-scrollbar{width:6px}
+.bp-body::-webkit-scrollbar-thumb{background:#CBB48E;border:2px solid var(--b-paper)}
+.bp-body h2{font:400 24px/1.18 var(--serif);letter-spacing:-.015em;margin:0 0 7px;color:var(--b-ink)}
+.bp-body h3{font:600 11px/1.4 var(--sans);letter-spacing:.05em;margin:12px 0 4px;color:var(--b-ink)}
+.bp-body h4{font:600 9px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;margin:9px 0 4px;color:var(--b-soft)}
+.bp-body p{font:11.3px/1.72 var(--sans);margin:0 0 7px;color:var(--b-soft)}
+.bp-body p.lede{font:12px/1.7 var(--serif);color:var(--b-ink);margin-bottom:9px}
+.bp-body ul,.bp-body ol{margin:3px 0 8px;padding-left:16px}
+.bp-body li{font:10.6px/1.62 var(--sans);color:var(--b-soft);margin:2px 0}
+.bp-body b,.bp-body strong{color:var(--b-ink);font-weight:600}
+.bp-body em{font-family:var(--serif);color:var(--b-ink)}
+.bp-body blockquote{
+  margin:10px 0 8px;padding:7px 0 7px 11px;border-left:2px solid var(--b-clay);
+  font:italic 12px/1.6 var(--serif);color:var(--b-ink);
+}
+.bp-body blockquote cite{display:block;font:7.5px/1.4 var(--mono);font-style:normal;color:var(--b-muted);margin-top:4px;letter-spacing:.04em}
+.bp-body .quiet{font:8.5px/1.5 var(--mono);color:var(--b-muted)}
+.bp-body .accent{color:var(--b-clay)}
+.bp-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;flex:0 0 auto;
+  border-top:1px solid var(--b-line);padding-top:6px;font:7.5px/1.3 var(--mono);
+  color:var(--b-muted);letter-spacing:.08em;text-transform:uppercase;
+}
+.bp-foot .pg{font-size:9px;color:var(--b-ink);letter-spacing:.02em}
+.bp-cover-body{overflow:auto}
+.claim-list{display:flex;flex-direction:column;gap:4px;margin:4px 0 7px}
+.claim{display:grid;grid-template-columns:20px 1fr;gap:6px;border-top:1px dotted var(--b-line);padding-top:4px}
+.claim > span{font:8px/1.5 var(--mono);color:var(--b-clay)}
+.claim b{display:block;font:600 10px/1.4 var(--sans);color:var(--b-ink)}
+.claim p{font:9.4px/1.55 var(--sans);margin:1px 0 0;color:var(--b-soft)}
+.chapter-cover .chapter-quote cite{display:block;font:7px/1.4 var(--mono);font-style:normal;color:var(--b-muted);margin-top:3px;letter-spacing:.03em}
+.case-box ol{margin:2px 0 4px;padding-left:15px}
+.case-box li{font:9px/1.5 var(--sans);color:var(--b-soft);margin:1px 0}
+.case-box .case-eq{font:8.8px/1.5 var(--mono);color:var(--b-ink);border-top:1px dotted var(--b-line);padding-top:3px;margin-top:2px}
+.pitfall-box ul{margin:2px 0 0;padding-left:14px}
+.pitfall-box li{font:8.8px/1.5 var(--sans);color:var(--b-soft);margin:1px 0}
+
+/* --- table of contents --- */
+.toc-head .eyebrow{font:8px/1.2 var(--mono);letter-spacing:.18em;color:var(--b-clay);text-transform:uppercase;margin-bottom:4px}
+.toc-head h2{font:400 27px/1.1 var(--serif);margin:0 0 4px}
+.toc-head p{font:10.5px/1.65 var(--sans);color:var(--b-muted);margin:0 0 10px;max-width:95%}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.toc-card{
+  text-align:left;background:rgba(255,255,255,.22);border:1px solid var(--b-line);
+  border-left:3px solid var(--accent,var(--b-clay));padding:8px 8px 7px;
+  display:grid;grid-template-columns:54px 1fr;gap:7px;align-items:start;
+  min-height:122px;position:relative;transition:background .12s,border-color .12s,transform .12s;
+}
+.toc-card:hover{background:rgba(255,255,255,.5);border-color:var(--accent,var(--b-clay));transform:translateY(-1px)}
+.toc-card:focus-visible{outline:1px solid var(--b-clay);outline-offset:2px}
+.toc-card .toc-symbol{display:block;line-height:0;color:var(--accent,var(--b-clay))}
+.toc-card .toc-copy{min-width:0}
+.toc-card .toc-copy b{display:block;font:600 11.5px/1.3 var(--sans);color:var(--b-ink)}
+.toc-card .toc-copy em{display:block;font:7px/1.25 var(--mono);font-style:normal;letter-spacing:.07em;color:var(--b-muted);text-transform:uppercase;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.toc-card .toc-copy small{display:block;font:8.5px/1.45 var(--sans);color:var(--b-soft);margin-top:5px}
+.toc-card .toc-more{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font:8px/1.45 var(--sans);color:var(--b-muted);margin-top:3px}
+.toc-card{min-height:132px}
+.toc-card .toc-page{position:absolute;right:7px;bottom:5px;font:8px/1 var(--mono);color:var(--b-muted)}
+.toc-card .toc-era{position:absolute;right:7px;top:6px;font:6.5px/1 var(--mono);letter-spacing:.05em;color:var(--b-muted)}
+.toc-note{margin-top:10px;padding-top:7px;border-top:1px dashed var(--b-line);font:8.5px/1.55 var(--mono);color:var(--b-muted)}
+.toc-index{display:flex;justify-content:space-between;gap:10px;font:8px/1.4 var(--mono);color:var(--b-muted);margin-top:8px}
+.toc-read{margin-top:10px;padding-top:7px;border-top:1px solid var(--b-line);font:8.2px/1.55 var(--sans);color:var(--b-muted)}
+.toc-read span{font:7px/1.3 var(--mono);letter-spacing:.12em;color:var(--b-clay);text-transform:uppercase;margin-right:5px}
+.core-callout{margin-top:8px;border-left:2px solid var(--b-clay);background:rgba(169,79,52,.055);padding:6px 8px}
+.core-deep{border-top:1px solid var(--b-line);margin-top:7px;padding-top:6px}
+.core-deep h4{margin:0 0 2px}
+.core-deep p{font:9.2px/1.6 var(--sans);color:var(--b-soft);margin:0}
+.core-callout span{display:block;font:7px/1.3 var(--mono);letter-spacing:.12em;color:var(--b-clay);text-transform:uppercase;margin-bottom:2px}
+.core-callout p{font:italic 11px/1.55 var(--serif);color:var(--b-ink);margin:0}
+.contents-mark{font:10px/1 var(--serif);color:var(--b-clay)}
+.toc-legend{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.toc-legend span{font:7.5px/1.4 var(--mono);border:1px solid var(--b-line);padding:2px 4px;color:var(--b-muted)}
+
+/* --- chapter cover --- */
+.chapter-cover{height:100%;display:flex;flex-direction:column;min-height:0}
+.chapter-cover .chapter-kicker{font:8px/1.2 var(--mono);letter-spacing:.17em;color:var(--accent,var(--b-clay));text-transform:uppercase}
+.chapter-cover .chapter-art{height:122px;display:flex;align-items:center;justify-content:flex-start;margin:5px 0 1px;color:var(--accent,var(--b-clay))}
+.chapter-cover h2{font:400 31px/1.05 var(--serif);letter-spacing:-.02em;margin:1px 0 1px}
+.chapter-cover .chapter-en{font:7.5px/1.3 var(--mono);letter-spacing:.16em;color:var(--b-muted);text-transform:uppercase}
+.chapter-cover .chapter-thesis{font:11.2px/1.65 var(--sans);color:var(--b-soft);margin:9px 0 8px;max-width:96%}
+.chapter-cover .chapter-quote{font:italic 11.5px/1.55 var(--serif);border-left:2px solid var(--accent,var(--b-clay));padding-left:9px;color:var(--b-ink);margin:0 0 8px}
+.chapter-toc{border-top:1px solid var(--b-line);padding-top:6px;margin-top:auto}
+.chapter-toc .ct-lab{font:7px/1.3 var(--mono);letter-spacing:.15em;color:var(--b-muted);text-transform:uppercase;margin-bottom:3px}
+.chapter-toc button{
+  width:100%;display:flex;justify-content:space-between;gap:8px;border:0;background:none;
+  padding:3px 0;border-bottom:1px dotted var(--b-line);font:9.5px/1.4 var(--sans);color:var(--b-soft);text-align:left;
+}
+.chapter-toc button:hover{color:var(--b-clay)}
+.chapter-toc button span{font:8px/1.4 var(--mono);color:var(--b-muted)}
+
+/* --- figures / biographies --- */
+.bio-stack{display:flex;flex-direction:column;gap:5px;margin-top:3px}
+.bio-card{border-left:2px solid var(--accent,var(--b-clay));border-top:1px solid var(--b-line);padding:6px 0 6px 8px}
+.bio-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.bio-head b{font:600 10.5px/1.4 var(--sans);color:var(--b-ink)}
+.bio-head span{font:7px/1.3 var(--mono);color:var(--b-muted);white-space:nowrap}
+.bio-role{font:7.5px/1.4 var(--mono);letter-spacing:.03em;color:var(--b-clay);margin:1px 0 2px}
+.bio-card p{font:9.6px/1.55 var(--sans);margin:0;color:var(--b-soft)}
+.bio-card p b{color:var(--b-ink)}
+
+/* --- relations --- */
+.rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.rel-col h4{font:600 8px/1.4 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--b-clay);margin:0 0 4px}
+.rel-col.tension h4{color:var(--b-sky)}
+.rel-link{display:block;width:100%;text-align:left;border:0;border-top:1px dotted var(--b-line);background:none;padding:4px 0;font:9.2px/1.45 var(--sans);color:var(--b-soft)}
+.rel-link b{display:block;font-weight:600;color:var(--b-ink);font-size:9px;margin-bottom:1px}
+.rel-link span{display:block;color:var(--b-muted);font-size:8.4px;line-height:1.5}
+.rel-link:hover{color:var(--b-clay)}
+.rel-note{margin-top:8px;padding:7px 8px;border:1px solid var(--b-line);background:rgba(255,255,255,.22);font:9.2px/1.6 var(--sans);color:var(--b-soft)}
+.rel-note b{color:var(--b-ink)}
+
+/* --- theory --- */
+.theory-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:2px 0 6px}
+.theory-grid h4{margin-top:0}
+.theory-grid ul,.theory-grid ol{margin:0;padding-left:14px}
+.theory-grid li{font:9.4px/1.55 var(--sans);margin:1px 0}
+.eq-block{
+  border:1px solid var(--b-line);background:rgba(255,255,255,.26);
+  padding:6px 8px;margin:5px 0;font:9.4px/1.65 var(--mono);color:var(--b-ink);
+  overflow-x:auto;
+}
+.eq-block .eq-note{display:block;font:7.5px/1.5 var(--mono);color:var(--b-muted);margin-top:2px;letter-spacing:.01em}
+.evidence{font:9.4px/1.6 var(--sans);color:var(--b-soft);border-top:1px solid var(--b-line);padding-top:5px;margin-top:4px}
+.evidence b{color:var(--b-ink)}
+.limit-list{display:flex;flex-direction:column;gap:3px;margin:2px 0 5px}
+.limit-list div{display:grid;grid-template-columns:14px 1fr;gap:4px;font:9.5px/1.55 var(--sans);color:var(--b-soft)}
+.limit-list i{font:9px/1.55 var(--mono);font-style:normal;color:var(--b-clay)}
+.game-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:5px 0 6px}
+.game-stat{border:1px solid var(--b-line);background:rgba(255,255,255,.25);padding:4px 5px}
+.game-stat span{display:block;font:6.5px/1.25 var(--mono);letter-spacing:.04em;color:var(--b-muted);text-transform:uppercase}
+.game-stat b{display:block;font:500 12px/1.3 var(--mono);color:var(--b-ink);margin-top:1px}
+.play-note{font:9.5px/1.6 var(--sans);color:var(--b-soft);border-left:2px solid var(--b-olive);padding-left:8px;margin-top:6px}
+
+/* --- formula book --- */
+.formula-toc-row{
+  width:100%;display:grid;grid-template-columns:24px 38px 1fr auto;gap:6px;align-items:center;
+  border:0;border-top:1px solid var(--b-line);background:none;text-align:left;padding:7px 0;
+}
+.formula-toc-row:hover{background:rgba(255,255,255,.28)}
+.formula-toc-row .ft-no{font:8px/1.3 var(--mono);color:var(--b-muted)}
+.formula-toc-row .ft-glyph{
+  width:31px;height:31px;border:1px solid var(--b-line);display:flex;align-items:center;justify-content:center;
+  font:500 13px/1 var(--mono);color:var(--b-clay);background:rgba(255,255,255,.28);
+}
+.formula-toc-row .ft-copy b{display:block;font:600 10.5px/1.35 var(--sans);color:var(--b-ink)}
+.formula-toc-row .ft-copy em{display:block;font:6.5px/1.3 var(--mono);font-style:normal;letter-spacing:.06em;color:var(--b-muted);text-transform:uppercase}
+.formula-toc-row .ft-copy small{display:block;font:8px/1.4 var(--mono);color:var(--b-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.formula-toc-row .ft-page{font:8px/1.3 var(--mono);color:var(--b-muted)}
+.formula-hero{
+  border:1px solid var(--b-line);background:rgba(255,255,255,.3);padding:10px 10px 8px;
+  font:500 18px/1.4 var(--mono);letter-spacing:-.02em;color:var(--b-ink);margin:3px 0 7px;
+  overflow-x:auto;text-align:center;
+}
+.formula-hero small{display:block;font:7.5px/1.5 var(--mono);letter-spacing:.02em;color:var(--b-muted);margin-top:3px}
+.symbol-table{border-top:1px solid var(--b-line);margin:3px 0 7px}
+.sym-row{display:grid;grid-template-columns:36px 1fr;gap:7px;border-bottom:1px dotted var(--b-line);padding:3px 0}
+.sym-row b{font:500 10px/1.5 var(--mono);color:var(--b-clay)}
+.sym-row span{font:9.2px/1.55 var(--sans);color:var(--b-soft)}
+.sym-row span em{font:8px/1.4 var(--mono);color:var(--b-muted);font-style:normal}
+.derivation{margin:2px 0 6px;padding:0;list-style:none;counter-reset:ds}
+.derivation li{position:relative;padding:4px 0 4px 25px;border-bottom:1px dotted var(--b-line);font:9.6px/1.6 var(--sans);color:var(--b-soft)}
+.derivation li::before{counter-increment:ds;content:counter(ds,decimal-leading-zero);position:absolute;left:0;top:5px;font:8px/1.3 var(--mono);color:var(--b-clay)}
+.derivation li b{color:var(--b-ink)}
+.derivation .step-eq{display:block;font:9px/1.6 var(--mono);color:var(--b-ink);background:rgba(255,255,255,.26);border-left:1px solid var(--b-line);padding:3px 6px;margin:3px 0 0;overflow-x:auto}
+.case-box{border:1px solid var(--b-line);border-left:3px solid var(--b-olive);background:rgba(255,255,255,.22);padding:6px 8px;margin:7px 0 5px}
+.case-box .case-lab{font:7px/1.3 var(--mono);letter-spacing:.12em;color:var(--b-olive);text-transform:uppercase;margin-bottom:2px}
+.case-box p{font:9.3px/1.6 var(--sans);margin:0 0 3px;color:var(--b-soft)}
+.case-box .case-eq{font:9px/1.6 var(--mono);color:var(--b-ink);overflow-x:auto}
+.pitfall-box{border:1px solid var(--b-line);background:rgba(169,79,52,.055);padding:6px 8px;margin-top:5px}
+.pitfall-box .case-lab{color:var(--b-clay)}
+.pitfall-box p{font:9.2px/1.6 var(--sans);margin:0;color:var(--b-soft)}
+
+/* --- the hinge --- */
+.turn-leaf{
+  position:absolute;top:0;height:100%;width:50%;z-index:14;
+  transform-style:preserve-3d;transition:transform .82s cubic-bezier(.2,.75,.22,1);
+  will-change:transform;pointer-events:none;
+}
+.turn-leaf.next{left:50%;transform-origin:left center}
+.turn-leaf.prev{left:0;transform-origin:right center}
+.turn-leaf.next.go{transform:rotateY(-180deg)}
+.turn-leaf.prev.go{transform:rotateY(180deg)}
+.leaf-face{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  background:
+    radial-gradient(ellipse at 20% 0%,rgba(255,255,255,.36),transparent 45%),
+    repeating-linear-gradient(0deg,rgba(90,65,30,.025) 0 1px,transparent 1px 4px),
+    var(--b-paper);
+  color:var(--b-ink);overflow:hidden;padding:24px 29px 17px;display:flex;flex-direction:column;
+  box-shadow:0 8px 30px rgba(20,12,5,.3);
+}
+.leaf-face.back{transform:rotateY(180deg)}
+.leaf-face::before{content:"";position:absolute;top:0;bottom:0;left:0;width:22px;background:linear-gradient(90deg,rgba(56,38,18,.18),transparent);z-index:2;pointer-events:none}
+.turn-leaf.next .leaf-face::before{left:0}
+.turn-leaf.prev .leaf-face::before{right:0;left:auto;background:linear-gradient(270deg,rgba(56,38,18,.18),transparent)}
+.book.single .turn-leaf.next,.book.single .turn-leaf.prev{left:0;width:100%}
+.book.single .turn-leaf.next{transform-origin:left center}
+.book.single .turn-leaf.prev{transform-origin:right center}
+.book.turning .book-edge,.book.turning .book-pager button{pointer-events:none}
+
+@media(prefers-reduced-motion:reduce){
+  .book-shell{animation:none}
+  .turn-leaf{transition:none!important}
+}
+
+@media(max-width:980px){
+  .book-toolbar{gap:8px}
+  .book-brand h2{font-size:18px}
+  .book-stage{padding:0 18px}
+  .book{height:min(72vh,680px);min-height:430px}
+  .book-edge{display:none}
+  .book-page{padding:21px 22px 15px}
+  .leaf-face{padding:21px 22px 15px}
+  .chapter-cover .chapter-art{height:96px}
+  .chapter-cover h2{font-size:27px}
+  .book-hint{display:none}
+}
+@media(max-width:760px){
+  .book-overlay{padding:8px;align-items:flex-start}
+  .book-shell{padding-top:4px}
+  .book-toolbar{padding:0 2px 8px}
+  .book-brand .b-sub{display:none}
+  .book-brand .b-kicker{font-size:7px}
+  .book-brand h2{font-size:17px}
+  .book-btn{font-size:8px;padding:7px 7px;min-height:29px}
+  .book-stage{padding:0}
+  .book{display:block;height:min(72vh,700px);min-height:420px}
+  .book-kind-schools .book{height:min(70vh,620px)}
+  .book-page.right{display:none}
+  .book-page.left{width:100%;height:100%}
+  .book-spine{display:none}
+  .book-edge{display:none}
+  .book-page{padding:18px 18px 13px}
+  .leaf-face{padding:18px 18px 13px}
+  .bp-body h2{font-size:22px}
+  .toc-grid{grid-template-columns:1fr}
+  .toc-card{min-height:0;grid-template-columns:44px 1fr;padding:7px}
+  .toc-card .toc-symbol svg{width:42px;height:42px}
+  .toc-head h2{font-size:23px}
+  .toc-head p{font-size:9.5px}
+  .toc-note{font-size:7.5px}
+  .chapter-cover .chapter-art{height:82px}
+  .chapter-cover .chapter-art svg{width:110px;height:110px}
+  .chapter-cover h2{font-size:25px}
+  .chapter-cover .chapter-thesis{font-size:10.5px}
+  .rel-grid,.theory-grid{grid-template-columns:1fr;gap:5px}
+  .game-stats{grid-template-columns:repeat(2,1fr)}
+  .book-bottom{padding:7px 2px 0}
+  .book-counter{font-size:8px}
+  .book-pager .num{min-width:62px;font-size:8px}
+}
+
 @media(max-width:1180px){
   .layout{grid-template-columns:1fr;max-width:860px}
   .col.left,.col.right{position:static;max-height:none;overflow:visible;display:flex;flex-direction:column}
@@ -737,9 +1098,10 @@ input[type=range]:disabled{opacity:.45}
     <div class="meta-block"><span>纪年 / Clock</span><b id="metaClock">—</b></div>
     <div class="meta-block"><span>稳定损失 / Loss</span><b id="metaLoss">—</b></div>
     <div class="top-actions">
+      <button class="icon-btn" id="handbookBtn" aria-label="打开流派手册"><span aria-hidden="true">▥</span><span class="lbl">手册</span></button>
       <button class="icon-btn" data-modal="codex" aria-label="打开知识图鉴"><span aria-hidden="true">▤</span><span class="lbl">图鉴</span></button>
+      <button class="icon-btn" id="formulaBookBtn" aria-label="打开公式书"><span aria-hidden="true">∑</span><span class="lbl">公式书</span></button>
       <button class="icon-btn" data-modal="timeline" aria-label="打开经济学说年表"><span aria-hidden="true">⌁</span><span class="lbl">年表</span></button>
-      <button class="icon-btn" data-modal="formulas" aria-label="打开公式与实验室"><span aria-hidden="true">∑</span><span class="lbl">数理</span></button>
       <button class="icon-btn" data-modal="help" aria-label="打开帮助"><span aria-hidden="true">?</span></button>
       <button class="icon-btn" id="newGameBtn" aria-label="开始新任期"><span aria-hidden="true">↻</span><span class="lbl">新局</span></button>
       <button class="icon-btn" id="themeBtn" aria-label="切换明暗主题"><span aria-hidden="true">◐</span></button>
@@ -1900,7 +2262,7 @@ const CODEX = [
     id: "austrian", title: "奥地利学派与资本结构", en: "AUSTRIAN BUSINESS CYCLE", era: "1912—", family: "heterodox",
     thesis: "人为压低的利率会扭曲跨期生产结构，造成错误投资；清算与相对价格调整不可避免。健全货币与有限政府是防止繁荣—萧条循环的根本。",
     math: [
-      { eq: "i_market < r*", note: "市场利率持续低于自然利率，信贷扩张，资本被错误配置。" },
+      { eq: "i_market &lt; r*", note: "市场利率持续低于自然利率，信贷扩张，资本被错误配置。" },
       { eq: "繁荣 → 危机 → 清算", note: "奥地利学派的三阶段：错误投资暴露、资源重新配置。" }
     ],
     policy: "提高利率、削减支出、放松管制、允许清算；反对救助与道德风险。",
@@ -2258,7 +2620,7 @@ function renderParadigm() {
       <span class="stat-chip">Phillips <b>×${p.slope.toFixed(2)}</b></span>
       <span class="stat-chip">锚定 <b>${(a * 100).toFixed(0)}%</b></span>
     </div>
-    <div style="display:flex;gap:5px"><button class="btn ghost small" style="flex:1" data-codex="${codexId(p.id)}">学派档案</button><button class="btn ghost small" style="flex:1" id="paradigmSwitchInline">切换范式…</button></div>`;
+    <div style="display:flex;gap:5px"><button class="btn ghost small" style="flex:1" data-handbook="${p.id}">打开流派手册</button><button class="btn ghost small" style="flex:1" id="paradigmSwitchInline">切换范式…</button></div>`;
 }
 
 /* ---------- forecast ---------- */
@@ -2839,27 +3201,32 @@ function drawEventArt(canvas, art) {
 function openModal(opts) {
   if (App.modalOpen) closeModal(true);
   App.modalOpen = true;
+  App.modalOnClose = opts.onClose || null;
   App.modalClosable = opts.closable !== false;
   App.lastFocus = document.activeElement;
   const root = $("#modalRoot");
   const wide = opts.wide ? " wide" : opts.mid ? " mid" : "";
   const foot = opts.footer ? `<div class="sheet-foot">${opts.footer}</div>` : "";
   const toastWrap = $("#toasts"); if (toastWrap) toastWrap.innerHTML = "";
-  root.innerHTML = `<div class="overlay" data-overlay="1">
-    <div class="sheet${wide}" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalSub">
-      <div class="sheet-stripe" aria-hidden="true"></div>
-      <div class="sheet-head">
-        <div>
-          <div class="sheet-kicker">${opts.kicker || "MERIDIA"}</div>
-          <h2 class="sheet-title" id="modalTitle">${opts.title || ""}</h2>
-          <p class="sheet-sub" id="modalSub">${opts.sub || ""}</p>
+  if (opts.bare) {
+    root.innerHTML = `<div class="overlay book-overlay" data-overlay="1">${opts.body || ""}</div>`;
+  } else {
+    root.innerHTML = `<div class="overlay" data-overlay="1">
+      <div class="sheet${wide}" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalSub">
+        <div class="sheet-stripe" aria-hidden="true"></div>
+        <div class="sheet-head">
+          <div>
+            <div class="sheet-kicker">${opts.kicker || "MERIDIA"}</div>
+            <h2 class="sheet-title" id="modalTitle">${opts.title || ""}</h2>
+            <p class="sheet-sub" id="modalSub">${opts.sub || ""}</p>
+          </div>
+          ${App.modalClosable ? `<button class="x-btn" data-close="1" aria-label="关闭">×</button>` : ""}
         </div>
-        ${App.modalClosable ? `<button class="x-btn" data-close="1" aria-label="关闭">×</button>` : ""}
+        <div class="sheet-body">${opts.body || ""}</div>
+        ${foot}
       </div>
-      <div class="sheet-body">${opts.body || ""}</div>
-      ${foot}
-    </div>
-  </div>`;
+    </div>`;
+  }
   document.body.style.overflow = "hidden";
   $$(".top, #main, .ticker").forEach(el => { el.inert = true; });
   const overlay = $("[data-overlay]", root);
@@ -2869,15 +3236,18 @@ function openModal(opts) {
   $$("[data-close]", root).forEach(b => b.addEventListener("click", () => closeModal()));
   if (opts.onMount) opts.onMount(root);
   setTimeout(() => {
-    const target = root.querySelector("[data-autofocus]") || root.querySelector(".sheet button:not([disabled]), .sheet input, .sheet [tabindex]");
+    const target = root.querySelector("[data-autofocus]") || root.querySelector(".sheet button:not([disabled]), .sheet input, .sheet [tabindex]") || root.querySelector(".overlay button:not([disabled]), .overlay input, .overlay [tabindex]");
     if (target) target.focus({ preventScroll: true });
   }, 30);
 }
 function closeModal(silent) {
   if (!App.modalOpen) return;
+  const onClose = App.modalOnClose;
+  App.modalOnClose = null;
   const root = $("#modalRoot");
   root.innerHTML = "";
   App.modalOpen = false;
+  if (onClose) { try { onClose(); } catch (e) { /* noop */ } }
   document.body.style.overflow = "";
   $$(".top, #main, .ticker").forEach(el => { el.inert = false; });
   if (!silent && App.lastFocus && App.lastFocus.focus) App.lastFocus.focus({ preventScroll: true });
@@ -3498,9 +3868,9 @@ function openFormulas() {
       这是一个线性化、季度频率、半结构的教学模型：没有显式微观基础，没有银行资产负债表，没有开放经济的完整资本流动，也没有资产价格。范式的传导系数是刻意设置的“理论滤镜”，用于比较，不代表经验估计。它的用途是让你对机制做可重复的思想实验——不是预测 Meridia 之外的任何现实。
     </div>`;
   openModal({
-    kicker: "MATH · 方程与实验室",
-    title: "把直觉拆成方程",
-    sub: `${App.p.name} · 参数随范式变化 · 所有数值实时读取`,
+    kicker: "LAB · 交互实验室",
+    title: "拖一拖，看见机制",
+    sub: `实时方程与四个实验 · 完整推导见公式书（F） · 当前范式：${App.p.name}`,
     body, wide: true, closable: true,
     footer: `<span class="fine">实验室不写入存档。方程采用 % 与季度近似。</span><span class="spacer"></span><button class="btn" data-close="1">关闭</button>`,
     onMount(root) {
@@ -3611,6 +3981,1114 @@ function openFormulas() {
 }
 
 /* ============================================================
+   HANDBOOK — school pages, plates, biographies, arguments
+   ============================================================ */
+function schoolSymbol(id, size = 64) {
+  const w = size, h = size;
+  const open = `<svg viewBox="0 0 120 120" width="${w}" height="${h}" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false">`;
+  const close = `</svg>`;
+  const art = {
+    scales: `<circle cx="60" cy="47" r="22"/><path d="M60 25v47M35 45h50M35 45l-9 17h18zM85 45l-9 17h18z"/><path d="M26 96h68M34 89h52"/><rect x="57" y="19" width="6" height="6" fill="currentColor" stroke="none"/><path d="M19 47h9M92 47h9" stroke-dasharray="2 3"/>`,
+    vessel: `<path d="M30 25h60L72 59v24l-24 9V59z"/><path d="M60 7v18M51 17l9 9 9-9"/><path d="M23 100h74M29 31h62" stroke-dasharray="2 3"/><path d="M50 68h20M46 76h28"/><rect x="56" y="80" width="8" height="2" fill="currentColor" stroke="none"/>`,
+    ripple: `<circle cx="60" cy="60" r="9"/><circle cx="60" cy="60" r="22" stroke-dasharray="3 4"/><circle cx="60" cy="60" r="36" stroke-dasharray="1 5"/><path d="M12 60h10M98 60h10M60 12v10M60 98v10"/><path d="M32 86c9-9 47-9 56 0" stroke-dasharray="2 3"/><path d="M48 51h24M48 57h24" />`,
+    eye: `<path d="M17 60c13-21 73-21 86 0-13 21-73 21-86 0z"/><circle cx="60" cy="60" r="10"/><circle cx="60" cy="60" r="3" fill="currentColor" stroke="none"/><path d="M60 60l31-22" stroke-dasharray="2 3"/><path d="M82 28h18v18"/><path d="M18 96h84M26 90h16M48 90h16M70 90h22" stroke-dasharray="1 4"/>`,
+    tag: `<path d="M25 28h46l24 24-42 42-28-28z"/><circle cx="57" cy="43" r="4"/><path d="M42 65h28M42 73h20"/><rect x="72" y="76" width="28" height="22"/><path d="M77 76v-7a9 9 0 0118 0v7"/><path d="M82 86h8" stroke-dasharray="2 2"/>`,
+    tower: `<path d="M60 16L96 47H24z"/><path d="M60 47v36M38 96h44"/><path d="M44 64h32M32 80h56"/><path d="M53 27l13 11-13 13" stroke-dasharray="3 3"/><path d="M28 96l8 8M92 96l-8 8M60 96v8"/>`,
+    ring: `<circle cx="60" cy="58" r="34"/><circle cx="60" cy="58" r="12"/><path d="M60 24V12M60 104V92M26 58H14M106 58H94"/><path d="M60 48v20M52 54h16M52 62h16"/><path d="M28 94c12 0 18-7 32-7s20 7 32 7"/><rect x="58" y="56" width="4" height="4" fill="currentColor" stroke="none"/>`,
+    triangle: `<path d="M18 96L60 16l42 80z"/><path d="M60 16v80M38 58h44M28 80h64M18 96h84" stroke-dasharray="1 3"/><path d="M78 27c-11 1-14 11-6 18" /><path d="M72 45l7-4-2-7"/><rect x="56" y="88" width="8" height="8" fill="currentColor" stroke="none"/>`
+  };
+  return open + (art[id] || art.scales) + close;
+}
+
+const SCHOOL_BOOK_DATA = [
+  {
+    id: "classical", no: "01", name: "古典学派", en: "THE CLASSICAL TRADITION", era: "1776—1870s",
+    color: "#3E6382", symbol: "scales", tagline: "均衡是常态，货币是面纱。",
+    thesis: "价格、工资与利率会调整到市场出清；产出由供给面决定，货币只改变名义价格。政府应守住规则、产权与货币的可兑换性。",
+    quote: { text: "我们每天所需的食料和饮料，不是出自屠户、酿酒师或面包师的恩惠，而是出自他们自利的打算。", cite: "亚当·斯密，《国富论》" },
+    core: {
+      lede: "古典宏观不是一套单一模型，而是一组关于市场如何自我修复的信念。它把长期增长、贸易与货币放进同一个自发秩序里。",
+      claims: [
+        { t: "供给创造需求", d: "萨伊认为生产本身创造出等量的购买力；货币只是交换媒介，不会长期被窖藏。" },
+        { t: "价格会出清市场", d: "工资、价格与利率灵活调整；失业主要是摩擦、自愿选择或工资刚性。" },
+        { t: "货币是一层面纱", d: "货币数量改变价格水平，却不改变长期实际产出；财政赤字会推高利率并挤出投资。" }
+      ],
+      closing: "在古典世界里，衰退是暂时的协调失败。1929 年之后，这个信念第一次遭遇了无法用摩擦解释的持续失业。",
+      deeper: "古典体系的真正力量不是“市场永远正确”，而是它把长期约束摆上桌面：如果价格不能调整，失业与失衡就会持续；如果货币失控，名义锚就会漂移。"
+    },
+    figures: [
+      { name: "亚当·斯密", years: "1723—1790", role: "道德哲学家 · 《国富论》", text: "苏格兰启蒙运动的核心人物。1759 年写《道德情操论》，1776 年出版《国富论》，用分工、市场规模与“看不见的手”解释国民财富的增长。他并不是现代宏观模型的作者，但为市场协调提供了哲学基础。" },
+      { name: "让-巴蒂斯特·萨伊", years: "1767—1832", role: "法国经济学家 · 萨伊定律", text: "1803 年《政治经济学概论》提出“供给创造需求”。他把货币视为交换媒介，认为普遍的生产过剩不可能持续。这一命题在 1930 年代成为凯恩斯攻击的靶子。" },
+      { name: "大卫·李嘉图", years: "1772—1823", role: "政治经济学家 · 比较优势", text: "股票经纪人出身的理论家。1817 年《政治经济学及赋税原理》提出比较优势、地租与分配理论，并参与金块论战。他的抽象方法影响了此后所有古典宏观。" }
+    ],
+    relations: {
+      allies: [
+        { id: "austrian", text: "都相信市场协调与健全货币，但奥地利更强调资本结构与信用周期。" },
+        { id: "monetarist", text: "都接受货币数量论与规则，但货币主义更关注短期货币冲击。" }
+      ],
+      tensions: [
+        { id: "keynes", text: "凯恩斯否认供给自动创造需求；有效需求可能长期不足。" },
+        { id: "mmt", text: "MMT 认为主权发行者的财政约束是真实资源，而不是预算账本。" }
+      ],
+      note: "古典学派不是凯恩斯的简单反面。它提供了长期增长、比较优势与货币长期中性这些仍然有效的分析底座。"
+    },
+    theory: {
+      assumptions: ["价格、工资与利率灵活调整", "萨伊定律：供给创造等量需求", "货币需求稳定，长期货币中性", "竞争性市场，没有流动性陷阱"],
+      steps: ["出现超额供给，价格与工资向下调整", "实际货币余额上升，利率下降", "利率下降刺激投资与消费", "支出恢复，产出回到充分就业；货币只改变价格水平"],
+      eqs: [{ eq: "M · V = P · Y", note: "货币数量论：长期由货币决定价格水平。" }, { eq: "S(r) = I(r)", note: "可贷资金：利率使储蓄等于投资；财政赤字推高利率。" }],
+      evidence: "19 世纪的长期增长与金本位经验支持价格弹性的长期图景；但 1930 年代的大萧条显示，工资与价格调整可能太慢，且债务通缩会放大需求崩溃。"
+    },
+    critique: {
+      limits: ["萨伊定律把货币与信用当成了面纱，忽略有效需求不足", "工资与价格黏性、债务通缩与金融恐慌会破坏自我修复", "把充分就业当作常态，无法解释持续的大规模失业"],
+      game: { fiscal: 0.65, mon: 1.25, slope: 0.85, anchor: 72 },
+      play: "财政乘数最低，货币传导强。适合规则、通胀控制与长期供给分析；在深度衰退中，古典处方会显得缓慢而冷酷。",
+      quote: { text: "供给自动创造需求。", cite: "萨伊定律，1803" }
+    }
+  },
+  {
+    id: "keynes", no: "02", name: "凯恩斯学派", en: "THE KEYNESIAN TRADITION", era: "1936—1960s",
+    color: "#A94F34", symbol: "vessel", tagline: "需求不足时，市场不会自己回来。",
+    thesis: "在充分就业以下，产出由有效需求决定；工资与价格黏性、动物精神与流动性偏好使经济可能停在低就业均衡。财政乘数可以填补缺口。",
+    quote: { text: "长期来看，我们都死了。", cite: "凯恩斯，《货币改革论》，1923" },
+    core: {
+      lede: "《通论》的敌人不是算术，而是把充分就业当作自动结果的习惯。凯恩斯把不确定性、预期与货币放进产出决定的核心。",
+      claims: [
+        { t: "有效需求决定产出", d: "投资与消费构成总需求；当需求不足时，企业不会因为价格下降就自动扩大生产。" },
+        { t: "乘数把支出放大", d: "一笔自主支出变成收入，收入再变成消费，最终产出增加数倍；节俭悖论可能让集体储蓄拖垮收入。" },
+        { t: "流动性偏好决定利率", d: "利率不是储蓄与投资的自然价格，而是放弃流动性的补偿；在流动性陷阱里，货币政策可能失效。" }
+      ],
+      closing: "凯恩斯没有说市场永远失灵。他说的是：当协调失败持续时，等待市场自己恢复可能意味着整整一代人的失业。",
+      deeper: "凯恩斯真正挑战的是“等待”的伦理：当协调失败可以持续多年，把恢复交给长期并不是中性选择。乘数只是机制，政治经济学才是核心。"
+    },
+    figures: [
+      { name: "约翰·梅纳德·凯恩斯", years: "1883—1946", role: "剑桥经济学家 · 《通论》", text: "《和约的经济后果》1919、《货币论》1930、《通论》1936。他参与布雷顿森林体系设计，把概率与根本不确定性带回经济学。他的政策影响覆盖大萧条、战时财政与战后秩序。" },
+      { name: "理查德·卡恩", years: "1905—1989", role: "凯恩斯的学生 · 乘数", text: "1931 年提出乘数概念，把公共投资与就业联系起来。他是剑桥圈子与《通论》成型过程的核心成员，也是凯恩斯政策论证的技术支点。" },
+      { name: "琼·罗宾逊", years: "1903—1983", role: "剑桥经济学家 · 不完全竞争", text: "《不完全竞争经济学》1933 年出版，后来投入资本争论与积累理论。她把分配、增长与后凯恩斯传统带入剑桥，是凯恩斯主义最尖锐的扩展者之一。" }
+    ],
+    relations: {
+      allies: [
+        { id: "postkeynesian", text: "继承不确定性、有效需求与金融脆弱性，并把它推向更彻底的非均衡。" },
+        { id: "mmt", text: "共享“财政空间取决于真实资源”的直觉，但 MMT 对主权货币的论述更激进。" }
+      ],
+      tensions: [
+        { id: "monetarist", text: "货币主义认为财政扩张会被挤出，政策时滞使微调失灵。" },
+        { id: "newclassical", text: "理性预期使系统性的需求管理无效；只有意外冲击才有真实效应。" }
+      ],
+      note: "凯恩斯主义在 1970 年代因滞胀受挫，但其乘数、流动性偏好与危机干预逻辑在 2008 与 2020 年重新回到政策中心。"
+    },
+    theory: {
+      assumptions: ["工资与价格黏性，市场不能瞬时出清", "投资由预期与动物精神驱动", "货币需求对利率敏感，存在流动性陷阱", "经济可能停在低于充分就业的均衡"],
+      steps: ["政府支出增加，直接形成需求", "企业增加产出与就业，家庭收入上升", "收入的一部分转化为消费，形成第二轮需求", "乘数过程继续，直到储蓄、税收与进口漏出吸收冲击"],
+      eqs: [{ eq: "Y = C + I + G", note: "总需求恒等式；短期产出由需求决定。" }, { eq: "C = a + b(Y − T)", note: "消费函数：b 为边际消费倾向。" }, { eq: "k = 1 / (1 − b(1 − t))", note: "含税乘数；税率越高，漏出越大。" }],
+      evidence: "大萧条、二战动员与 2008 年后的财政刺激提供了支持；但 1970 年代的滞胀与高债务环境提醒人们，乘数不是常数，供给约束与预期同样重要。"
+    },
+    critique: {
+      limits: ["财政时滞、政治俘获与项目低效", "接近产能时，扩张会主要变成通胀", "债务与预期可能抵消乘数，开放经济还会漏出到进口"],
+      game: { fiscal: 1.35, mon: 0.95, slope: 1.05, anchor: 45 },
+      play: "财政乘数最高之一，适合负产出缺口；但预期锚定很低，通胀一旦启动就很难停下。先救就业，再用制度重建信誉。",
+      quote: { text: "节俭悖论：当所有人都想储蓄时，收入会下降，储蓄反而不会增加。", cite: "凯恩斯，《通论》" }
+    }
+  },
+  {
+    id: "monetarist", no: "03", name: "货币主义", en: "MONETARISM", era: "1956—1980s",
+    color: "#8E6E24", symbol: "ripple", tagline: "通胀是一种货币现象。",
+    thesis: "货币数量决定名义收入的长期水平；自然率使通胀与失业在长期没有替代关系。政策时滞长而多变，规则优于微调。",
+    quote: { text: "通货膨胀在任何时候、任何地方都是一种货币现象。", cite: "米尔顿·弗里德曼，1970" },
+    core: {
+      lede: "货币主义把古典的长期命题变成可检验的货币史。它不否认短期波动，但坚持名义收入最终由货币数量决定。",
+      claims: [
+        { t: "货币数量论", d: "货币流通速度相对稳定时，货币增长最终体现在价格与名义收入上。" },
+        { t: "自然率与预期", d: "长期菲利普斯曲线在自然失业率处垂直；用需求把失业压在自然率以下，只会加速通胀。" },
+        { t: "规则优于相机抉择", d: "政策时滞长而多变， discretionary 微调往往在错误的时点生效；固定货币增长规则更可信。" }
+      ],
+      closing: "货币主义在 1970 年代赢得了通胀辩论，却在 1980 年代发现货币需求本身也会漂移。它留下的不是一条固定规则，而是对名义锚的坚持。",
+      deeper: "货币主义最强的地方是把通胀从“坏运气”变成“政策选择”；最弱的地方是假设货币需求足够稳定，可以被一条规则锚住。"
+    },
+    figures: [
+      { name: "米尔顿·弗里德曼", years: "1912—2006", role: "芝加哥大学 · 货币主义", text: "《消费函数理论》1957 提出永久收入假说；与施瓦茨合著《美国货币史》1963；1976 年获诺贝尔经济学奖。他主张 k% 货币规则、浮动汇率与教育券，是 20 世纪最有影响力的公共知识分子之一。" },
+      { name: "安娜·施瓦茨", years: "1915—2012", role: "NBER 经济史学家", text: "长期研究货币与银行史。她与弗里德曼用大量历史数据论证：大萧条中的货币收缩不是被动结果，而是政策失误。她的实证工作让货币主义从口号变成研究纲领。" },
+      { name: "卡尔·布鲁纳", years: "1916—1989", role: "罗切斯特大学 · 货币主义", text: "瑞士裔美国经济学家，货币主义 counter-revolution 的组织者之一。他强调货币供给规则、政策可信度与通胀的货币根源，并影响了影子公开市场委员会。" }
+    ],
+    relations: {
+      allies: [
+        { id: "classical", text: "共享货币数量论、价格灵活性与规则传统。" },
+        { id: "newclassical", text: "都反对系统性需求管理，但新古典用理性预期把结论推得更远。" }
+      ],
+      tensions: [
+        { id: "keynes", text: "凯恩斯主义相信财政乘数；货币主义担心挤出、时滞与货币化。" },
+        { id: "postkeynesian", text: "后凯恩斯认为货币内生、信用创造不由央行完全控制。" }
+      ],
+      note: "货币主义是通胀目标制与央行独立的重要思想来源。它提醒宏观政策：没有名义锚，需求管理最终会变成价格水平的失控。"
+    },
+    theory: {
+      assumptions: ["货币需求相对稳定", "长期货币中性，短期影响产出", "自然失业率由结构因素决定", "政策时滞长且不确定"],
+      steps: ["货币供给增加，形成超额货币余额", "家庭与企业增加支出，名义需求上升", "短期产出可能增加，随后工资与价格调整", "预期追上现实，失业回到自然率，只剩更高的通胀"],
+      eqs: [{ eq: "M · V = P · Y", note: "数量方程；长期 M 增长决定 P。" }, { eq: "gM + gV = π + gY", note: "增长率形式；速度稳定时，货币增长锚定通胀。" }, { eq: "gM = π* + gY*", note: "k% 规则：货币增长等于目标通胀加潜在增长。" }],
+      evidence: "1970 年代的高通胀与 1979—82 年沃尔克紧缩支持了货币主义的诊断；但 1980 年代后货币需求函数不稳定，央行转向利率规则与通胀目标。"
+    },
+    critique: {
+      limits: ["货币需求函数不稳定，金融创新改变总量含义", "时滞估计困难，规则在危机中可能过于僵硬", "忽视了金融中介、资产负债表与流动性陷阱"],
+      game: { fiscal: 0.80, mon: 1.30, slope: 0.95, anchor: 78 },
+      play: "货币政策效率高、财政乘数低。把通胀预期钉在目标附近，避免用财政赤字为通胀融资；但别把货币总量当成万能仪表。",
+      quote: { text: "通货膨胀是一种货币现象，但货币增长并不总是外生。", cite: "对货币主义的常见修正" }
+    }
+  },
+  {
+    id: "newclassical", no: "04", name: "新古典宏观", en: "NEW CLASSICAL MACRO", era: "1972—1985",
+    color: "#8C4F68", symbol: "eye", tagline: "只有意外才有真实效应。",
+    thesis: "理性预期与市场出清意味着系统性政策无法稳定产出；规则、信誉与供给冲击才是核心。卢卡斯批判改变了整个宏观计量。",
+    quote: { text: "只有未预期到的政策才有真实效应。", cite: "理性预期革命的核心命题" },
+    core: {
+      lede: "新古典宏观把预期从残差项提升为模型的核心。如果公众理解政策规则，政策就会通过预期被提前吸收。",
+      claims: [
+        { t: "理性预期", d: "主体使用所有可得信息形成预期；系统性预测误差不应持续存在。" },
+        { t: "政策无效命题", d: "可预期的货币扩张只会改变价格；只有意外冲击才能暂时影响产出与就业。" },
+        { t: "规则、信誉与真实冲击", d: "时间不一致要求规则与独立央行；真实经济周期把波动归因于技术与偏好冲击。" }
+      ],
+      closing: "卢卡斯批判没有让宏观模型消失，而是让所有政策评估都必须回答：当规则改变时，行为参数会不会一起改变？",
+      deeper: "新古典把预期变成约束：如果公众能预见到政策，政策就必须先改变真实约束，而不是只改变名义变量。"
+    },
+    figures: [
+      { name: "罗伯特·卢卡斯", years: "1937—2023", role: "芝加哥大学 · 理性预期", text: "1972 年《预期与货币中性》与 1976 年《计量政策评估：一个批判》改变了宏观经济学。他指出政策规则变化会使历史参数失效；1995 年获诺贝尔奖。晚年转向增长与发展。" },
+      { name: "托马斯·萨金特", years: "1943—", role: "理性预期 · 政策制度", text: "与卢卡斯共同推动理性预期革命，研究恶性通胀的结束、财政理论与政策承诺。曾任教于明尼苏达、斯坦福与 NYU，2011 年获诺贝尔奖。" },
+      { name: "基德兰德与普雷斯科特", years: "1943— / 1940—2022", role: "规则与真实经济周期", text: "1977 年《规则而非相机抉择》提出时间不一致；1982 年《构建与加总波动》开创真实经济周期。两人于 2004 年获诺贝尔奖。" }
+    ],
+    relations: {
+      allies: [
+        { id: "monetarist", text: "共享自然率、规则与反通胀优先，但新古典把预期推到极致。" },
+        { label: "真实经济周期", text: "真实经济周期是同一纲领的宏观波动版本。" }
+      ],
+      tensions: [
+        { id: "newkeynesian", text: "新凯恩斯保留理性预期，但用黏性价格与不完全竞争让政策重新有效。" },
+        { id: "postkeynesian", text: "后凯恩斯拒绝代表性代理人与可计算风险，强调根本不确定性。" }
+      ],
+      note: "卢卡斯批判是当代宏观的底线：任何政策评估都必须考虑预期与制度变化。新古典的强版本政策无效命题则被 2008 年后的现实反复检验。"
+    },
+    theory: {
+      assumptions: ["理性预期，信息被有效利用", "价格与工资灵活，市场连续出清", "代表性代理人，技术冲击是主要驱动", "政策规则可被公众理解"],
+      steps: ["央行宣布并执行系统性宽松", "公众预期价格上升，工资与合同立即调整", "实际利率与实际工资不变，产出没有反应", "只有未预期冲击才带来短期真实效应"],
+      eqs: [{ eq: "y − y* = α(π − Eπ)", note: "政策无效命题：只有未预期通胀才影响产出。" }, { eq: "L = (π − π*)² + λ(u − u*)²", note: "时间不一致：相机抉择倾向于制造意外通胀。" }],
+      evidence: "1970 年代滞胀与沃尔克反通胀支持预期的重要性；真实经济周期在数据上争议很大，2008 年危机则暴露了忽略金融摩擦的代价。"
+    },
+    critique: {
+      limits: ["完全理性预期与代表性代理人过于简化", "价格灵活假设难以解释持续失业", "忽略金融摩擦、异质性与危机中的需求外部性"],
+      game: { fiscal: 0.50, mon: 1.00, slope: 0.55, anchor: 90 },
+      play: "预期锚定最高，通胀最容易被稳定，但财政乘数最低。用规则与清晰承诺管理预期；在深度衰退里，单靠信誉无法替代需求。",
+      quote: { text: "政策评估不能假设行为参数不变。", cite: "卢卡斯批判，1976" }
+    }
+  },
+  {
+    id: "newkeynesian", no: "05", name: "新凯恩斯", en: "NEW KEYNESIAN MACRO", era: "1982—2008",
+    color: "#5D7046", symbol: "tag", tagline: "价格是黏性的，预期是关键。",
+    thesis: "垄断竞争与菜单成本使价格不能瞬时调整；产出由需求与预期共同决定。央行用规则与沟通管理预期，在零利率下限需要财政与非常规工具。",
+    quote: { text: "通胀预期是实际通胀的锚。", cite: "现代央行沟通的核心直觉" },
+    core: {
+      lede: "新凯恩斯不是回到 1960 年代的旧凯恩斯，而是用一般均衡与理性预期重建凯恩斯结论：为什么货币政策仍然重要？",
+      claims: [
+        { t: "黏性价格", d: "菜单成本、交错合同与不完全竞争使价格不能即时出清；需求冲击因此有真实效应。" },
+        { t: "预期驱动的通胀", d: "今天的通胀取决于对未来通胀的预期与当前产出缺口；央行信誉是菲利普斯曲线位置的决定因素。" },
+        { t: "规则与零利率下限", d: "Taylor 规则稳定通胀与缺口；当利率触零，前瞻指引、QE 与财政成为必要补充。" }
+      ],
+      closing: "新凯恩斯综合让央行拥有了一个可操作的模型，也让宏观经济学在 2008 年之后不得不面对它忽略的金融部门。",
+      deeper: "新凯恩斯的关键不是“价格黏性”这个细节，而是它让需求管理在一般均衡里重新获得合法性；但金融摩擦仍然是它的盲点。"
+    },
+    figures: [
+      { name: "约翰·泰勒", years: "1946—", role: "斯坦福大学 · 政策规则", text: "1993 年提出以通胀与产出缺口反馈的利率规则，成为央行沟通与评估的基准。他研究政策规则、国际货币与宏观计量，是当代货币政策最具实践影响的经济学家之一。" },
+      { name: "吉列尔莫·卡尔沃", years: "1941—", role: "哥伦比亚大学 · 交错定价", text: "1983 年提出交错的 Calvo 定价：每期只有一部分企业能调整价格。这一假设让黏性价格进入可处理的动态一般均衡模型，成为新凯恩斯的标准部件。" },
+      { name: "迈克尔·伍德福德", years: "1955—", role: "哥伦比亚大学 · 最优货币政策", text: "《利息与价格》2003 年系统化新凯恩斯框架，研究预期管理、最优规则与零利率下限。他的工作把央行沟通从艺术变成可分析的制度设计。" }
+    ],
+    relations: {
+      allies: [
+        { id: "keynes", text: "共享黏性价格与需求管理的结论，但要求微观基础与预期。" },
+        { id: "monetarist", text: "在规则、名义锚与央行独立性上高度一致。" }
+      ],
+      tensions: [
+        { id: "newclassical", text: "新古典认为价格灵活、政策无效；新凯恩斯用黏性价格恢复政策空间。" },
+        { id: "postkeynesian", text: "后凯恩斯批评其忽略金融、分配与根本不确定性。" }
+      ],
+      note: "新凯恩斯是 1990—2008 年央行政策的主流语言，也是 2008 年危机后最受冲击的框架：如果金融中介崩塌，利率规则还够吗？"
+    },
+    theory: {
+      assumptions: ["垄断竞争与黏性价格", "理性预期，但信息与合同不完全", "跨期消费替代，实际利率影响需求", "央行可以承诺规则"],
+      steps: ["需求冲击改变产出缺口", "在黏性价格下，企业更愿意调整产量而非价格", "通胀由预期与缺口共同决定，央行用利率回应", "预期被规则锚定，稳定通胀的产出成本下降"],
+      eqs: [{ eq: "π_t = βE_tπ_{t+1} + κx_t", note: "新凯恩斯菲利普斯曲线：通胀由预期与缺口驱动。" }, { eq: "x_t = E_tx_{t+1} − σ(i_t − E_tπ_{t+1} − r*)", note: "动态 IS：实际利率缺口驱动需求。" }, { eq: "i_t = r* + π_t + 0.5(π_t − π*) + 0.5x_t", note: "Taylor 规则：系统性回应通胀与缺口。" }],
+      evidence: "1990 年代的大稳健与通胀目标制提供了支持；2008 年零利率下限与 2021—22 年通胀回归暴露了金融摩擦、供给冲击与预期管理的边界。"
+    },
+    critique: {
+      limits: ["代表性代理人与线性化忽略异质性与金融摩擦", "对供给冲击与供应链的解释不足", "规则在零利率下限和危机中可能失效"],
+      game: { fiscal: 1.10, mon: 1.20, slope: 0.95, anchor: 85 },
+      play: "默认范式，传导均衡。用 Taylor 规则管理通胀与缺口；当利率触零时，转向前瞻指引、QE 与财政，不要迷信单一工具。",
+      quote: { text: "在零利率下限，货币政策的空间由预期与财政共同决定。", cite: "对新凯恩斯政策边界的一个总结" }
+    }
+  },
+  {
+    id: "postkeynesian", no: "06", name: "后凯恩斯", en: "POST-KEYNESIAN", era: "1970s—",
+    color: "#7A4A36", symbol: "tower", tagline: "稳定本身会制造不稳定。",
+    thesis: "在根本不确定性与内生货币的世界里，投资、金融与分配决定产出与脆弱性。充分就业与金融稳定需要制度，而不是单一利率。",
+    quote: { text: "稳定是不稳定的。", cite: "海曼·明斯基" },
+    core: {
+      lede: "后凯恩斯不是凯恩斯的注脚，而是把他的不确定性、货币与金融逻辑推到主流模型不愿去的地方。",
+      claims: [
+        { t: "根本不确定性", d: "未来不是可用概率分布覆盖的风险；投资决策依赖惯例、预期与动物精神。" },
+        { t: "货币内生", d: "银行贷款创造存款；央行通过利率与准备金约束信用，而不是直接控制货币乘数。" },
+        { t: "金融脆弱性", d: "繁荣让融资结构从对冲走向投机与庞氏；稳定越久，杠杆与期限错配越深。" }
+      ],
+      closing: "明斯基没有预言每一次危机的日期。他预言的是：当繁荣看起来最安全时，系统正在为下一次崩塌积累条件。",
+      deeper: "后凯恩斯真正拒绝的是把未来压缩成概率分布：如果投资依赖不可保险的预期，稳定政策就必须处理金融结构与分配，而不只是利率。"
+    },
+    figures: [
+      { name: "海曼·明斯基", years: "1919—1996", role: "华盛顿大学 · 金融不稳定假说", text: "《稳定不稳定的经济》1986 年系统阐述金融不稳定假说：繁荣内生地抬升杠杆，最终以去杠杆与衰退收场。2008 年后，“明斯基时刻”成为公共语言。" },
+      { name: "米哈乌·卡莱茨基", years: "1899—1970", role: "波兰经济学家 · 利润方程", text: "独立于凯恩斯提出有效需求与乘数，并发展出垄断加成与政治经济周期理论。他的利润方程表明：资本家利润由投资、消费、财政赤字与贸易顺差共同决定。" },
+      { name: "保罗·戴维森", years: "1930—2024", role: "罗格斯大学 · 后凯恩斯", text: "《货币与真实世界》1972 年把货币、不确定性与就业联系起来。他长期编辑《后凯恩斯经济学杂志》，是后凯恩斯传统在美国最重要的组织者之一。" }
+    ],
+    relations: {
+      allies: [
+        { id: "keynes", text: "继承有效需求与不确定性，但拒绝把凯恩斯简化为 IS—LM 均衡。" },
+        { id: "mmt", text: "共享内生货币、财政空间与充分就业目标，但 MMT 更强调主权货币制度。" }
+      ],
+      tensions: [
+        { id: "newkeynesian", text: "新凯恩斯的代表性代理人与均衡方法被后凯恩斯视为抽掉了真正的不确定性。" },
+        { id: "monetarist", text: "货币主义相信货币总量可控；后凯恩斯认为信用由需求与银行体系内生创造。" }
+      ],
+      note: "后凯恩斯传统在主流期刊之外生长，却持续提供对金融危机、收入分配与失业的最尖锐诊断。"
+    },
+    theory: {
+      assumptions: ["根本不确定性，未来不可用概率完全描述", "货币内生，银行信贷创造存款", "投资由预期、利润与融资条件共同决定", "分配与金融结构影响总需求"],
+      steps: ["企业预期利润改善，增加投资", "银行创造信贷为投资融资，收入与利润上升", "繁荣推高杠杆与资产价格，融资结构变脆弱", "冲击出现，去杠杆与投资崩溃放大衰退"],
+      eqs: [{ eq: "P = I + C_k + (G − T) + (X − M)", note: "卡莱茨基利润方程：利润由投资、资本家消费、财政赤字与贸易顺差决定。" }, { eq: "对冲 → 投机 → 庞氏", note: "明斯基融资结构：稳定越久，脆弱性越深。" }],
+      evidence: "2008 年全球金融危机、1980 年代储贷危机与新兴市场债务危机都提供了支持；但后凯恩斯模型在预测时点与形式化检验上仍较弱。"
+    },
+    critique: {
+      limits: ["形式化程度较低，预测能力有限", "对通胀约束与开放经济的讨论不如主流细致", "政策处方依赖较强的制度与政治前提"],
+      game: { fiscal: 1.45, mon: 0.80, slope: 1.10, anchor: 38 },
+      play: "财政乘数很高、预期锚定很低。优先压低失业，用金融监管与收入政策处理通胀；不要用长期衰退来换取价格稳定。",
+      quote: { text: "资本主义经济的正常状态不是均衡，而是带着金融脆弱性的扩张。", cite: "对明斯基的一个概括" }
+    }
+  },
+  {
+    id: "mmt", no: "07", name: "现代货币理论", en: "MODERN MONETARY THEORY", era: "1990s—",
+    color: "#3B6B64", symbol: "ring", tagline: "约束是真实资源，不是账本。",
+    thesis: "本币发行国不会因本币债务违约；财政支出先创造准备金，税收与发债回收购买力。约束是通胀与产能，而不是“没钱”。",
+    quote: { text: "主权货币的约束是真实资源，不是账本。", cite: "MMT 的核心直觉" },
+    core: {
+      lede: "MMT 从会计恒等式与主权货币的制度事实出发，挑战“政府像家庭一样预算”的隐喻。它关心的不是账面，而是真实资源与通胀。",
+      claims: [
+        { t: "主权发行者不会“没钱”", d: "政府以本币支出时，银行体系先增加准备金；税收与债券发行回收流动性。违约风险是政治选择，不是会计必然。" },
+        { t: "部门余额恒等式", d: "私人、政府与外国部门的净金融资产之和为零；政府赤字对应私人盈余或外部赤字。" },
+        { t: "通胀是真实约束", d: "当需求超过产能，财政扩张会变成通胀；税收、监管与就业政策用于回收购买力。" }
+      ],
+      closing: "MMT 的力量在于把“预算约束”换成“资源约束”；它的风险在于，真实资源与政治约束往往比账本更硬。",
+      deeper: "MMT 的会计洞察是真实的：主权发行者不会被本币账单打败。争议在于，真实资源、汇率与政治约束是否比账本更快地反噬。"
+    },
+    figures: [
+      { name: "沃伦·莫斯勒", years: "1949—", role: "对冲基金经理 · MMT 创始人", text: "1990 年代从金融实务出发提出“软货币经济学”，强调主权发行者的税收驱动货币与部门余额。他是 MMT 术语与政策框架的奠基者之一。" },
+      { name: "兰德尔·雷", years: "1953—", role: "UMKC / 巴德学院 · MMT 学者", text: "《现代货币理论》2012 年系统整理 MMT 的会计、制度与政策逻辑。他长期研究货币史、就业保障与金融不稳定，是 MMT 学术化的关键人物。" },
+      { name: "斯蒂芬妮·凯尔顿", years: "1969—", role: "石溪大学 · 《赤字迷思》", text: "2020 年《赤字迷思》把 MMT 带入大众讨论；曾任美国参议院预算委员会首席经济学家。她强调赤字是资源与分配问题，而不是家庭账本问题。" }
+    ],
+    relations: {
+      allies: [
+        { id: "keynes", text: "共享财政空间与充分就业目标，但 MMT 对货币发行与税收的解释更制度主义。" },
+        { id: "postkeynesian", text: "共享内生货币与金融脆弱性，但 MMT 更强调主权货币的会计逻辑。" }
+      ],
+      tensions: [
+        { id: "monetarist", text: "货币主义担心财政货币化与通胀；MMT 认为约束在真实产能。" },
+        { id: "austrian", text: "奥地利学派认为信用扩张扭曲资本结构；MMT 认为主权货币可以 mobilise 闲置资源。" }
+      ],
+      note: "MMT 在 2020 年后的财政扩张中获得了现实检验，也在 2021—22 年通胀中遭遇了最严厉的质疑。"
+    },
+    theory: {
+      assumptions: ["主权本币发行，浮动汇率", "真实资源与产能是最终约束", "税收创造货币需求，债券发行回收准备金", "存在闲置资源与非自愿失业"],
+      steps: ["政府支出增加准备金与私人收入", "税收与债券发行回收部分流动性", "若存在闲置资源，产出与就业上升", "接近产能时，需求超过供给，通胀上升；需要税收或监管回收购买力"],
+      eqs: [{ eq: "(S − I) + (T − G) + (M − X) = 0", note: "部门余额恒等式：三个部门的净金融资产之和为零。" }, { eq: "(S − I) = (G − T) + (X − M)", note: "政府赤字对应私人盈余或贸易顺差。" }],
+      evidence: "日本长期高债务与低通胀、美国 2008 与 2020 年后的财政扩张提供了支持；2021—22 年通胀与政治约束则暴露了“真实资源约束”的执行难度。"
+    },
+    critique: {
+      limits: ["低估接近产能时的通胀与进口成本", "忽略汇率、资本流动与央行独立性", "政治体系可能把“空间”变成持续的过度支出"],
+      game: { fiscal: 1.70, mon: 0.70, slope: 1.15, anchor: 32 },
+      play: "财政乘数最高，债务不进入其主观损失；但市场压力与通胀照样会惩罚你。把财政火力对准失业与产能，而不是账本数字。",
+      quote: { text: "真正的约束不是借款能力，而是通胀与真实资源。", cite: "MMT 政策框架的简化表述" }
+    }
+  },
+  {
+    id: "austrian", no: "08", name: "奥地利学派", en: "THE AUSTRIAN SCHOOL", era: "1871—",
+    color: "#6B5B3E", symbol: "triangle", tagline: "繁荣的种子，是人为压低的利率。",
+    thesis: "资本是异质且有时间结构的；信用扩张把利率压到自然利率以下，诱导错误投资，最终需要清算。健全货币与有限政府是避免繁荣—萧条循环的根本。",
+    quote: { text: "繁荣的种子，是人为压低的利率。", cite: "米塞斯—哈耶克商业周期理论" },
+    core: {
+      lede: "奥地利学派从主观价值与资本的时间结构出发，把宏观波动理解为相对价格与生产结构的错配，而不是总需求的简单不足。",
+      claims: [
+        { t: "资本有时间结构", d: "生产需要多阶段、异质资本品的协作；利率决定生产过程的“迂回程度”。" },
+        { t: "信用扩张制造错误投资", d: "市场利率低于自然利率时，企业家被诱导投资过长、过重的项目；这些项目在真实储蓄不足时不可持续。" },
+        { t: "清算不可避免", d: "衰退是错误投资暴露与资源重新配置的过程；救助会延长扭曲，健全货币与有限政府才是根本。" }
+      ],
+      closing: "奥地利学派最有力的地方，是它拒绝把繁荣当作免费的午餐；最脆弱的地方，是它很难解释为什么清算必须伴随大规模失业。",
+      deeper: "奥地利学派最尖锐的追问是：低利率到底在配置资源，还是在推迟清算？它的弱点是把清算的失业成本交给了政治系统。"
+    },
+    figures: [
+      { name: "路德维希·冯·米塞斯", years: "1881—1973", role: "维也纳 / NYU · 行为学", text: "《货币与信用理论》1912 年把货币与资本结构联系起来；《人的行为》1949 年系统阐述行为学。他参与社会主义计算争论，是奥地利学派在 20 世纪的核心人物。" },
+      { name: "弗里德里希·哈耶克", years: "1899—1992", role: "维也纳 / LSE / 弗莱堡", text: "《价格与生产》1931 年提出资本结构与商业周期理论；《通往奴役之路》1944 年成为古典自由主义经典。1974 年与缪尔达尔共同获诺贝尔奖。" },
+      { name: "欧根·冯·庞巴维克", years: "1851—1914", role: "资本与利息理论", text: "《资本与利息》系统化迂回生产与时间偏好，提出资本边际生产力与利息理论。他的资本结构分析为奥地利商业周期理论提供了微观基础。" }
+    ],
+    relations: {
+      allies: [
+        { id: "classical", text: "共享市场协调、健全货币与有限政府，但奥地利更强调资本结构与信用周期。" },
+        { id: "rbc", text: "都把波动部分归因于真实冲击，但奥地利更关注货币利率造成的跨期错配。" }
+      ],
+      tensions: [
+        { id: "keynes", text: "凯恩斯用有效需求与财政扩张对抗衰退；奥地利认为这会延长错误投资。" },
+        { id: "mmt", text: "MMT 把主权货币视为资源动员工具；奥地利担心信用扩张与货币贬值。" }
+      ],
+      note: "奥地利学派对 2008 年危机的解释强调低利率与房地产资本错配；批评者则指出，它对总需求崩溃与大规模失业缺乏可操作的政策回应。"
+    },
+    theory: {
+      assumptions: ["异质资本与多阶段生产结构", "主观价值与分散知识", "自然利率由时间偏好与储蓄决定", "信用扩张会扭曲相对价格"],
+      steps: ["央行压低市场利率，信贷扩张", "企业家增加长周期、资本密集型投资", "真实储蓄与消费结构无法支撑这些项目", "利率回升或信贷收缩，错误投资暴露，进入清算"],
+      eqs: [{ eq: "i_market < r*", note: "市场利率持续低于自然利率，信贷扩张，资本被错误配置。" }, { eq: "迂回生产 ↑ → 资本结构拉长", note: "低利率诱导更长的生产阶段；真实储蓄不足时不可持续。" }],
+      evidence: "1920 年代美国繁荣与 2008 年房地产泡沫常被引用；但自然利率不可观测，清算的政治与社会成本也很高，经验证据并不一致。"
+    },
+    critique: {
+      limits: ["对总需求崩溃与失业的解释较弱", "自然利率不可观测，政策处方容易变成事后叙事", "清算的社会成本可能远超理论模型"],
+      game: { fiscal: 0.55, mon: 0.90, slope: 0.90, anchor: 68 },
+      play: "财政乘数低，重视通胀与债务。实际利率为负时，顾问会要求加息并清理错误投资；在深度衰退中，这套处方会非常不受欢迎。",
+      quote: { text: "繁荣的破裂不是资本主义的失败，而是对错误投资的纠正。", cite: "奥地利商业周期理论的强表述" }
+    }
+  }
+];
+/* ==== HANDBOOK-DATA-END ==== */
+
+/* ============================================================
+   FORMULA BOOK — ten derivations, symbol by symbol
+   ============================================================ */
+const FORMULA_BOOK_DATA = [
+  {
+    no: "01", id: "multiplier", title: "乘数", en: "THE MULTIPLIER", glyph: "k", accent: "#A94F34",
+    eq: "k = 1 / [1 − b(1 − t)]",
+    eqNote: "ΔY = k · ΔG；比例税让乘数小于简单模型。",
+    meaning: "一笔自主支出先变成某人的收入，其中一部分再被消费，形成第二轮、第三轮需求。乘数就是这条收入—消费链条的总和。税率越高、储蓄倾向越强，漏出越大，乘数越小。",
+    symbols: [
+      { s: "Y", d: "总产出 / 总收入", u: "实值" },
+      { s: "b", d: "边际消费倾向 MPC", u: "0—1" },
+      { s: "t", d: "比例税率", u: "0—1" },
+      { s: "a", d: "自主消费", u: "实值" },
+      { s: "I,G,T₀", d: "投资、政府支出、定额税", u: "实值" },
+      { s: "k", d: "乘数", u: "倍数" }
+    ],
+    assumptions: ["价格与产能不变，产出由需求决定", "消费函数线性、边际消费倾向稳定", "封闭经济或进口漏出固定", "不考虑挤出、预期与供给约束"],
+    derivation: [
+      { t: "从总需求恒等式出发。", e: "Y = C + I + G" },
+      { t: "写出消费函数与比例税。", e: "C = a + b(Y − T)，T = T₀ + tY" },
+      { t: "把消费函数代入恒等式。", e: "Y = a + b(Y − T₀ − tY) + I + G" },
+      { t: "把含 Y 的项移到左边。", e: "Y[1 − b(1 − t)] = a + I + G − bT₀" },
+      { t: "解出均衡产出，再对 G 求导。", e: "Y = (a + I + G − bT₀) / [1 − b(1 − t)]；ΔY/ΔG = k" }
+    ],
+    case: {
+      title: "Meridia 的桥梁预算",
+      setup: "设 a=30，I=20，G=20，T₀=10，b=0.8，t=0.25。",
+      steps: ["分母 = 1 − 0.8(1 − 0.25) = 0.4；乘数 k = 2.5。", "均衡 Y = (30+20+20−8)/0.4 = 155。", "若 G 增加 4，按一阶近似 ΔY = 2.5×4 = 10。"],
+      result: "乘数不是“花一块变两块五”的魔法；它假设资源闲置、价格不变。若经济接近产能，更多会变成价格与进口，而不是产出。"
+    },
+    pitfalls: ["在充分就业附近，乘数迅速变小，通胀上升", "税收、进口与储蓄都是漏出，会削弱乘数", "预期、债务与利率反应可能产生挤出", "乘数是短期需求概念，不是长期增长政策"],
+    related: "接着读 IS–LM、财政脉冲与债务动态，观察乘数在一般均衡中如何被利率与税收改变。"
+  },
+  {
+    no: "02", id: "islm", title: "IS–LM", en: "THE IS–LM MODEL", glyph: "IS", accent: "#3E6382",
+    eq: "Y* = [A + (d/h)(M/P)] / [(1 − b) + dk/h]",
+    eqNote: "A = a + I₀ + G − bT；d 为投资对利率的敏感度。",
+    meaning: "IS 曲线描述产品市场均衡：产出与利率必须让计划支出等于产出。LM 曲线描述货币市场均衡：产出越高，交易性货币需求越大，给定货币供给下利率越高。交点同时决定短期产出与利率。",
+    symbols: [
+      { s: "Y", d: "产出", u: "实值" },
+      { s: "i", d: "名义利率", u: "%" },
+      { s: "A", d: "自主支出", u: "实值" },
+      { s: "b", d: "MPC", u: "0—1" },
+      { s: "d", d: "投资对利率的敏感度", u: "实值" },
+      { s: "k,h", d: "货币需求对收入 / 利率的敏感度", u: "正数" },
+      { s: "M/P", d: "实际货币供给", u: "实值" }
+    ],
+    assumptions: ["价格水平固定，短期产出由需求决定", "投资是利率的线性减函数", "货币需求依赖收入与利率", "封闭经济，忽略预期与金融摩擦"],
+    derivation: [
+      { t: "产品市场：消费与投资函数。", e: "C=a+b(Y−T)，I=I₀−d·i" },
+      { t: "代入产品市场均衡并整理，得到 IS。", e: "(1−b)Y = A − d·i，A=a+I₀+G−bT" },
+      { t: "货币市场均衡给出 LM。", e: "M/P = kY − h·i ⇒ i=(kY−M/P)/h" },
+      { t: "把 LM 代入 IS。", e: "A−(1−b)Y = (d/h)(kY−M/P)" },
+      { t: "解出 Y，再回代得到 i。", e: "Y*=[A+(d/h)(M/P)]/[(1−b)+dk/h]" }
+    ],
+    case: {
+      title: "财政扩张与货币扩张",
+      setup: "设 a=20，b=0.75，I₀=20，G=24，T=16，d=8，k=0.5，h=2，M/P=60。",
+      steps: ["A=20+20+24−12=52；分母=0.25+8×0.5/2=2.25。", "Y*=[52+(8/2)×60]/2.25=129.8；i*=(0.5×129.8−60)/2≈2.45%。", "G 增加 2：ΔY≈2/2.25≈0.89，明显小于简单乘数；利率上升挤出部分投资。"],
+      result: "财政扩张的力度取决于 IS/LM 斜率：投资对利率越敏感、货币需求对收入越敏感，挤出越大。"
+    },
+    pitfalls: ["把 IS–LM 当作长期增长模型是误用", "忽略预期、价格调整与供给面", "零利率下限时 LM 失效", "金融摩擦与资产负债表不在模型内"],
+    related: "用左栏的交互实验室改变 G、T、M/P，观察 IS 与 LM 的移动和挤出。"
+  },
+  {
+    no: "03", id: "phillips", title: "菲利普斯曲线", en: "THE PHILLIPS CURVE", glyph: "π", accent: "#8C4F68",
+    eq: "π = πe − β(u − u*) + s",
+    eqNote: "β 衡量失业缺口对通胀的斜率；s 为供给冲击。",
+    meaning: "当失业低于自然率、劳动市场紧张时，工资与价格加速上涨；但工人关心实际工资，只有未被预期到的通胀才会暂时压低失业。长期曲线在 u* 处垂直。",
+    symbols: [
+      { s: "π", d: "实际通胀", u: "%" },
+      { s: "πe", d: "预期通胀", u: "%" },
+      { s: "u", d: "失业率", u: "%" },
+      { s: "u*", d: "自然失业率", u: "%" },
+      { s: "β", d: "失业缺口对通胀的敏感度", u: "正数" },
+      { s: "s", d: "供给冲击（油价、供应链等）", u: "百分点" }
+    ],
+    assumptions: ["工资与价格由不完全竞争市场设定", "预期影响名义工资合同", "短期存在名义黏性，长期预期追上现实", "失业缺口是通胀压力的代理变量"],
+    derivation: [
+      { t: "工人按预期价格谈判名义工资；工资设定为失业与制度的函数。", e: "W = Pe · F(u, z)" },
+      { t: "企业以加成 μ 定价。", e: "P = (1+μ)W" },
+      { t: "把工资设定代入价格设定。", e: "P = (1+μ)Pe·F(u,z)" },
+      { t: "取对数并线性化失业缺口。", e: "π ≈ πe + log(1+μ) − β(u−u*) + s" },
+      { t: "用 Okun 关系把失业缺口换成产出缺口。", e: "u−u*=−0.5x ⇒ π ≈ πe + 0.5βx + s" }
+    ],
+    case: {
+      title: "一次反通胀的代价",
+      setup: "设 β=0.5，πe=6%，u−u*=2%，s=0。",
+      steps: ["当前 π=6−0.5×2=5%。", "若想把 π 压到 2% 而 πe 仍为 6%，需要 u−u*=8%，这是巨大的衰退。", "若先通过可信承诺把 πe 降到 3%，则只需 u−u*=2%，π=2%。"],
+      result: "牺牲率不仅取决于 β，更取决于预期与信誉。可信的反通胀可以显著降低失业代价。"
+    },
+    pitfalls: ["β 不是结构常数，会随制度与冲击变化", "供给冲击会让通胀与失业同时上升", "长期垂直不代表短期没有真实成本", "预期不是可直接观测的变量"],
+    related: "对照 Friedman 词条、Taylor 规则与 1979 情境，观察信誉如何改变牺牲率。"
+  },
+  {
+    no: "04", id: "okun", title: "奥肯定律", en: "OKUN'S LAW", glyph: "u", accent: "#3E6382",
+    eq: "u − u* = −0.5 · (Y − Y*)/Y* = −0.5x",
+    eqNote: "0.5 是经验校准，不是自然常数。",
+    meaning: "产出低于潜在水平时，企业减少工时与雇佣，失业上升。Okun 定律把产出缺口与失业缺口连接起来，是用 GDP 推断劳动市场松紧的桥梁。",
+    symbols: [
+      { s: "Y", d: "实际产出", u: "实值" },
+      { s: "Y*", d: "潜在产出", u: "实值" },
+      { s: "x", d: "产出缺口 (Y−Y*)/Y*", u: "%" },
+      { s: "u", d: "失业率", u: "%" },
+      { s: "u*", d: "自然失业率", u: "%" },
+      { s: "0.5", d: "经验 Okun 系数", u: "倍数" }
+    ],
+    assumptions: ["劳动是主要投入，生产率平滑变化", "工时、参与率与人力囤积会吸收部分冲击", "系数在中期稳定，长期可能漂移"],
+    derivation: [
+      { t: "产出由劳动投入与生产率决定。", e: "Y=A·L，L=(1−u)LF" },
+      { t: "潜在产出使用潜在就业与潜在生产率。", e: "Y*=A*·(1−u*)LF" },
+      { t: "两边取对数并做一阶近似。", e: "y−y* ≈ (a−a*) + (u*−u)/(1−u*)" },
+      { t: "假设生产率不变，得到理论系数约 0.95，而非 0.5。", e: "u−u* ≈ −(1−u*)(y−y*)" },
+      { t: "加入工时调整、参与率与人力囤积后，经验系数约为 0.5。", e: "u−u* ≈ −0.5x" }
+    ],
+    case: {
+      title: "一次需求收缩",
+      setup: "潜在产出 100，实际产出 96，u*=5%。",
+      steps: ["产出缺口 x=−4%。", "按 Okun 定律，失业率约上升 0.5×4=2pp，到 7%。", "若企业选择减少工时而非裁员，实际失业上升可能只有 1pp。"],
+      result: "Okun 系数是经验规律，不是恒等式。工时、参与率与产业结构会让同样的产出缺口产生不同的失业反应。"
+    },
+    pitfalls: ["产出缺口本身不可直接观测，依赖潜在产出估计", "生产率冲击会破坏系数稳定性", "长期失业可能抬高自然率（滞后效应）", "不要用它做精确到小数点的预测"],
+    related: "在沙盘里，失业由产出缺口按 0.5 的系数推导；自然率会因长期高失业缓慢漂移。"
+  },
+  {
+    no: "05", id: "fisher", title: "费雪方程", en: "THE FISHER EQUATION", glyph: "r", accent: "#5D7046",
+    eq: "1 + i = (1 + r)(1 + πe)   ⇒   r ≈ i − πe",
+    eqNote: "i 为名义利率，r 为实际利率，πe 为预期通胀。",
+    meaning: "名义利率必须补偿通胀，才能让债权人获得正的实际回报。实际利率才是影响消费、投资与债务负担的变量；名义利率为零并不代表政策宽松。",
+    symbols: [
+      { s: "i", d: "名义利率", u: "%" },
+      { s: "r", d: "实际利率", u: "%" },
+      { s: "πe", d: "预期通胀率", u: "%" },
+      { s: "1+...", d: "把百分比转换为总回报", u: "倍数" }
+    ],
+    assumptions: ["借贷合同以名义利率签订", "实际回报由购买力衡量", "存在一个可观测或可预期的通胀率", "忽略税收、风险溢价与期限溢价"],
+    derivation: [
+      { t: "把 1 单位货币按名义利率 i 贷出，期末得到名义金额。", e: "1 + i" },
+      { t: "这 1 单位货币的购买力按预期通胀 πe 缩水。", e: "1 / (1 + πe)" },
+      { t: "实际总回报 = 名义回报 × 购买力调整。", e: "1 + r = (1 + i)/(1 + πe)" },
+      { t: "解出精确实际利率。", e: "r = (1+i)/(1+πe) − 1" },
+      { t: "当 i 与 πe 都较小时，交叉项可忽略。", e: "r ≈ i − πe" }
+    ],
+    case: {
+      title: "正实际利率还是负实际利率？",
+      setup: "名义利率 6%，预期通胀 2.5%。",
+      steps: ["精确实际利率 = 1.06/1.025 − 1 ≈ 3.41%。", "近似值 = 6−2.5=3.5%。", "若名义利率降到 1%，通胀预期升到 3%，实际利率约为 −1.94%。"],
+      result: "负实际利率会刺激需求、推高资产价格，也会惩罚现金持有者；零利率下限并不意味着政策一定宽松。"
+    },
+    pitfalls: ["预期通胀不可直接观测，可用调查或市场定价", "已实现通胀与预期通胀不同", "税收会改变税后实际利率", "风险与期限溢价会使实际借贷成本偏离基准利率"],
+    related: "在沙盘里，实际利率是 i − πe；零利率下限下，负通胀预期会把实际利率推高。"
+  },
+  {
+    no: "06", id: "taylor", title: "泰勒规则", en: "THE TAYLOR RULE", glyph: "i*", accent: "#A94F34",
+    eq: "i = r* + π + 0.5(π − π*) + 0.5x",
+    eqNote: "r* 为自然实际利率，π* 为目标通胀，x 为产出缺口。",
+    meaning: "央行不应机械地盯着当前通胀，而应同时回应通胀偏离目标与产出缺口。规则把政策意图写成可预测的反应函数，便于沟通与问责；它不是结构方程，而是政策基准。",
+    symbols: [
+      { s: "i", d: "政策名义利率", u: "%" },
+      { s: "r*", d: "自然实际利率", u: "%" },
+      { s: "π", d: "当前通胀", u: "%" },
+      { s: "π*", d: "目标通胀", u: "%" },
+      { s: "x", d: "产出缺口", u: "%" },
+      { s: "0.5", d: "政策反应系数", u: "校准值" }
+    ],
+    assumptions: ["央行可以控制短期名义利率", "自然利率与产出缺口可估计", "政策规则公开且可信", "金融稳定与汇率不作为主要约束"],
+    derivation: [
+      { t: "从目标实际利率出发：通胀高于目标时，实际利率应上升。", e: "r_target = r* + 0.5(π−π*) + 0.5x" },
+      { t: "实际利率与名义利率由 Fisher 关系连接。", e: "i = r_target + π" },
+      { t: "代入得到规则。", e: "i = r* + π + 0.5(π−π*) + 0.5x" },
+      { t: "把规则改写为实际利率形式，验证泰勒原理。", e: "i−π = r* + 0.5(π−π*) + 0.5x" },
+      { t: "对通胀求导：系数为 1.5，名义利率必须比通胀反应更强。", e: "di/dπ = 1 + 0.5 = 1.5 &gt; 1" }
+    ],
+    case: {
+      title: "1979 年的规则参考",
+      setup: "r*=1.2%，π=9.5%，π*=2%，x=1.2%。",
+      steps: ["i=1.2+9.5+0.5×7.5+0.5×1.2 = 15.05%。", "实际利率 = 15.05−9.5 = 5.55%。", "若央行只把利率提到 12%，实际利率仅 2.5%，对通胀的压制可能不足。"],
+      result: "Taylor 规则是一个透明基准，不是自动 pilot。r* 与产出缺口都可能估错，规则需要例外条款与判断。"
+    },
+    pitfalls: ["自然利率不可观测，估计误差会直接进入政策", "产出缺口在实时数据中很难测准", "零利率下限使规则失效", "金融稳定、汇率与分配不在简单规则里"],
+    related: "公式书读完，可按 L 打开交互实验室，拖动 π、x、r* 看规则值如何变化。"
+  },
+  {
+    no: "07", id: "debt", title: "债务动态", en: "DEBT DYNAMICS", glyph: "d", accent: "#8E6E24",
+    eq: "Δd ≈ (i − π − g)d + pb",
+    eqNote: "d 为债务/GDP，i 为平均名义利率，π 为通胀，g 为实际增长，pb 为基本余额。",
+    meaning: "债务比率的变化取决于两股力量：利率减去名义增长对存量债务的滚动效应，以及基本赤字。r &gt; g 且存在基本赤字时，债务会自我膨胀。",
+    symbols: [
+      { s: "D", d: "政府债务存量", u: "本币" },
+      { s: "d", d: "债务 / GDP", u: "%" },
+      { s: "i", d: "平均名义利率", u: "%" },
+      { s: "π", d: "通胀率", u: "%" },
+      { s: "g", d: "实际增长率", u: "%" },
+      { s: "pb", d: "基本余额（税收−非利息支出）", u: "% GDP" }
+    ],
+    assumptions: ["债务以本币计价，无违约", "平均利率渐进反映市场利率", "名义增长与利率在期内稳定", "忽略资产出售、估值效应与央行利润转移"],
+    derivation: [
+      { t: "债务在一年后的变化等于利息加基本赤字。", e: "D_t = (1+i)D_{t−1} + (G−T)" },
+      { t: "名义 GDP 按通胀与实际增长扩张。", e: "Y_t = (1+π+g)Y_{t−1}" },
+      { t: "两边除以 Y_t，得到债务比率的递推。", e: "d_t = [(1+i)/(1+π+g)]d_{t−1} + (G−T)/Y_t" },
+      { t: "把基本余额记为 pb=(G−T)/Y。", e: "d_t = [(1+i)/(1+π+g)]d_{t−1} + pb" },
+      { t: "在低利率与低通胀下做一阶近似。", e: "Δd ≈ (i−π−g)d + pb" }
+    ],
+    case: {
+      title: "债务是滚雪球还是融化？",
+      setup: "d=90%，i=4%，π=2%，g=3%，pb=−1%。",
+      steps: ["r−g = 4−2−3 = −1%。", "滚动效应 = −1%×90 = −0.9pp。", "Δd ≈ −0.9 + (−1) = −1.9pp；债务比率下降。"],
+      result: "即使有基本赤字，只要名义增长足够快，债务率也可能下降；反过来，高利率会让同样的赤字变得危险。"
+    },
+    pitfalls: ["r、g、pb 都是内生的，政策会同时改变它们", "平均利率与边际利率不同，债务到期结构很重要", "汇率、外币债务与金融抑制会改变方程", "不要把会计恒等式当作因果解释"],
+    related: "在沙盘里，债务按这个递推更新；高债务会提高利息支出与金融压力。"
+  },
+  {
+    no: "08", id: "quantity", title: "货币数量论", en: "THE QUANTITY THEORY", glyph: "MV", accent: "#3E6382",
+    eq: "M · V = P · Y   ⇒   gM + gV = π + gY",
+    eqNote: "V 为货币流通速度；增长率形式在长期更稳定。",
+    meaning: "货币数量乘以流通速度等于名义产出。若速度与潜在增长稳定，货币增长最终决定通胀。它是长期名义锚，不是短期精确预测器。",
+    symbols: [
+      { s: "M", d: "货币存量", u: "本币" },
+      { s: "V", d: "货币流通速度", u: "次/年" },
+      { s: "P", d: "价格水平", u: "指数" },
+      { s: "Y", d: "实际产出", u: "实值" },
+      { s: "gM,gV,π,gY", d: "各变量增长率", u: "%" }
+    ],
+    assumptions: ["货币需求相对稳定，速度变化缓慢", "长期货币中性", "产出由供给面决定", "货币总量可以被定义与度量"],
+    derivation: [
+      { t: "名义支出等于货币存量乘流通速度。", e: "M·V = P·Y" },
+      { t: "两边取自然对数。", e: "ln M + ln V = ln P + ln Y" },
+      { t: "对时间求导，得到增长率关系。", e: "gM + gV = π + gY" },
+      { t: "长期假设 gV≈0，gY 由潜在增长决定。", e: "π ≈ gM − gY*" },
+      { t: "如果速度上升，同样的货币增长会带来更高通胀。", e: "Δπ = gM + gV − gY" }
+    ],
+    case: {
+      title: "货币增长与通胀",
+      setup: "货币增长 7%，速度不变，实际增长 2.5%。",
+      steps: ["π = 7 + 0 − 2.5 = 4.5%。", "若支付技术让速度上升 1.5%，π = 6%。", "若央行把货币增长降到 4.5%，长期通胀约 2%。"],
+      result: "数量论给出长期预算约束：货币增长不可能永远高于名义收入增长而不体现在价格上。"
+    },
+    pitfalls: ["货币需求函数在金融创新后不稳定", "内生货币使 M 与 Y 互为因果", "短期速度波动大，不能机械使用", "资产需求与汇率也会吸收货币"],
+    related: "与 Friedman 词条、1979 情境和货币主义范式一起读；模型里的货币传导由利率近似。"
+  },
+  {
+    no: "09", id: "solow", title: "索洛增长", en: "THE SOLOW MODEL", glyph: "k*", accent: "#5D7046",
+    eq: "k* = [s/(δ+n+g)]^{1/(1−α)}，  y* = (k*)^α",
+    eqNote: "k 为人均有效资本，y 为人均有效产出；s 为储蓄率。",
+    meaning: "资本积累受边际报酬递减约束。储蓄率提高会提高稳态生活水平，但不能永久提高增长率；长期增长最终来自技术进步。",
+    symbols: [
+      { s: "k", d: "人均有效资本 K/(AL)", u: "实值" },
+      { s: "y", d: "人均有效产出 Y/(AL)", u: "实值" },
+      { s: "s", d: "储蓄率", u: "0—1" },
+      { s: "δ", d: "资本折旧率", u: "%" },
+      { s: "n", d: "人口增长率", u: "%" },
+      { s: "g", d: "技术进步率", u: "%" },
+      { s: "α", d: "资本收入份额", u: "0—1" }
+    ],
+    assumptions: ["生产函数规模报酬不变、资本边际报酬递减", "储蓄率外生且固定", "技术进步外生", "封闭经济，资本自由积累"],
+    derivation: [
+      { t: "资本存量按储蓄减去折旧演化。", e: "K_t = (1−δ)K_{t−1} + sY_{t−1}" },
+      { t: "除以有效劳动 AL，定义 k=K/(AL)。", e: "k_t ≈ k_{t−1} + s f(k) − (δ+n+g)k" },
+      { t: "稳态时 k 不再变化。", e: "s f(k*) = (δ+n+g)k*" },
+      { t: "代入 Cobb–Douglas f(k)=k^α。", e: "s(k*)^α = (δ+n+g)k*" },
+      { t: "解出稳态资本与产出。", e: "k* = [s/(δ+n+g)]^{1/(1−α)}；y*=(k*)^α" }
+    ],
+    case: {
+      title: "储蓄率上升的长期效果",
+      setup: "α=0.3，s=0.2，δ=0.05，n=0.01，g=0.02。",
+      steps: ["δ+n+g=0.08；k*=(0.2/0.08)^{1/0.7}=2.5^{1.428}=3.71。", "y*=3.71^{0.3}=1.48。", "若 s 升到 0.25，k*=5.13，y*=1.62；水平提高，但稳态增长率仍是 g。"],
+      result: "储蓄率有水平效应，没有永久增长效应。真正的长期增长来自技术、制度与人力资本。"
+    },
+    pitfalls: ["技术进步被当作外生，无法解释持续增长", "忽略人力资本、制度与金融", "条件收敛的证据并不均衡", "储蓄率并非政策可直接设定"],
+    related: "在沙盘里，供给侧改革与科技事件提高潜在增长；这是索洛式水平效应与内生增长的分界。"
+  },
+  {
+    no: "10", id: "sectors", title: "部门余额", en: "SECTORAL BALANCES", glyph: "S−I", accent: "#3B6B64",
+    eq: "(S − I) + (T − G) + (M − X) = 0",
+    eqNote: "私人、政府、外国三个部门的净金融资产之和为零。",
+    meaning: "这是一个会计恒等式，不是行为方程。政府赤字对应私人部门盈余或外国资本流入；私人部门想净储蓄，政府就必须提供净金融资产，或让外部部门吸收。",
+    symbols: [
+      { s: "S", d: "私人储蓄", u: "% GDP" },
+      { s: "I", d: "私人投资", u: "% GDP" },
+      { s: "T", d: "税收", u: "% GDP" },
+      { s: "G", d: "政府支出", u: "% GDP" },
+      { s: "M", d: "进口", u: "% GDP" },
+      { s: "X", d: "出口", u: "% GDP" }
+    ],
+    assumptions: ["封闭核算恒等式，按支出法定义", "忽略估值效应与部门内部转移", "恒等式本身不说明因果方向"],
+    derivation: [
+      { t: "从支出法 GDP 恒等式出发。", e: "Y = C + I + G + X − M" },
+      { t: "定义私人可支配收入与私人储蓄。", e: "S = Y − T − C" },
+      { t: "把 C=Y−T−S 代入 GDP 恒等式。", e: "Y = (Y−T−S) + I + G + X − M" },
+      { t: "消去 Y 并移项。", e: "S − I = (G−T) + (X−M)" },
+      { t: "把政府余额移到左边。", e: "(S−I) + (T−G) + (M−X) = 0" }
+    ],
+    case: {
+      title: "政府赤字去了哪里？",
+      setup: "政府赤字 3% GDP（T−G=−3），贸易顺差 1% GDP（X−M=+1）。",
+      steps: ["代入恒等式：(S−I) −3 +1 = 0。", "所以 S−I = 2% GDP：私人部门净盈余。", "若私人部门同时想增加储蓄，而政府收紧赤字，恒等式会迫使贸易或收入调整。"],
+      result: "恒等式不证明“赤字无害”或“赤字必然挤出”。它只说明：一个部门的净金融资产，必然对应另一个部门的净负债。"
+    },
+    pitfalls: ["把会计恒等式误读为因果", "忽略估值效应、资本利得与部门分类", "开放经济中汇率与资本流动会改变调整路径", "MMT 的规范结论超出恒等式本身"],
+    related: "与 MMT、后凯恩斯和 2022 供给冲击一起读；沙盘中的财政赤字会进入债务动态。"
+  }
+];
+/* ==== FORMULA-DATA-END ==== */
+
+/* ============================================================
+   BOOK BUILDERS + PAGE ENGINE
+   ============================================================ */
+const SCHOOL_BY_ID = Object.fromEntries(SCHOOL_BOOK_DATA.map(s => [s.id, s]));
+const FORMULA_BY_ID = Object.fromEntries(FORMULA_BOOK_DATA.map(f => [f.id, f]));
+
+function schoolTocCard(s, start) {
+  return `<button class="toc-card" data-goto="${start}" style="--accent:${s.color}" aria-label="进入 ${s.name} 章节">
+    <span class="toc-symbol">${schoolSymbol(s.symbol, 54)}</span>
+    <span class="toc-copy"><b>${s.name}</b><em>${s.en}</em><small>${s.tagline}</small><span class="toc-more">${s.thesis}</span></span>
+    <span class="toc-era">${s.era}</span>
+    <span class="toc-page">${String(start + 1).padStart(2, "0")}</span>
+  </button>`;
+}
+function schoolTocPage(left, starts) {
+  const slice = left ? SCHOOL_BOOK_DATA.slice(0, 4) : SCHOOL_BOOK_DATA.slice(4);
+  const head = left
+    ? `<div class="eyebrow">CONTENTS / 目录 I</div><h2>八种看经济的方式</h2><p>八个流派不是八条互不相干的教条，而是对同一组问题——产出、就业、货币、危机——的不同回答。点击图版进入章节。</p>`
+    : `<div class="eyebrow">CONTENTS / 目录 II</div><h2>从争论到判断</h2><p>读流派时，先看它假设什么、解释什么、忽略什么。再回到沙盘：同一个政策在不同假设下，会有不同的代价。</p>`;
+  return `<div class="toc-head">${head}</div>
+    <div class="toc-grid">${slice.map(s => schoolTocCard(s, starts.get(s.id))).join("")}</div>
+    <div class="toc-note">${left ? "图版按思想谱系排列；页码为章节起始页。也可以随时按“目录”返回这里。" : "阅读顺序建议：古典 → 凯恩斯 → 货币主义 → 新古典 → 新凯恩斯，再进入后凯恩斯、MMT 与奥地利。"}</div>
+    <div class="toc-read"><span>${left ? "读法" : "记号"}</span>${left ? "每一章都按“核心思想 → 人物 → 关系 → 论证 → 边界”展开。先看它假设什么，再看它如何论证。" : "页码是书的页码；粗体是关键词；引文来自原典或作者的概括。按 ← → 翻页，按目录回到这里。"}</div>
+    <div class="toc-index"><span>MERIDIA FIELD NOTES · 2026</span><span>${left ? "I" : "II"}</span></div>`;
+}
+function schoolCoverPage(s, start) {
+  const toc = [
+    ["核心思想", start + 1],
+    ["人物与思想", start + 2],
+    ["关系网络", start + 3],
+    ["理论论证", start + 4],
+    ["边界与沙盘", start + 5]
+  ];
+  return `<div class="chapter-cover" style="--accent:${s.color}">
+    <div class="chapter-kicker">CHAPTER ${s.no} · ${s.era}</div>
+    <div class="chapter-art">${schoolSymbol(s.symbol, 160)}</div>
+    <h2>${s.name}</h2>
+    <div class="chapter-en">${s.en}</div>
+    <p class="chapter-thesis">${s.thesis}</p>
+    <blockquote class="chapter-quote">“${s.quote.text}”<cite>${s.quote.cite}</cite></blockquote>
+    <div class="chapter-toc"><div class="ct-lab">本章目录</div>
+      ${toc.map(([label, page]) => `<button data-goto="${page}" aria-label="跳到${label}"><span>${label}</span><span>${String(page + 1).padStart(2, "0")}</span></button>`).join("")}
+    </div>
+  </div>`;
+}
+function schoolCorePage(s) {
+  return `<h2>核心思想</h2>
+    <p class="lede">${s.core.lede}</p>
+    <div class="claim-list">${s.core.claims.map((c, i) => `<div class="claim"><span>0${i + 1}</span><div><b>${c.t}</b><p>${c.d}</p></div></div>`).join("")}</div>
+    <p>${s.core.closing}</p>
+    <div class="core-deep"><h4>再深一层</h4><p>${s.core.deeper || ""}</p></div>
+    <div class="core-callout"><span>先记住</span><p>${s.tagline}</p></div>`;
+}
+function schoolFiguresPage(s) {
+  return `<h2>人物与思想</h2>
+    <p class="lede">思想不是从真空里长出来的。下面三个人物，分别代表这一传统的不同侧面：问题的提出、机制的构造与政策的延伸。</p>
+    <div class="bio-stack">${s.figures.map(f => `<div class="bio-card">
+      <div class="bio-head"><b>${f.name}</b><span>${f.years}</span></div>
+      <div class="bio-role">${f.role}</div>
+      <p>${f.text}</p>
+    </div>`).join("")}</div>`;
+}
+function schoolRelationsPage(s, starts) {
+  const link = item => {
+    const target = item.id ? SCHOOL_BY_ID[item.id] : null;
+    const label = target ? target.name : (item.label || item.id || "");
+    if (!target) return `<div class="rel-link"><b>${label}</b><span>${item.text}</span></div>`;
+    return `<button class="rel-link" data-goto="${starts.get(target.id)}"><b>${label} →</b><span>${item.text}</span></button>`;
+  };
+  return `<h2>关系网络</h2>
+    <p class="lede">一个流派的位置，往往由它继承谁、反对谁、又被谁吸收来定义。</p>
+    <div class="rel-grid">
+      <div class="rel-col"><h4>亲缘 / 共鸣</h4>${s.relations.allies.map(link).join("")}</div>
+      <div class="rel-col tension"><h4>张力 / 批评</h4>${s.relations.tensions.map(link).join("")}</div>
+    </div>
+    <div class="rel-note"><b>一句定位：</b>${s.relations.note}</div>
+    <p class="quiet">点击流派名，跳到对应章节。</p>`;
+}
+function schoolTheoryPage(s) {
+  return `<h2>理论论证</h2>
+    <div class="theory-grid">
+      <div><h4>核心假设</h4><ul>${s.theory.assumptions.map(x => `<li>${x}</li>`).join("")}</ul></div>
+      <div><h4>因果机制</h4><ol>${s.theory.steps.map(x => `<li>${x}</li>`).join("")}</ol></div>
+    </div>
+    ${s.theory.eqs.map(e => `<div class="eq-block">${e.eq}<span class="eq-note">${e.note}</span></div>`).join("")}
+    <div class="evidence"><b>经验与反例：</b>${s.theory.evidence}</div>`;
+}
+function schoolCritiquePage(s) {
+  const g = s.critique.game;
+  return `<h2>边界与沙盘</h2>
+    <div class="limit-list">${s.critique.limits.map(x => `<div><i>×</i><span>${x}</span></div>`).join("")}</div>
+    <div class="game-stats">
+      <div class="game-stat"><span>财政乘数</span><b>×${g.fiscal.toFixed(2)}</b></div>
+      <div class="game-stat"><span>货币传导</span><b>×${g.mon.toFixed(2)}</b></div>
+      <div class="game-stat"><span>Phillips</span><b>×${g.slope.toFixed(2)}</b></div>
+      <div class="game-stat"><span>预期锚定</span><b>${g.anchor}%</b></div>
+    </div>
+    <p class="play-note"><b>在 Meridia 里：</b>${s.critique.play}</p>
+    ${s.critique.quote ? `<blockquote>“${s.critique.quote.text}”<cite>${s.critique.quote.cite}</cite></blockquote>` : ""}`;
+}
+function buildSchoolBook() {
+  const starts = new Map(SCHOOL_BOOK_DATA.map((s, i) => [s.id, 2 + i * 6]));
+  const pages = [
+    { kind: "toc", section: "目录 / CONTENTS", head: "I", accent: "#A94F34", html: schoolTocPage(true, starts) },
+    { kind: "toc", section: "目录 / CONTENTS", head: "II", accent: "#A94F34", html: schoolTocPage(false, starts) }
+  ];
+  SCHOOL_BOOK_DATA.forEach(s => {
+    const start = starts.get(s.id);
+    pages.push(
+      { kind: "cover", section: s.name, head: `CHAPTER ${s.no}`, accent: s.color, html: schoolCoverPage(s, start) },
+      { kind: "content", section: s.name, head: "核心思想", accent: s.color, html: schoolCorePage(s) },
+      { kind: "content", section: s.name, head: "人物与思想", accent: s.color, html: schoolFiguresPage(s) },
+      { kind: "content", section: s.name, head: "关系网络", accent: s.color, html: schoolRelationsPage(s, starts) },
+      { kind: "content", section: s.name, head: "理论论证", accent: s.color, html: schoolTheoryPage(s) },
+      { kind: "content", section: s.name, head: "边界与沙盘", accent: s.color, html: schoolCritiquePage(s) }
+    );
+  });
+  return { id: "schools", title: "流派手册", sub: "八种看经济的方式 · SCHOOLS HANDBOOK", footer: "SCHOOLS HANDBOOK", pages, starts };
+}
+
+function formulaTocRow(f, start) {
+  return `<button class="formula-toc-row" data-goto="${start}" style="--accent:${f.accent}" aria-label="进入${f.title}">
+    <span class="ft-no">${f.no}</span>
+    <span class="ft-glyph">${f.glyph}</span>
+    <span class="ft-copy"><b>${f.title}</b><em>${f.en}</em><small>${f.eq}</small></span>
+    <span class="ft-page">${String(start + 1).padStart(2, "0")}</span>
+  </button>`;
+}
+function formulaTocPage(left, starts) {
+  const slice = left ? FORMULA_BOOK_DATA.slice(0, 5) : FORMULA_BOOK_DATA.slice(5);
+  const head = left
+    ? `<div class="eyebrow">CONTENTS / 目录 I</div><h2>把直觉拆成方程</h2><p>十个公式，十次从假设到结论的推导。每一章先解释符号的经济含义，再给出代数步骤，最后用一个理想化案例检查它到底说了什么。</p>`
+    : `<div class="eyebrow">CONTENTS / 目录 II</div><h2>从公式到判断</h2><p>方程不是答案，而是约束。每章末尾都会标出它不成立的边界；需要动手的读者，可按 L 打开交互实验室。</p>`;
+  return `<div class="toc-head">${head}</div>
+    <div class="formula-toc">${slice.map(f => formulaTocRow(f, starts.get(f.id))).join("")}</div>
+    <div class="toc-note">${left ? "公式书与学派手册共用一套翻页方式：点击两侧箭头或使用 ← →。" : "符号约定贴近 Mankiw 教科书：π 为通胀，x 为产出缺口，i 为名义利率，d 为债务/GDP。"} </div>
+    <div class="toc-read"><span>${left ? "怎么用" : "先看边界"}</span>${left ? "先读符号与假设，再跟着代数步骤走，最后用案例检查结论。不要跳过“不要误读”。" : "每个公式都只在特定假设下成立；公式书把假设、推导、案例与边界放在同一章，避免把方程当作万能答案。"}</div>
+    <div class="toc-index"><span>MERIDIA FORMULA CODEX · 2026</span><span>${left ? "I" : "II"}</span></div>`;
+}
+function formulaPageOne(f) {
+  return `<h2>${f.title}</h2>
+    <p class="quiet">${f.no} · ${f.en}</p>
+    <div class="formula-hero">${f.eq}<small>${f.eqNote}</small></div>
+    <p class="lede">${f.meaning}</p>
+    <h4>符号的经济含义</h4>
+    <div class="symbol-table">${f.symbols.map(s => `<div class="sym-row"><b>${s.s}</b><span>${s.d} <em>${s.u}</em></span></div>`).join("")}</div>
+    <h4>关键假设</h4>
+    <ul>${f.assumptions.map(a => `<li>${a}</li>`).join("")}</ul>
+    <p class="quiet">${f.related}</p>`;
+}
+function formulaPageTwo(f) {
+  return `<h2>推导与案例</h2>
+    <ol class="derivation">${f.derivation.map(d => `<li>${d.t}${d.e ? `<span class="step-eq">${d.e}</span>` : ""}</li>`).join("")}</ol>
+    <div class="case-box"><div class="case-lab">理想化案例 · ${f.case.title}</div>
+      <p>${f.case.setup}</p>
+      <ol>${f.case.steps.map(x => `<li>${x}</li>`).join("")}</ol>
+      <div class="case-eq">${f.case.result}</div>
+    </div>
+    <div class="pitfall-box"><div class="case-lab">不要误读</div><ul>${f.pitfalls.map(x => `<li>${x}</li>`).join("")}</ul></div>`;
+}
+function buildFormulaBook() {
+  const starts = new Map(FORMULA_BOOK_DATA.map((f, i) => [f.id, 2 + i * 2]));
+  const pages = [
+    { kind: "toc", section: "目录 / CONTENTS", head: "I", accent: "#A94F34", html: formulaTocPage(true, starts) },
+    { kind: "toc", section: "目录 / CONTENTS", head: "II", accent: "#A94F34", html: formulaTocPage(false, starts) }
+  ];
+  FORMULA_BOOK_DATA.forEach(f => {
+    const start = starts.get(f.id);
+    pages.push(
+      { kind: "content", section: f.title, head: `FORMULA ${f.no}`, accent: f.accent, html: formulaPageOne(f) },
+      { kind: "content", section: f.title, head: "推导 · 案例", accent: f.accent, html: formulaPageTwo(f) }
+    );
+  });
+  return { id: "formulas", title: "公式书", sub: "十次推导 · FORMULA CODEX", footer: "FORMULA CODEX", pages, starts };
+}
+
+const BOOK_CACHE = {};
+function getSchoolBook() { return BOOK_CACHE.schools || (BOOK_CACHE.schools = buildSchoolBook()); }
+function getFormulaBook() { return BOOK_CACHE.formulas || (BOOK_CACHE.formulas = buildFormulaBook()); }
+
+function bookPageHTML(page, index, book) {
+  const accent = page.accent || "#A94F34";
+  return `<div class="bp" style="--accent:${accent}">
+    <div class="bp-top"><span>${page.section || book.title}</span><span>${page.head || ""}</span></div>
+    <div class="bp-body ${page.kind === "cover" ? "bp-cover-body" : ""}">${page.html || ""}</div>
+    <div class="bp-foot"><span>MERIDIA · ${book.footer}</span><span class="pg">${String(index + 1).padStart(2, "0")}</span></div>
+  </div>`;
+}
+function bookShellHTML(book) {
+  return `<div class="book-shell book-kind-${book.id}" role="dialog" aria-modal="true" aria-labelledby="bookTitle">
+    <div class="book-toolbar">
+      <div class="book-brand">
+        <span class="book-mark"><svg width="25" height="25" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="7" y="1" width="2" height="14"/><rect x="1" y="7" width="14" height="2"/><rect x="3" y="3" width="2" height="2"/><rect x="11" y="3" width="2" height="2"/><rect x="3" y="11" width="2" height="2"/><rect x="11" y="11" width="2" height="2"/></g></svg></span>
+        <div><div class="b-kicker">MERIDIA · FIELD NOTES</div><h2 id="bookTitle">${book.title}</h2><div class="b-sub">${book.sub}</div></div>
+      </div>
+      <div class="book-actions">
+        <button class="book-btn" data-book-toc data-autofocus>目录</button>
+        ${book.id === "formulas" ? `<button class="book-btn" data-book-lab>交互实验室</button>` : ""}
+        <button class="book-btn close" data-close="1" aria-label="关闭书本">×</button>
+      </div>
+    </div>
+    <div class="book-stage" tabindex="0" aria-label="${book.title}，使用左右方向键翻页">
+      <button class="book-edge prev" data-book-prev aria-label="上一页">‹</button>
+      <div class="book" data-book>
+        <div class="book-page left" data-book-left></div>
+        <div class="book-page right" data-book-right></div>
+        <div class="book-spine" aria-hidden="true"></div>
+      </div>
+      <button class="book-edge next" data-book-next aria-label="下一页">›</button>
+    </div>
+    <div class="book-bottom">
+      <span class="book-hint">点击两侧 / ← → 翻页 · Home 回目录</span>
+      <span class="book-counter" data-book-counter>—</span>
+      <div class="book-pager">
+        <button data-book-prev aria-label="上一页">← 上一页</button>
+        <span class="num" data-book-num>—</span>
+        <button data-book-next aria-label="下一页">下一页 →</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+const BookState = {
+  kind: null, book: null, pages: [], current: 0, root: null,
+  flipping: false, onKey: null, onResize: null, stage: null, touchStart: null,
+  cleanup: null
+};
+function bookMode() { return window.innerWidth <= 760 ? "single" : "spread"; }
+function alignBookPage(index) {
+  return bookMode() === "spread" ? index - (index % 2) : index;
+}
+function openHandbook(schoolId) {
+  if (App.modalOpen) closeModal(true);
+  const book = getSchoolBook();
+  const start = schoolId && book.starts.has(schoolId) ? book.starts.get(schoolId) : 0;
+  openBook(book, start);
+}
+function openFormulaBook(chapterId) {
+  if (App.modalOpen) closeModal(true);
+  const book = getFormulaBook();
+  const start = chapterId && book.starts.has(chapterId) ? book.starts.get(chapterId) : 0;
+  openBook(book, start);
+}
+function openBook(book, startPage) {
+  BookState.kind = book.id;
+  BookState.book = book;
+  BookState.pages = book.pages;
+  BookState.flipping = false;
+  BookState.current = alignBookPage(clamp(startPage || 0, 0, book.pages.length - 1));
+  openModal({
+    bare: true,
+    closable: true,
+    body: bookShellHTML(book),
+    onMount(root) {
+      BookState.root = root;
+      const stage = $(".book-stage", root);
+      BookState.stage = stage;
+      const click = e => {
+        const goto = e.target.closest("[data-goto]");
+        if (goto) { e.preventDefault(); bookGoTo(+goto.dataset.goto); return; }
+        if (e.target.closest("[data-book-toc]")) { bookGoTo(0); return; }
+        if (e.target.closest("[data-book-prev]")) { bookTurn(-1); return; }
+        if (e.target.closest("[data-book-next]")) { bookTurn(1); return; }
+        if (e.target.closest("[data-book-lab]")) { openFormulas(); return; }
+      };
+      root.addEventListener("click", click);
+      BookState.cleanup = () => {
+        root.removeEventListener("click", click);
+        document.removeEventListener("keydown", BookState.onKey);
+        window.removeEventListener("resize", BookState.onResize);
+        if (stage && BookState.touchStart) {
+          stage.removeEventListener("touchstart", BookState.touchStart);
+          stage.removeEventListener("touchend", BookState.touchEnd);
+          BookState.touchStart = null; BookState.touchEnd = null;
+        }
+        if (BookState.flipTimer) { clearTimeout(BookState.flipTimer); BookState.flipTimer = null; }
+        BookState.root = null; BookState.stage = null; BookState.book = null;
+      };
+      BookState.onKey = e => {
+        if (!App.modalOpen || !BookState.book) return;
+        if (e.key === "ArrowRight") { e.preventDefault(); bookTurn(1); }
+        else if (e.key === "ArrowLeft") { e.preventDefault(); bookTurn(-1); }
+        else if (e.key === "Home") { e.preventDefault(); bookGoTo(0); }
+        else if (e.key === "End") { e.preventDefault(); bookGoTo(BookState.pages.length - 1); }
+      };
+      BookState.onResize = debounce(() => {
+        if (!App.modalOpen || !BookState.book) return;
+        BookState.current = alignBookPage(BookState.current);
+        renderBook();
+      }, 180);
+      document.addEventListener("keydown", BookState.onKey);
+      window.addEventListener("resize", BookState.onResize);
+      BookState.touchStart = null;
+      if (stage) {
+        const touchStart = e => {
+          if (e.touches.length !== 1) return;
+          BookState.touchX = e.touches[0].clientX;
+          BookState.touchY = e.touches[0].clientY;
+        };
+        const touchEnd = e => {
+          if (!BookState.touchX || !e.changedTouches.length) return;
+          const dx = e.changedTouches[0].clientX - BookState.touchX;
+          const dy = e.changedTouches[0].clientY - BookState.touchY;
+          BookState.touchX = 0;
+          if (Math.abs(dx) > 52 && Math.abs(dy) < 44) bookTurn(dx < 0 ? 1 : -1);
+        };
+        BookState.touchStart = touchStart;
+        BookState.touchEnd = touchEnd;
+        stage.addEventListener("touchstart", touchStart, { passive: true });
+        stage.addEventListener("touchend", touchEnd, { passive: true });
+      }
+      renderBook();
+    },
+    onClose() {
+      if (BookState.cleanup) { const c = BookState.cleanup; BookState.cleanup = null; c(); }
+    }
+  });
+}
+function renderBook() {
+  const root = BookState.root;
+  if (!root || !BookState.book) return;
+  const mode = bookMode();
+  const total = BookState.pages.length;
+  let index = clamp(BookState.current, 0, total - 1);
+  if (mode === "spread") index = index - (index % 2);
+  BookState.current = index;
+  const bookEl = $(".book", root);
+  const leftEl = $(".book-page.left", root);
+  const rightEl = $(".book-page.right", root);
+  if (!leftEl || !rightEl) return;
+  leftEl.innerHTML = bookPageHTML(BookState.pages[index], index, BookState.book);
+  if (mode === "spread") {
+    const rightIndex = Math.min(index + 1, total - 1);
+    rightEl.innerHTML = bookPageHTML(BookState.pages[rightIndex], rightIndex, BookState.book);
+    bookEl.classList.remove("single");
+  } else {
+    rightEl.innerHTML = "";
+    bookEl.classList.add("single");
+  }
+  $$(".bp-body", root).forEach(el => { el.scrollTop = 0; });
+  const value = mode === "spread" ? `${String(index + 1).padStart(2, "0")}–${String(Math.min(index + 2, total)).padStart(2, "0")}` : `${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+  $$("[data-book-counter]", root).forEach(el => { el.textContent = `${value}  ·  ${total} PAGES`; });
+  $$("[data-book-num]", root).forEach(el => { el.textContent = value; });
+  const atStart = index <= 0;
+  const atEnd = mode === "spread" ? index + 2 >= total : index >= total - 1;
+  $$("[data-book-prev]", root).forEach(b => { b.disabled = atStart; });
+  $$("[data-book-next]", root).forEach(b => { b.disabled = atEnd; });
+  bookEl.classList.remove("turning");
+}
+function bookGoTo(index) {
+  if (!BookState.book || BookState.flipping) return;
+  const total = BookState.pages.length;
+  BookState.current = alignBookPage(clamp(Number(index) || 0, 0, total - 1));
+  renderBook();
+}
+function bookTurn(dir) {
+  const root = BookState.root;
+  if (!root || !BookState.book || BookState.flipping) return;
+  const mode = bookMode();
+  const total = BookState.pages.length;
+  const step = mode === "spread" ? 2 : 1;
+  const cur = BookState.current;
+  const next = cur + dir * step;
+  if (next < 0 || next >= total) return;
+  if (reducedMotion()) {
+    BookState.current = next;
+    renderBook();
+    return;
+  }
+  BookState.flipping = true;
+  const bookEl = $(".book", root);
+  bookEl.classList.add("turning");
+  const setPage = (side, pageIndex) => {
+    const el = $(".book-page." + side, root);
+    if (!el) return;
+    el.innerHTML = bookPageHTML(BookState.pages[pageIndex], pageIndex, BookState.book);
+  };
+  let frontIndex, backIndex, underIndex;
+  if (mode === "spread") {
+    if (dir > 0) {
+      frontIndex = cur + 1;
+      backIndex = next;
+      underIndex = Math.min(next + 1, total - 1);
+      setPage("left", cur);
+      setPage("right", underIndex);
+    } else {
+      frontIndex = cur;
+      backIndex = cur - 1;
+      underIndex = Math.max(cur - 2, 0);
+      setPage("left", underIndex);
+      setPage("right", cur + 1);
+    }
+  } else {
+    frontIndex = cur;
+    backIndex = next;
+    underIndex = next;
+    setPage("left", underIndex);
+  }
+  const leaf = document.createElement("div");
+  leaf.className = "turn-leaf " + (dir > 0 ? "next" : "prev");
+  leaf.innerHTML = `<div class="leaf-face front">${bookPageHTML(BookState.pages[frontIndex], frontIndex, BookState.book)}</div><div class="leaf-face back">${bookPageHTML(BookState.pages[backIndex], backIndex, BookState.book)}</div>`;
+  bookEl.appendChild(leaf);
+  void leaf.offsetWidth;
+  requestAnimationFrame(() => leaf.classList.add("go"));
+  let done = false;
+  let midTimer = null;
+  if (mode === "spread") {
+    midTimer = setTimeout(() => {
+      if (dir > 0) setPage("left", next);
+      else setPage("right", cur - 1);
+    }, 520);
+  }
+  const finish = () => {
+    if (done) return;
+    done = true;
+    if (midTimer) clearTimeout(midTimer);
+    if (BookState.flipTimer) { clearTimeout(BookState.flipTimer); BookState.flipTimer = null; }
+    leaf.remove();
+    BookState.current = next;
+    BookState.flipping = false;
+    renderBook();
+  };
+  leaf.addEventListener("transitionend", finish, { once: true });
+  BookState.flipTimer = setTimeout(finish, 950);
+}
+
+/* ============================================================
    HELP / CONFIRM
    ============================================================ */
 function openConfirm(title, text, yesLabel, cb) {
@@ -3646,11 +5124,21 @@ function openHelp() {
       <div class="help-box">
         <h4>快捷键</h4>
         <div class="kbdrow"><span>推进一个季度</span><kbd>N</kbd></div>
+        <div class="kbdrow"><span>流派手册</span><kbd>H</kbd></div>
         <div class="kbdrow"><span>知识图鉴</span><kbd>K</kbd></div>
         <div class="kbdrow"><span>学说年表</span><kbd>T</kbd></div>
-        <div class="kbdrow"><span>公式与实验室</span><kbd>F</kbd></div>
+        <div class="kbdrow"><span>公式书</span><kbd>F</kbd></div>
+        <div class="kbdrow"><span>交互实验室</span><kbd>L</kbd></div>
         <div class="kbdrow"><span>帮助</span><kbd>?</kbd></div>
         <div class="kbdrow"><span>关闭弹窗</span><kbd>Esc</kbd></div>
+      </div>
+      <div class="help-box">
+        <h4>两本书</h4>
+        <ul>
+          <li><b>流派手册</b>：摊开的图版目录与八个章节，每章有核心思想、人物小传、流派关系、理论论证与沙盘参数。</li>
+          <li><b>公式书</b>：十个公式的符号解释、逐步推导、理想化案例与常见误读。</li>
+          <li>两本书都支持点击两侧、← / → 翻页；顶部“目录”随时回到目录。</li>
+        </ul>
       </div>
       <div class="help-box">
         <h4>事件与范式</h4>
@@ -3676,7 +5164,7 @@ function openHelp() {
     <h3>来源与边界</h3>
     <p>知识框架主要取自 N. Gregory Mankiw 的《宏观经济学》（IS–LM、Phillips 曲线、Solow、政策争论）、John Maynard Keynes 的《就业、利息和货币通论》（有效需求、乘数、不确定性），并扩展了 Friedman、Lucas、Kydland–Prescott、Taylor、Minsky、Wray/MMT、Summers 与 HANK 等线索。所有叙述都经过压缩，适合建立框架，不替代原典。</p>
     <p class="fine">本作是独立的教学模拟，不代表任何机构、教材作者或政治立场。模型使用年度化的百分比与季度近似；参数是被刻意选择的，不是经验估计。不要用它预测现实。</p>
-    <div class="callout olive"><span class="co-lab">一条阅读路径</span>曼昆的教科书提供骨架：古典 → 凯恩斯 → IS–LM → 菲利普斯曲线 → 自然率 → 新凯恩斯 → 政策规则与争论。凯恩斯提供问题意识：《通论》关心的是当需求不足时，为什么市场不会自动恢复。沿着图鉴的主线读，再进入异端与危机文献，会比按年份死记更有效。</div>
+    <div class="callout olive"><span class="co-lab">一条阅读路径</span>曼昆的教科书提供骨架：古典 → 凯恩斯 → IS–LM → 菲利普斯曲线 → 自然率 → 新凯恩斯 → 政策规则与争论。凯恩斯提供问题意识：《通论》关心的是当需求不足时，为什么市场不会自动恢复。沿着流派手册的主线读，再进入异端与危机文献，会比按年份死记更有效。</div>
     <div class="callout"><span class="co-lab">存档</span>进度自动保存在浏览器的 localStorage。清除存档会删除当前任期、图鉴进度与偏好设置。若浏览器禁止本地文件写入存储，请通过本地服务器打开，或把页面保持在当前标签页内游玩。</div>`;
   openModal({
     kicker: "FIELD MANUAL · 操作手册",
@@ -3757,9 +5245,11 @@ function onKey(e) {
   if (e.ctrlKey || e.metaKey || e.altKey) return;
   const k = e.key;
   if (k === "n" || k === "N") { e.preventDefault(); advance(); }
+  else if (k === "h" || k === "H") { e.preventDefault(); openHandbook(); }
   else if (k === "k" || k === "K") { e.preventDefault(); openCodex(); }
   else if (k === "t" || k === "T") { e.preventDefault(); openTimeline(); }
-  else if (k === "f" || k === "F") { e.preventDefault(); openFormulas(); }
+  else if (k === "f" || k === "F") { e.preventDefault(); openFormulaBook(); }
+  else if (k === "l" || k === "L") { e.preventDefault(); openFormulas(); }
   else if (k === "?") { e.preventDefault(); openHelp(); }
 }
 function bindEvents() {
@@ -3779,6 +5269,8 @@ function bindEvents() {
     else if (which === "formulas") openFormulas();
     else if (which === "help") openHelp();
   }));
+  $("#handbookBtn").addEventListener("click", () => openHandbook());
+  $("#formulaBookBtn").addEventListener("click", () => openFormulaBook());
   $("#newGameBtn").addEventListener("click", openScenarioPicker);
   $("#themeBtn").addEventListener("click", toggleTheme);
   $("#tickerPause").addEventListener("click", () => {
@@ -3788,8 +5280,8 @@ function bindEvents() {
   });
   $("#councilBtn").addEventListener("click", openCouncil);
   $("#paradigmBox").addEventListener("click", e => {
-    const b = e.target.closest("[data-codex]");
-    if (b) { openCodex(b.dataset.codex); return; }
+    const hb = e.target.closest("[data-handbook]");
+    if (hb) { openHandbook(hb.dataset.handbook); return; }
     if (e.target.closest("#paradigmSwitchInline")) openCouncil();
   });
   $(".tabs").addEventListener("click", e => {
