@@ -1,0 +1,3839 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Meridia：像素风格的宏观经济学策略沙盘。扮演政策制定者，在凯恩斯、货币主义、新古典与新凯恩斯等范式之间切换，用财政与货币政策稳定一个虚构经济体，同时解锁宏观经济学知识图谱。">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cg fill='%23D97757'%3E%3Crect x='7' y='1' width='2' height='14'/%3E%3Crect x='1' y='7' width='14' height='2'/%3E%3Crect x='3' y='3' width='2' height='2'/%3E%3Crect x='11' y='3' width='2' height='2'/%3E%3Crect x='3' y='11' width='2' height='2'/%3E%3Crect x='11' y='11' width='2' height='2'/%3E%3C/g%3E%3C/svg%3E">
+<title>MERIDIA · 宏观策略沙盘</title>
+<style>
+/* ============================================================
+   MERIDIA — design tokens
+   warm paper, ink, clay. pixel structure, editorial restraint.
+   ============================================================ */
+:root{
+  --bg:#F2EFE7;
+  --panel:#FBF9F4;
+  --panel-2:#F5F1E8;
+  --ink:#191816;
+  --ink-soft:#3E3B35;
+  --muted:#6B675F;
+  --line:#DDD7C9;
+  --line-strong:#191816;
+  --clay:#D97757;
+  --clay-deep:#A84A2C;
+  --clay-wash:#F3DED3;
+  --olive:#5C7044;
+  --olive-wash:#E7EADA;
+  --sky:#3F6787;
+  --sky-wash:#DFE8EE;
+  --fig:#9C4F69;
+  --fig-wash:#F0E1E7;
+  --gold:#8A6A1F;
+  --manilla:#F0E4C9;
+  --danger:#9C3527;
+  --danger-wash:#F4DED8;
+  --good:#4F6B3C;
+  --good-wash:#E5EBD9;
+  --shade:rgba(25,24,22,.14);
+  --shade-hard:rgba(25,24,22,.9);
+  --overlay:rgba(25,24,22,.52);
+  --city-sky:#EFE7D8;
+  --city-sky2:#F7F1E5;
+  --city-sun:#E3A57E;
+  --city-cloud:#FBF9F4;
+  --city-far:#D8CDB8;
+  --city-mid:#B9AD96;
+  --city-near:#6F6A5D;
+  --city-ink:#232220;
+  --city-window:#E9B96B;
+  --city-smoke:#BDB3A1;
+  --mono:"Cascadia Mono","SFMono-Regular",Consolas,"Liberation Mono","PingFang SC","Microsoft YaHei",monospace;
+  --sans:"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Songti SC","SimSun",serif;
+  --shadow:3px 3px 0 var(--shade);
+  --shadow-hard:3px 3px 0 var(--line-strong);
+}
+[data-theme="dark"]{
+  --bg:#1B1A17;
+  --panel:#242320;
+  --panel-2:#2B2A25;
+  --ink:#F2EFE7;
+  --ink-soft:#D6D1C4;
+  --muted:#A9A497;
+  --line:#3B3832;
+  --line-strong:#E9E4D7;
+  --clay:#E08A6A;
+  --clay-deep:#F0A98D;
+  --clay-wash:#3A2A23;
+  --olive:#A3B787;
+  --olive-wash:#2E3328;
+  --sky:#8FB4D0;
+  --sky-wash:#26333C;
+  --fig:#D79AB0;
+  --fig-wash:#382C31;
+  --gold:#D8B860;
+  --manilla:#383226;
+  --danger:#E58A76;
+  --danger-wash:#3B2723;
+  --good:#A9C48D;
+  --good-wash:#2D3527;
+  --shade:rgba(0,0,0,.4);
+  --shade-hard:rgba(0,0,0,.85);
+  --overlay:rgba(0,0,0,.62);
+  --city-sky:#252A2E;
+  --city-sky2:#34322D;
+  --city-sun:#D98F6C;
+  --city-cloud:#4A4640;
+  --city-far:#3A3B36;
+  --city-mid:#50514A;
+  --city-near:#1F211F;
+  --city-ink:#121311;
+  --city-window:#E7B765;
+  --city-smoke:#5B5850;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font:400 13.5px/1.6 var(--sans);
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(rgba(110,100,80,.12) .7px,transparent .8px);
+  background-size:6px 6px;
+}
+[data-theme="dark"] body{background-image:radial-gradient(rgba(255,250,235,.06) .7px,transparent .8px)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--clay-deep)}
+::selection{background:var(--clay);color:#1A1310}
+:focus-visible{outline:2px dashed var(--clay-deep);outline-offset:3px}
+.sub,.mono,.num{font-family:var(--mono)}
+.serif{font-family:var(--serif)}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:fixed;left:8px;top:-60px;z-index:200;background:var(--ink);color:var(--bg);padding:8px 12px;font:11px var(--mono)}
+.skip:focus{top:8px}
+
+/* ---------------- top bar ---------------- */
+.top{
+  position:sticky;top:0;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:9px 20px 10px;
+  background:var(--bg);
+  border-bottom:1px solid var(--line-strong);
+}
+.top::after{
+  content:"";position:absolute;left:0;right:0;bottom:-4px;height:3px;
+  background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px);
+  opacity:.18;pointer-events:none;
+}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.mark{color:var(--clay);filter:drop-shadow(2px 2px 0 var(--shade));flex:0 0 auto;line-height:0}
+.wordmark{font:400 29px/1 var(--serif);letter-spacing:-.025em;display:flex;align-items:baseline;gap:2px}
+.wordmark .dot{color:var(--clay);font-size:34px;line-height:0}
+.brand-sub{font:9px/1.3 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:4px;white-space:nowrap}
+.top-meta{display:flex;align-items:center;gap:16px;min-width:0}
+.meta-block{display:flex;flex-direction:column;gap:2px;min-width:0}
+.meta-block span{font:9px/1 var(--mono);letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+.meta-block b{font:500 12px/1.3 var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:190px}
+.top-actions{display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.icon-btn{
+  border:1px solid var(--line);background:var(--panel);color:var(--ink);
+  font:10px/1 var(--mono);letter-spacing:.06em;padding:7px 8px;min-height:30px;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.icon-btn:hover{background:var(--clay-wash);border-color:var(--clay-deep)}
+.icon-btn:active{transform:translateY(1px)}
+
+/* ---------------- layout ---------------- */
+.layout{
+  display:grid;grid-template-columns:310px minmax(0,1fr) 318px;
+  gap:14px;align-items:start;
+  max-width:1500px;margin:0 auto;padding:16px 20px 74px;
+}
+.col{display:flex;flex-direction:column;gap:14px;min-width:0}
+.col.left,.col.right{position:sticky;top:78px;max-height:calc(100vh - 92px);overflow:auto;scrollbar-width:thin;scrollbar-color:var(--clay) transparent;padding-bottom:4px}
+.col.left::-webkit-scrollbar,.col.right::-webkit-scrollbar,.sheet-body::-webkit-scrollbar,.feed::-webkit-scrollbar{width:7px;height:7px}
+.col.left::-webkit-scrollbar-track,.col.right::-webkit-scrollbar-track,.sheet-body::-webkit-scrollbar-track,.feed::-webkit-scrollbar-track{background:transparent}
+.col.left::-webkit-scrollbar-thumb,.col.right::-webkit-scrollbar-thumb,.sheet-body::-webkit-scrollbar-thumb,.feed::-webkit-scrollbar-thumb{background:var(--line);border:2px solid var(--bg)}
+.col.left::-webkit-scrollbar-thumb:hover,.col.right::-webkit-scrollbar-thumb:hover,.sheet-body::-webkit-scrollbar-thumb:hover,.feed::-webkit-scrollbar-thumb:hover{background:var(--clay)}
+@media(max-height:760px){.col.left,.col.right{position:static;max-height:none;overflow:visible}}
+
+/* ---------------- cards ---------------- */
+.card{
+  position:relative;background:var(--panel);border:1px solid var(--line);
+  box-shadow:var(--shadow);padding:13px 14px 15px;
+}
+.card::before{
+  content:"";position:absolute;top:0;left:0;width:100%;height:3px;
+  background:repeating-linear-gradient(90deg,var(--clay) 0 6px,transparent 6px 12px);
+  opacity:.55;
+}
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}
+.card h2{font:600 12px/1.4 var(--sans);letter-spacing:.12em;margin:0;display:flex;align-items:center;gap:7px}
+.sq{width:8px;height:8px;background:var(--clay);display:inline-block;flex:0 0 auto;box-shadow:1px 1px 0 var(--ink)}
+.sq.olive{background:var(--olive)}.sq.sky{background:var(--sky)}.sq.fig{background:var(--fig)}
+.tag{font:9px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.lede{margin:0 0 12px;font-size:12px;line-height:1.6;color:var(--muted)}
+.hr{height:1px;background:var(--line);margin:12px 0;border:0}
+.hr.dash{background:repeating-linear-gradient(90deg,var(--line) 0 3px,transparent 3px 6px)}
+
+/* ---------------- buttons ---------------- */
+.btn{
+  appearance:none;border:1.5px solid var(--ink);background:var(--panel);color:var(--ink);
+  font:600 11px/1 var(--mono);letter-spacing:.07em;padding:9px 11px;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  box-shadow:2px 2px 0 var(--ink);transition:background .12s,transform .06s,box-shadow .06s;
+  min-height:36px;text-align:center;
+}
+.btn:hover{background:var(--clay-wash)}
+.btn:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink)}
+.btn:disabled{opacity:.42;cursor:not-allowed;box-shadow:none;transform:none;background:var(--panel)}
+.btn.primary{background:var(--clay);color:#1A1310;border-color:var(--ink);font-weight:700}
+.btn.primary:hover{background:#E08A6A}
+.btn.ghost{box-shadow:none;border-color:var(--line);font-weight:500;color:var(--ink-soft)}
+.btn.ghost:hover{border-color:var(--clay-deep);color:var(--ink);background:var(--panel-2)}
+.btn.small{font-size:10px;padding:7px 9px;min-height:30px}
+.btn.danger{border-color:var(--danger);color:var(--danger);background:var(--danger-wash)}
+.btn.wide{width:100%}
+.btn kbd,.kbd{
+  font:9px/1 var(--mono);border:1px solid currentColor;padding:2px 4px;opacity:.65;
+  background:transparent;border-radius:0;
+}
+.btn.primary kbd{border-color:rgba(26,19,16,.5);opacity:.7}
+
+/* ---------------- policy desk ---------------- */
+.advance{width:100%;min-height:46px;font-size:12px;margin-top:4px}
+.advance .arr{font-size:15px;line-height:0}
+.control{margin:0 0 13px}
+.control-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:5px}
+.control-top label{font-size:11.5px;font-weight:600;letter-spacing:.02em}
+.control-top label em{font:400 11px var(--serif);color:var(--muted)}
+.control-top output{font:500 14px/1 var(--mono);letter-spacing:-.02em;color:var(--clay-deep)}
+.control-top .unit{font:9px var(--mono);color:var(--muted);margin-left:2px}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:20px;margin:0;background:transparent;display:block;
+}
+input[type=range]::-webkit-slider-runnable-track{
+  height:6px;border:1px solid var(--ink);
+  background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 7px),var(--panel-2);
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:13px;height:17px;margin-top:-6.5px;
+  background:var(--clay);border:1.5px solid var(--ink);box-shadow:1.5px 1.5px 0 var(--ink);cursor:grab;
+}
+input[type=range]::-moz-range-track{
+  height:6px;border:1px solid var(--ink);
+  background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 7px),var(--panel-2);
+}
+input[type=range]::-moz-range-thumb{
+  width:13px;height:17px;border-radius:0;background:var(--clay);border:1.5px solid var(--ink);
+  box-shadow:1.5px 1.5px 0 var(--ink);cursor:grab;
+}
+input[type=range]:disabled{opacity:.45}
+.ticks{display:flex;justify-content:space-between;font:8.5px var(--mono);color:var(--muted);letter-spacing:.06em;margin-top:1px}
+.rule-hint{
+  background:var(--manilla);border:1px dashed var(--gold);padding:8px 9px;
+  font:10.5px/1.5 var(--mono);color:var(--ink-soft);margin:2px 0 10px;
+}
+.rule-hint b{color:var(--clay-deep);font-weight:700}
+.rule-hint .warn{color:var(--danger)}
+.pc-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:13px 0 8px}
+.pc-row .lab{font:9px/1 var(--mono);letter-spacing:.13em;color:var(--muted);text-transform:uppercase}
+.pc-pips{display:flex;gap:3px;flex:1;justify-content:flex-end;margin-right:4px}
+.pc-pips i{width:10px;height:10px;border:1px solid var(--ink);background:transparent;display:block}
+.pc-pips i.on{background:var(--clay)}
+.pc-row b{font:600 11px var(--mono);min-width:26px;text-align:right}
+.actions-head{display:flex;justify-content:space-between;align-items:center;margin:2px 0 7px}
+.actions-head h3{font:600 11px/1 var(--sans);letter-spacing:.1em;margin:0}
+.actions{display:flex;flex-direction:column;gap:4px}
+.action{
+  width:100%;text-align:left;background:var(--panel-2);border:1px solid var(--line);
+  padding:6px 8px;display:grid;grid-template-columns:1fr auto;gap:1px 6px;align-items:baseline;
+  transition:border-color .12s,background .12s;position:relative;
+}
+.action:hover:not(:disabled){border-color:var(--clay-deep);background:var(--clay-wash)}
+.action:disabled{opacity:.42;cursor:not-allowed}
+.action .a-name{font:600 10.8px/1.35 var(--sans)}
+.action .a-cost{font:8.5px/1.3 var(--mono);color:var(--clay-deep);white-space:nowrap}
+.action .a-desc{grid-column:1/-1;font:9.8px/1.45 var(--mono);color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.action .a-desc.unavailable{color:var(--clay-deep)}
+.action .a-desc b{color:var(--ink-soft)}
+.action.used{opacity:.68;border-style:dashed}
+
+/* ---------------- center: city ---------------- */
+.city-card{padding:0;overflow:hidden;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow)}
+.city-frame{position:relative;border:0;background:var(--city-sky)}
+.canvas-wrap{position:relative;line-height:0}
+#cityCanvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges}
+.city-hud{position:absolute;left:0;right:0;display:flex;justify-content:space-between;gap:8px;padding:6px 9px;font:9px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#2B2925;background:rgba(251,249,244,.82);border-color:rgba(25,24,22,.25)}
+.city-hud.top{top:0;border-bottom:1px solid rgba(25,24,22,.22)}
+.city-hud.bottom{bottom:0;border-top:1px solid rgba(25,24,22,.22)}
+[data-theme="dark"] .city-hud{color:#F2EFE7;background:rgba(27,26,23,.75);border-color:rgba(242,239,231,.2)}
+.city-hud .dot-live{width:6px;height:6px;background:var(--clay);display:inline-block;margin-right:5px;animation:blink 1.8s steps(2,end) infinite}
+@keyframes blink{50%{opacity:.25}}
+.city-corner{position:absolute;width:7px;height:7px;background:var(--ink);z-index:2}
+.city-corner.tl{top:4px;left:4px}.city-corner.tr{top:4px;right:4px}.city-corner.bl,.city-corner.br{display:none}
+.city-caption{display:flex;align-items:center;gap:8px;padding:7px 10px;border-top:1px solid var(--line);background:var(--panel);font:9.5px/1.4 var(--mono);color:var(--muted);letter-spacing:.04em}
+.city-caption b{color:var(--ink);font-weight:600}
+.city-caption .spacer{flex:1}
+
+/* ---------------- kpis ---------------- */
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.kpi{
+  background:var(--panel);border:1px solid var(--line);padding:9px 10px 8px;position:relative;
+  min-width:0;box-shadow:2px 2px 0 var(--shade);
+}
+.kpi .k-lab{display:flex;justify-content:space-between;align-items:center;gap:4px;font:8.5px/1.2 var(--mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.kpi .k-lab .glyph{color:var(--ink-soft);font-size:10px}
+.kpi .k-val{font:500 23px/1.1 var(--mono);letter-spacing:-.045em;margin-top:6px;white-space:nowrap}
+.kpi .k-val small{font-size:10px;letter-spacing:0;color:var(--muted);margin-left:1px}
+.kpi .k-delta{font:9.5px/1.35 var(--mono);color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi .k-sub{font:9.5px/1.45 var(--mono);color:var(--muted);margin-top:4px;min-height:2.9em}
+.kpi .k-bar{height:3px;background:var(--line);margin-top:6px;position:relative;overflow:hidden}
+.kpi .k-bar i{position:absolute;inset:0 auto 0 0;background:var(--ink-soft);display:block;transition:width .35s steps(6)}
+.kpi .k-bar u{position:absolute;top:-1px;bottom:-1px;width:1px;background:var(--clay);opacity:.85}
+.kpi.warn{border-color:var(--clay-deep)}
+.kpi.warn .k-val{color:var(--clay-deep)}
+.kpi.bad .k-val{color:var(--danger)}
+.kpi.good .k-val{color:var(--good)}
+.kpi.target-hit{background:linear-gradient(180deg,var(--good-wash),var(--panel) 65%)}
+.kpi .k-tag{font:8px/1 var(--mono);border:1px solid var(--line);padding:1px 3px;color:var(--muted)}
+@media(max-width:1180px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------------- chart ---------------- */
+.chart-card{padding-bottom:9px}
+.chart-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}
+.tabs{display:flex;flex-wrap:wrap;gap:2px;border:1px solid var(--line);padding:2px;background:var(--panel-2)}
+.tab{
+  border:0;background:transparent;font:9px/1 var(--mono);letter-spacing:.07em;padding:6px 7px;color:var(--muted);
+  white-space:nowrap;
+}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tab:hover:not([aria-selected="true"]){background:var(--clay-wash);color:var(--ink)}
+.chart-box{position:relative;line-height:0;border:1px solid var(--line);background:var(--panel-2)}
+#chartCanvas{width:100%;height:188px;display:block}
+.chart-legend{display:flex;flex-wrap:wrap;gap:12px;padding:7px 1px 3px;font:9px/1.4 var(--mono);color:var(--muted)}
+.chart-legend span{display:inline-flex;align-items:center;gap:5px}
+.chart-legend i{width:12px;height:3px;display:inline-block;background:var(--ink)}
+.chart-legend i.dash{background:repeating-linear-gradient(90deg,var(--clay-deep) 0 2px,transparent 2px 4px)}
+.chart-note{margin:3px 0 0;font:9.5px/1.5 var(--mono);color:var(--muted)}
+.chart-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:10px var(--mono);color:var(--muted);letter-spacing:.1em}
+
+/* ---------------- feed / report ---------------- */
+.report{border:1px solid var(--line);background:var(--panel-2);padding:9px 10px;margin-bottom:9px}
+.report-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font:9px/1.2 var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.report-head b{color:var(--ink);font-size:10px;letter-spacing:.06em}
+.report-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:7px}
+.report-nums div{min-width:0;border-left:2px solid var(--line);padding-left:6px}
+.report-nums span{display:block;font:8.5px/1.2 var(--mono);color:var(--muted);letter-spacing:.06em}
+.report-nums b{display:block;font:500 14px/1.3 var(--mono);letter-spacing:-.02em;margin-top:1px}
+.report-nums b.up{color:var(--danger)}.report-nums b.down{color:var(--good)}
+.report-text{font:11px/1.55 var(--sans);margin:8px 0 0;color:var(--ink-soft)}
+.feed{max-height:206px;overflow:auto;scrollbar-width:thin;padding-right:2px}
+.entry{display:grid;grid-template-columns:38px 1fr;gap:8px;padding:7px 0;border-top:1px dashed var(--line);align-items:start}
+.entry:first-child{border-top:0}
+.entry .q{font:9px/1.5 var(--mono);color:var(--muted);letter-spacing:.03em;padding-top:1px}
+.entry .e-main{min-width:0;font:10.5px/1.55 var(--sans);color:var(--ink-soft)}
+.entry .e-main b{font-family:var(--mono);font-weight:600;color:var(--ink)}
+.entry .e-meta{font:8.5px/1.4 var(--mono);color:var(--muted);margin-top:2px;letter-spacing:.02em}
+.entry.event .q{color:var(--clay-deep)}
+.entry.event .e-main{color:var(--ink)}
+.entry .pill{display:inline-block;font:8px/1 var(--mono);border:1px solid var(--line);padding:2px 4px;margin-right:4px;color:var(--clay-deep)}
+.empty-note{font:10px/1.6 var(--mono);color:var(--muted);padding:10px 0}
+
+/* ---------------- right column ---------------- */
+.paradigm-name{font:400 21px/1.2 var(--serif);letter-spacing:-.01em;margin:2px 0 1px}
+.paradigm-en{font:8.5px/1.3 var(--mono);letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.paradigm-quote{font:italic 400 12px/1.6 var(--serif);color:var(--ink-soft);border-left:2px solid var(--clay);padding:1px 0 1px 9px;margin:10px 0 9px}
+.paradigm-quote cite{display:block;font:8.5px/1.4 var(--mono);color:var(--muted);margin-top:3px;font-style:normal;letter-spacing:.06em}
+.stat-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.stat-chip{font:8.5px/1 var(--mono);border:1px solid var(--line);padding:4px 5px;background:var(--panel-2);color:var(--muted);white-space:nowrap}
+.stat-chip b{color:var(--ink);font-weight:600}
+.mandate-title{font:12px/1.4 var(--sans);font-weight:600;margin:0 0 2px}
+.mandate-sub{font:9.5px/1.45 var(--mono);color:var(--muted);margin:0 0 9px}
+.mtarget{display:grid;grid-template-columns:16px 1fr auto;gap:6px;align-items:start;padding:5px 0;border-top:1px dashed var(--line);font:10px/1.5 var(--sans);color:var(--ink-soft)}
+.mtarget .box{width:13px;height:13px;border:1px solid var(--ink-soft);margin-top:1px;display:flex;align-items:center;justify-content:center;font:9px/1 var(--mono);color:transparent}
+.mtarget.ok .box{background:var(--olive);border-color:var(--olive);color:#fff}
+.mtarget .val{font:9px/1.6 var(--mono);color:var(--muted);text-align:right;white-space:nowrap}
+.mtarget.ok .val{color:var(--olive)}
+.progress{height:5px;border:1px solid var(--ink);background:var(--panel-2);margin-top:8px;position:relative}
+.progress i{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--clay) 0 4px,var(--clay-wash) 4px 6px);transition:width .4s steps(8)}
+.progress-lab{display:flex;justify-content:space-between;font:8px var(--mono);color:var(--muted);margin-top:3px;letter-spacing:.05em}
+.forecast-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:6px 0 8px}
+.fc{border:1px solid var(--line);padding:6px;background:var(--panel-2)}
+.fc span{font:8px/1.2 var(--mono);color:var(--muted);letter-spacing:.04em;display:block}
+.fc b{font:500 15px/1.3 var(--mono);letter-spacing:-.03em;display:block;margin-top:1px}
+.fc b .arrow{font-size:9px;color:var(--muted);margin-left:2px}
+.gauge{margin:7px 0 3px}
+.gauge-top{display:flex;justify-content:space-between;align-items:baseline;font:9px/1.3 var(--mono);color:var(--muted)}
+.gauge-top b{font:500 10px/1.3 var(--mono);color:var(--ink)}
+.gauge-bar{height:4px;border:1px solid var(--line);background:var(--panel-2);margin-top:3px;position:relative;overflow:hidden}
+.gauge-bar i{position:absolute;inset:0 auto 0 0;background:var(--olive);transition:width .4s steps(6)}
+.gauge-bar.warn i{background:var(--gold)}
+.gauge-bar.bad i{background:var(--danger)}
+.gauge-bar.striped i{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.35) 0 2px,transparent 2px 4px)}
+.note{font:9.5px/1.55 var(--mono);color:var(--muted);margin:8px 0 0}
+.note b{color:var(--clay-deep)}
+.memo{border-left:2px solid var(--clay);padding-left:8px;font:10px/1.55 var(--sans);color:var(--ink-soft);margin-top:8px}
+.memo b{font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--clay-deep);display:block;text-transform:uppercase;margin-bottom:2px}
+
+/* ---------------- ticker ---------------- */
+.ticker{
+  position:fixed;left:0;right:0;bottom:0;height:29px;z-index:35;
+  background:var(--panel);border-top:1.5px solid var(--ink);
+  display:flex;align-items:center;overflow:hidden;
+}
+.ticker-lab{
+  flex:0 0 auto;height:100%;display:flex;align-items:center;gap:5px;padding:0 10px;
+  background:var(--ink);color:var(--bg);font:8.5px/1 var(--mono);letter-spacing:.12em;z-index:2;
+}
+.ticker-lab i{width:5px;height:5px;background:var(--clay);display:inline-block}
+.ticker-window{overflow:hidden;flex:1;height:100%;display:flex;align-items:center}
+.ticker-track{display:flex;white-space:nowrap;animation:marquee 58s linear infinite;font:9.5px/1.4 var(--mono);color:var(--muted);letter-spacing:.03em}
+.ticker-track span{padding-right:38px}
+.ticker-track b{color:var(--ink-soft);font-weight:500}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-ctrl{flex:0 0 auto;display:flex;align-items:center;padding:0 8px;border-left:1px solid var(--line);height:100%}
+.ticker-ctrl button{border:0;background:transparent;color:var(--muted);font:10px/1 var(--mono);padding:5px}
+.ticker-ctrl button:hover{color:var(--ink)}
+
+/* ---------------- modal ---------------- */
+.overlay{
+  position:fixed;inset:0;z-index:100;background:var(--overlay);
+  display:flex;align-items:flex-start;justify-content:center;
+  padding:clamp(8px,4vh,46px) 14px 40px;overflow:auto;
+}
+.sheet{
+  position:relative;width:min(720px,100%);background:var(--bg);border:2px solid var(--ink);
+  box-shadow:8px 8px 0 var(--shade-hard);animation:sheetIn .16s steps(3) both;
+}
+.sheet.wide{width:min(1050px,100%)}
+.sheet.mid{width:min(860px,100%)}
+@keyframes sheetIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sheet-stripe{height:9px;background:repeating-linear-gradient(90deg,var(--clay) 0 9px,var(--ink) 9px 11px)}
+.sheet-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:15px 20px 12px;border-bottom:1px solid var(--line)}
+.sheet-kicker{font:8.5px/1.2 var(--mono);letter-spacing:.2em;color:var(--clay-deep);text-transform:uppercase;margin-bottom:4px}
+.sheet-title{font:400 25px/1.15 var(--serif);letter-spacing:-.02em;margin:0}
+.sheet-sub{font:10px/1.5 var(--mono);color:var(--muted);margin:4px 0 0}
+.x-btn{flex:0 0 auto;width:30px;height:30px;border:1px solid var(--ink);background:var(--panel);font:14px/1 var(--mono);display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 var(--ink)}
+.x-btn:hover{background:var(--clay-wash)}
+.x-btn:focus-visible{outline:2px solid var(--clay-deep);outline-offset:2px}
+.x-btn:active{transform:translate(2px,2px);box-shadow:none}
+.sheet-body{padding:16px 20px 20px;max-height:min(72vh,760px);overflow:auto;scrollbar-width:thin}
+.sheet-foot{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;align-items:center;padding:11px 20px 14px;border-top:1px solid var(--line);background:var(--panel-2)}
+.sheet-foot .spacer{flex:1}
+.sheet h3{font:600 13px/1.4 var(--sans);margin:18px 0 7px;letter-spacing:.02em}
+.sheet h3:first-child{margin-top:0}
+.sheet h4{font:600 11px/1.4 var(--mono);letter-spacing:.06em;margin:14px 0 5px;color:var(--ink-soft)}
+.sheet p{margin:0 0 9px;font-size:12px;line-height:1.7;color:var(--ink-soft)}
+.sheet p.lead{font-size:13px}
+.sheet ul{margin:4px 0 10px;padding-left:18px;font-size:11.5px;line-height:1.65;color:var(--ink-soft)}
+.sheet li{margin:3px 0}
+.sheet .fine{font:9.5px/1.6 var(--mono);color:var(--muted)}
+.callout{border:1px solid var(--line);background:var(--panel);padding:10px 12px;margin:10px 0;font-size:11.5px;line-height:1.65;color:var(--ink-soft)}
+.callout.clay{border-left:3px solid var(--clay);background:var(--clay-wash)}
+.callout.olive{border-left:3px solid var(--olive);background:var(--olive-wash)}
+.callout .co-lab{display:block;font:8.5px/1.3 var(--mono);letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+
+/* scenario picker */
+.sc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.sc{
+  text-align:left;border:1px solid var(--line);background:var(--panel);padding:11px 12px;position:relative;
+  display:flex;flex-direction:column;gap:5px;min-height:118px;transition:border-color .12s,background .12s;
+}
+.sc:hover{border-color:var(--clay-deep);background:var(--clay-wash)}
+.sc .sc-year{font:500 9px/1 var(--mono);letter-spacing:.12em;color:var(--clay-deep)}
+.sc .sc-name{font:400 17px/1.25 var(--serif);margin-top:1px;color:var(--ink)}
+.sc .sc-desc{font:10px/1.5 var(--sans);color:var(--muted);flex:1}
+.sc .sc-meta{display:flex;gap:4px;flex-wrap:wrap;margin-top:2px}
+.sc .sc-meta span{font:8px/1 var(--mono);border:1px solid var(--line);padding:3px 4px;color:var(--muted);background:var(--bg)}
+.sc.sandbox{border-style:dashed;background:var(--panel-2)}
+@media(max-width:620px){.sc-grid{grid-template-columns:1fr}}
+
+/* event */
+.event-art{
+  height:82px;border:1px solid var(--line);margin-bottom:13px;position:relative;overflow:hidden;
+  background:var(--city-sky);
+}
+#eventCanvas{width:100%;height:80px;image-rendering:pixelated;display:block}
+.event-kicker{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:7px}
+.event-body{font-size:12px;line-height:1.7;color:var(--ink-soft)}
+.choices{display:flex;flex-direction:column;gap:6px;margin-top:13px}
+.choice{
+  text-align:left;border:1px solid var(--ink);background:var(--panel);padding:9px 11px;
+  display:grid;grid-template-columns:18px 1fr;gap:8px;align-items:start;box-shadow:2px 2px 0 var(--shade);
+}
+.choice:hover{background:var(--clay-wash);box-shadow:2px 2px 0 var(--ink)}
+.choice:active{transform:translate(2px,2px);box-shadow:none}
+.choice .num{font:600 11px/1.7 var(--mono);color:var(--clay-deep)}
+.choice .c-title{font:600 11.5px/1.5 var(--sans)}
+.choice .c-desc{font:10px/1.5 var(--mono);color:var(--muted);margin-top:2px}
+.choice .c-eff{font:8.5px/1.4 var(--mono);color:var(--clay-deep);margin-top:3px;letter-spacing:.02em}
+
+/* codex */
+.codex-tools{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:12px}
+.search{
+  flex:1;min-width:150px;border:1px solid var(--line);background:var(--panel);padding:7px 9px;
+  font:10.5px var(--mono);color:var(--ink);
+}
+.search:focus,.search:focus-visible{border-color:var(--clay-deep);outline:1px solid var(--clay-deep);outline-offset:0}
+.codex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:8px}
+.cx{
+  text-align:left;border:1px solid var(--line);background:var(--panel);padding:9px 10px 8px;position:relative;
+  display:flex;flex-direction:column;gap:3px;min-height:92px;
+}
+.cx:hover{border-color:var(--clay-deep);background:var(--panel-2)}
+.cx::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--olive)}
+.cx[data-family="keynesian"]::before{background:var(--clay)}
+.cx[data-family="classical"]::before{background:var(--sky)}
+.cx[data-family="monetarist"]::before{background:var(--gold)}
+.cx[data-family="newclassical"]::before{background:var(--fig)}
+.cx[data-family="newkeynesian"]::before{background:var(--olive)}
+.cx[data-family="heterodox"]::before{background:var(--danger)}
+.cx .cx-era{font:8px/1.2 var(--mono);letter-spacing:.1em;color:var(--muted)}
+.cx .cx-name{font:600 11.5px/1.45 var(--sans)}
+.cx .cx-en{font:8px/1.3 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.cx .cx-foot{margin-top:auto;font:8px/1.3 var(--mono);color:var(--muted);display:flex;justify-content:space-between;gap:4px}
+.cx.locked{background:var(--panel-2);border-style:dashed;color:var(--muted);cursor:pointer}
+.cx.locked::before{background:var(--line)}
+.cx.locked .cx-name{color:var(--muted)}
+.cx.locked .cx-en{color:transparent;text-shadow:0 0 6px var(--muted)}
+.cx .lock{color:var(--muted)}
+.codex-count{font:9px/1.4 var(--mono);color:var(--muted)}
+.cx-detail .back{font:10px var(--mono);color:var(--clay-deep);border:0;background:none;padding:0 0 9px;display:inline-block}
+.cx-detail .back:hover{text-decoration:underline}
+.cx-head{border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:12px}
+.cx-head .era{font:9px/1.2 var(--mono);letter-spacing:.15em;color:var(--clay-deep)}
+.cx-head h3{font:400 26px/1.15 var(--serif);margin:5px 0 3px}
+.cx-head .en{font:8.5px/1.3 var(--mono);letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+.cx-sec{padding:9px 0;border-top:1px dashed var(--line)}
+.cx-sec:first-of-type{border-top:0}
+.cx-sec .lab{font:8px/1.2 var(--mono);letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+.cx-sec p{font-size:11.5px;line-height:1.7;margin:0}
+.math-block{
+  background:var(--panel-2);border:1px solid var(--line);border-left:3px solid var(--sky);
+  padding:8px 10px;font:11px/1.65 var(--mono);color:var(--ink);overflow-x:auto;margin:5px 0;
+}
+.math-block .mnote{display:block;font:9px/1.5 var(--mono);color:var(--muted);margin-top:4px}
+.tagrow{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.tagrow .tg{border:1px solid var(--line);padding:3px 5px;font:8px/1 var(--mono);color:var(--muted);background:var(--panel)}
+.cx-links{display:flex;flex-wrap:wrap;gap:5px}
+.cx-links button{border:1px solid var(--line);background:var(--panel);padding:4px 6px;font:9px/1.2 var(--mono);color:var(--clay-deep)}
+.cx-links button:hover{border-color:var(--clay-deep)}
+
+/* timeline */
+.tl{position:relative;padding-left:20px}
+.tl::before{content:"";position:absolute;left:5px;top:5px;bottom:5px;width:1px;background:repeating-linear-gradient(180deg,var(--ink-soft) 0 3px,transparent 3px 6px);opacity:.45}
+.tl-item{position:relative;padding:0 0 14px}
+.tl-item::before{content:"";position:absolute;left:-19px;top:4px;width:9px;height:9px;background:var(--bg);border:1.5px solid var(--ink);box-shadow:1px 1px 0 var(--clay)}
+.tl-item.hot::before{background:var(--clay)}
+.tl-year{font:500 11px/1.2 var(--mono);letter-spacing:.05em;color:var(--clay-deep)}
+.tl-name{font:600 12.5px/1.45 var(--sans);margin-top:1px}
+.tl-text{font:10.5px/1.6 var(--sans);color:var(--muted);margin-top:2px}
+.tl-link{border:0;background:none;padding:2px 0 0;font:8.5px/1.4 var(--mono);color:var(--clay-deep);letter-spacing:.03em}
+.tl-link:hover{text-decoration:underline}
+
+/* formula + lab */
+.eq-card{border:1px solid var(--line);background:var(--panel);padding:9px 11px;margin:6px 0}
+.eq-top{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.eq-top b{font:600 10.5px/1.4 var(--mono);letter-spacing:.04em}
+.eq-top span{font:8px/1.2 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.eq-body{font:11px/1.7 var(--mono);margin-top:4px;overflow-x:auto;white-space:nowrap;padding-bottom:2px}
+.eq-body .hl{color:var(--clay-deep);font-weight:600;background:var(--clay-wash);padding:1px 2px}
+.eq-note{font:9px/1.55 var(--mono);color:var(--muted);margin-top:3px}
+.lab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+@media(max-width:760px){.lab-grid{grid-template-columns:1fr}}
+.lab-grid > .lab{border:1px solid var(--line);background:var(--panel);padding:9px 11px 10px}
+.lab-grid > .lab h4{margin:0 0 7px;display:flex;justify-content:space-between;gap:6px;font:600 10px/1.4 var(--mono);letter-spacing:.06em}
+.lab-grid > .lab h4 span{font:8px/1.4 var(--mono);color:var(--muted);letter-spacing:.05em}
+.lab-grid > .lab .ctl{display:grid;grid-template-columns:74px 1fr 42px;gap:6px;align-items:center;margin:4px 0}
+.lab-grid > .lab .ctl label{font:9px/1.4 var(--mono);color:var(--muted)}
+.lab-grid > .lab .ctl output{font:9px/1.4 var(--mono);color:var(--ink);text-align:right}
+.lab-grid > .lab input[type=range]{height:15px}
+.lab-grid > .lab input[type=range]::-webkit-slider-runnable-track{height:4px}
+.lab-grid > .lab input[type=range]::-webkit-slider-thumb{width:10px;height:13px;margin-top:-5.5px;box-shadow:1px 1px 0 var(--ink)}
+.lab-grid > .lab input[type=range]::-moz-range-track{height:4px}
+.lab-grid > .lab input[type=range]::-moz-range-thumb{width:10px;height:13px;box-shadow:1px 1px 0 var(--ink)}
+.lab-out{border:1px dashed var(--line);background:var(--panel-2);padding:6px 7px;margin-top:6px;font:10px/1.6 var(--mono);color:var(--ink-soft)}
+.lab-out b{color:var(--clay-deep);font-size:12px}
+.lab-canvas{width:100%;height:130px;display:block;image-rendering:pixelated;border:1px solid var(--line);background:var(--panel-2);margin-top:6px}
+.formula-live{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:8px}
+@media(max-width:700px){.formula-live{grid-template-columns:1fr}}
+.fl{border:1px solid var(--line);padding:6px 8px;background:var(--panel-2);font:9px/1.5 var(--mono);color:var(--muted)}
+.fl b{color:var(--ink);font-weight:600}
+
+/* help */
+.help-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:620px){.help-grid{grid-template-columns:1fr}}
+.help-box{border:1px solid var(--line);background:var(--panel);padding:10px 11px}
+.help-box h4{margin:0 0 5px;font:600 10px/1.4 var(--mono);letter-spacing:.08em;color:var(--clay-deep)}
+.help-box p,.help-box li{font-size:10.5px;line-height:1.65;color:var(--ink-soft)}
+.help-box ul{margin:0;padding-left:15px}
+.kbdrow{display:flex;justify-content:space-between;gap:8px;font:9.5px/1.8 var(--mono);color:var(--ink-soft);border-bottom:1px dotted var(--line)}
+.kbdrow:last-child{border-bottom:0}
+
+/* report */
+.grade-wrap{display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:center;margin-bottom:12px}
+.grade{
+  width:110px;height:110px;border:2px solid var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:var(--clay-wash);box-shadow:4px 4px 0 var(--ink);
+}
+.grade b{font:400 46px/1 var(--serif);color:var(--clay-deep);letter-spacing:-.04em}
+.grade span{font:8px/1.3 var(--mono);letter-spacing:.15em;color:var(--muted);margin-top:4px}
+.grade-text{font:11.5px/1.7 var(--sans);color:var(--ink-soft)}
+.grade-text b{color:var(--ink)}
+.score-table{width:100%;border-collapse:collapse;margin:10px 0;font:10px/1.5 var(--mono);table-layout:fixed}
+.score-table th,.score-table td{border-bottom:1px solid var(--line);padding:5px 3px;text-align:left;vertical-align:top;word-break:break-word}
+.score-table th:nth-child(1),.score-table td:nth-child(1){width:18%}
+.score-table th:nth-child(2),.score-table td:nth-child(2){width:15%}
+.score-table th:nth-child(3),.score-table td:nth-child(3){width:48%}
+.score-table th:nth-child(4),.score-table td:nth-child(4){width:19%}
+.table-wrap{overflow-x:auto}
+.score-table th{font:8px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.score-table td.num{text-align:right;white-space:nowrap}
+.report-quote{font:italic 13px/1.6 var(--serif);color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:12px}
+
+/* toast */
+.toasts{position:fixed;right:14px;bottom:40px;z-index:90;display:flex;flex-direction:column;gap:6px;align-items:flex-end;max-width:310px}
+.toast{
+  background:var(--ink);color:var(--bg);border:1px solid var(--ink);padding:8px 11px;
+  font:10px/1.5 var(--mono);box-shadow:3px 3px 0 var(--shade);animation:toastIn .2s steps(3);
+}
+.toast b{color:var(--clay);font-weight:600}
+.toast.good b{color:#B7D19B}
+.toast.bad b{color:#F0A08C}
+@keyframes toastIn{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:none}}
+
+/* footer line inside content */
+.colophon{
+  grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;
+  border-top:1px solid var(--line);padding-top:12px;margin-top:2px;
+  font:8.5px/1.6 var(--mono);color:var(--muted);letter-spacing:.04em;
+}
+.colophon .quote{font:italic 11px/1.4 var(--serif);letter-spacing:0}
+
+/* ---------------- briefing / scenario extras ---------------- */
+.brief-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:16px;align-items:start}
+@media(max-width:720px){.brief-grid{grid-template-columns:1fr}}
+.sc-brief-stat{font:9px/1.4 var(--mono);color:var(--muted)}
+.kv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.kv{background:var(--panel);padding:7px 8px;min-width:0}
+.kv span{display:block;font:8px/1.2 var(--mono);letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.kv b{display:block;font:500 14px/1.35 var(--mono);margin-top:2px;letter-spacing:-.02em}
+.par-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:6px}
+@media(max-width:620px){.par-grid{grid-template-columns:1fr}}
+.par-opt{
+  text-align:left;background:var(--panel);border:1px solid var(--line);padding:8px 9px;
+  display:flex;flex-direction:column;gap:2px;min-height:96px;position:relative;transition:border-color .12s,background .12s;
+}
+.par-opt:hover{border-color:var(--clay-deep);background:var(--panel-2)}
+.par-opt.sel{border:2px solid var(--ink);background:var(--clay-wash);padding:7px 8px;box-shadow:2px 2px 0 var(--ink)}
+.par-opt.sel::after{content:"✓";position:absolute;right:6px;top:5px;font:10px var(--mono);color:var(--clay-deep)}
+.po-name{font:600 12px/1.4 var(--sans);padding-right:14px}
+.po-en{font:8px/1.2 var(--mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.po-desc{font:9.5px/1.5 var(--sans);color:var(--muted);margin-top:2px}
+.po-stats{font:8px/1.3 var(--mono);color:var(--clay-deep);margin-top:auto;padding-top:3px}
+.council-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media(max-width:700px){.council-grid{grid-template-columns:1fr}}
+.council-card{border:1px solid var(--line);background:var(--panel);padding:9px 10px;display:flex;flex-direction:column;gap:5px}
+.council-card.current{border:2px solid var(--ink);background:var(--panel-2);box-shadow:2px 2px 0 var(--shade)}
+.cc-top{display:flex;justify-content:space-between;align-items:baseline;gap:6px;flex-wrap:wrap}
+.cc-name{font:600 11.5px/1.4 var(--sans)}
+.seg{font:7.5px/1.2 var(--mono);letter-spacing:.12em;color:var(--muted)}
+.cc-advice{font:10px/1.6 var(--sans);color:var(--ink-soft);margin:0;flex:1}
+.council-card .stat-chip{font-size:7.5px;padding:3px 4px}
+.council-card .btn{margin-top:2px}
+.advance.finished{background:var(--olive-wash);border-color:var(--olive);color:var(--ink)}
+.lab-grid > .lab canvas{width:100%;height:130px;display:block;image-rendering:auto;border:1px solid var(--line);background:var(--panel-2);margin-top:6px}
+.lab-grid > .lab .ctl input{min-width:0;width:100%}
+.back{border:0;background:none;padding:0 0 9px;font:10px/1.4 var(--mono);color:var(--clay-deep);display:inline-block}
+.back:hover{text-decoration:underline}
+.cx-detail .back{padding-bottom:9px}
+.school-map{border:1px solid var(--line);background:var(--panel-2);padding:8px 10px;margin-bottom:12px}
+.map-cap{display:flex;justify-content:space-between;gap:8px;font:8px/1.2 var(--mono);letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+.map-hint{letter-spacing:.04em;text-transform:none}
+.map-line{display:flex;align-items:center;flex-wrap:wrap;gap:4px}
+.map-line.alt{margin-top:5px;padding-top:5px;border-top:1px dotted var(--line)}
+.map-node{border:1px solid var(--line);background:var(--panel);padding:4px 6px;font:9px/1.3 var(--mono);color:var(--ink-soft);transition:border-color .12s,background .12s}
+.map-node:hover{border-color:var(--clay-deep);background:var(--clay-wash);color:var(--ink)}
+.map-arrow{font:10px/1 var(--mono);color:var(--clay-deep);padding:0 1px}
+.map-label{font:8px/1.2 var(--mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-right:3px}
+.codex-tools{position:sticky;top:0;z-index:2;background:var(--bg);padding:2px 0 10px}
+
+/* ---------------- responsive ---------------- */
+@media(max-width:1180px){
+  .layout{grid-template-columns:1fr;max-width:860px}
+  .col.left,.col.right{position:static;max-height:none;overflow:visible;display:flex;flex-direction:column}
+  .col.center{grid-row:auto}
+  .kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .top{flex-wrap:wrap;padding:8px 12px}
+  .top-meta{width:100%;justify-content:space-between;gap:8px}
+  .brand-sub{display:none}
+  .wordmark{font-size:26px}
+  .meta-block b{max-width:150px}
+}
+@media(max-width:900px){
+  .layout{padding:12px 12px 70px}
+  .kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .top-actions .lbl{display:none}
+  .icon-btn{padding:7px}
+}
+@media(max-width:560px){
+  .map-arrow{display:none}
+  .map-node{font-size:8px;padding:3px 4px}
+  .map-line{gap:3px}
+  body{background-size:5px 5px}
+  .sheet-head,.sheet-body,.sheet-foot{padding-left:13px;padding-right:13px}
+  .sheet-title{font-size:21px}
+  .sheet-body{max-height:70vh}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi .k-val{font-size:21px}
+  .report-nums{grid-template-columns:repeat(2,1fr)}
+  .grade-wrap{grid-template-columns:86px 1fr;gap:10px}
+  .grade{width:86px;height:86px}
+  .grade b{font-size:36px}
+  .formula-live,.lab-grid{grid-template-columns:1fr}
+  .meta-block:nth-child(3){display:none}
+  .city-caption{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .ticker-track{animation:none;white-space:normal;flex-wrap:wrap;padding:0 10px}
+  .ticker{height:auto;min-height:29px}
+  .ticker-window{align-items:center}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<header class="top">
+  <div class="brand">
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 16 16" width="34" height="34" shape-rendering="crispEdges">
+        <g fill="currentColor">
+          <rect x="7" y="1" width="2" height="14"/>
+          <rect x="1" y="7" width="14" height="2"/>
+          <rect x="3" y="3" width="2" height="2"/>
+          <rect x="11" y="3" width="2" height="2"/>
+          <rect x="3" y="11" width="2" height="2"/>
+          <rect x="11" y="11" width="2" height="2"/>
+        </g>
+        <rect x="7" y="7" width="2" height="2" fill="#1A1310"/>
+      </svg>
+    </div>
+    <div>
+      <div class="wordmark">Meridia<span class="dot">.</span></div>
+      <div class="brand-sub">宏观策略沙盘 · A Pixel Macro Sandbox</div>
+    </div>
+  </div>
+  <div class="top-meta">
+    <div class="meta-block"><span>任务 / Mission</span><b id="metaScenario">—</b></div>
+    <div class="meta-block"><span>纪年 / Clock</span><b id="metaClock">—</b></div>
+    <div class="meta-block"><span>稳定损失 / Loss</span><b id="metaLoss">—</b></div>
+    <div class="top-actions">
+      <button class="icon-btn" data-modal="codex" aria-label="打开知识图鉴"><span aria-hidden="true">▤</span><span class="lbl">图鉴</span></button>
+      <button class="icon-btn" data-modal="timeline" aria-label="打开经济学说年表"><span aria-hidden="true">⌁</span><span class="lbl">年表</span></button>
+      <button class="icon-btn" data-modal="formulas" aria-label="打开公式与实验室"><span aria-hidden="true">∑</span><span class="lbl">数理</span></button>
+      <button class="icon-btn" data-modal="help" aria-label="打开帮助"><span aria-hidden="true">?</span></button>
+      <button class="icon-btn" id="newGameBtn" aria-label="开始新任期"><span aria-hidden="true">↻</span><span class="lbl">新局</span></button>
+      <button class="icon-btn" id="themeBtn" aria-label="切换明暗主题"><span aria-hidden="true">◐</span></button>
+    </div>
+  </div>
+</header>
+
+<main class="layout" id="main">
+  <aside class="col left" aria-label="政策台">
+    <section class="card policy-card">
+      <div class="card-head">
+        <h2><span class="sq"></span>政策台</h2>
+        <span class="tag">Policy Desk</span>
+      </div>
+      <p class="lede">为下一季度设定政策组合。推进后按模型结算，并生成季度公报。</p>
+
+      <div class="control">
+        <div class="control-top">
+          <label for="rate">政策利率 <em>i</em></label>
+          <output id="rateOut" for="rate">4.00<span class="unit">%</span></output>
+        </div>
+        <input type="range" id="rate" min="0" max="20" step="0.25" value="4" aria-describedby="rateHelp">
+        <div class="ticks"><span>0 · ZLB</span><span>10</span><span>20</span></div>
+        <span class="sr-only" id="rateHelp">政策利率。下限为零利率约束，取值 0 到 20 个百分点。</span>
+      </div>
+
+      <div class="control">
+        <div class="control-top">
+          <label for="spend">政府支出 <em>G</em></label>
+          <output id="spendOut" for="spend">20.0<span class="unit">% GDP</span></output>
+        </div>
+        <input type="range" id="spend" min="10" max="38" step="0.5" value="20" aria-describedby="spendHelp">
+        <div class="ticks"><span>10</span><span>24</span><span>38</span></div>
+        <span class="sr-only" id="spendHelp">政府支出占潜在产出的比重，取值 10 到 38。</span>
+      </div>
+
+      <div class="control">
+        <div class="control-top">
+          <label for="tax">税率 <em>τ</em></label>
+          <output id="taxOut" for="tax">20.0<span class="unit">%</span></output>
+        </div>
+        <input type="range" id="tax" min="5" max="55" step="0.5" value="20" aria-describedby="taxHelp">
+        <div class="ticks"><span>5</span><span>30</span><span>55</span></div>
+        <span class="sr-only" id="taxHelp">宏观税率，取值 5 到 55 个百分点。</span>
+      </div>
+
+      <div class="rule-hint" id="ruleHint">泰勒规则建议：—</div>
+      <button class="btn primary advance" id="advanceBtn"><span id="advanceLabel">推进一个季度</span><span class="arr" aria-hidden="true">▸</span><kbd>N</kbd></button>
+
+      <div class="pc-row">
+        <span class="lab">政治资本</span>
+        <div class="pc-pips" id="pcPips" aria-hidden="true"></div>
+        <b id="pcTxt">2 / 4</b>
+      </div>
+      <div class="actions-head">
+        <h3>制度行动</h3>
+        <span class="tag">Actions</span>
+      </div>
+      <div class="actions" id="actionList"></div>
+    </section>
+  </aside>
+
+  <section class="col center" aria-label="经济体仪表盘">
+    <section class="city-card" aria-label="Meridia 经济景观">
+      <div class="city-frame">
+        <span class="city-corner tl" aria-hidden="true"></span>
+        <span class="city-corner tr" aria-hidden="true"></span>
+        <span class="city-corner bl" aria-hidden="true"></span>
+        <span class="city-corner br" aria-hidden="true"></span>
+        <div class="canvas-wrap"><canvas id="cityCanvas" width="260" height="112" role="img" aria-label="Meridia 的像素城市景观，随经济状况变化"></canvas></div>
+        <div class="city-hud top"><span><i class="dot-live"></i>MERIDIA · 经济景观</span><span id="cityEra">1962</span></div>
+        <div class="city-hud bottom"><span id="weather">☼ 景气平稳</span><span id="cityNote">中央银行为 2% 通胀目标工作</span></div>
+      </div>
+      <div class="city-caption">
+        <b>MKD</b><span>Meridian Kredit</span><span class="spacer"></span>
+        <span id="cityCaption">—</span>
+      </div>
+    </section>
+
+    <div class="kpis" id="kpis" aria-label="核心指标"></div>
+
+    <section class="card chart-card">
+      <div class="chart-top">
+        <div>
+          <div class="card-head" style="margin-bottom:2px"><h2><span class="sq sky"></span>时间序列</h2><span class="tag">Time Series</span></div>
+          <p class="lede" style="margin:0">点击切换视图。虚线为目标或参考值。</p>
+        </div>
+        <div class="tabs" role="tablist" aria-label="图表视图">
+          <button class="tab" role="tab" aria-selected="true" aria-controls="chartPanel" data-chart="phillips">通胀 / 失业</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="chartPanel" data-chart="output">产出 / 增长</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="chartPanel" data-chart="debt">债务 / 利率</button>
+        </div>
+      </div>
+      <div class="chart-box" id="chartPanel" role="tabpanel" aria-label="经济指标图表">
+        <canvas id="chartCanvas" width="700" height="188" role="img" aria-label="经济指标时间序列图"></canvas>
+        <div class="chart-empty" id="chartEmpty">尚无数据 · 推进第一个季度</div>
+      </div>
+      <div class="chart-legend" id="chartLegend"></div>
+      <p class="chart-note" id="chartNote"></p>
+    </section>
+
+    <section class="card feed-card">
+      <div class="card-head">
+        <h2><span class="sq olive"></span>季度公报</h2>
+        <span class="tag" id="memoTag">Dispatches</span>
+      </div>
+      <div id="reportBox"></div>
+      <div class="feed" id="feed" aria-live="polite"></div>
+    </section>
+  </section>
+
+  <aside class="col right" aria-label="范式与任务">
+    <section class="card">
+      <div class="card-head">
+        <h2><span class="sq fig"></span>当前范式</h2>
+        <span class="tag">Paradigm</span>
+      </div>
+      <div id="paradigmBox"></div>
+      <p class="note">范式改变传导参数、预期锚定与顾问建议；评分始终只看经济结果。</p>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2><span class="sq olive"></span>任期目标</h2>
+        <span class="tag">Mandate</span>
+      </div>
+      <div id="mandateBox"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2><span class="sq sky"></span>下一季预测</h2>
+        <span class="tag">Forecast</span>
+      </div>
+      <div id="forecastBox"></div>
+      <button class="btn ghost small wide" id="councilBtn" style="margin-top:8px">召开学派会诊</button>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2><span class="sq"></span>预期与压力</h2>
+        <span class="tag">Gauges</span>
+      </div>
+      <div id="gaugeBox"></div>
+      <div class="memo" id="adviserMemo"></div>
+    </section>
+  </aside>
+
+  <div class="colophon">
+    <span class="quote">“经济学是一门研究人类日常事务的学问。” — 阿尔弗雷德·马歇尔</span>
+    <span>MODEL NK-HYBRID · v1.0 · 教学模拟，非预测</span>
+  </div>
+</main>
+
+<footer class="ticker" aria-label="经济快讯">
+  <div class="ticker-lab"><i></i>WIRE</div>
+  <div class="ticker-window"><div class="ticker-track" id="tickerTrack"></div></div>
+  <div class="ticker-ctrl"><button id="tickerPause" aria-label="暂停或继续快讯">❚❚</button></div>
+</footer>
+
+<div id="modalRoot"></div>
+<div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+<noscript><div style="padding:20px;font-family:monospace">此沙盘需要启用 JavaScript 才能运行。</div></noscript>
+
+<script>
+/* ============================================================
+   MERIDIA — single-file macroeconomic strategy sandbox
+   Build: vanilla JS, no dependencies, offline-first.
+   ============================================================ */
+"use strict";
+
+/* ============================================================
+   CORE — model, paradigms, scenarios, events.
+   This block has no DOM dependencies so it can be tested headlessly.
+   ============================================================ */
+/* ==== SIM-CORE-START ==== */
+const PI_TARGET = 2.0;
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+const fmt = (n, d = 1, sign = false) => {
+  if (n === null || n === undefined || !isFinite(n)) return "—";
+  const s = Number(n).toFixed(d);
+  return sign && n > 0 ? "+" + s : s;
+};
+const fmtSigned = (n, d = 1) => {
+  if (!isFinite(n)) return "—";
+  const a = Math.abs(Number(n)).toFixed(d);
+  if (Number(a) === 0) return a;
+  return (n > 0 ? "+" : "−") + a;
+};
+const pct = (n, d = 1) => fmt(n, d) + "%";
+const sumBy = (arr, key) => arr.reduce((a, x) => a + (Number(x[key]) || 0), 0);
+const nextRand = (st) => {
+  st.rng = (Math.imul(st.rng, 1664525) + 1013904223) >>> 0;
+  return st.rng / 4294967296;
+};
+const noise = (st, amp) => (nextRand(st) * 2 - 1) * amp;
+
+/* ---------- paradigms ---------- */
+const PARADIGMS = [
+  {
+    id: "classical", name: "古典学派", en: "CLASSICAL", family: "classical", era: "1776—1890",
+    quote: "货币只是一层面纱。", cite: "古典货币数量论",
+    anchor: 0.72, fiscal: 0.65, mon: 1.25, slope: 0.85,
+    weights: { pi: 1.4, u: 0.5, debt: 0.45 },
+    blurb: "价格与工资灵活，产出回到自然率；财政容易挤出私人投资，货币政策主要影响物价。",
+    advice: "保持预算平衡，让利率服务于货币稳定；不要迷信短期的需求管理。",
+    tool: "规则优于相机抉择",
+    color: "sky"
+  },
+  {
+    id: "keynesian", name: "凯恩斯学派", en: "KEYNESIAN", family: "keynesian", era: "1936—1960s",
+    quote: "长期来看，我们都死了。", cite: "凯恩斯，《货币改革论》",
+    anchor: 0.45, fiscal: 1.35, mon: 0.95, slope: 1.05,
+    weights: { pi: 0.9, u: 1.2, debt: 0.1 },
+    blurb: "有效需求决定产出；工资和价格黏性使经济可能停在低于充分就业的位置。财政乘数大。",
+    advice: "当产出缺口为负时，用财政扩张把需求补上；先就业，再谈债务。",
+    tool: "需求管理",
+    color: "clay"
+  },
+  {
+    id: "monetarist", name: "货币主义", en: "MONETARISM", family: "monetarist", era: "1956—1980s",
+    quote: "通货膨胀在任何时候、任何地方都是一种货币现象。", cite: "弗里德曼，1970",
+    anchor: 0.78, fiscal: 0.8, mon: 1.3, slope: 0.95,
+    weights: { pi: 1.3, u: 0.7, debt: 0.15 },
+    blurb: "货币数量是名义收入的锚；财政赤字会被挤出或货币化。政策有长而多变的时滞。",
+    advice: "盯住货币增长，而不是微调利率；通胀目标应当被公开、稳定地执行。",
+    tool: "k% 货币规则",
+    color: "gold"
+  },
+  {
+    id: "newclassical", name: "新古典宏观", en: "NEW CLASSICAL", family: "newclassical", era: "1972—1985",
+    quote: "只有未预期到的政策才有真实效应。", cite: "卢卡斯、萨金特、华莱士",
+    anchor: 0.90, fiscal: 0.50, mon: 1.00, slope: 0.55,
+    weights: { pi: 1.2, u: 0.6, debt: 0.2 },
+    blurb: "理性预期与市场出清：可预期的政策改变不了实际变量，规则与信誉高于一切。",
+    advice: "事先承诺、公开规则，避免突然的相机抉择；信誉本身就是政策工具。",
+    tool: "政策规则与信誉",
+    color: "fig"
+  },
+  {
+    id: "newkeynesian", name: "新凯恩斯", en: "NEW KEYNESIAN", family: "newkeynesian", era: "1982—2008",
+    quote: "价格是黏性的，预期是关键的。", cite: "新凯恩斯综合",
+    anchor: 0.85, fiscal: 1.10, mon: 1.20, slope: 0.95,
+    weights: { pi: 1.1, u: 1.1, debt: 0.2 },
+    blurb: "垄断竞争与菜单成本造成黏性价格；通胀动态由预期驱动，央行应用规则管理预期。",
+    advice: "用泰勒规则稳定通胀与产出缺口；在零利率下限，财政与前瞻指引要接棒。",
+    tool: "泰勒规则 + 前瞻指引",
+    color: "olive"
+  },
+  {
+    id: "postkeynesian", name: "后凯恩斯", en: "POST-KEYNESIAN", family: "heterodox", era: "1970s—",
+    quote: "根本的不确定性不能被概率保险。", cite: "明斯基、卡莱茨基",
+    anchor: 0.38, fiscal: 1.45, mon: 0.80, slope: 1.10,
+    weights: { pi: 0.7, u: 1.5, debt: 0.0 },
+    blurb: "投资由动物精神与融资约束驱动，货币内生，金融不稳定是常态。充分就业优先。",
+    advice: "优先压低失业；用金融监管与收入政策处理通胀，而不是用失业来制造价格稳定。",
+    tool: "最后雇主 + 宏观审慎",
+    color: "danger"
+  },
+  {
+    id: "mmt", name: "现代货币理论", en: "MMT", family: "heterodox", era: "1990s—",
+    quote: "主权货币的约束是真实资源，不是账本。", cite: "MMT 传统",
+    anchor: 0.32, fiscal: 1.70, mon: 0.70, slope: 1.15,
+    weights: { pi: 0.5, u: 1.6, debt: 0.0 },
+    blurb: "货币发行者不会因本币债务违约；约束来自通胀与产能。财政应直接瞄准充分就业。",
+    advice: "用财政直接创造就业与需求；一旦通胀逼近产能，再用税收与监管回收购买力。",
+    tool: "就业保障 + 财政空间",
+    color: "clay"
+  },
+  {
+    id: "austrian", name: "奥地利学派", en: "AUSTRIAN", family: "heterodox", era: "1912—",
+    quote: "繁荣的种子，是人为压低的利率。", cite: "米塞斯、哈耶克",
+    anchor: 0.68, fiscal: 0.55, mon: 0.90, slope: 0.90,
+    weights: { pi: 1.5, u: 0.6, debt: 0.5 },
+    blurb: "资本结构对利率敏感；信贷扩张带来错误投资，清算不可避免。稳健货币与有限政府。",
+    advice: "不要用信贷刺激掩盖结构问题；提高实际利率，清理错误投资，让相对价格重新配置资源。",
+    tool: "健全货币 + 清算",
+    color: "olive"
+  }
+];
+const PARADIGM_BY_ID = Object.fromEntries(PARADIGMS.map(p => [p.id, p]));
+const getParadigm = id => PARADIGM_BY_ID[id] || PARADIGMS[0];
+
+/* ---------- mandate helpers ---------- */
+const M = {
+  piRange: (lo, hi) => ({ id: "pi", label: `通胀位于 ${lo}—${hi}%`, test: s => s.pi >= lo && s.pi <= hi, val: s => pct(s.pi) }),
+  piMax: hi => ({ id: "pi", label: `通胀不高于 ${hi}%`, test: s => s.pi <= hi, val: s => pct(s.pi) }),
+  piMin: lo => ({ id: "pi", label: `通胀不低于 ${lo}%`, test: s => s.pi >= lo, val: s => pct(s.pi) }),
+  uMax: hi => ({ id: "u", label: `失业率不高于 ${hi}%`, test: s => s.u <= hi, val: s => pct(s.u) }),
+  uMin: lo => ({ id: "u", label: `失业率不低于 ${lo}%`, test: s => s.u >= lo, val: s => pct(s.u) }),
+  xMin: lo => ({ id: "x", label: `产出缺口不低于 ${lo}%`, test: s => s.x >= lo, val: s => fmtSigned(s.x) + "%" }),
+  debtMax: hi => ({ id: "debt", label: `债务不高于 ${hi}% GDP`, test: s => s.debt <= hi, val: s => fmt(s.debt, 0) + "%" }),
+  growthMin: lo => ({ id: "growth", label: `年化增长不低于 ${lo}%`, test: s => s.growth >= lo, val: s => fmt(s.growth) + "%" })
+};
+
+/* ---------- scenarios ---------- */
+const SCENARIOS = [
+  {
+    id: "golden", name: "黄金年代", en: "THE GOLDEN AGE", year: 1962, q: 1,
+    difficulty: 1, horizon: 12, target: 2.0, lossBudget: 2.2,
+    palette: "1962 · 布雷顿森林体系",
+    subtitle: "需求管理的蜜月期",
+    brief: [
+      "你是 Meridia 新任经济顾问。这个小型开放经济体正处在战后繁荣：产出接近潜在水平，通胀温和，失业率低。",
+      "教科书上的凯恩斯共识似乎无往不利——只要财政和货币稍微推一把，经济就会回到充分就业。",
+      "任务：在 12 个季度内保持通胀 1—4%、失业率不高于 5.6%、债务不高于 60%。注意两次负向扰动与一次正向的技术冲击。"
+    ],
+    start: {
+      year: 1962, q: 1, x: 0, pi: 1.7, pie: 1.8, u: 5.1, uStar: 5.0, i: 4.5,
+      g: 20, tau: 20, debt: 42, cred: 0.62, stress: 12, fx: 0, potGrowth: 2.6,
+      rStar: 2.0, iForeign: 4.0, anchorBonus: 0
+    },
+    mandate: [M.piRange(1, 4), M.uMax(5.6), M.debtMax(60)],
+    script: [
+      { at: 3, event: "demand_slump" },
+      { at: 7, event: "wage_spiral" },
+      { at: 10, event: "productivity_boom" }
+    ],
+    pool: ["election_pressure", "global_recession", "supply_chain"],
+    unlocked: ["classical", "keynes", "phillips", "solow", "synthesis"],
+    winNote: "维持低通胀与充分就业，证明需求管理的时代自信。"
+  },
+  {
+    id: "stagflation", name: "大通胀", en: "THE GREAT INFLATION", year: 1979, q: 1,
+    difficulty: 4, horizon: 18, target: 2.0, lossBudget: 16,
+    palette: "1979 · 第二次石油危机",
+    subtitle: "沃尔克时刻",
+    brief: [
+      "通胀连续十年居高不下。石油价格再次翻倍，工会要求补偿性加薪，通胀预期开始脱锚。",
+      "你接手时，政策利率是 9.5%，而通胀预期是 8.5%——实际利率几乎为零。市场不相信央行愿意付出衰退的代价。",
+      "任务：在 18 个季度内把通胀压到 4.5% 以下，同时把失业率控制在 9% 以内、债务不超过 55%。你愿意付出多大的衰退成本？"
+    ],
+    start: {
+      year: 1979, q: 1, x: 1.2, pi: 9.5, pie: 8.5, u: 5.7, uStar: 5.6, i: 9.5,
+      g: 22, tau: 19, debt: 31, cred: 0.20, stress: 22, fx: 0.5, potGrowth: 2.1,
+      rStar: 1.2, iForeign: 9.0, anchorBonus: 0
+    },
+    mandate: [M.piMax(4.5), M.uMax(9.0), M.debtMax(55)],
+    script: [
+      { at: 1, event: "oil_shock_79" },
+      { at: 6, event: "bond_vigilantes" },
+      { at: 11, event: "wage_spiral" },
+      { at: 15, event: "inflation_expectations" }
+    ],
+    pool: ["election_pressure", "currency_run", "fiscal_audit", "global_recession"],
+    unlocked: ["classical", "keynes", "phillips", "solow", "synthesis", "friedman"],
+    winNote: "以可信的紧缩换回价格稳定——或者找到一条代价更小的路径。"
+  },
+  {
+    id: "zlb", name: "零利率下限", en: "ZERO LOWER BOUND", year: 2008, q: 4,
+    difficulty: 3, horizon: 14, target: 2.0, lossBudget: 8,
+    palette: "2008 · 全球金融危机",
+    subtitle: "当利率降到零",
+    brief: [
+      "雷曼式的金融冲击刚刚发生。私人需求崩塌，政策利率已经降到 0.5%，而通胀正在滑向零。",
+      "传统的降息空间几乎用尽。财政乘数、前瞻指引与量化宽松，成为争论的焦点。",
+      "任务：14 个季度内保持通胀不低于 0.8%、失业率不高于 8%、债务不高于 90%。避免通缩螺旋。"
+    ],
+    start: {
+      year: 2008, q: 4, x: -3.0, pi: 2.1, pie: 2.0, u: 6.9, uStar: 5.0, i: 0.5,
+      g: 21, tau: 19, debt: 64, cred: 0.62, stress: 45, fx: 0, potGrowth: 1.8,
+      rStar: -2.0, iForeign: 3.0, anchorBonus: 0
+    },
+    mandate: [M.piMin(0.8), M.uMax(8.0), M.debtMax(90)],
+    script: [
+      { at: 1, event: "financial_panic" },
+      { at: 5, event: "global_recession" },
+      { at: 10, event: "recovery" }
+    ],
+    pool: ["election_pressure", "tech_boom", "fiscal_audit"],
+    unlocked: ["classical", "keynes", "phillips", "friedman", "newkeynesian", "taylor"],
+    winNote: "在零利率下限证明财政与非常规政策仍然有效。"
+  },
+  {
+    id: "supply", name: "供给冲击", en: "THE SUPPLY SHOCK", year: 2022, q: 1,
+    difficulty: 4, horizon: 12, target: 2.0, lossBudget: 10,
+    palette: "2022 · 疫情后重启",
+    subtitle: "通胀与债务的两难",
+    brief: [
+      "疫情后的需求反弹撞上断裂的供应链。通胀 7.2%，失业率只有 3.7%，但政府债务已接近 GDP 的 96%。",
+      "加息可以压通胀，却会推高利息支出、压低增长；不加息，通胀预期可能脱锚。",
+      "任务：12 个季度内把通胀压到 3.5% 以下，失业率不高于 6%，债务不超过 115%。"
+    ],
+    start: {
+      year: 2022, q: 1, x: 1.5, pi: 7.2, pie: 5.0, u: 3.7, uStar: 4.3, i: 0.75,
+      g: 25, tau: 22, debt: 96, cred: 0.45, stress: 26, fx: 0, potGrowth: 1.7,
+      rStar: 0.5, iForeign: 2.5, anchorBonus: 0
+    },
+    mandate: [M.piMax(3.5), M.uMax(6.0), M.debtMax(115)],
+    script: [
+      { at: 1, event: "supply_chain" },
+      { at: 3, event: "energy_shock" },
+      { at: 8, event: "wage_spiral" }
+    ],
+    pool: ["election_pressure", "tech_boom", "bond_vigilantes", "global_recession"],
+    unlocked: ["classical", "keynes", "phillips", "friedman", "newkeynesian", "taylor", "supplyside"],
+    winNote: "在供给约束下实现软着陆，是这一代央行的试金石。"
+  },
+  {
+    id: "secular", name: "长期停滞", en: "SECULAR STAGNATION", year: 2013, q: 1,
+    difficulty: 5, horizon: 16, target: 2.0, lossBudget: 4.0,
+    palette: "2013 · 低利率时代",
+    subtitle: "当储蓄过剩遇上零利率",
+    brief: [
+      "危机已过去五年，复苏却异常疲弱。政策利率接近零，通胀 1.1%，失业率 7.3%，债务恰好是 GDP 的 100%。",
+      "自然利率可能已经转为负值。传统的货币政策空间消失，资产负债表与结构性政策成为主角。",
+      "任务：16 个季度内把通胀抬到 1.5—2.8%、失业率降到 6.5% 以下、债务不高于 110%。不要制造资产泡沫。"
+    ],
+    start: {
+      year: 2013, q: 1, x: -2.2, pi: 1.1, pie: 1.5, u: 7.3, uStar: 5.4, i: 0.25,
+      g: 22, tau: 21, debt: 100, cred: 0.7, stress: 28, fx: 0, potGrowth: 1.35,
+      rStar: -0.5, iForeign: 2.0, anchorBonus: 0
+    },
+    mandate: [M.piRange(1.5, 2.8), M.uMax(6.5), M.debtMax(110)],
+    script: [
+      { at: 1, event: "secular_pessimism" },
+      { at: 6, event: "tech_boom" },
+      { at: 11, event: "election_pressure" }
+    ],
+    pool: ["election_pressure", "global_recession", "fiscal_audit", "recovery"],
+    unlocked: ["classical", "keynes", "phillips", "friedman", "newkeynesian", "secular"],
+    winNote: "在一个自然利率为负的世界里重新发明需求管理。"
+  },
+  {
+    id: "sandbox", name: "自由推演", en: "OPEN SANDBOX", year: 2026, q: 1,
+    difficulty: 2, horizon: 40, target: 2.0, lossBudget: 4.0,
+    palette: "2026 · 无剧本",
+    subtitle: "没有标准答案",
+    brief: [
+      "一个处于长期均衡附近的经济体：通胀 2%、产出缺口为零、政策利率 3%。",
+      "这里没有历史剧本，也没有胜负条件，只有 40 个季度的随机扰动与你的判断。",
+      "适合试验范式切换、政策组合与公式实验室。"
+    ],
+    start: {
+      year: 2026, q: 1, x: 0, pi: 2, pie: 2, u: 5.0, uStar: 5.0, i: 3,
+      g: 20, tau: 20, debt: 60, cred: 0.7, stress: 15, fx: 0, potGrowth: 2.0,
+      rStar: 1.5, iForeign: 3.0, anchorBonus: 0
+    },
+    mandate: [M.piRange(0, 4), M.uMax(7.0), M.debtMax(120)],
+    script: [],
+    pool: ["demand_slump", "productivity_boom", "wage_spiral", "oil_shock_79", "financial_panic",
+      "bond_vigilantes", "global_recession", "election_pressure", "energy_shock", "supply_chain",
+      "tech_boom", "currency_run", "inflation_expectations", "fiscal_audit", "pandemic"],
+    unlocked: ["classical", "keynes", "phillips", "solow", "synthesis", "friedman", "newkeynesian", "taylor"],
+    winNote: "这是沙盒。定义你自己的成功。"
+  }
+];
+const SCENARIO_BY_ID = Object.fromEntries(SCENARIOS.map(s => [s.id, s]));
+const getScenario = id => SCENARIO_BY_ID[id] || SCENARIOS[0];
+
+/* ---------- effect engine ---------- */
+function applyEffect(st, e, sc) {
+  if (!e) return;
+  if (e.dpi) st.pi = clamp(st.pi + e.dpi, -5, 40);
+  if (e.dpie) st.pie = clamp(st.pie + e.dpie, -5, 35);
+  if (e.dx) st.x = clamp(st.x + e.dx, -15, 10);
+  if (e.du) st.u = clamp(st.u + e.du, 1.5, 25);
+  if (e.ddebt) st.debt = clamp(st.debt + e.ddebt, 0, 250);
+  if (e.dcred) st.cred = clamp(st.cred + e.dcred, 0.05, 1);
+  if (e.dstress) st.stress = clamp(st.stress + e.dstress, 0, 100);
+  if (e.dpc) st.pc = clamp(st.pc + e.dpc, 0, 4);
+  if (e.di) st.i = clamp(st.i + e.di, 0, 20);
+  if (e.dg) st.g = clamp(st.g + e.dg, 10, 38);
+  if (e.dtau) st.tau = clamp(st.tau + e.dtau, 5, 55);
+  if (e.pot) st.potBonus = clamp(st.potBonus + e.pot, -1, 2);
+  if (e.ustar) st.uStar = clamp(st.uStar + e.ustar, 3.2, 8.5);
+  if (e.anchor) st.anchorBonus = clamp(st.anchorBonus + e.anchor, 0, 0.3);
+  if (e.flag) st.flags[e.flag] = true;
+  if (e.mod) {
+    st.mods.push({
+      id: "m" + st.t + "-" + st.mods.length,
+      label: e.mod.label || "外生扰动",
+      turns: Math.max(1, e.mod.turns || 1),
+      demand: e.mod.demand || 0,
+      supply: e.mod.supply || 0,
+      stress: e.mod.stress || 0,
+      cred: e.mod.cred || 0,
+      growth: e.mod.growth || 0,
+      fx: e.mod.fx || 0,
+      debt: e.mod.debt || 0
+    });
+  }
+}
+
+function effectText(e) {
+  if (!e) return "";
+  const parts = [];
+  if (e.di) parts.push(`利率 ${fmtSigned(e.di, 2)}pt`);
+  if (e.dg) parts.push(`支出 ${fmtSigned(e.dg, 1)}pt GDP`);
+  if (e.dtau) parts.push(`税率 ${fmtSigned(e.dtau, 1)}pt`);
+  if (e.dpi) parts.push(`通胀 ${fmtSigned(e.dpi, 1)}pt`);
+  if (e.dpie) parts.push(`通胀预期 ${fmtSigned(e.dpie, 1)}pt`);
+  if (e.dx) parts.push(`缺口 ${fmtSigned(e.dx, 1)}pt`);
+  if (e.du) parts.push(`失业 ${fmtSigned(e.du, 1)}pt`);
+  if (e.ddebt) parts.push(`债务 ${fmtSigned(e.ddebt, 1)}pt GDP`);
+  if (e.dcred) parts.push(`可信度 ${fmtSigned(e.dcred * 100, 0)}`);
+  if (e.dstress) parts.push(`压力 ${fmtSigned(e.dstress, 0)}`);
+  if (e.dpc) parts.push(`政治资本 ${fmtSigned(e.dpc, 0)}`);
+  if (e.pot) parts.push(`潜在增长 ${fmtSigned(e.pot, 2)}pt`);
+  if (e.ustar) parts.push(`自然失业率 ${fmtSigned(e.ustar, 1)}pt`);
+  if (e.anchor) parts.push(`预期锚定 ${fmtSigned(e.anchor * 100, 0)}`);
+  if (e.mod) {
+    const m = e.mod;
+    const bits = [];
+    if (m.demand) bits.push(`需求 ${fmtSigned(m.demand, 1)}`);
+    if (m.supply) bits.push(`供给 ${fmtSigned(m.supply, 1)}`);
+    if (m.stress) bits.push(`压力 ${fmtSigned(m.stress, 0)}`);
+    if (m.cred) bits.push(`可信度 ${fmtSigned(m.cred * 100, 0)}`);
+    parts.push(`${m.label || "扰动"}×${m.turns || 1}季（${bits.join("，")}）`);
+  }
+  return parts.join(" · ");
+}
+
+/* ---------- events ---------- */
+const EVENTS = [
+  {
+    id: "oil_shock_79", title: "第二次石油危机", kicker: "供给冲击 · 1979", art: "oil",
+    body: "OPEC 再次提价，原油价格在六个月内翻倍。工厂的能源账单飙升，工会立即要求补偿性加薪。通胀预期本已脆弱。",
+    base: { mod: { label: "石油冲击", turns: 3, supply: 1.8, demand: -0.6 }, dstress: 4, dcred: -0.02 },
+    choices: [
+      { title: "补贴油价，管制价格", desc: "保护实际收入，但财政恶化，价格信号被扭曲。", apply: { dg: 1.5, dpi: 0.5, dcred: -0.02, mod: { label: "价格管制", turns: 3, supply: -0.7, demand: 0.3 } } },
+      { title: "允许价格出清", desc: "让相对价格调整，忍受一次性的实际收入下降。", apply: { dpi: 0.7, dpie: 0.4, dx: -0.4, dcred: 0.01 } },
+      { title: "立即大幅紧缩", desc: "用需求收缩先发制人，代价是失业上升。", apply: { di: 2, dcred: 0.03, dstress: 3, mod: { label: "需求收缩", turns: 2, demand: -0.4 } } }
+    ]
+  },
+  {
+    id: "financial_panic", title: "金融恐慌", kicker: "系统性风险 · 2008", art: "bank",
+    body: "一家大型影子银行倒闭，货币市场基金出现赎回潮。信贷利差骤升，企业与家庭同时收缩支出。你只有几天时间决定救不救。",
+    base: { dstress: 30, dcred: -0.04, mod: { label: "信贷紧缩", turns: 4, demand: -2.2, stress: 4 }, flag: "crisis" },
+    choices: [
+      { title: "全面纾困", desc: "用财政资金担保银行体系，防止连锁反应。", apply: { ddebt: 6, dstress: -22, dcred: -0.01, mod: { label: "信贷修复", turns: 3, demand: 1.0 }, flag: "bailout" } },
+      { title: "让市场自行清算", desc: "不救股东与债权人，让价格发现完成，但衰退更深。", apply: { dx: -1.2, dstress: 5, dpc: 1, ustar: 0.1, flag: "liquidation" } },
+      { title: "注资 + 强化监管", desc: "既提供流动性，也修补激励扭曲。", apply: { ddebt: 3, dstress: -13, dcred: 0.03, pot: -0.05, flag: "regulation" } }
+    ]
+  },
+  {
+    id: "demand_slump", title: "私人需求骤降", kicker: "需求冲击", art: "factory",
+    body: "企业投资计划被集体推迟，消费者信心跌到周期低点。订单减少，工时被削减——这是典型的需求不足，而非供给问题。",
+    base: { mod: { label: "需求骤降", turns: 2, demand: -1.7 }, dstress: 4 },
+    choices: [
+      { title: "扩大政府支出", desc: "用公共投资填补私人需求缺口。", apply: { dg: 1.5, dcred: -0.01 } },
+      { title: "降息", desc: "降低融资成本，刺激投资与消费。", apply: { di: -1.5 } },
+      { title: "等待自动稳定器", desc: "不额外行动，让税收与转移支付自动缓冲。", apply: { dpc: 1, dx: -0.3, dcred: 0.01 } }
+    ]
+  },
+  {
+    id: "wage_spiral", title: "工资—价格螺旋", kicker: "预期 · 指数化", art: "gavel",
+    body: "工会把生活成本指数写进新合同，企业则把未来的工资上涨预先计入价格。通胀开始自我实现。",
+    base: { dpie: 0.7, dcred: -0.03 },
+    choices: [
+      { title: "收入政策与圆桌谈判", desc: "说服劳资双方接受名义工资指引。", apply: { dpi: -0.45, dpie: -0.2, dcred: -0.02 } },
+      { title: "紧缩总需求", desc: "用更高的实际利率打断指数化。", apply: { di: 1.5, dx: -0.4, dcred: 0.03 } },
+      { title: "公开沟通，容忍一次性调整", desc: "不追逐每一次工资上涨，守住长期目标。", apply: { dpc: 1, dpie: 0.25, dcred: 0.01 } }
+    ]
+  },
+  {
+    id: "productivity_boom", title: "生产率繁荣", kicker: "正向供给 · 技术", art: "factory",
+    body: "新的通用技术开始扩散，全要素生产率上升。这是罕见的“好消息冲击”：增长与低通胀可以并存。",
+    base: { pot: 0.1, mod: { label: "投资热潮", turns: 3, demand: 0.5 }, dstress: -4 },
+    choices: [
+      { title: "投资教育与研发", desc: "把一次性繁荣转化为长期增长。", apply: { pot: 0.15, ddebt: 2, dcred: 0.02 } },
+      { title: "减税让市场加速", desc: "短期刺激更强，但财政空间缩小。", apply: { dtau: -1.5, mod: { label: "减税刺激", turns: 2, demand: 0.7 } } },
+      { title: "建立主权储蓄基金", desc: "把资源存给下一代，降低债务。", apply: { ddebt: -1.5, pot: 0.04 } }
+    ]
+  },
+  {
+    id: "bond_vigilantes", title: "债券义警出动", kicker: "主权风险 · 市场纪律", art: "bank",
+    body: "长期国债拍卖遇冷，收益率曲线陡峭化。交易员公开质疑你的财政路径。融资成本上升，银行的资产负债表承压。",
+    base: { di: 1.2, dcred: -0.04, dstress: 8 },
+    choices: [
+      { title: "公布中期财政整顿计划", desc: "削减支出，换取市场信任。", apply: { dg: -1.5, dcred: 0.03, dx: -0.3 } },
+      { title: "让央行购买国债", desc: "压低收益率，但可能被视为财政货币化。", apply: { dpie: 0.4, dcred: -0.06, di: -0.4, dstress: -5 } },
+      { title: "坚持并加强沟通", desc: "不向短期市场情绪屈服。", apply: { dcred: 0.01, dpc: 1, di: 0.2 } }
+    ]
+  },
+  {
+    id: "global_recession", title: "全球衰退", kicker: "外部需求 · 开放经济", art: "storm",
+    body: "Meridia 的主要贸易伙伴同时陷入衰退。出口订单取消，航运指数暴跌，本币面临贬值压力。",
+    base: { mod: { label: "外需萎缩", turns: 3, demand: -1.8 }, fx: 0.8, dstress: 3 },
+    choices: [
+      { title: "让汇率贬值，支持出口", desc: "以邻为壑，但短期有效。", apply: { fx: 1.5, dpi: 0.2, dcred: -0.01 } },
+      { title: "财政扩张，补贴内需", desc: "用国内需求对冲外需。", apply: { dg: 1.8 } },
+      { title: "降息并协调国际政策", desc: "与贸易伙伴共同宽松。", apply: { di: -1.2, dcred: 0.02 } }
+    ]
+  },
+  {
+    id: "election_pressure", title: "选举周期", kicker: "政治经济周期", art: "ballot",
+    body: "大选还有一年。执政党希望看到更低的失业率和更高的增长；财政部递来一份减税与增支的清单。",
+    base: { dpc: 2 },
+    choices: [
+      { title: "顺从政治周期", desc: "短期繁荣，长期通胀与债务风险。", apply: { dg: 1, dtau: -1, dcred: -0.03, mod: { label: "选举刺激", turns: 2, demand: 0.6 } } },
+      { title: "坚持规则，公开拒绝", desc: "得罪政客，但保住央行信誉。", apply: { dcred: 0.04, dpc: -1, dx: -0.2 } },
+      { title: "成立独立财政委员会", desc: "把冲突制度化，换取中期可信度。", apply: { dcred: 0.02, anchor: 0.03 } }
+    ]
+  },
+  {
+    id: "energy_shock", title: "能源价格飙升", kicker: "供给冲击 · 2022", art: "oil",
+    body: "地缘冲突切断了天然气供应。电价与燃料价格跳涨，家庭实际收入被侵蚀，企业成本上升。",
+    base: { mod: { label: "能源冲击", turns: 4, supply: 1.4 }, dstress: 3 },
+    choices: [
+      { title: "释放战略储备", desc: "短期平抑价格，消耗缓冲库存。", apply: { ddebt: 1, mod: { label: "储备释放", turns: 2, supply: -0.7 } } },
+      { title: "加速绿色投资", desc: "把危机变成能源转型的契机。", apply: { pot: 0.08, ddebt: 2, dcred: 0.01 } },
+      { title: "加息应对第二轮效应", desc: "确保通胀不会渗入工资与预期。", apply: { di: 1.2, dx: -0.3, dcred: 0.02 } }
+    ]
+  },
+  {
+    id: "supply_chain", title: "供应链断裂", kicker: "供给瓶颈 · 2021", art: "factory",
+    body: "港口拥堵、芯片短缺、运费暴涨。企业无法按时交付，订单积压与涨价同时出现。",
+    base: { mod: { label: "供应链瓶颈", turns: 4, supply: 1.3, demand: -0.5 } },
+    choices: [
+      { title: "补贴关键产能", desc: "用财政资金重建本土供应链。", apply: { dg: 1.2, mod: { label: "产能修复", turns: 2, supply: -0.5 } } },
+      { title: "推动贸易多元化", desc: "降低对单一供应源的依赖。", apply: { pot: 0.06, ddebt: 1 } },
+      { title: "容忍瓶颈，不刺激需求", desc: "让价格机制完成配给。", apply: { dpc: 1, dcred: 0.01, dx: -0.3 } }
+    ]
+  },
+  {
+    id: "tech_boom", title: "通用技术突破", kicker: "正向供给 · 长期增长", art: "factory",
+    body: "一组新的通用技术（自动化与生物制造）进入商业化阶段。生产率与投资同时升温，但也可能带来结构性失业。",
+    base: { pot: 0.15, mod: { label: "技术投资", turns: 3, demand: 0.6 }, dstress: -5, flag: "tech" },
+    choices: [
+      { title: "公共研发与教育", desc: "扩大长期增长潜力，财政承担前期成本。", apply: { pot: 0.15, ddebt: 2 } },
+      { title: "放松监管，让市场试错", desc: "更快的资本形成，但金融风险上升。", apply: { dcred: -0.02, dstress: 6, mod: { label: "风险投资", turns: 3, demand: 0.7 } } },
+      { title: "税收分享，补充社保", desc: "为转型中的劳动者提供缓冲。", apply: { dtau: 1, ddebt: -1, dcred: 0.02 } }
+    ]
+  },
+  {
+    id: "secular_pessimism", title: "长期停滞疑云", kicker: "结构 · 自然利率", art: "storm",
+    body: "投资长期低迷，储蓄过剩，均衡实际利率似乎为负。每一次加息都迅速扼杀脆弱的复苏。",
+    base: { mod: { label: "需求不足", turns: 4, demand: -0.8 }, pot: -0.04, dcred: -0.02 },
+    choices: [
+      { title: "大规模公共投资", desc: "用政府资产负债表吸收过剩储蓄。", apply: { dg: 2, pot: 0.08, ddebt: 3 } },
+      { title: "前瞻指引 + 非常规宽松", desc: "压低长端利率，承诺更久的宽松。", apply: { dpie: 0.2, mod: { label: "非常规宽松", turns: 3, demand: 0.5 }, dstress: 4 } },
+      { title: "接受低增长，减税", desc: "不追求高增长，降低税负。", apply: { dtau: -1, dpc: 1 } }
+    ]
+  },
+  {
+    id: "currency_run", title: "货币危机", kicker: "开放经济 · 资本流动", art: "bank",
+    body: "外国投资者突然撤离。储备下降，本币贬值，进口价格上升，国内利率被迫跳升。",
+    base: { fx: 2, dstress: 12, dpi: 0.5, di: 1.0, dcred: -0.03 },
+    choices: [
+      { title: "加息保卫汇率", desc: "用高利率留住资本，但牺牲内需。", apply: { di: 2.5, dcred: 0.02, dx: -0.7 } },
+      { title: "实施资本管制", desc: "切断恐慌性资本外流，但损害市场信誉。", apply: { fx: 0.5, dcred: -0.04, dstress: -4 } },
+      { title: "向国际机构求援", desc: "接受紧缩条件，换取外汇支持。", apply: { dg: -1.5, ddebt: 2, dcred: -0.02, dstress: -6 } }
+    ]
+  },
+  {
+    id: "inflation_expectations", title: "通胀预期脱锚", kicker: "预期管理 · 信誉", art: "gavel",
+    body: "调查显示家庭与企业的长期通胀预期跳升。工资合同开始按更高的通胀指数化。你的信誉正在流失。",
+    base: { dpie: 1.2, dcred: -0.08 },
+    choices: [
+      { title: "公开目标与预测路径", desc: "用透明度重新锚定预期。", apply: { dcred: 0.04, dpie: -0.3, dpc: -1 } },
+      { title: "出人意料地大幅加息", desc: "用冲击换信誉。", apply: { di: 2.5, dcred: 0.03, dx: -0.6 } },
+      { title: "用收入政策压住工资", desc: "短期有效，但可能扭曲价格。", apply: { dpi: -0.4, dcred: -0.02 } }
+    ]
+  },
+  {
+    id: "fiscal_audit", title: "隐性债务曝光", kicker: "财政风险 · 审计", art: "gavel",
+    body: "审计发现地方政府融资平台有大量表外负债。市场重新评估主权风险，利差扩大。",
+    base: { ddebt: 5, dcred: -0.05, dstress: 8 },
+    choices: [
+      { title: "一次性确认并整顿", desc: "痛苦但透明的资产负债表修复。", apply: { dg: -1.2, dcred: 0.02 } },
+      { title: "由央行货币化", desc: "避免违约，代价是通胀与信誉。", apply: { dpie: 0.5, dcred: -0.04, dstress: -4 } },
+      { title: "拖延并希望增长化解", desc: "短期稳定，风险累积。", apply: { dstress: 5, dcred: -0.03, dpc: 1 } }
+    ]
+  },
+  {
+    id: "recovery", title: "复苏确认", kicker: "正向需求 · 窗口期", art: "factory",
+    body: "连续两个季度的订单与就业数据超预期。复苏终于站稳，但政策正常化的窗口也在打开。",
+    base: { mod: { label: "复苏", turns: 2, demand: 0.9 }, dstress: -8, dcred: 0.02 },
+    choices: [
+      { title: "推进结构性改革", desc: "趁景气修复财政与潜在增长。", apply: { pot: 0.1, ddebt: -1, dg: -0.4 } },
+      { title: "继续保持宽松", desc: "让复苏更稳固，但可能过热。", apply: { mod: { label: "延长宽松", turns: 2, demand: 0.4 }, dpie: 0.1 } }
+    ]
+  },
+  {
+    id: "pandemic", title: "大流行", kicker: "复合冲击 · 2020", art: "virus",
+    body: "一种新型病毒迫使经济活动停摆。供给与需求同时收缩，金融市场剧烈波动，财政需求空前。",
+    base: { mod: { label: "封锁", turns: 3, demand: -3, supply: 0.8 }, dstress: 15, du: 1.0, flag: "pandemic" },
+    choices: [
+      { title: "封锁 + 大规模转移支付", desc: "保护生命与收入，债务大幅上升。", apply: { dg: 3, ddebt: 5, dstress: -4 } },
+      { title: "保持开放，避免经济停摆", desc: "减少短期损失，但公共卫生代价高。", apply: { du: 1, dcred: -0.02, mod: { label: "持续传播", turns: 2, supply: 0.5, demand: -0.5 } } },
+      { title: "投资疫苗与医疗能力", desc: "用中期能力换短期痛苦。", apply: { ddebt: 2, pot: 0.05, mod: { label: "医疗投资", turns: 2, demand: 0.4 } } }
+    ]
+  }
+];
+const EVENT_BY_ID = Object.fromEntries(EVENTS.map(e => [e.id, e]));
+const getEvent = id => EVENT_BY_ID[id];
+
+/* ---------- actions ---------- */
+const ACTIONS = [
+  {
+    id: "guidance", name: "前瞻指引", cost: 1, cooldown: 3,
+    desc: "公开承诺未来路径，压低长端利率与通胀预期。", short: "压低预期与长端利率",
+    req: () => true,
+    eff: { dpie: -0.35, dcred: 0.04, flag: "guidance" }
+  },
+  {
+    id: "qe", name: "量化宽松", cost: 2, cooldown: 4,
+    desc: "央行购买长期资产，压低期限溢价。需利率 ≤ 1.5%。", short: "零利率下购买长期资产",
+    req: st => st.i <= 1.5,
+    reqText: "需要政策利率 ≤ 1.5%",
+    eff: { mod: { label: "量化宽松", turns: 2, demand: 0.9 }, dstress: -8, dpie: 0.1, flag: "qe" }
+  },
+  {
+    id: "cbi", name: "央行独立", cost: 3, once: true,
+    desc: "以法律锁定央行目标与任期，永久提高预期锚定。", short: "永久提高预期锚定",
+    req: () => true,
+    eff: { anchor: 0.12, dcred: 0.08, dpie: -0.2, flag: "cbi" }
+  },
+  {
+    id: "reform", name: "供给侧改革", cost: 3, once: true,
+    desc: "放松管制、投资人力资本。提高潜在增长，短期需求略降。", short: "提高潜在增长",
+    req: () => true,
+    eff: { pot: 0.35, ustar: -0.15, dx: -0.3, flag: "reform" }
+  },
+  {
+    id: "bailout", name: "银行纾困", cost: 2, cooldown: 5,
+    desc: "为系统重要性机构注资，降低金融压力。需压力 ≥ 45。", short: "降低金融压力",
+    req: st => st.stress >= 45,
+    reqText: "需要金融压力 ≥ 45",
+    eff: { dstress: -25, ddebt: 4, dx: 0.3, dcred: -0.02, flag: "bailout" }
+  },
+  {
+    id: "incomes", name: "收入政策", cost: 1, cooldown: 4,
+    desc: "召集劳资圆桌，短期压低通胀，但可能损害信誉。", short: "短期压低通胀",
+    req: () => true,
+    eff: { dpi: -0.55, dpie: -0.2, dcred: -0.03, dx: -0.2 }
+  },
+  {
+    id: "transfer", name: "家庭转移支付", cost: 2, cooldown: 3,
+    desc: "直接向家庭发放现金，绕过金融中介。适合零利率下限。", short: "直接刺激家庭需求",
+    req: () => true,
+    eff: { mod: { label: "现金转移", turns: 1, demand: 1.15 }, ddebt: 2, dpi: 0.25, flag: "transfer" }
+  }
+];
+
+/* ---------- simulation ---------- */
+const Sim = (() => {
+  function init(scenarioId, paradigmId, seed) {
+    const sc = getScenario(scenarioId);
+    const p = getParadigm(paradigmId);
+    const s0 = sc.start;
+    const st = {
+      v: 1, scenario: sc.id, paradigm: p.id, seed: seed || 20261022,
+      rng: (seed || 20261022) >>> 0,
+      t: 0,
+      x: s0.x, pi: s0.pi, pie: s0.pie, u: s0.u, uStar: s0.uStar,
+      i: s0.i, g: s0.g, tau: s0.tau, debt: s0.debt, iAvg: s0.i,
+      cred: s0.cred, stress: s0.stress, fx: s0.fx || 0,
+      potBonus: 0, anchorBonus: s0.anchorBonus || 0,
+      growth: s0.potGrowth, pc: 2, cooldowns: {}, used: {},
+      mods: [], flags: {}, fired: {}, forcedEvent: null,
+      lossSum: 0, lossN: 0, hits: 0, hitLog: [],
+      series: { pi: [s0.pi], pie: [s0.pie], u: [s0.u], x: [s0.x], debt: [s0.debt], i: [s0.i], growth: [s0.potGrowth], g: [s0.g], tau: [s0.tau] },
+      log: [], unlocked: (sc.unlocked || []).slice(),
+      finished: false, last: null, hystCount: 0
+    };
+    st.series.growth[0] = sc.start.potGrowth;
+    return st;
+  }
+
+  function modsTotal(st) {
+    const tot = { demand: 0, supply: 0, stress: 0, cred: 0, growth: 0, fx: 0, debt: 0 };
+    for (const m of st.mods) {
+      for (const k of Object.keys(tot)) tot[k] += Number(m[k]) || 0;
+    }
+    return tot;
+  }
+
+  function mechanics(st, p, sc) {
+    const m = modsTotal(st);
+    const rStar = sc.start.rStar;
+    const realRate = st.i - st.pie;
+    const fiscal = (st.g - sc.start.g) - 0.5 * (st.tau - sc.start.tau);
+    const taylor = rStar + st.pi + 0.5 * (st.pi - sc.target) + 0.5 * st.x;
+    const a = clamp(st.cred * (p.anchor + st.anchorBonus), 0.05, 0.92);
+    return { m, rStar, realRate, fiscal, taylor, a };
+  }
+
+  function project(st, p, sc, withNoise) {
+    const { m, rStar, realRate, fiscal, a } = mechanics(st, p, sc);
+    const n = amp => withNoise ? noise(st, amp) : 0;
+    const x1 = clamp(
+      0.72 * st.x + 0.30 * fiscal * p.fiscal - 0.45 * p.mon * (realRate - rStar)
+      + 0.12 * st.fx + m.demand + n(0.32),
+      -12, 8);
+    const supply = m.supply + n(0.22);
+    const pi1 = clamp(st.pie + 0.30 * p.slope * x1 + 0.06 * st.fx + supply, -6, 35);
+    const pie1 = clamp(a * sc.target + (1 - a) * pi1, -5, 30);
+    const u1 = clamp(st.uStar - 0.50 * x1 + n(0.08), 1.5, 24);
+    const potGrowth = sc.start.potGrowth + st.potBonus + m.growth;
+    const growth = clamp(potGrowth + 4 * (x1 - st.x) + n(0.4), -15, 15);
+    const fx1 = clamp(0.72 * st.fx - 0.10 * (st.i - sc.start.iForeign) + m.fx + n(0.12), -8, 8);
+    const iAvg = 0.86 * st.iAvg + 0.14 * st.i;
+    const rev = st.tau * (1 + x1 / 100);
+    const primary = st.g - rev;
+    const interest = iAvg / 100 * st.debt;
+    const deficit = primary + interest;
+    const nominalGrowth = pi1 + growth;
+    const debt1 = clamp(st.debt + (deficit - nominalGrowth / 100 * st.debt) / 4 + m.debt, 0, 250);
+    const stressTarget = 15 + Math.max(0, st.i - 6) * 3.5 + Math.max(0, debt1 - 85) * 0.45
+      + Math.max(0, -x1) * 2.5 + Math.max(0, 2 - growth) * 2;
+    const stress1 = clamp(st.stress * 0.82 + stressTarget * 0.18 + m.stress, 0, 100);
+    let cred1 = st.cred;
+    const miss = Math.abs(pi1 - sc.target);
+    if (miss <= 0.75) cred1 += 0.04;
+    else if (miss <= 1.5) cred1 += 0.018;
+    else if (miss <= 3) cred1 -= 0.008;
+    else cred1 -= 0.035;
+    if (x1 < -4) cred1 -= 0.008;
+    if (pi1 < st.pi - 0.6) cred1 += 0.018;
+    else if (pi1 > st.pi + 0.6) cred1 -= 0.015;
+    cred1 = clamp(cred1 + m.cred, 0.06, 1);
+    return { x1, pi1, pie1, u1, growth, fx1, iAvg, debt1, stress1, cred1, deficit, realRate, taylor, a, m };
+  }
+
+  function forecast(st, p, sc) {
+    const q = project(st, p, sc, false);
+    return {
+      pi: q.pi1, pie: q.pie1, x: q.x1, u: q.u1, growth: q.growth,
+      debt: q.debt1, i: st.i, realRate: q.realRate, taylor: q.taylor,
+      deficit: q.deficit, anchor: q.a
+    };
+  }
+
+  function loss(st, sc, q) {
+    const uGap = q.u1 - st.uStar;
+    const debtExc = Math.max(0, q.debt1 - 110);
+    return (q.pi1 - sc.target) ** 2
+      + 0.8 * uGap ** 2
+      + 0.22 * q.x1 ** 2
+      + 0.008 * debtExc ** 2
+      + 0.0006 * q.stress1 ** 2;
+  }
+
+  function step(st, p, sc) {
+    const prev = { pi: st.pi, u: st.u, x: st.x, debt: st.debt, i: st.i, growth: st.growth, stress: st.stress };
+    const q = project(st, p, sc, true);
+    st.t += 1;
+    st.x = q.x1; st.pi = q.pi1; st.pie = q.pie1; st.u = q.u1;
+    st.debt = q.debt1; st.iAvg = q.iAvg; st.stress = q.stress1; st.cred = q.cred1;
+    st.growth = q.growth; st.fx = q.fx1;
+
+    // hysteresis in the natural rate
+    if (st.u > st.uStar + 1.3) {
+      st.hystCount = (st.hystCount || 0) + 1;
+      if (st.hystCount >= 2) { st.uStar = Math.min(8, st.uStar + 0.07); st.hystCount = 0; }
+    } else if (st.u < st.uStar - 0.9) {
+      st.uStar = Math.max(3.6, st.uStar - 0.015);
+      st.hystCount = 0;
+    } else st.hystCount = 0;
+
+    // fade modifiers
+    st.mods = st.mods.map(m => ({ ...m, turns: m.turns - 1 })).filter(m => m.turns > 0);
+    // political capital
+    st.pc = clamp(st.pc + 1, 0, 4);
+    for (const k of Object.keys(st.cooldowns)) {
+      st.cooldowns[k] -= 1;
+      if (st.cooldowns[k] <= 0) delete st.cooldowns[k];
+    }
+    // stats
+    const L = loss(st, sc, q);
+    st.lossSum += L; st.lossN += 1;
+    const mandate = sc.mandate.map(m => ({ id: m.id, label: m.label, ok: !!m.test(st), display: m.val ? m.val(st) : '' }));
+    const ok = mandate.every(m => m.ok);
+    if (ok) st.hits += 1;
+    st.hitLog = st.hitLog || [];
+    st.hitLog.push(ok);
+    // history
+    st.series.pi.push(st.pi); st.series.pie.push(st.pie); st.series.u.push(st.u);
+    st.series.x.push(st.x); st.series.debt.push(st.debt); st.series.i.push(st.i);
+    st.series.growth.push(st.growth); st.series.g.push(st.g); st.series.tau.push(st.tau);
+    st.last = {
+      pi: st.pi, u: st.u, x: st.x, debt: st.debt, growth: st.growth, i: st.i,
+      stress: st.stress, cred: st.cred, loss: L, prev,
+      dPi: st.pi - prev.pi, dU: st.u - prev.u, dX: st.x - prev.x,
+      dDebt: st.debt - prev.debt, dGrowth: st.growth - prev.growth,
+      realRate: q.realRate, mandate, mandateOK: ok, deficit: q.deficit,
+      anchor: q.a, t: st.t
+    };
+    if (st.t >= sc.horizon + (st.horizonBonus || 0)) st.finished = true;
+    return st.last;
+  }
+
+  function mandateStatus(st, sc) {
+    return sc.mandate.map(m => ({ ...m, ok: !!m.test(st), display: m.val ? m.val(st) : "" }));
+  }
+  function taylor(st, sc) {
+    return sc.start.rStar + st.pi + 0.5 * (st.pi - sc.target) + 0.5 * st.x;
+  }
+  function yearLabel(st, sc, offset = 0) {
+    const total = st.t + offset;
+    const y = sc.start.year + Math.floor((sc.start.q - 1 + total) / 4);
+    const q = ((sc.start.q - 1 + total) % 4) + 1;
+    return { y, q, label: `${y} · Q${q}` };
+  }
+  return { init, step, forecast, loss, mandateStatus, taylor, yearLabel, project, mechanics, modsTotal };
+})();
+/* ==== SIM-CORE-END ==== */
+
+/* ============================================================
+   KNOWLEDGE — the codex and the timeline.
+   ============================================================ */
+const CODEX = [
+  {
+    id: "classical", title: "古典学派", en: "THE CLASSICAL TRADITION", era: "1776—1890", family: "classical",
+    thesis: "供给自动创造需求。只要价格、工资与利率灵活调整，经济会趋向充分就业。货币只决定名义价格，不改变实际产出。政府的功能是保护产权、维持货币可兑换，而不是管理总需求。",
+    math: [
+      { eq: "MV = PY", note: "费雪交易方程：货币量 × 流通速度 = 价格 × 实际产出。" },
+      { eq: "S(r) = I(r)", note: "可贷资金市场：利率调整使储蓄等于投资，财政赤字推高利率并挤出投资。" }
+    ],
+    policy: "平衡预算、金本位或货币规则、自由放任。失业被视为摩擦性现象或工资刚性问题。",
+    critique: "无法解释 1930 年代持续的大规模失业；“供给创造需求”把货币与信用当成了面纱，忽略了有效需求不足。",
+    ingame: "古典范式的财政乘数最低、货币传导最强，适合规则与通胀控制，却不适合深度衰退。",
+    tags: ["萨伊定律", "货币数量论", "灵活价格"], links: ["keynes", "phillips", "solow"]
+  },
+  {
+    id: "keynes", title: "有效需求与乘数", en: "THE GENERAL THEORY", era: "1936", family: "keynesian",
+    thesis: "当经济低于充分就业时，产出由有效需求决定。消费取决于当前收入，投资取决于预期与“动物精神”；工资和价格黏性使市场无法自动出清。财政乘数大于一，节俭悖论可能出现。",
+    math: [
+      { eq: "Y = C + I + G", note: "总需求恒等式。凯恩斯把投资与政府支出视为自主性支出。" },
+      { eq: "C = a + b(Y − T)", note: "消费函数：b 为边际消费倾向。" },
+      { eq: "k = 1 / (1 − b)", note: "简单乘数。若税率为 t，则 k = 1 / (1 − b(1 − t))。" }
+    ],
+    policy: "逆周期财政扩张、公共投资、最后雇主；低利率配合。先恢复需求，再处理债务。",
+    critique: "财政时滞、政治俘获、挤出效应与债务可持续性；1970 年代滞胀削弱了它的解释力。",
+    ingame: "凯恩斯范式的财政乘数最高之一（1.35），但预期锚定很低，通胀一旦启动就很难停下。",
+    tags: ["有效需求", "乘数", "流动性偏好"], links: ["synthesis", "phillips", "friedman", "mmt"]
+  },
+  {
+    id: "synthesis", title: "新古典综合", en: "THE NEOCLASSICAL SYNTHESIS", era: "1937—1960s", family: "keynesian",
+    thesis: "希克斯把《通论》浓缩为 IS–LM，萨缪尔森把它写进教科书，并与菲利普斯曲线结合，形成“可微调”的共识：财政移动 IS，货币移动 LM，政府可以让经济停在合意的通胀—失业组合上。",
+    math: [
+      { eq: "IS: Y = C(Y − T) + I(i) + G", note: "产品市场均衡。" },
+      { eq: "LM: M / P = L(Y, i)", note: "货币市场均衡。" },
+      { eq: "Y* = f(G, T, M/P)", note: "两条曲线的交点给出短期产出与利率。" }
+    ],
+    policy: "相机抉择的财政货币政策、充分就业预算、微调。",
+    critique: "忽略预期与供给面；Lucas 批评认为政策一变化，IS–LM 的参数就不再稳定；对滞胀无能为力。",
+    ingame: "你的 IS 由财政脉冲与实际利率缺口驱动，LM 由你设定的政策利率近似。数理页有 IS–LM 实验台。",
+    tags: ["IS–LM", "希克斯", "微调"], links: ["keynes", "phillips", "lucas", "taylor"],
+    unlock: st => st.t >= 2
+  },
+  {
+    id: "phillips", title: "菲利普斯曲线", en: "THE PHILLIPS CURVE", era: "1958", family: "keynesian",
+    thesis: "菲利普斯发现英国近百年失业率与名义工资涨幅存在负相关。政策制定者一度以为可以在通胀与失业之间长期“选择”一个点。这条曲线成为需求管理的操作菜单。",
+    math: [
+      { eq: "π = −β(u − u*) + s", note: "原始形式：通胀与失业缺口负相关；s 为供给冲击。" },
+      { eq: "π = πe − β(u − u*)", note: "预期扩展形式：只有预期外的通胀才会压低失业。" }
+    ],
+    policy: "用需求扩张换取更低失业；在通胀与失业之间权衡。",
+    critique: "1970 年代通胀与失业同时上升（滞胀），证明稳定的替代关系并不存在；自然率与预期改变了整张地图。",
+    ingame: "你的通胀方程为 π = πe + 0.30 × 斜率 × 产出缺口 + 供给冲击；失业由奥肯定律从缺口推导。",
+    tags: ["失业—通胀", "牺牲率", "滞胀"], links: ["friedman", "keynes", "taylor"]
+  },
+  {
+    id: "friedman", title: "自然率与预期革命", en: "THE NATURAL RATE", era: "1968", family: "monetarist",
+    thesis: "弗里德曼与费尔普斯独立指出：工人关心实际工资，只有未预期到的通胀才会暂时压低失业。长期菲利普斯曲线在自然失业率处垂直；持续通胀会推高预期，形成加速通胀。",
+    math: [
+      { eq: "π = πe − β(u − u*)", note: "短期：给定预期，通胀可以换取更低的失业。" },
+      { eq: "u → u*  当 πe → π", note: "长期：预期追上现实，失业回到自然率，只剩更高的通胀。" },
+      { eq: "π↑ → πe↑ → π↑ ...", note: "加速主义：用需求把失业压在自然率以下，只会得到不断上升的通胀。" }
+    ],
+    policy: "不要试图把失业永久压到自然率以下；公开低通胀目标，建立可信度。",
+    critique: "自然率不可观测且会移动；理性预期与黏性价格需要更细的微观基础；牺牲率究竟多大仍有争议。",
+    ingame: "通胀预期由可信度与锚定参数决定。信誉低时，预期几乎完全跟随实际通胀——这就是 1979 关的困境。",
+    tags: ["自然失业率", "预期", "加速主义"], links: ["monetarist", "phillips", "lucas", "timeinconsistency"],
+    unlock: (st, sc) => sc.id === "stagflation" || st.pi > 7 || st.t >= 8
+  },
+  {
+    id: "monetarist", title: "货币主义与 k% 规则", en: "MONETARISM", era: "1956—1980s", family: "monetarist",
+    thesis: "货币数量是名义收入的长期锚，通胀终究是一种货币现象。由于政策时滞长且多变，相机抉择常常帮倒忙；应按固定规则增长货币。财政赤字要么挤出私人投资，要么被货币化。",
+    math: [
+      { eq: "M · V = P · Y", note: "数量方程。" },
+      { eq: "gM + gV = π + gY", note: "增长率形式。若货币流通速度稳定，货币增长决定通胀。" },
+      { eq: "gM = π* + gY*", note: "弗里德曼的 k% 规则：货币增长等于目标通胀加潜在增长。" }
+    ],
+    policy: "货币增长目标、独立央行、反对财政货币化与微调。",
+    critique: "1980 年代后货币需求函数不稳定；金融创新让货币总量难以定义；2008 年后央行转向利率与资产负债表工具。",
+    ingame: "货币主义范式降低了财政乘数、提高了货币政策效力；顾问会强调名义锚与规则。",
+    tags: ["货币数量", "时滞", "规则"], links: ["friedman", "classical", "taylor"],
+    unlock: st => st.paradigm === "monetarist" || st.t >= 6
+  },
+  {
+    id: "lucas", title: "理性预期与卢卡斯批判", en: "RATIONAL EXPECTATIONS", era: "1972—1976", family: "newclassical",
+    thesis: "经济主体会利用所有可得信息形成预期。一旦政策规则改变，历史估计的行为参数也会改变，因此旧计量模型不能用来评估新政策。系统性的、可预期政策没有真实效应。",
+    math: [
+      { eq: "E_t[y_{t+1}] = E_t[y*] + ...", note: "预期是模型一致的：主体知道政策规则。" },
+      { eq: "y − y* = α(π − Eπ)", note: "政策无效命题：只有未预期的通胀才影响产出。" }
+    ],
+    policy: "规则、承诺、信誉；避免欺骗公众或频繁改变规则。",
+    critique: "完全理性预期与现实不符；黏性价格、信息摩擦与学习行为使政策仍有真实效应；但卢卡斯批判本身已成为宏观建模的底线。",
+    ingame: "新古典范式的预期锚定最高（0.90），通胀更易稳定，但财政乘数最低。",
+    tags: ["理性预期", "政策无效", "参数漂移"], links: ["friedman", "rbc", "timeinconsistency", "newkeynesian"],
+    unlock: st => st.t >= 5 || st.pi > 8
+  },
+  {
+    id: "rbc", title: "真实经济周期", en: "REAL BUSINESS CYCLES", era: "1982", family: "newclassical",
+    thesis: "波动来自技术冲击与跨期替代，而不是需求。货币是中性的，衰退是理性主体对生产率变化的有效反应。政府能做的最好的事，往往是减少扭曲、提高长期供给能力。",
+    math: [
+      { eq: "Y = A K^α L^(1−α)", note: "技术冲击 A 驱动周期。" },
+      { eq: "max E Σ β^t u(c_t, 1−l_t)", note: "代表性家庭在跨期预算约束下选择消费与劳动。" }
+    ],
+    policy: "少干预；减税、放松管制、改善制度以提高潜在增长。",
+    critique: "把技术冲击视为主要驱动缺乏直接证据；无法解释大萧条与大规模失业；忽略金融摩擦与需求外部性。",
+    ingame: "供给侧行动与科技事件会永久提高潜在增长；这是 RBC 式政策在沙盘中的体现。",
+    tags: ["技术冲击", "跨期替代", "中性货币"], links: ["lucas", "solow", "supplyside"],
+    unlock: (st) => st.t >= 10 || !!st.flags.tech
+  },
+  {
+    id: "newkeynesian", title: "新凯恩斯三方程", en: "NEW KEYNESIAN MACRO", era: "1982—2008", family: "newkeynesian",
+    thesis: "垄断竞争与菜单成本造成黏性价格；前瞻性的 Phillips 曲线、IS 曲线与 Taylor 规则构成现代央行的工作模型。预期管理是政策的核心，央行要用规则与沟通把通胀锚在目标附近。",
+    math: [
+      { eq: "π_t = β E_t π_{t+1} + κ x_t", note: "新凯恩斯 Phillips 曲线：今天的通胀取决于预期通胀与产出缺口。" },
+      { eq: "x_t = E_t x_{t+1} − σ(i_t − E_t π_{t+1} − r*)", note: "动态 IS：实际利率缺口驱动需求。" },
+      { eq: "i_t = r* + π_t + 0.5(π_t − π*) + 0.5 x_t", note: "Taylor 规则：对通胀与缺口作出系统性反应。" }
+    ],
+    policy: "通胀目标制、Taylor 规则、零利率下限下的前瞻指引与量化宽松。",
+    critique: "代表性代理人、线性化、忽略金融与分配；对 2008 与 2021 通胀的预测失误暴露了模型的盲点。",
+    ingame: "默认范式，传导均衡。顾问会给出机械的 Taylor 利率；预期锚定较高，但仍需用行动维护。",
+    tags: ["黏性价格", "三方程", "通胀目标"], links: ["taylor", "phillips", "lucas", "secular", "hank"],
+    unlock: st => st.t >= 3
+  },
+  {
+    id: "taylor", title: "泰勒规则与通胀目标", en: "THE TAYLOR RULE", era: "1990—1993", family: "newkeynesian",
+    thesis: "央行可以用一个简单的利率反馈规则稳定经济：对通胀偏离目标与产出缺口作出系统性反应。规则而非相机抉择，提高了可预测性与信誉，也让政策可以被公众监督。",
+    math: [
+      { eq: "i = r* + π + 0.5(π − π*) + 0.5x", note: "经典 Taylor（1993）规则。" },
+      { eq: "i_t = ρ i_{t−1} + (1−ρ)(...)", note: "平滑版本：央行不愿让利率剧烈跳动。" }
+    ],
+    policy: "通胀目标制（新西兰，1990）、央行独立、定期沟通与预测。",
+    critique: "规则参数依赖模型；零利率下限与金融稳定需要额外工具；规则也可能被政治化或机械误用。",
+    ingame: "政策台会实时显示这条规则的建议值。偏离它可以，但要理解背后的取舍。",
+    tags: ["政策规则", "通胀目标", "央行独立性"], links: ["newkeynesian", "timeinconsistency", "friedman"],
+    unlock: () => true
+  },
+  {
+    id: "timeinconsistency", title: "规则、承诺与时间不一致", en: "TIME INCONSISTENCY", era: "1977—1983", family: "newclassical",
+    thesis: "即使央行知道通胀有害，它也有事后制造意外通胀的动机；理性公众会预期到这一点，结果落入高通胀、低信誉的均衡。规则、独立性与透明度是对承诺问题的制度回应。",
+    math: [
+      { eq: "L = (π − π*)² + λ(u − u*)²", note: "社会损失函数：央行想同时稳定通胀与就业。" },
+      { eq: "π_discretion > π*  且 u = u*", note: "相机抉择均衡：更高的通胀，却没有就业收益。" }
+    ],
+    policy: "规则、通胀目标、央行独立性、透明度；必要时保留危机例外条款。",
+    critique: "完全承诺不可能；规则也需要“逃生条款”；信誉是资产，难以量化，也会被政治冲击摧毁。",
+    ingame: "可信度越低，通胀预期越接近现实通胀，牺牲率越高。央行独立行动可永久提高预期锚定。",
+    tags: ["承诺", "信誉", "Kydland–Prescott"], links: ["friedman", "lucas", "taylor"],
+    unlock: st => st.cred < 0.4 || st.t >= 6
+  },
+  {
+    id: "supplyside", title: "供给侧经济学", en: "SUPPLY-SIDE ECONOMICS", era: "1970s—1980s", family: "classical",
+    thesis: "减税、放松管制与改善激励可以提高潜在产出与劳动供给，并通过扩大税基部分自我融资。拉弗曲线描述税率与税收收入之间的倒 U 形关系。",
+    math: [
+      { eq: "Y = A K^α L^(1−α)", note: "供给面决定潜在产出。" },
+      { eq: "L = L(w(1 − t))", note: "劳动供给对税后工资的反应。" },
+      { eq: "R = t · Y(t)", note: "税收收入随税率变化；峰值位置取决于行为弹性。" }
+    ],
+    policy: "减税、去监管、人力资本、开放贸易。",
+    critique: "短期乘数有限；拉弗曲线的峰值位置未知；“涓滴”证据薄弱；减税往往加剧不平等与赤字。",
+    ingame: "供给侧改革行动永久提高潜在增长（+0.35pp/年），但短期需求略降。",
+    tags: ["拉弗曲线", "潜在增长", "减税"], links: ["classical", "solow", "rbc"],
+    unlock: (st, sc) => sc.id === "supply" || st.tau < 18
+  },
+  {
+    id: "ricardian", title: "李嘉图等价", en: "RICARDIAN EQUIVALENCE", era: "1820 / 1974", family: "classical",
+    thesis: "理性家庭会把今天的赤字视为未来的税收，于是增加储蓄，抵消财政刺激。若存在借贷约束、短视或代际利他程度不同，等价就不成立。",
+    math: [
+      { eq: "Σ G_t/(1+r)^t = Σ T_t/(1+r)^t", note: "政府跨期预算约束：支出最终必须由税收或货币化融资。" },
+      { eq: "C_t = f( wealth, 永久收入 )", note: "家庭看的是终身资源，而非当期可支配收入。" }
+    ],
+    policy: "赤字中性；关注债务的现值与代际分配，而不是年度流量。",
+    critique: "实证上财政刺激通常有效；流动性约束、短视与代际重叠使等价失效；但它提醒我们：债务不是免费的午餐。",
+    ingame: "债务越高，市场压力与利息负担越会抵消财政扩张；债券义警事件就是这种约束的戏剧化。",
+    tags: ["债务", "跨期预算", "巴罗"], links: ["classical", "keynes", "timeinconsistency"],
+    unlock: st => st.debt > 85
+  },
+  {
+    id: "solow", title: "索洛增长模型", en: "THE SOLOW MODEL", era: "1956", family: "classical",
+    thesis: "长期生活水平由资本积累、人口增长与技术决定。资本边际报酬递减使经济收敛到稳态；储蓄率只有水平效应，持续增长最终依赖技术进步。",
+    math: [
+      { eq: "s f(k) = (δ + n + g) k", note: "稳态条件：储蓄等于折旧、人口增长与技术进步所需的投资。" },
+      { eq: "k* = [s/(δ+n+g)]^{1/(1−α)}", note: "稳态人均资本。" },
+      { eq: "y* = (k*)^α", note: "稳态人均产出。提高 s 只能提高水平，不能永久提高增长率。" }
+    ],
+    policy: "提高储蓄率、教育与研发；制度质量决定技术扩散的速度。",
+    critique: "技术进步被当作外生；忽略人力资本、制度与金融；条件收敛的证据并不均衡。",
+    ingame: "潜在增长是你的长期预算约束；供给侧改革与科技事件会改变它。",
+    tags: ["稳态", "收敛", "增长核算"], links: ["rbc", "supplyside", "endogenous"]
+  },
+  {
+    id: "endogenous", title: "内生增长与创新", en: "ENDOGENOUS GROWTH", era: "1986—1990", family: "classical",
+    thesis: "知识具有非竞争性，研发的外部性使增长可以内生。人力资本、创新与制度决定长期增长率，政策因而可以产生永久效应——这改变了“只做稳定化”的宏观政策观。",
+    math: [
+      { eq: "Y = K^α (A L)^{1−α}", note: "知识 A 提高劳动效率。" },
+      { eq: "Ȧ/A = φ L_A", note: "研发部门的人力投入决定知识增长率；规模效应与溢出效应是关键假设。" }
+    ],
+    policy: "研发补贴、教育、知识产权、竞争政策、开放。",
+    critique: "规模效应预测与数据不符；制度因果识别困难；创新政策可能被俘获，也可能加剧区域不平等。",
+    ingame: "重复的供给侧投资可以把潜在增长推高，形成复利；但短期会挤压需求。",
+    tags: ["研发", "人力资本", "规模效应"], links: ["solow", "supplyside", "rbc"],
+    unlock: st => st.t >= 12
+  },
+  {
+    id: "zlb", title: "零利率下限与流动性陷阱", en: "THE ZERO LOWER BOUND", era: "1936 / 2008", family: "keynesian",
+    thesis: "当名义利率触及零，央行无法用常规降息刺激经济；实际利率可能仍高于均衡。财政乘数变大，前瞻指引与 QE 成为替代工具。通缩会进一步推高实际利率，形成螺旋。",
+    math: [
+      { eq: "i ≥ 0", note: "现金的零名义收益构成下限。" },
+      { eq: "r = i − πe", note: "费雪方程；若 πe 为负，即使 i=0，实际利率仍为正。" },
+      { eq: "x = −σ(i − πe − r*)", note: "当 r* < 0，零利率仍可能是紧缩的。" }
+    ],
+    policy: "财政扩张、QE、前瞻指引、直升机式转移支付；有争议地提高通胀目标。",
+    critique: "QE 的分配效应与退出困难；财政主导风险；预期管理的可信度问题；负利率的金融副作用。",
+    ingame: "2008 关的 r* 为 −2%，零利率下限是真实约束。只靠降息，会看到通缩与失业上升。",
+    tags: ["流动性陷阱", "QE", "费雪方程"], links: ["keynes", "newkeynesian", "secular", "taylor"],
+    unlock: (st, sc) => sc.id === "zlb" || (st.i <= 0.5 && st.t >= 2)
+  },
+  {
+    id: "secular", title: "长期停滞", en: "SECULAR STAGNATION", era: "1938 / 2013", family: "newkeynesian",
+    thesis: "储蓄过剩与投资需求不足可能使均衡实际利率长期为负，货币政策在零利率下限失效。财政扩张、结构性政策与通胀预期管理变得重要；深度衰退还可能留下伤痕（滞后效应）。",
+    math: [
+      { eq: "r* < 0", note: "均衡实际利率为负：储蓄意愿超过投资意愿。" },
+      { eq: "x = −σ(i − πe − r*)", note: "即使 i=0，若 πe 很低，实际利率仍高于 r*。" },
+      { eq: "u*_t = f(u_{t−1})", note: "滞后效应：长期高失业会抬高自然失业率。" }
+    ],
+    policy: "财政主导、公共投资、前瞻指引、提高通胀目标（有争议）、结构性改革。",
+    critique: "r* 不可观测；测量与识别争议；财政空间与政治可行性；疫情后通胀回归使“停滞”叙事受到挑战。",
+    ingame: "2013 与 2008 关的 r* 为负或很低，降息空间受限；财政与 QE 是主要工具。",
+    tags: ["r*", "储蓄过剩", "滞后效应"], links: ["newkeynesian", "zlb", "hank"],
+    unlock: (st, sc) => sc.id === "secular" || sc.id === "zlb"
+  },
+  {
+    id: "postkeynesian", title: "后凯恩斯与明斯基", en: "POST-KEYNESIAN", era: "1970s—", family: "heterodox",
+    thesis: "根本不确定性使投资依赖动物精神；货币内生、金融不稳定内生于繁荣。充分就业与金融稳定需要制度约束，而非单一利率工具。",
+    math: [
+      { eq: "P = I + C_k + (G − T) + (X − M)", note: "卡莱茨基利润方程：利润由投资、资本家消费、财政赤字与贸易顺差决定。" },
+      { eq: "对冲 → 投机 → 庞氏", note: "明斯基融资结构随繁荣演化，脆弱性内生累积。" }
+    ],
+    policy: "最后雇主、宏观审慎、收入政策、金融监管、产业政策。",
+    critique: "预测力较弱，政策处方依赖强制度假设；对通胀约束与开放经济的讨论不如主流细致。",
+    ingame: "后凯恩斯范式财政乘数很高、预期锚定很低；失业权重高，债务几乎不进入其主观偏好。",
+    tags: ["明斯基时刻", "内生货币", "动物精神"], links: ["keynes", "mmt", "crisis"],
+    unlock: st => st.stress > 60 || st.t >= 8
+  },
+  {
+    id: "mmt", title: "现代货币理论", en: "MODERN MONETARY THEORY", era: "1990s—", family: "heterodox",
+    thesis: "主权货币发行者不会因本币债务“没钱”而违约；真正的约束是通胀与真实资源。财政应直接瞄准充分就业，税收的作用是回收购买力、调节分配与创造货币需求。",
+    math: [
+      { eq: "(S − I) + (T − G) + (M − X) = 0", note: "部门余额恒等式：私人、政府与外国部门的净金融资产之和为零。" },
+      { eq: "Y ≤ Y* 且 π ≈ π*", note: "真实资源与通胀才是财政的约束。" }
+    ],
+    policy: "就业保障、功能性财政、利率由央行设定而非市场“自然”决定。",
+    critique: "忽略汇率、进口通胀与政治约束；接近产能时的通胀风险被低估；制度前提很强，容易被简化为“赤字无害”。",
+    ingame: "MMT 范式财政乘数最高（1.70），债务不进入其主观损失，但市场压力与通胀照样会惩罚你。",
+    tags: ["部门余额", "就业保障", "功能性财政"], links: ["keynes", "postkeynesian", "friedman"],
+    unlock: st => st.debt > 105 || st.paradigm === "mmt"
+  },
+  {
+    id: "austrian", title: "奥地利学派与资本结构", en: "AUSTRIAN BUSINESS CYCLE", era: "1912—", family: "heterodox",
+    thesis: "人为压低的利率会扭曲跨期生产结构，造成错误投资；清算与相对价格调整不可避免。健全货币与有限政府是防止繁荣—萧条循环的根本。",
+    math: [
+      { eq: "i_market < r*", note: "市场利率持续低于自然利率，信贷扩张，资本被错误配置。" },
+      { eq: "繁荣 → 危机 → 清算", note: "奥地利学派的三阶段：错误投资暴露、资源重新配置。" }
+    ],
+    policy: "提高利率、削减支出、放松管制、允许清算；反对救助与道德风险。",
+    critique: "对衰退中的失业与需求不足关注不够；清算的政治与社会成本高；经验证据混杂；自然利率同样不可观测。",
+    ingame: "奥地利范式财政乘数低，注重通胀与债务；实际利率为负时，顾问会强烈要求加息。",
+    tags: ["自然利率", "错误投资", "清算"], links: ["classical", "rbc", "crisis"],
+    unlock: st => st.pi > 8 || st.paradigm === "austrian"
+  },
+  {
+    id: "behavioral", title: "行为宏观与叙事", en: "BEHAVIORAL MACRO", era: "2000s—", family: "newkeynesian",
+    thesis: "家庭与企业并非完全理性；注意力、亲身经历、媒体与叙事驱动预期和消费。通胀预期并不等于央行的模型预测，沟通因此成为独立的政策工具。",
+    math: [
+      { eq: "πe = f(叙事, 经历, 媒体)", note: "预期形成依赖可感知的显著性，而非完整信息集。" },
+      { eq: "E[π] 受信息成本约束", note: "理性疏忽：获取与处理信息本身有成本。" }
+    ],
+    policy: "简单规则、情景沟通、金融教育、信任建设；避免技术官僚式语言。",
+    critique: "微观基础多样，模型可检验性弱；容易变成“什么都能解释”；行为干预也可能被操纵。",
+    ingame: "你的可信度与沟通行动直接影响预期；收入政策可短期压通胀，但会损害信誉。",
+    tags: ["叙事", "理性疏忽", "预期管理"], links: ["newkeynesian", "timeinconsistency", "phillips"],
+    unlock: st => !!st.flags.guidance || st.t >= 8
+  },
+  {
+    id: "hank", title: "异质性代理人宏观", en: "HETEROGENEOUS AGENTS", era: "2010s—", family: "newkeynesian",
+    thesis: "家庭在财富、收入与流动性约束上高度异质。总需求对财政与货币政策的反应取决于分配；边际消费倾向高的人群决定转移支付与减税的乘数。金融摩擦与不完全市场放大冲击。",
+    math: [
+      { eq: "C = ∫ c_i di", note: "总消费是异质家庭消费的积分。" },
+      { eq: "MPC_i 高 → 定向转移乘数大", note: "财政乘数取决于钱落到谁手里。" }
+    ],
+    policy: "定向转移支付、社保、宏观审慎；关注不平等与政策的分配效应。",
+    critique: "计算复杂、数据要求高；代表性模型仍是央行主力；分配权重的规范选择无法由模型决定。",
+    ingame: "家庭转移支付行动在低利率与高压力时更有效；这是 HANK 直觉的简化版。",
+    tags: ["边际消费倾向", "不平等", "财政乘数"], links: ["newkeynesian", "secular", "postkeynesian"],
+    unlock: st => !!st.flags.transfer || st.t >= 12
+  },
+  {
+    id: "dsge", title: "DSGE 与现代宏观", en: "DYNAMIC GENERAL EQUILIBRIUM", era: "1990s—", family: "newkeynesian",
+    thesis: "动态随机一般均衡把微观最优、预期与冲击统一在一个可估计的框架里，成为央行预测与政策分析的主力。2008 年后加入金融摩擦、异质性与非线性。",
+    math: [
+      { eq: "E_t Σ β^s U(C_{t+s})", note: "代表性家庭在预算约束下最大化期望效用。" },
+      { eq: "线性化 → 状态空间 → 贝叶斯估计", note: "模型变成可估计的动态系统。" }
+    ],
+    policy: "模型一致性、政策反事实、沟通；用模型约束直觉，而不是代替判断。",
+    critique: "代表性代理人、线性近似、参数漂移、对危机的盲点；模型是地图，不是领土。",
+    ingame: "你看到的方程面板就是一个小型半结构模型。注意它的假设与盲区——这正是本作想让你练习的。",
+    tags: ["一般均衡", "校准", "模型不确定性"], links: ["newkeynesian", "lucas", "hank"],
+    unlock: st => st.t >= 6
+  },
+  {
+    id: "crisis", title: "2008 之后的宏观", en: "MACRO AFTER THE CRASH", era: "2008—", family: "heterodox",
+    thesis: "全球金融危机暴露了主流模型对金融中介、杠杆与系统性风险的忽视。宏观审慎、资产负债表衰退、政策空间与分配问题进入核心；稳定工具不再只有利率。",
+    math: [
+      { eq: "外部融资溢价 = f(杠杆, 资产价格)", note: "金融加速器：抵押品价格下跌 → 融资溢价上升 → 投资下降。" },
+      { eq: "信贷约束放大初始冲击", note: "金融摩擦让小的冲击产生大的持续效应。" }
+    ],
+    policy: "宏观审慎、逆周期资本缓冲、央行最后贷款人、财政兜底与有序处置。",
+    critique: "监管套利、模型复杂化、政策协调困难；道德风险与“大而不能倒”仍未解决。",
+    ingame: "金融压力会累积并触发危机事件；纾困与监管行动可以降低压力，但有财政与信誉成本。",
+    tags: ["金融加速器", "宏观审慎", "最后贷款人"], links: ["postkeynesian", "hank", "secular"],
+    unlock: st => st.stress > 60 || !!st.flags.bailout
+  }
+];
+const CODEX_BY_ID = Object.fromEntries(CODEX.map(e => [e.id, e]));
+const CODEX_ALIAS = { keynesian: "keynes", newclassical: "lucas" };
+const codexId = id => CODEX_ALIAS[id] || id;
+
+const TIMELINE = [
+  { y: 1776, name: "亚当·斯密《国富论》", text: "分工、市场与“看不见的手”为古典经济学奠基。", codex: "classical" },
+  { y: 1803, name: "萨伊定律", text: "供给自动创造需求；这一命题成为古典宏观的核心，也成为凯恩斯攻击的靶子。", codex: "classical" },
+  { y: 1817, name: "李嘉图《政治经济学及赋税原理》", text: "比较优势与地租理论；古典分配与贸易分析的高峰。", codex: "classical" },
+  { y: 1871, name: "边际革命", text: "门格尔、杰文斯与瓦尔拉斯引入边际效用，经济学转向边际分析。", codex: "classical" },
+  { y: 1890, name: "马歇尔《经济学原理》", text: "供求曲线、局部均衡与弹性；新古典微观的教科书时刻。", codex: "classical" },
+  { y: 1911, name: "费雪《货币购买力》", text: "交易方程 MV=PY 与费雪效应，货币数量论获得现代形式。", codex: "classical" },
+  { y: 1930, name: "大萧条", text: "产出与就业崩塌，古典理论无法解释持续的大规模失业。", codex: "keynes", hot: true },
+  { y: 1936, name: "凯恩斯《通论》", text: "有效需求、乘数与流动性偏好；宏观经济学作为独立学科诞生。", codex: "keynes", hot: true },
+  { y: 1937, name: "希克斯的 IS–LM", text: "把《通论》形式化，成为此后四十年的宏观教学语言。", codex: "synthesis" },
+  { y: 1944, name: "布雷顿森林体系", text: "美元与黄金挂钩、固定汇率与 IMF；战后资本主义的制度框架。", codex: "synthesis" },
+  { y: 1956, name: "索洛增长模型", text: "资本积累、稳态与技术进步；增长理论从哈罗德—多马的不稳定中走出。", codex: "solow" },
+  { y: 1958, name: "菲利普斯曲线", text: "失业与工资通胀的负相关被误读为长期的政策菜单。", codex: "phillips", hot: true },
+  { y: 1963, name: "弗里德曼与施瓦茨《美国货币史》", text: "为大萧条中的货币收缩翻案，货币主义复兴。", codex: "monetarist" },
+  { y: 1968, name: "自然率假说", text: "弗里德曼与费尔普斯各自指出长期菲利普斯曲线垂直；预期革命开始。", codex: "friedman", hot: true },
+  { y: 1971, name: "尼克松关闭黄金窗口", text: "布雷顿森林体系解体，浮动汇率与高通胀时代开启。", codex: "monetarist" },
+  { y: 1973, name: "第一次石油危机", text: "供给冲击与滞胀同时出现，需求管理的共识破裂。", codex: "phillips", hot: true },
+  { y: 1976, name: "卢卡斯批判", text: "政策评估必须考虑预期与参数变化；宏观计量革命。", codex: "lucas", hot: true },
+  { y: 1977, name: "时间不一致", text: "Kydland 与 Prescott 论证规则优于相机抉择；央行独立性获得理论支持。", codex: "timeinconsistency" },
+  { y: 1979, name: "沃尔克冲击", text: "美联储把利率推到 20% 附近，以深度衰退换取通胀预期回落。", codex: "friedman", hot: true },
+  { y: 1982, name: "真实经济周期", text: "Kydland 与 Prescott 用技术冲击解释波动；宏观转向动态一般均衡。", codex: "rbc" },
+  { y: 1990, name: "新西兰通胀目标制", text: "全球第一个正式通胀目标；同年罗默发表内生增长论文。", codex: "taylor" },
+  { y: 1993, name: "泰勒规则", text: "简单利率规则成为央行沟通与政策评估的基准。", codex: "taylor" },
+  { y: 2008, name: "全球金融危机", text: "雷曼倒闭、零利率与 QE；主流宏观对金融摩擦的忽视被清算。", codex: "crisis", hot: true },
+  { y: 2010, name: "巴塞尔 III 与宏观审慎", text: "资本缓冲、逆周期监管与系统性风险成为新政策工具箱。", codex: "crisis" },
+  { y: 2013, name: "长期停滞", text: "萨默斯重提负自然利率与储蓄过剩；低利率时代成为新常态。", codex: "secular" },
+  { y: 2020, name: "疫情冲击", text: "供给与需求同时收缩，财政转移与央行资产负债表空前扩张。", codex: "zlb", hot: true },
+  { y: "2021—22", name: "通胀回归", text: "供应链瓶颈与需求反弹让通胀回到 1970 年代以来的高位；软着陆成为全球央行的难题。", codex: "phillips", hot: true },
+  { y: "2023—", name: "AI 与生产率争论", text: "通用技术的扩散速度、劳动替代与潜在增长，成为新的宏观叙事。", codex: "endogenous" }
+];
+
+/* ============================================================
+   APP — state, persistence, rendering.
+   ============================================================ */
+const LS_SAVE = "meridia.save.v1";
+const LS_PREFS = "meridia.prefs.v1";
+const App = {
+  st: null, sc: null, p: null, started: false,
+  chartTab: "phillips", studyMode: false, modalOpen: false, modalClosable: true,
+  lastFocus: null, cityFrame: 0, cityPal: null, paused: false, tickerPaused: false,
+  bootedAt: Date.now(), raf: null, lastCity: 0
+};
+
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+const esc = s => String(s).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+const clamp01 = x => Math.max(0, Math.min(1, x));
+const reducedMotion = () => window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function readPrefs() {
+  try {
+    const p = JSON.parse(localStorage.getItem(LS_PREFS) || "{}");
+    if (p.theme === "dark" || p.theme === "light") document.documentElement.dataset.theme = p.theme;
+    App.studyMode = !!p.studyMode;
+    App.tickerPaused = !!p.tickerPaused;
+  } catch (e) { /* private mode */ }
+}
+function writePrefs() {
+  try {
+    localStorage.setItem(LS_PREFS, JSON.stringify({
+      theme: document.documentElement.dataset.theme || "light",
+      studyMode: App.studyMode,
+      tickerPaused: App.tickerPaused
+    }));
+  } catch (e) { /* ignore */ }
+}
+function saveGame() {
+  if (!App.st) return;
+  try {
+    localStorage.setItem(LS_SAVE, JSON.stringify({ v: 1, st: App.st, started: App.started, chartTab: App.chartTab, ts: Date.now() }));
+  } catch (e) { /* ignore */ }
+}
+function loadGame() {
+  try {
+    const raw = localStorage.getItem(LS_SAVE);
+    if (!raw) return false;
+    const data = JSON.parse(raw);
+    if (!data || data.v !== 1 || !data.st || !SCENARIO_BY_ID[data.st.scenario]) return false;
+    const sc = getScenario(data.st.scenario);
+    const p = getParadigm(data.st.paradigm);
+    if (!Array.isArray(data.st.series.pi)) return false;
+    App.st = data.st;
+    App.sc = sc;
+    App.p = p;
+    App.started = !!data.started;
+    App.chartTab = data.chartTab || "phillips";
+    App.st.horizonBonus = App.st.horizonBonus || 0;
+    App.st.mods = App.st.mods || [];
+    App.st.hitLog = App.st.hitLog || [];
+    App.st.unlocked = Array.from(new Set((App.st.unlocked || []).map(codexId))).filter(id => !!CODEX_BY_ID[id]);
+    return true;
+  } catch (e) { return false; }
+}
+
+/* ---------- formatting helpers ---------- */
+function qLabel(offset = 0) {
+  if (!App.st || !App.sc) return "";
+  return Sim.yearLabel(App.st, App.sc, offset).label;
+}
+function realRate() { return App.st ? App.st.i - App.st.pie : 0; }
+function anchorNow() {
+  if (!App.st || !App.p) return 0;
+  return clamp(App.st.cred * (App.p.anchor + (App.st.anchorBonus || 0)), 0.05, 0.92);
+}
+function taylorNow() {
+  return App.st && App.sc ? Sim.taylor(App.st, App.sc) : 0;
+}
+function deltaHtml(v, prev, unit = "pt", goodDir = 0) {
+  if (prev === undefined || prev === null) return "";
+  const d = v - prev;
+  const arrow = d > 0.0001 ? "▲" : d < -0.0001 ? "▼" : "·";
+  let style = "";
+  if (goodDir !== 0 && Math.abs(d) > 0.004) {
+    const good = goodDir > 0 ? d > 0 : d < 0;
+    style = good ? " style=\"color:var(--good)\"" : " style=\"color:var(--danger)\"";
+  }
+  return `<span${style}>${arrow} ${Math.abs(d).toFixed(1)}${unit}</span>`;
+}
+function scenarioMandate(id) { return App.sc ? App.sc.mandate.find(m => m.id === id) : null; }
+function mandateItemOk(id) {
+  const m = scenarioMandate(id);
+  return m ? !!m.test(App.st) : true;
+}
+function toneFor(id) {
+  if (!App.st || !App.sc) return "";
+  if (id === "pi") {
+    if (mandateItemOk("pi")) return "good";
+    return App.st.pi > App.sc.target + 2 || App.st.pi < 0.4 ? "bad" : "warn";
+  }
+  if (id === "u") {
+    if (mandateItemOk("u")) return "good";
+    return App.st.u > App.st.uStar + 2.2 ? "bad" : "warn";
+  }
+  if (id === "x") return Math.abs(App.st.x) >= 2.5 ? "bad" : Math.abs(App.st.x) >= 1 ? "warn" : "good";
+  if (id === "debt") {
+    if (mandateItemOk("debt")) return App.st.debt > 100 ? "warn" : "good";
+    return App.st.debt > 115 ? "bad" : "warn";
+  }
+  if (id === "growth") return App.st.growth < 0 ? "bad" : App.st.growth < 1 ? "warn" : "good";
+  if (id === "i") return App.st.i <= 0.5 ? "warn" : "";
+  return "";
+}
+
+/* ---------- policy desk ---------- */
+function renderPolicy() {
+  const st = App.st, sc = App.sc;
+  if (!st) return;
+  const rate = $("#rate"), spend = $("#spend"), tax = $("#tax");
+  rate.value = st.i; spend.value = st.g; tax.value = st.tau;
+  rate.setAttribute("aria-valuetext", `${st.i.toFixed(2)}%`);
+  spend.setAttribute("aria-valuetext", `${st.g.toFixed(1)}% GDP`);
+  tax.setAttribute("aria-valuetext", `${st.tau.toFixed(1)}%`);
+  $("#rateOut").innerHTML = `${fmt(st.i, 2)}<span class="unit">%</span>`;
+  $("#spendOut").innerHTML = `${fmt(st.g, 1)}<span class="unit">% GDP</span>`;
+  $("#taxOut").innerHTML = `${fmt(st.tau, 1)}<span class="unit">%</span>`;
+
+  const pc = st.pc;
+  $("#pcPips").innerHTML = Array.from({ length: 4 }, (_, i) => `<i class="${i < pc ? "on" : ""}"></i>`).join("");
+  $("#pcTxt").textContent = `${pc} / 4`;
+
+  const total = sc.horizon + (st.horizonBonus || 0);
+  const left = total - st.t;
+  $("#advanceLabel").textContent = !App.started ? "选择任务并开始" : st.finished ? "任期结束 · 查看报告" : left === 1 ? "推进最后一季" : `推进至 ${qLabel(1)}`;
+  $("#advanceBtn").classList.toggle("finished", !!st.finished);
+
+  $("#actionList").innerHTML = ACTIONS.map(a => {
+    const reason = actionReason(a);
+    const used = !!st.used[a.id];
+    const cool = st.cooldowns[a.id] || 0;
+    const status = used ? "已使用" : cool > 0 ? `冷却 ${cool} 季` : reason || a.short;
+    return `<button class="action ${used ? "used" : ""}" data-act="${a.id}" ${reason ? "disabled" : ""} title="${esc(a.desc + (reason ? " · " + reason : ""))}">
+      <span class="a-name">${esc(a.name)}</span>
+      <span class="a-cost">${a.cost} PC</span>
+      <span class="a-desc ${reason || used || cool ? "unavailable" : ""}">${esc(status)}</span>
+    </button>`;
+  }).join("");
+  renderRuleHint();
+}
+function actionReason(a) {
+  const st = App.st;
+  if (!st) return "尚未开始";
+  if (!App.started) return "先选择任务";
+  if (st.used[a.id]) return "已使用";
+  if ((st.cooldowns[a.id] || 0) > 0) return `冷却 ${st.cooldowns[a.id]} 季`;
+  if (st.pc < a.cost) return `需要 ${a.cost} 政治资本`;
+  if (a.req && !a.req(st)) return a.reqText || "当前不可用";
+  return "";
+}
+function renderRuleHint() {
+  const st = App.st, sc = App.sc;
+  if (!st) return;
+  const t = taylorNow();
+  const gap = st.i - t;
+  const zlbRule = t < 0.05;
+  const shown = clamp(t, 0, 20);
+  let tail = "";
+  if (zlbRule) tail = `<span class="warn">规则建议负利率；受零下限约束。</span>`;
+  else if (Math.abs(gap) < 0.5) tail = `<span style="color:var(--good)">接近规则值</span>`;
+  else if (gap < 0) tail = `<span class="warn">比规则低 ${Math.abs(gap).toFixed(2)}pp · 偏宽松</span>`;
+  else tail = `<span class="warn">比规则高 ${gap.toFixed(2)}pp · 偏紧缩</span>`;
+  $("#ruleHint").innerHTML = `机械 Taylor 值 <b>i ≈ ${fmt(shown, 2)}%</b><br>当前 ${fmt(st.i, 2)}% · 实际利率 r = ${fmt(realRate(), 2)}%<br>${tail}`;
+}
+
+/* ---------- KPIs ---------- */
+function renderKPIs() {
+  const st = App.st, sc = App.sc, s = st.series;
+  const prev = key => s[key].length > 1 ? s[key][s[key].length - 2] : undefined;
+  const cards = [
+    {
+      id: "pi", lab: "通胀", en: "INFLATION", glyph: "π", val: fmt(st.pi, 1), unit: "%",
+      delta: deltaHtml(st.pi, prev("pi"), "pt", -1),
+      sub: `目标 ${fmt(sc.target, 1)}% · 预期 ${fmt(st.pie, 1)}%`,
+      bar: clamp(st.pi / 12 * 100, 0, 100), mark: sc.target / 12 * 100
+    },
+    {
+      id: "u", lab: "失业率", en: "UNEMPLOYMENT", glyph: "u", val: fmt(st.u, 1), unit: "%",
+      delta: deltaHtml(st.u, prev("u"), "pt", -1),
+      sub: `自然率 ${fmt(st.uStar, 1)}% · 缺口 ${fmtSigned(st.u - st.uStar, 1)}`,
+      bar: clamp((st.u - 2) / 12 * 100, 0, 100), mark: clamp((st.uStar - 2) / 12 * 100, 0, 100)
+    },
+    {
+      id: "x", lab: "产出缺口", en: "OUTPUT GAP", glyph: "x", val: fmtSigned(st.x, 1), unit: "%",
+      delta: deltaHtml(st.x, prev("x"), "pt", 0),
+      sub: `潜在增长 ${fmt(sc.start.potGrowth + st.potBonus, 2)}% · 实际 ${fmt(st.growth, 1)}%`,
+      bar: clamp((st.x + 6) / 12 * 100, 0, 100), mark: 50
+    },
+    {
+      id: "i", lab: "政策利率", en: "POLICY RATE", glyph: "i", val: fmt(st.i, 1), unit: "%",
+      delta: deltaHtml(st.i, prev("i"), "pt", 0),
+      sub: `实际利率 ${fmtSigned(realRate(), 2)}% · r* ${fmt(sc.start.rStar, 2)}%`,
+      bar: clamp(st.i / 20 * 100, 0, 100), mark: 0
+    },
+    {
+      id: "debt", lab: "债务 / GDP", en: "PUBLIC DEBT", glyph: "D", val: fmt(st.debt, 0), unit: "%",
+      delta: deltaHtml(st.debt, prev("debt"), "pt", -1),
+      sub: `年化赤字 ${fmt((st.g - st.tau * (1 + st.x / 100)) + (st.iAvg / 100) * st.debt, 1)}% · 利息 ${fmt((st.iAvg / 100) * st.debt, 1)}%`,
+      bar: clamp(st.debt / 150 * 100, 0, 100), mark: 100 / 150 * 100
+    },
+    {
+      id: "growth", lab: "年化增长", en: "REAL GROWTH", glyph: "g", val: fmtSigned(st.growth, 1), unit: "%",
+      delta: deltaHtml(st.growth, prev("growth"), "pt", 1),
+      sub: `潜在 ${fmt(sc.start.potGrowth + st.potBonus, 2)}% · 缺口变化驱动`,
+      bar: clamp((st.growth + 5) / 15 * 100, 0, 100), mark: (2 + 5) / 15 * 100
+    }
+  ];
+  $("#kpis").innerHTML = cards.map(c => {
+    const tone = toneFor(c.id);
+    return `<article class="kpi ${tone}" title="${esc(c.en)}">
+      <div class="k-lab"><span>${c.lab} <span style="opacity:.55">/${c.en}</span></span><span class="k-tag">${c.glyph}</span></div>
+      <div class="k-val">${c.val}<small>${c.unit}</small></div>
+      <div class="k-delta">${c.delta} <span style="opacity:.6">vs 上季</span></div>
+      <div class="k-bar"><i style="width:${c.bar}%"></i><u style="left:${c.mark}%"></u></div>
+      <div class="k-sub">${esc(c.sub)}</div>
+    </article>`;
+  }).join("");
+}
+
+/* ---------- mandate ---------- */
+function renderMandate() {
+  const st = App.st, sc = App.sc;
+  if (!st) return;
+  const mandate = Sim.mandateStatus(st, sc);
+  const total = sc.horizon + (st.horizonBonus || 0);
+  const pctDone = clamp(st.t / total * 100, 0, 100);
+  const all = mandate.every(m => m.ok);
+  $("#mandateBox").innerHTML = `
+    <p class="mandate-title">${esc(sc.name)} · ${esc(sc.subtitle)}</p>
+    <p class="mandate-sub">${qLabel(0)} · 第 ${st.t}/${total} 季</p>
+    ${mandate.map(m => `<div class="mtarget ${m.ok ? "ok" : ""}">
+      <span class="box">✓</span><span>${esc(m.label)}</span><span class="val">${esc(m.display || "")}</span>
+    </div>`).join("")}
+    <div class="progress" aria-hidden="true"><i style="width:${pctDone}%"></i></div>
+    <div class="progress-lab"><span>任期 ${fmt(pctDone, 0)}%</span><span>达标 ${st.t ? `${st.hits}/${st.t}` : "—"} 季</span></div>
+    <p class="note" style="margin-top:7px">${all ? "<b style='color:var(--good)'>当前全部达标。</b>" : "有目标未达标；损失会累积。"} 剩余 <b>${Math.max(0, total - st.t)}</b> 季。</p>`;
+}
+
+/* ---------- paradigm ---------- */
+function renderParadigm() {
+  const p = App.p, st = App.st;
+  if (!p) return;
+  const a = anchorNow();
+  $("#paradigmBox").innerHTML = `
+    <div class="paradigm-name">${esc(p.name)}</div>
+    <div class="paradigm-en">${esc(p.en)} · ${esc(p.era)}</div>
+    <div class="paradigm-quote">“${esc(p.quote)}”<cite>${esc(p.cite)}</cite></div>
+    <p style="font-size:10.5px;line-height:1.6;color:var(--muted);margin:0 0 8px">${esc(p.blurb)}</p>
+    <div class="stat-row">
+      <span class="stat-chip">财政乘数 <b>×${p.fiscal.toFixed(2)}</b></span>
+      <span class="stat-chip">货币传导 <b>×${p.mon.toFixed(2)}</b></span>
+      <span class="stat-chip">Phillips <b>×${p.slope.toFixed(2)}</b></span>
+      <span class="stat-chip">锚定 <b>${(a * 100).toFixed(0)}%</b></span>
+    </div>
+    <div style="display:flex;gap:5px"><button class="btn ghost small" style="flex:1" data-codex="${codexId(p.id)}">学派档案</button><button class="btn ghost small" style="flex:1" id="paradigmSwitchInline">切换范式…</button></div>`;
+}
+
+/* ---------- forecast ---------- */
+function renderForecast() {
+  const st = App.st, p = App.p, sc = App.sc;
+  if (!st) return;
+  const f = Sim.forecast(st, p, sc);
+  const t = taylorNow();
+  const gap = st.i - t;
+  const arrow = (a, b) => a > b + 0.04 ? "▲" : a < b - 0.04 ? "▼" : "·";
+  $("#forecastBox").innerHTML = `
+    <div class="forecast-grid">
+      <div class="fc"><span>通胀 π′</span><b>${fmt(f.pi, 1)}<span class="arrow">${arrow(f.pi, st.pi)}</span></b></div>
+      <div class="fc"><span>缺口 x′</span><b>${fmtSigned(f.x, 1)}<span class="arrow">${arrow(f.x, st.x)}</span></b></div>
+      <div class="fc"><span>失业 u′</span><b>${fmt(f.u, 1)}<span class="arrow">${arrow(f.u, st.u)}</span></b></div>
+    </div>
+    <div class="note">实际利率 <b>${fmtSigned(f.realRate, 2)}%</b> · 预测锚定 <b>${(f.anchor * 100).toFixed(0)}%</b><br>
+    机械 Taylor <b>${fmt(clamp(t, 0, 20), 2)}%</b> · 当前 ${fmt(st.i, 2)}% · ${Math.abs(gap) < 0.4 ? "基本一致" : gap < 0 ? "偏宽松" : "偏紧缩"}<br>
+    预测采用当前政策与扰动，不含下一季随机冲击。</div>
+    ${st.i <= 0.5 ? `<div class="callout clay" style="margin:8px 0 0;padding:7px 8px;font-size:9.5px"><span class="co-lab">ZLB</span>政策利率已触底。常规降息空间耗尽，考虑 QE、财政或转移支付。</div>` : ""}`;
+}
+
+/* ---------- gauges ---------- */
+function gauge(label, value, max, display, tone = "") {
+  const w = clamp(value / max * 100, 0, 100);
+  return `<div class="gauge">
+    <div class="gauge-top"><span>${esc(label)}</span><b>${esc(display)}</b></div>
+    <div class="gauge-bar ${tone} ${tone === "bad" ? "striped" : ""}"><i style="width:${w}%"></i></div>
+  </div>`;
+}
+function renderGauges() {
+  const st = App.st;
+  if (!st) return;
+  const a = anchorNow();
+  const credTone = st.cred < 0.35 ? "bad" : st.cred < 0.6 ? "warn" : "";
+  const stressTone = st.stress > 65 ? "bad" : st.stress > 40 ? "warn" : "";
+  $("#gaugeBox").innerHTML = `
+    ${gauge("政策可信度", st.cred * 100, 100, `${(st.cred * 100).toFixed(0)} / 100`, credTone)}
+    ${gauge("通胀预期锚定", a * 100, 100, `${(a * 100).toFixed(0)}%`, a < 0.35 ? "bad" : a < 0.55 ? "warn" : "")}
+    ${gauge("金融压力", st.stress, 100, `${fmt(st.stress, 0)} / 100`, stressTone)}
+    ${gauge("通胀预期", clamp(st.pie, 0, 12), 12, `${fmt(st.pie, 1)}%`, st.pie > 5 ? "bad" : st.pie > 3 ? "warn" : "")}`;
+  $("#adviserMemo").innerHTML = adviserMemo();
+}
+function adviserMemo() {
+  const st = App.st, p = App.p, sc = App.sc;
+  if (!st || !p) return "";
+  const t = taylorNow();
+  const bits = [];
+  if (st.i <= 0.5) {
+    bits.push(`利率已在零下限，实际利率 ${fmtSigned(realRate(), 2)}%。常规空间耗尽，财政乘数当前约为 ×${p.fiscal.toFixed(2)}。`);
+  } else if (st.pi - sc.target > 1.5) {
+    bits.push(`通胀高出目标 ${fmt(st.pi - sc.target, 1)}pp。Taylor 参考值 ${fmt(clamp(t, 0, 20), 2)}%，当前 ${fmt(st.i, 2)}%。每少加 1pp，实际利率就更松。`);
+  } else if (st.x < -1.5) {
+    bits.push(`产出缺口 ${fmtSigned(st.x, 1)}%，需要约 ${fmt(Math.abs(st.x) / (0.30 * p.fiscal), 1)}pp GDP 的财政脉冲（按当前乘数粗估）。`);
+  } else {
+    bits.push(`产出缺口 ${fmtSigned(st.x, 1)}%，通胀 ${fmt(st.pi, 1)}%。政策处于中性区间附近。`);
+  }
+  if (st.stress > 60) bits.push(`金融压力 ${fmt(st.stress, 0)}，危机风险上升；纾困或宏观审慎可以减压。`);
+  else if (st.debt > 95) bits.push(`债务 ${fmt(st.debt, 0)}% GDP，利率每升 1pp，年利息多出约 ${fmt(st.debt / 100, 1)}pp GDP。`);
+  else if (st.cred < 0.4) bits.push(`可信度仅 ${(st.cred * 100).toFixed(0)}，预期锚定弱；一次可信的紧缩可能比渐进加息更省失业。`);
+  bits.push(`<span style="color:var(--muted)">${esc(p.advice)}</span>`);
+  return `<b>顾问备忘 · ${esc(p.name)}</b>${bits.join("<br>")}`;
+}
+
+/* ---------- feed ---------- */
+function narrative(rep) {
+  const st = App.st, sc = App.sc;
+  let headline = "经济在目标附近运行";
+  if (st.stress > 72) headline = "金融压力逼近警戒线";
+  else if (st.pi > sc.target + 2 && rep.dPi > 0) headline = "需求过热，通胀加速";
+  else if (st.pi > sc.target + 1) headline = "通胀仍高于目标";
+  else if (st.pi < 0.5) headline = "通缩风险抬头";
+  else if (st.x < -2) headline = "需求缺口扩大";
+  else if (st.growth < 0) headline = "产出收缩";
+  else if (rep.mandateOK) headline = "目标区间内运行";
+  const clause = rep.mandateOK
+    ? "本季三项任务同时达成，但外部环境仍在变化。"
+    : rep.dU > 0.6
+      ? "失业明显上升，稳定物价的代价开始显现在劳动力市场。"
+      : rep.dPi > 0.5
+        ? "通胀环比抬升，预期管理比单次加息更重要。"
+        : rep.dPi < -0.5
+          ? "通胀回落，注意不要过度紧缩造成二次衰退。"
+          : "数据分化，下一季的政策组合仍然关键。";
+  return {
+    headline,
+    text: `通胀 <b>${pct(st.pi)}</b>，失业 <b>${pct(st.u)}</b>，产出缺口 <b>${fmtSigned(st.x, 1)}%</b>，年化增长 <b>${fmtSigned(st.growth, 1)}%</b>。${clause}`
+  };
+}
+function addLog(kind, text, meta) {
+  const st = App.st;
+  if (!st) return;
+  const label = kind === "quarter" ? qLabel(-1) : qLabel(0);
+  st.log.push({ kind, text, meta: meta || "", label, t: st.t });
+  if (st.log.length > 60) st.log = st.log.slice(-60);
+}
+function renderFeed() {
+  const st = App.st;
+  if (!st) return;
+  const last = st.last;
+  let report = "";
+  if (last) {
+    const hl = narrative(last);
+    report = `<div class="report">
+      <div class="report-head"><b>${esc(last.label || qLabel(0))} 季度公报</b><span>LOSS ${fmt(last.loss, 2)}</span></div>
+      <div class="report-nums">
+        <div><span>通胀</span><b class="${last.dPi > 0 ? "up" : "down"}">${pct(last.pi)} ${fmtSigned(last.dPi, 1)}</b></div>
+        <div><span>失业</span><b class="${last.dU > 0 ? "up" : "down"}">${pct(last.u)} ${fmtSigned(last.dU, 1)}</b></div>
+        <div><span>缺口</span><b>${fmtSigned(last.x, 1)}%</b></div>
+        <div><span>债务</span><b>${fmt(last.debt, 0)}%</b></div>
+      </div>
+      <p class="report-text"><b>${esc(hl.headline)}。</b> ${hl.text}</p>
+    </div>`;
+  } else {
+    report = `<div class="report"><div class="report-head"><b>等待第一份公报</b><span>STANDBY</span></div><p class="report-text">${App.started ? "设定政策，然后推进一个季度。" : "选择一个任务，开始你的任期。"}</p></div>`;
+  }
+  const entries = st.log.slice().reverse().slice(0, 28).map(e => {
+    const pill = e.kind === "event" ? `<span class="pill">事件</span>` : e.kind === "action" ? `<span class="pill">行动</span>` : "";
+    return `<div class="entry ${e.kind === "event" ? "event" : ""}">
+      <span class="q">${esc(e.label || "")}</span>
+      <div class="e-main">${pill}${e.text}${e.meta ? `<div class="e-meta">${e.meta}</div>` : ""}</div>
+    </div>`;
+  }).join("");
+  $("#reportBox").innerHTML = report;
+  $("#feed").innerHTML = entries || `<div class="empty-note">尚无记录。</div>`;
+}
+
+/* ---------- chart ---------- */
+const CHART_TABS = {
+  phillips: {
+    legend: [["pi", "通胀 π"], ["pie", "通胀预期 πe"], ["u", "失业 u"]],
+    target: PI_TARGET
+  },
+  output: {
+    legend: [["x", "产出缺口 x"], ["growth", "年化增长 g"]],
+    target: 0
+  },
+  debt: {
+    legend: [["debt", "债务 / GDP"], ["i", "政策利率 i"]],
+    target: 100
+  }
+};
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+function drawChart() {
+  const canvas = $("#chartCanvas");
+  if (!canvas || !App.st) return;
+  const wrap = canvas.parentElement;
+  const w = Math.max(280, wrap.clientWidth);
+  const h = 188;
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  canvas.width = Math.round(w * dpr);
+  canvas.height = Math.round(h * dpr);
+  canvas.style.height = h + "px";
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  const ink = cssVar("--ink"), muted = cssVar("--muted"), line = cssVar("--line");
+  const clay = cssVar("--clay"), clayDeep = cssVar("--clay-deep"), olive = cssVar("--olive"),
+    sky = cssVar("--sky"), gold = cssVar("--gold"), fig = cssVar("--fig"), panel2 = cssVar("--panel-2");
+  const tab = CHART_TABS[App.chartTab];
+  const st = App.st, sc = App.sc;
+  const total = sc.horizon + (st.horizonBonus || 0);
+  const N = Math.max(total, st.t + 2, 6);
+  const pad = { l: 36, r: 10, t: 13, b: 20 };
+  const iw = w - pad.l - pad.r, ih = h - pad.t - pad.b;
+  const seriesArr = tab.legend.map(([key]) => st.series[key] || []);
+  const allVals = seriesArr.flat();
+  let lo = Math.min(...allVals, tab.target, 0);
+  let hi = Math.max(...allVals, tab.target, 2);
+  if (App.chartTab === "phillips") { lo = Math.min(lo, 0); hi = Math.max(hi, 4); }
+  if (App.chartTab === "output") { lo = Math.min(lo, -4); hi = Math.max(hi, 4); }
+  if (App.chartTab === "debt") { lo = Math.min(lo, 0); hi = Math.max(hi, 40); }
+  const span0 = hi - lo || 1;
+  lo -= span0 * 0.12; hi += span0 * 0.12;
+  const X = i => pad.l + (i / (N - 1)) * iw;
+  const Y = v => pad.t + ih - ((v - lo) / (hi - lo)) * ih;
+
+  ctx.fillStyle = panel2;
+  ctx.fillRect(pad.l, pad.t, iw, ih);
+
+  ctx.font = "9px " + cssVar("--mono").replace(/"/g, "");
+  ctx.textBaseline = "middle";
+  const ticks = 4;
+  for (let i = 0; i <= ticks; i++) {
+    const v = lo + (hi - lo) * i / ticks;
+    const y = Y(v);
+    ctx.strokeStyle = line;
+    ctx.lineWidth = 1;
+    ctx.setLineDash([1, 3]);
+    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(w - pad.r, y); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = muted;
+    ctx.textAlign = "right";
+    ctx.fillText(fmt(v, hi - lo < 6 ? 1 : 0), pad.l - 5, y);
+  }
+  const stepX = N >= 10 ? 4 : Math.max(2, Math.ceil(N / 4));
+  for (let i = 0; i < N; i += stepX) {
+    const x = X(i);
+    ctx.strokeStyle = line;
+    ctx.setLineDash([1, 3]);
+    ctx.beginPath(); ctx.moveTo(x, pad.t); ctx.lineTo(x, pad.t + ih); ctx.stroke();
+    ctx.setLineDash([]);
+    const lab = Sim.yearLabel(st, sc, i - st.t);
+    ctx.fillStyle = muted;
+    ctx.textAlign = i === 0 ? "left" : "center";
+    ctx.fillText(`${String(lab.y).slice(-2)}Q${lab.q}`, x, h - 9);
+  }
+  if (App.chartTab !== "output") {
+    const y = Y(tab.target);
+    ctx.strokeStyle = clayDeep;
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(w - pad.r, y); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = clayDeep;
+    ctx.textAlign = "right";
+    ctx.fillText("目标 " + tab.target, w - pad.r - 4, y - 6);
+  } else {
+    const y = Y(0);
+    ctx.strokeStyle = clayDeep;
+    ctx.lineWidth = 1.2;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(w - pad.r, y); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  const colors = [clay, "rgba(217,119,87,.5)", sky, olive, gold, fig, ink];
+  tab.legend.forEach(([key], idx) => {
+    if (st.t < 1) return;
+    const arr = st.series[key] || [];
+    if (arr.length === 0) return;
+    ctx.strokeStyle = colors[idx] || ink;
+    ctx.lineWidth = idx === 1 && App.chartTab === "phillips" ? 1.2 : 2;
+    if (idx === 1 && App.chartTab === "phillips") ctx.setLineDash([3, 2]);
+    ctx.beginPath();
+    arr.forEach((v, i) => {
+      const x = X(i), y = Y(v);
+      if (i === 0) ctx.moveTo(x, y);
+      else { ctx.lineTo(x, Y(arr[i - 1])); ctx.lineTo(x, y); }
+    });
+    ctx.stroke();
+    ctx.setLineDash([]);
+    const lastI = arr.length - 1;
+    const lx = X(lastI), ly = Y(arr[lastI]);
+    ctx.fillStyle = colors[idx] || ink;
+    ctx.fillRect(lx - 2, ly - 2, 4, 4);
+    if (arr.length > 1 && lx > pad.l + 28) {
+      ctx.fillStyle = ink;
+      ctx.font = "9px " + cssVar("--mono").replace(/"/g, "");
+      ctx.textAlign = lx > w - 60 ? "right" : "left";
+      ctx.fillText(fmt(arr[lastI], 1), lx + (lx > w - 60 ? -5 : 5), ly - 8);
+    }
+  });
+  $("#chartEmpty").style.display = st.series.pi.length <= 1 ? "flex" : "none";
+  const leg = $("#chartLegend");
+  leg.innerHTML = tab.legend.map(([, label], i) =>
+    `<span><i style="background:${["var(--clay)", "rgba(217,119,87,.55)", "var(--sky)", "var(--olive)", "var(--gold)", "var(--fig)"][i] || "var(--ink)"}" class="${i === 1 && App.chartTab === "phillips" ? "dash" : ""}"></i>${label}</span>`
+  ).join("") + (App.chartTab === "output" ? "" : `<span><i class="dash" style="background:var(--clay-deep)"></i>目标 / 基准</span>`);
+  const note = $("#chartNote");
+  if (App.chartTab === "phillips") {
+    note.innerHTML = `通胀 ${pct(st.pi)}，失业 ${pct(st.u)}。菲利普斯曲线越陡，同样的失业上升能更快压低通胀；预期越锚定，曲线越接近目标。`;
+  } else if (App.chartTab === "output") {
+    note.innerHTML = `产出缺口 ${fmtSigned(st.x, 1)}%，年化增长 ${fmtSigned(st.growth, 1)}%。潜在增长 ${fmt(sc.start.potGrowth + st.potBonus, 2)}%；实际增长围绕它波动。`;
+  } else {
+    note.innerHTML = `债务 ${fmt(st.debt, 0)}% GDP，政策利率 ${pct(st.i)}。利息支出约占 GDP ${fmt((st.iAvg / 100) * st.debt, 1)}%；名义增长与利率的赛跑决定债务路径。`;
+  }
+  canvas.setAttribute("aria-label", `时间序列图：${App.chartTab}。${note.textContent}`);
+}
+
+/* ---------- ticker ---------- */
+function renderTicker() {
+  const st = App.st, sc = App.sc, p = App.p;
+  const items = [];
+  if (st) {
+    items.push(`<b>${esc(qLabel(0))}</b> · 通胀 ${pct(st.pi)} · 目标 ${pct(sc.target)}`);
+    items.push(`失业 ${pct(st.u)} · 产出缺口 ${fmtSigned(st.x, 1)}% · 年化增长 ${fmt(st.growth, 1)}%`);
+    items.push(`债务 ${fmt(st.debt, 0)}% GDP · 政策利率 ${pct(st.i)} · 实际利率 ${fmtSigned(realRate(), 1)}%`);
+    items.push(`平均损失 ${st.lossN ? fmt(st.lossSum / st.lossN, 2) : "—"} · 信誉 ${(st.cred * 100).toFixed(0)}`);
+    items.push(`图鉴 ${st.unlocked.length}/${CODEX.length} · ${esc(p.name)}执政`);
+    items.push(`模型提示：机械 Taylor 利率 ${fmt(clamp(taylorNow(), 0, 20), 2)}%`);
+    if (st.stress > 60) items.push(`<b>风险提示</b>：金融压力 ${fmt(st.stress, 0)} / 100`);
+    if (st.debt > 100) items.push(`<b>财政观察</b>：债务超过 GDP 的 100%`);
+  } else {
+    items.push("MERIDIA WIRE · 等待新任期");
+  }
+  items.push(`“${esc(p ? p.quote : "稳定不是终点，而是判断的起点。")}”`);
+  const html = items.map(x => `<span>${x}</span>`).join("");
+  const track = $("#tickerTrack");
+  track.innerHTML = html + html;
+  track.style.animationPlayState = App.tickerPaused ? "paused" : "running";
+  $("#tickerPause").textContent = App.tickerPaused ? "▶" : "❚❚";
+}
+
+/* ---------- city text + accessibility ---------- */
+function renderCityTexts() {
+  const st = App.st, sc = App.sc;
+  if (!st) return;
+  const yr = Sim.yearLabel(st, sc, 0).y;
+  $("#cityEra").textContent = String(yr);
+  let weather = "平稳";
+  if (st.stress > 70) weather = "紧张";
+  else if (st.pi < 0.3) weather = "通缩";
+  else if (st.pi > sc.target + 3) weather = "过热";
+  else if (st.x < -2) weather = "需求不足";
+  else if (st.growth > 3.2) weather = "扩张";
+  $("#weather").textContent = weather;
+  const fc = Sim.forecast(st, App.p, sc);
+  $("#cityNote").textContent = st.i <= 0.5
+    ? "零利率下限 · 央行转向资产负债表工具"
+    : `央行目标 ${fmt(sc.target, 1)}% · 下一季预测 ${fmt(fc.pi, 1)}%`;
+  $("#cityCaption").textContent = `通胀 ${pct(st.pi)} · 失业 ${pct(st.u)} · 债务 ${fmt(st.debt, 0)}% GDP`;
+  $("#cityCanvas").setAttribute("aria-label", `Meridia 像素城市：${weather}，通胀 ${pct(st.pi)}，失业 ${pct(st.u)}，金融压力 ${fmt(st.stress, 0)}。`);
+}
+
+/* ---------- master render ---------- */
+function renderAll() {
+  if (!App.st) return;
+  $("#metaScenario").textContent = App.sc ? App.sc.name : "—";
+  $("#metaScenario").title = App.sc ? `${App.sc.name} / ${App.sc.en}` : "";
+  $("#metaClock").textContent = App.started ? qLabel(0) : "未开始";
+  const avgLoss = App.st.lossN ? App.st.lossSum / App.st.lossN : 0;
+  $("#metaLoss").textContent = App.st.lossN ? fmt(avgLoss, 2) : "—";
+  $("#memoTag").textContent = App.started ? "Dispatches" : "Standby";
+  renderPolicy();
+  renderKPIs();
+  renderMandate();
+  renderParadigm();
+  renderForecast();
+  renderGauges();
+  renderFeed();
+  renderTicker();
+  renderCityTexts();
+  drawChart();
+}
+
+/* ============================================================
+   CITY — a small pixel diorama of Meridia.
+   ============================================================ */
+function cityPalette() {
+  return {
+    sky: cssVar("--city-sky"), sky2: cssVar("--city-sky2"), sun: cssVar("--city-sun"),
+    cloud: cssVar("--city-cloud"), far: cssVar("--city-far"), mid: cssVar("--city-mid"),
+    near: cssVar("--city-near"), ink: cssVar("--city-ink"), win: cssVar("--city-window"),
+    smoke: cssVar("--city-smoke"), clay: cssVar("--clay"), danger: cssVar("--danger"),
+    olive: cssVar("--olive"), panel: cssVar("--panel"), line: cssVar("--line"),
+    stone: document.documentElement.dataset.theme === "dark" ? "#565044" : "#E3D8C1"
+  };
+}
+function drawCity() {
+  const cv = $("#cityCanvas");
+  if (!cv || !App.st) return;
+  const ctx = cv.getContext("2d");
+  const W = 260, H = 112;
+  const p = App.cityPal || (App.cityPal = cityPalette());
+  const st = App.st;
+  const f = App.cityFrame;
+  ctx.imageSmoothingEnabled = false;
+  ctx.clearRect(0, 0, W, H);
+  const R = (x, y, w, h, col) => { ctx.fillStyle = col; ctx.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h)); };
+  ctx.fillStyle = p.sky; ctx.fillRect(0, 0, W, 64);
+  ctx.fillStyle = p.sky2; ctx.fillRect(0, 64, W, 24);
+  R(0, 0, W, 1, "rgba(0,0,0,.04)");
+  R(0, 63, W, 1, "rgba(0,0,0,.06)");
+
+  // sun / heat disc
+  const hot = st.pi > 4;
+  const sunX = 220, sunY = 16;
+  for (let y = -7; y <= 7; y++) {
+    for (let x = -7; x <= 7; x++) {
+      if (x * x + y * y <= 52 && (x + y) % 2 !== 0) R(sunX + x, sunY + y, 1, 1, hot ? p.clay : p.sun);
+    }
+  }
+  if (hot) {
+    for (let i = 0; i < 5; i++) R(sunX - 10 - i, sunY + 10 + i, 3, 1, "rgba(217,119,87,.28)");
+  }
+
+  // clouds
+  const cloudSpeed = reducedMotion() ? 0 : 1;
+  [[24, 15, 1], [96, 9, .7], [170, 22, .85]].forEach(([base, y, sc], i) => {
+    const x = (base + f * .22 * cloudSpeed) % (W + 40) - 20;
+    const col = st.stress > 65 ? "rgba(70,70,66,.55)" : p.cloud;
+    R(x, y, 16 * sc, 3, col);
+    R(x + 4 * sc, y - 3, 9 * sc, 3, col);
+    R(x + 7 * sc, y + 3, 12 * sc, 2, col);
+  });
+
+  // distant skyline
+  const far = [
+    [0, 62, 18, 24], [18, 68, 12, 18], [30, 58, 16, 28], [46, 66, 9, 20],
+    [148, 62, 14, 24], [162, 68, 18, 18], [212, 64, 12, 22], [224, 70, 20, 16], [244, 60, 16, 26]
+  ];
+  far.forEach(([x, y, w, h]) => R(x, y, w, h, p.far));
+  // hills
+  for (let i = 0; i < 5; i++) R(0 + i * 14, 76 - i * 2, 54 - i * 8, 8 + i * 2, "rgba(0,0,0,.035)");
+
+  // ground
+  R(0, 86, W, 26, p.mid);
+  R(0, 96, W, 8, p.near);
+  for (let x = 0; x < W; x += 9) R(x, 100, 5, 1, "rgba(250,249,245,.45)");
+  R(0, 104, W, 8, "rgba(0,0,0,.08)");
+  R(0, 86, W, 1, "rgba(0,0,0,.18)");
+
+  // buildings
+  const bldg = [
+    [10, 58, 20], [32, 66, 14], [48, 52, 18], [68, 62, 12], [82, 70, 16],
+    [196, 66, 16], [214, 58, 14], [230, 72, 18]
+  ];
+  const lit = clamp((st.growth + 1) / 4, 0.15, 1);
+  bldg.forEach(([x, y, w], bi) => {
+    R(x, y, w, 86 - y, bi % 2 ? p.near : p.mid);
+    for (let wy = y + 5; wy < 82; wy += 6) {
+      for (let wx = x + 3; wx < x + w - 3; wx += 5) {
+        const on = ((wx * 3 + wy * 5 + f + bi) % 11) / 11 < lit * .72;
+        R(wx, wy, 2, 2, on ? p.win : "rgba(0,0,0,.18)");
+      }
+    }
+  });
+
+  // central bank
+  const bx = 108, by = 40, bw = 40;
+  R(bx, by, bw, 46, p.stone);
+  // pediment: stepped triangle
+  R(bx + 16, by - 13, 8, 2, p.stone);
+  R(bx + 12, by - 11, 16, 2, p.stone);
+  R(bx + 8, by - 9, 24, 2, p.stone);
+  R(bx + 4, by - 7, 32, 2, p.stone);
+  R(bx, by - 5, bw, 3, p.stone);
+  R(bx + 2, by - 6, bw - 4, 1, p.ink);
+  R(bx + 2, by - 2, bw - 4, 2, p.ink);
+  R(bx + 18, by - 21, 1, 8, p.ink);
+  R(bx + 19, by - 21, 6, 3, p.clay);
+  // columns
+  for (let c = 0; c < 4; c++) {
+    const cx = bx + 7 + c * 8;
+    R(cx - 1, by + 7, 5, 2, p.ink);
+    R(cx, by + 9, 3, 25, p.ink);
+    R(cx + 1, by + 9, 1, 25, p.stone);
+    R(cx - 1, by + 33, 5, 2, p.ink);
+  }
+  R(bx + 3, by + 2, bw - 6, 2, p.ink);
+  R(bx + 4, by + 38, bw - 8, 5, p.ink);
+  R(bx + 15, by + 22, 10, 15, p.sky2);
+  R(bx + 16, by + 24, 8, 1, p.ink);
+  R(bx + 16, by + 28, 8, 1, p.ink);
+
+  // factory
+  const fx = 158, fy = 66;
+  R(fx, fy + 6, 36, 14, p.near);
+  R(fx + 4, fy, 5, 22, p.near);
+  R(fx + 18, fy + 2, 5, 20, p.near);
+  R(fx + 4, fy, 5, 2, p.ink); R(fx + 18, fy + 2, 5, 2, p.ink);
+  R(fx + 2, fy + 10, 9, 2, p.ink); R(fx + 15, fy + 12, 9, 2, p.ink);
+  const smoke = st.x > -1 && st.stress < 75;
+  if (smoke) {
+    for (let i = 0; i < 3; i++) {
+      const t = (f * .5 + i * 6) % 18;
+      const sx = fx + 6 + (i % 2) * 14 + Math.sin((f + i * 7) / 4) * 2;
+      R(sx, fy - 3 - t, 3 + Math.floor(t / 5), 2, `rgba(189,179,161,${0.5 - t / 45})`);
+    }
+  }
+
+  // street lamps
+  [24, 92, 152, 222].forEach(x => { R(x, 82, 1, 10, p.ink); R(x - 2, 80, 5, 2, p.win); });
+
+  // people: queue if unemployment high, commuters if low
+  const crowd = st.u > 7 ? 6 : st.u > 5.5 ? 4 : 3;
+  for (let i = 0; i < crowd; i++) {
+    const px = 88 + i * 3, py = 91;
+    R(px, py, 1, 3, p.ink);
+    R(px, py - 2, 1, 1, p.clay);
+  }
+  if (st.u > 7) R(80, 88, 7, 1, p.ink);
+
+  // cars
+  const carSpeed = reducedMotion() ? 0 : 1;
+  for (let i = 0; i < 3; i++) {
+    const cx = (f * 1.4 * carSpeed + i * 96) % (W + 30) - 15;
+    const col = [p.clay, p.olive, p.win][i];
+    R(cx, 98, 9, 3, col); R(cx + 2, 96, 5, 2, col);
+    R(cx + 1, 101, 2, 1, p.ink); R(cx + 6, 101, 2, 1, p.ink);
+  }
+
+  // inflation balloon
+  const balX = 38, balY = Math.round(clamp(50 - st.pi * 2.4, 12, 58));
+  const bcol = st.pi > 5 ? p.clay : st.pi > 3 ? p.sun : "#D8B79C";
+  R(balX + 4, balY, 8, 2, bcol);
+  R(balX + 2, balY + 2, 12, 6, bcol);
+  R(balX + 3, balY + 8, 10, 2, bcol);
+  R(balX + 5, balY + 10, 6, 1, bcol);
+  R(balX + 7, balY + 2, 2, 8, "rgba(255,255,255,.28)");
+  R(balX + 2, balY + 5, 12, 1, "rgba(0,0,0,.16)");
+  R(balX + 6, balY + 11, 1, 3, p.ink); R(balX + 9, balY + 11, 1, 3, p.ink);
+  R(balX + 4, balY + 14, 6, 3, p.ink);
+  R(balX + 5, balY + 15, 4, 1, p.win);
+
+  // stress weather
+  if (st.stress > 65) {
+    const cloudX = 130 - (f % 40);
+    R(cloudX, 20, 46, 6, "rgba(52,52,48,.6)");
+    R(cloudX + 8, 16, 28, 5, "rgba(52,52,48,.6)");
+    if (f % 12 < 4) {
+      R(cloudX + 24, 26, 2, 8, p.win);
+      R(cloudX + 22, 32, 4, 2, p.win);
+    }
+  }
+  // deflation snow
+  if (st.pi < 0.5) {
+    for (let i = 0; i < 18; i++) {
+      const sx = (i * 37 + f * 2) % W;
+      const sy = (i * 23 + f * 1.5) % 74;
+      R(sx, sy, 1, 1, "rgba(250,249,245,.75)");
+    }
+  }
+  // ticker lights on bank
+  R(bx + 2, by + 1, 2, 2, st.i <= 0.5 ? p.win : p.clay);
+  R(bx + bw - 4, by + 1, 2, 2, st.stress > 65 ? p.clay : p.win);
+}
+function cityLoop(ts) {
+  App.raf = requestAnimationFrame(cityLoop);
+  if (document.hidden) return;
+  if (!App.lastCity) App.lastCity = ts;
+  if (ts - App.lastCity < 130) return;
+  App.lastCity = ts;
+  if (!reducedMotion()) App.cityFrame++;
+  drawCity();
+}
+
+/* ---------- event art sprites ---------- */
+const SPRITES = {
+  oil: ["............",".....a......","....aaa.....","...a.a.a....","..a..a..a...","..a..a..a...",".a...a...a..","a....a....a.",".....a......","....###.....","...#####....","............"],
+  bank: ["............","....####....","...######...","..########..",".##########.","..#.#.#.#.#.","..#.#.#.#.#.","..#.#.#.#.#.","..#.#.#.#.#.","..########..","............","............"],
+  factory: ["............","......##....","......##....","......##....","..########..","..#.#.#.##..","..#.#.#.##..","..########..","..########..","############","............","............"],
+  gavel: ["............","...aaaaa....","..aaaaaaa...","..aaaaaaa...","...aaaaa....","....###.....","....###.....","....###.....","....###.....","..#######...","............","............"],
+  ballot: ["............","....####....","....#..#....","....####....","............","..########..","..#......#..","..#..##..#..","..#..##..#..","..########..","............","............"],
+  storm: ["............","...bbbb.....","..bbbbbb....",".bbbbbbbb...",".bbbbbbbb...","....cc......","...cc.......","....cc......","...cc.......","............","............","............"],
+  virus: ["............","..#..##..#..","...######...","..########..",".##########.","###.####.###",".##########.","..########..","...######...","..#..##..#..","............","............"]
+};
+function drawEventArt(canvas, art) {
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const p = App.cityPal || (App.cityPal = cityPalette());
+  const W = 150, H = 40;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = p.sky; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = p.sky2; ctx.fillRect(0, 26, W, 14);
+  // skyline
+  let x = 0;
+  const heights = [12, 18, 8, 22, 14, 10, 20, 12, 16, 9, 21, 13, 17, 11, 15];
+  heights.forEach((h, i) => { ctx.fillStyle = i % 2 ? p.far : p.mid; ctx.fillRect(x, 32 - h, 9, h); x += 10; });
+  ctx.fillStyle = p.near; ctx.fillRect(0, 32, W, 3);
+  // rain / heat
+  if (art === "storm" || art === "virus") {
+    for (let i = 0; i < 14; i++) { ctx.fillStyle = "rgba(255,255,255,.25)"; ctx.fillRect((i * 17) % W, 4 + (i * 7) % 22, 1, 3); }
+  }
+  // sprite
+  const sp = SPRITES[art] || SPRITES.bank;
+  const scale = 2;
+  const startX = Math.round(W / 2 - 12);
+  const startY = 3;
+  sp.forEach((row, y) => {
+    for (let cx = 0; cx < row.length; cx++) {
+      const ch = row[cx];
+      if (ch === ".") continue;
+      ctx.fillStyle = ch === "#" ? p.ink : ch === "a" ? p.clay : ch === "b" ? p.cloud : p.win;
+      ctx.fillRect(startX + cx * scale, startY + y * scale, scale, scale);
+    }
+  });
+  // label ticks
+  ctx.fillStyle = p.ink;
+  ctx.fillRect(8, 35, 20, 1); ctx.fillRect(W - 28, 35, 20, 1);
+}
+
+/* ============================================================
+   MODALS
+   ============================================================ */
+function openModal(opts) {
+  if (App.modalOpen) closeModal(true);
+  App.modalOpen = true;
+  App.modalClosable = opts.closable !== false;
+  App.lastFocus = document.activeElement;
+  const root = $("#modalRoot");
+  const wide = opts.wide ? " wide" : opts.mid ? " mid" : "";
+  const foot = opts.footer ? `<div class="sheet-foot">${opts.footer}</div>` : "";
+  const toastWrap = $("#toasts"); if (toastWrap) toastWrap.innerHTML = "";
+  root.innerHTML = `<div class="overlay" data-overlay="1">
+    <div class="sheet${wide}" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalSub">
+      <div class="sheet-stripe" aria-hidden="true"></div>
+      <div class="sheet-head">
+        <div>
+          <div class="sheet-kicker">${opts.kicker || "MERIDIA"}</div>
+          <h2 class="sheet-title" id="modalTitle">${opts.title || ""}</h2>
+          <p class="sheet-sub" id="modalSub">${opts.sub || ""}</p>
+        </div>
+        ${App.modalClosable ? `<button class="x-btn" data-close="1" aria-label="关闭">×</button>` : ""}
+      </div>
+      <div class="sheet-body">${opts.body || ""}</div>
+      ${foot}
+    </div>
+  </div>`;
+  document.body.style.overflow = "hidden";
+  $$(".top, #main, .ticker").forEach(el => { el.inert = true; });
+  const overlay = $("[data-overlay]", root);
+  overlay.addEventListener("mousedown", e => {
+    if (e.target === overlay && App.modalClosable) closeModal();
+  });
+  $$("[data-close]", root).forEach(b => b.addEventListener("click", () => closeModal()));
+  if (opts.onMount) opts.onMount(root);
+  setTimeout(() => {
+    const target = root.querySelector("[data-autofocus]") || root.querySelector(".sheet button:not([disabled]), .sheet input, .sheet [tabindex]");
+    if (target) target.focus({ preventScroll: true });
+  }, 30);
+}
+function closeModal(silent) {
+  if (!App.modalOpen) return;
+  const root = $("#modalRoot");
+  root.innerHTML = "";
+  App.modalOpen = false;
+  document.body.style.overflow = "";
+  $$(".top, #main, .ticker").forEach(el => { el.inert = false; });
+  if (!silent && App.lastFocus && App.lastFocus.focus) App.lastFocus.focus({ preventScroll: true });
+}
+function toast(html, kind = "") {
+  const wrap = $("#toasts");
+  const el = document.createElement("div");
+  el.className = `toast ${kind}`;
+  el.innerHTML = html;
+  wrap.appendChild(el);
+  while (wrap.children.length > 2) wrap.removeChild(wrap.firstChild);
+  setTimeout(() => { el.style.opacity = "0"; el.style.transition = "opacity .25s"; }, 3400);
+  setTimeout(() => el.remove(), 3800);
+}
+
+/* ============================================================
+   GAME LOOP
+   ============================================================ */
+function checkUnlocks() {
+  const st = App.st, sc = App.sc;
+  if (!st) return [];
+  const added = [];
+  for (const e of CODEX) {
+    if (st.unlocked.includes(e.id)) continue;
+    if (e.id === codexId(st.paradigm)) { st.unlocked.push(e.id); added.push(e); continue; }
+    try {
+      if (!e.unlock || e.unlock(st, sc)) { st.unlocked.push(e.id); added.push(e); }
+    } catch (err) { /* noop */ }
+  }
+  return added;
+}
+function pickEvent() {
+  const st = App.st, sc = App.sc;
+  const next = st.t + 1;
+  const scripted = (sc.script || []).find(s => s.at === next && !st.fired[s.event]);
+  if (scripted) return getEvent(scripted.event);
+  if (st.forcedEvent) {
+    const id = st.forcedEvent;
+    st.forcedEvent = null;
+    return getEvent(id);
+  }
+  if (st.t >= 2 && next % 2 === 0 && nextRand(st) < 0.36) {
+    const pool = (sc.pool || []).filter(id => !!getEvent(id));
+    const eligible = pool.filter(id => !st.fired[id] || next - st.fired[id] >= 10);
+    if (eligible.length) {
+      const id = eligible[Math.floor(nextRand(st) * eligible.length)];
+      return getEvent(id);
+    }
+  }
+  return null;
+}
+function advance() {
+  if (!App.started) { openScenarioPicker(); return; }
+  if (App.modalOpen) return;
+  if (App.st.finished) { openReport(); return; }
+  const ev = pickEvent();
+  if (ev) { openEvent(ev); return; }
+  runStep();
+}
+function runStep() {
+  const tw = $("#toasts"); if (tw) tw.innerHTML = "";
+  const st = App.st, sc = App.sc, p = App.p;
+  const rep = Sim.step(st, p, sc);
+  rep.label = qLabel(-1);
+  const hl = narrative(rep);
+  const meta = `i ${fmt(st.i, 2)}% · G ${fmt(st.g, 1)} · τ ${fmt(st.tau, 1)} · 债务 ${fmt(st.debt, 0)}% · 损失 ${fmt(rep.loss, 2)}`;
+  addLog("quarter", `<b>${esc(hl.headline)}</b> — ${hl.text}`, meta);
+  const news = checkUnlocks();
+  const total = sc.horizon + (st.horizonBonus || 0);
+  if (st.stress > 84 && !st.fired.financial_panic && st.t < total - 1) {
+    st.forcedEvent = "financial_panic";
+    addLog("system", "<b>警报</b> — 金融压力达到警戒线，市场传闻大型机构承压。", "下一季将触发危机事件。");
+  }
+  saveGame();
+  renderAll();
+  if (news.length) {
+    const titles = news.slice(0, 2).map(n => esc(n.title)).join("、");
+    toast(`<b>图鉴解锁 ${news.length}</b> · ${titles}${news.length > 2 ? " 等" : ""}`, "good");
+  }
+  if (st.finished) setTimeout(() => { if (!App.modalOpen) openReport(); }, 420);
+}
+function doAction(id) {
+  const st = App.st;
+  const a = ACTIONS.find(x => x.id === id);
+  if (!a) return;
+  const reason = actionReason(a);
+  if (reason) { toast(`<b>不可用</b> · ${esc(reason)}`, "bad"); return; }
+  st.pc -= a.cost;
+  if (a.once) st.used[a.id] = true;
+  if (a.cooldown) st.cooldowns[a.id] = a.cooldown;
+  applyEffect(st, a.eff, App.sc);
+  addLog("action", `<b>${esc(a.name)}</b> — ${esc(a.desc)}`, effectText(a.eff));
+  checkUnlocks();
+  saveGame();
+  renderAll();
+  toast(`<b>${esc(a.name)}</b> 已执行 · 消耗 ${a.cost} 政治资本`, "good");
+}
+function switchParadigm(id) {
+  if (!App.p || id === App.p.id) return;
+  const old = App.p;
+  App.p = getParadigm(id);
+  App.st.paradigm = id;
+  App.st.cred = clamp(App.st.cred - 0.05, 0.05, 1);
+  App.st.pie = clamp(App.st.pie + 0.15, -5, 35);
+  addLog("action", `范式切换：<b>${esc(old.name)} → ${esc(App.p.name)}</b>`, `可信度 −5 · 通胀预期 +0.15 · ${esc(App.p.tool)}`);
+  checkUnlocks();
+  saveGame();
+  closeModal(true);
+  renderAll();
+  toast(`<b>现在以${esc(App.p.name)}施政</b> · 短期信誉成本已支付`, "good");
+}
+
+/* ---------- scenario picker / briefing ---------- */
+function openScenarioPicker() {
+  const started = App.started;
+  const body = `
+    <p class="lead">选择一个历史情境。每个任务有不同的初始条件、冲击脚本与任期目标；你也可以从自由推演开始。</p>
+    <div class="sc-grid">
+      ${SCENARIOS.map(sc => `<button class="sc ${sc.id === "sandbox" ? "sandbox" : ""}" data-sc="${sc.id}" data-autofocus>
+        <span class="sc-year">${esc(sc.palette)}</span>
+        <span class="sc-name">${esc(sc.name)} <span class="serif" style="color:var(--muted);font-size:13px">${esc(sc.en)}</span></span>
+        <span class="sc-desc">${esc(sc.brief[0])}</span>
+        <span class="sc-meta"><span>${sc.horizon} 季</span><span>${"◆".repeat(sc.difficulty)}${"◇".repeat(5 - sc.difficulty)}</span><span>${esc(sc.subtitle)}</span></span>
+      </button>`).join("")}
+    </div>
+    ${started ? `<div class="callout clay" style="margin-top:12px"><span class="co-lab">注意</span>开始新任期会覆盖当前存档。你仍可以在开始前返回。</div>` : ""}
+    <p class="fine" style="margin-top:12px">难度用 ◆ 表示，只反映初始条件与冲击强度，不改变模型规则。所有情境都可以切换范式。</p>`;
+  openModal({
+    kicker: "NEW TERM · 选择情境",
+    title: "你要接管哪一个 Meridia？",
+    sub: "模型是教学用的半结构宏观系统，不是预测工具。",
+    body,
+    wide: true,
+    closable: true,
+    footer: `<span class="fine">不同范式的传导参数不同，评分只看经济结果。</span><span class="spacer"></span><button class="btn ghost" data-close="1">稍后</button>`,
+    onMount(root) {
+      $$(".sc", root).forEach(btn => btn.addEventListener("click", () => openBriefing(btn.dataset.sc)));
+    }
+  });
+}
+function openBriefing(scId) {
+  const sc = getScenario(scId);
+  const defaultP = sc.id === "golden" ? "keynesian" : sc.id === "stagflation" ? "monetarist" : sc.id === "sandbox" ? "classical" : "newkeynesian";
+  let sel = App.started && PARADIGM_BY_ID[App.st.paradigm] ? App.st.paradigm : defaultP;
+  const s0 = sc.start;
+  const body = `
+    <div class="brief-grid">
+      <div>
+        <div class="sheet-kicker">${esc(sc.palette)} · 难度 ${"◆".repeat(sc.difficulty)}${"◇".repeat(5 - sc.difficulty)}</div>
+        ${sc.brief.map(t => `<p>${esc(t)}</p>`).join("")}
+        <div class="callout olive"><span class="co-lab">任期目标 · ${sc.horizon} 季</span>
+          ${sc.mandate.map(m => `<div style="display:flex;justify-content:space-between;gap:8px;border-top:1px dotted var(--line);padding:4px 0"><span>${esc(m.label)}</span><span class="mono" style="font-size:9px;color:var(--muted)">MANDATE</span></div>`).join("")}
+        </div>
+      </div>
+      <div>
+        <div class="kv-grid">
+          <div class="kv"><span>通胀 π</span><b>${fmt(s0.pi, 1)}%</b></div>
+          <div class="kv"><span>失业 u</span><b>${fmt(s0.u, 1)}%</b></div>
+          <div class="kv"><span>产出缺口</span><b>${fmtSigned(s0.x, 1)}%</b></div>
+          <div class="kv"><span>政策利率</span><b>${fmt(s0.i, 2)}%</b></div>
+          <div class="kv"><span>债务 / GDP</span><b>${fmt(s0.debt, 0)}%</b></div>
+          <div class="kv"><span>自然利率 r*</span><b>${fmt(s0.rStar, 1)}%</b></div>
+          <div class="kv"><span>潜在增长</span><b>${fmt(s0.potGrowth, 1)}%</b></div>
+          <div class="kv"><span>信誉</span><b>${(s0.cred * 100).toFixed(0)}</b></div>
+        </div>
+        <div class="callout" style="margin-top:10px"><span class="co-lab">你的起点</span>财政 ${fmt(s0.g, 0)}% GDP · 税率 ${fmt(s0.tau, 0)}% · 通胀预期 ${fmt(s0.pie, 1)}%</div>
+      </div>
+    </div>
+    <h3>选择初始范式</h3>
+    <p class="fine" style="margin-top:-3px">范式改变财政乘数、Phillips 斜率与预期锚定——同一个政策在不同理论下会得到不同结果。开始后可随时切换（有信誉成本）。</p>
+    <div class="par-grid">
+      ${PARADIGMS.map(p => `<button class="par-opt ${p.id === sel ? "sel" : ""}" data-par="${p.id}" aria-pressed="${p.id === sel}">
+        <span class="po-name">${esc(p.name)}</span>
+        <span class="po-en">${esc(p.en)}</span>
+        <span class="po-desc">${esc(p.blurb)}</span>
+        <span class="po-stats">乘数 ×${p.fiscal.toFixed(2)} · 锚定 ${(p.anchor * 100).toFixed(0)}%</span>
+      </button>`).join("")}
+    </div>`;
+  openModal({
+    kicker: "BRIEFING · 任务简报",
+    title: `${sc.name} <span class="serif" style="font-size:16px;color:var(--muted)">${sc.en}</span>`,
+    sub: `${sc.palette} · ${sc.subtitle}`,
+    body,
+    wide: true,
+    closable: true,
+    footer: `<button class="btn ghost" data-back="1">← 返回情境</button><span class="spacer"></span><button class="btn ghost" data-close="1">取消</button><button class="btn primary" id="startTerm" data-autofocus>开始任期 →</button>`,
+    onMount(root) {
+      $$(".par-opt", root).forEach(b => b.addEventListener("click", () => {
+        sel = b.dataset.par;
+        $$(".par-opt", root).forEach(x => { x.classList.toggle("sel", x.dataset.par === sel); x.setAttribute("aria-pressed", x.dataset.par === sel ? "true" : "false"); });
+      }));
+      $("[data-back]", root).addEventListener("click", openScenarioPicker);
+      $("#startTerm", root).addEventListener("click", () => startGame(sc.id, sel));
+    }
+  });
+}
+function startGame(scId, pid) {
+  App.st = Sim.init(scId, pid, (Date.now() ^ Math.floor(Math.random() * 1e9)) >>> 0);
+  App.sc = getScenario(scId);
+  App.p = getParadigm(pid);
+  App.started = true;
+  App.chartTab = "phillips";
+  App.st.pc = 2;
+  App.st.log = [];
+  App.st.unlocked = Array.from(new Set([...(App.sc.unlocked || []), "classical", "keynes", "phillips", "taylor", "solow", codexId(pid)]));
+  addLog("system", `<b>就任</b> — ${esc(App.sc.name)}。${esc(App.sc.brief[0])}`, `${esc(App.sc.palette)} · ${esc(App.p.name)}`);
+  checkUnlocks();
+  saveGame();
+  closeModal(true);
+  renderAll();
+  toast(`<b>任期开始</b> · ${esc(App.sc.name)} / ${esc(App.p.name)}`, "good");
+}
+
+/* ---------- event modal ---------- */
+function openEvent(ev) {
+  const baseTxt = effectText(ev.base || {});
+  const body = `
+    <div class="event-art"><canvas id="eventCanvas" width="150" height="40" aria-hidden="true"></canvas></div>
+    <div class="event-kicker">
+      <span class="tag">${esc(ev.kicker || "EVENT")}</span>
+      <span class="tag" style="color:var(--clay-deep)">决策不可跳过</span>
+    </div>
+    <p class="event-body">${esc(ev.body)}</p>
+    ${baseTxt ? `<div class="callout clay"><span class="co-lab">事件本身的影响</span>${esc(baseTxt)}</div>` : ""}
+    <div class="choices">
+      ${ev.choices.map((c, i) => `<button class="choice" data-choice="${i}" ${i === 0 ? "data-autofocus" : ""}>
+        <span class="num">${i + 1}</span>
+        <span><span class="c-title">${esc(c.title)}</span><span class="c-desc">${esc(c.desc)}</span><span class="c-eff">${esc(effectText(c.apply))}</span></span>
+      </button>`).join("")}
+    </div>
+    <p class="fine" style="margin-top:10px">选择会立即改变状态，然后结算这个季度。事件不会自动暂停任期。</p>`;
+  openModal({
+    kicker: "EVENT · 突发状况",
+    title: esc(ev.title),
+    sub: `${qLabel(0)} · 你的决定将被记录`,
+    body,
+    closable: false,
+    footer: `<span class="fine">没有“什么都不做”的按钮。拖延也是一种选择。</span>`,
+    onMount(root) {
+      const cv = $("#eventCanvas", root);
+      drawEventArt(cv, ev.art);
+      $$(".choice", root).forEach(btn => btn.addEventListener("click", () => {
+        const idx = +btn.dataset.choice;
+        const choice = ev.choices[idx];
+        applyEffect(App.st, ev.base || {}, App.sc);
+        applyEffect(App.st, choice.apply || {}, App.sc);
+        App.st.fired[ev.id] = App.st.t + 1;
+        addLog("event", `<b>${esc(ev.title)}</b> — ${esc(choice.title)}`, effectText(choice.apply));
+        closeModal(true);
+        saveGame();
+        renderAll();
+        runStep();
+      }));
+    }
+  });
+}
+
+/* ---------- council ---------- */
+function schoolAdvice(p) {
+  const st = App.st, sc = App.sc, t = Sim.taylor(st, sc);
+  const r = realRate();
+  if (p.id === "classical") return `预算应回到平衡；把利率保持在规则值附近（${fmt(clamp(t, 0, 20), 1)}%），不要用财政刺激追逐短期产出。`;
+  if (p.id === "keynesian") return st.x < 0
+    ? `缺口 ${fmtSigned(st.x, 1)}%：按乘数 ×${p.fiscal.toFixed(2)} 估算，需要约 ${fmt(Math.abs(st.x) / (0.3 * p.fiscal), 1)}pp GDP 的财政脉冲。先恢复需求。`
+    : `需求已不弱。开始修复财政，把资源留给下一次衰退，而不是继续加码。`;
+  if (p.id === "monetarist") return `把名义锚钉住：利率 ${fmt(clamp(t, 0, 20), 1)}% 附近，避免为财政赤字融资；通胀 ${pct(st.pi)}，目标是 ${pct(sc.target)}。`;
+  if (p.id === "newclassical") return `公开承诺目标，避免突袭。信誉 ${(st.cred * 100).toFixed(0)}，预期锚定 ${(anchorNow() * 100).toFixed(0)}%；规则的一致性比一次性刺激更值钱。`;
+  if (p.id === "newkeynesian") return `Taylor 参考 ${fmt(clamp(t, 0, 20), 1)}%，实际利率 ${fmtSigned(r, 1)}%。${st.i <= 0.5 ? "在零下限，财政与前瞻指引应接棒。" : "让利率随通胀与缺口系统反应，同时守住预期。"}`;
+  if (p.id === "postkeynesian") return `失业 ${pct(st.u)}，压力 ${fmt(st.stress, 0)}。优先用财政与就业保障压低失业；用监管和收入政策处理通胀，而不是制造衰退。`;
+  if (p.id === "mmt") return `主权发行者先问真实约束：缺口 ${fmtSigned(st.x, 1)}%，通胀 ${pct(st.pi)}。若通胀低于目标且失业高，就扩大财政；接近产能时再用税收回收。`;
+  if (p.id === "austrian") return `实际利率 ${fmtSigned(r, 1)}%，${r < 0 ? "仍为负——信贷在制造错误投资，应加息并清理。" : "已转正，继续让相对价格调整，不要救助失败项目。"}`;
+  return "";
+}
+function openCouncil() {
+  const current = App.p.id;
+  const body = `<p class="lead">同一组数据，不同的理论会给出不同的处方。选择一种范式会改变模型的传导参数，并支付短期信誉成本。</p>
+    <div class="council-grid">
+      ${PARADIGMS.map(p => `<div class="council-card ${p.id === current ? "current" : ""}">
+        <div class="cc-top"><span class="cc-name">${esc(p.name)}</span><span class="seg">${esc(p.en)}</span></div>
+        <p class="cc-advice">${esc(schoolAdvice(p))}</p>
+        <div class="stat-row"><span class="stat-chip">×${p.fiscal.toFixed(2)} 财政</span><span class="stat-chip">${(p.anchor * 100).toFixed(0)}% 锚定</span></div>
+        <button class="btn ghost small wide" data-switch="${p.id}" ${p.id === current ? "disabled" : ""}>${p.id === current ? "当前范式" : "以此范式施政 →"}</button>
+      </div>`).join("")}
+    </div>`;
+  openModal({
+    kicker: "COUNCIL · 学派会诊",
+    title: "八种看同一场衰退的方式",
+    sub: "切换范式的成本：可信度 −5、通胀预期 +0.15。",
+    body, wide: true, closable: true,
+    footer: `<span class="fine">建议来自各范式的简化规则，不构成预测。</span><span class="spacer"></span><button class="btn ghost" data-close="1">关闭</button>`,
+    onMount(root) {
+      $$("[data-switch]", root).forEach(b => b.addEventListener("click", () => switchParadigm(b.dataset.switch)));
+    }
+  });
+}
+
+/* ---------- report ---------- */
+function scoreGame() {
+  const st = App.st, sc = App.sc;
+  const window = Math.max(1, Math.floor(st.t / 2));
+  const recent = (st.hitLog || []).slice(-window);
+  const compliance = recent.length ? recent.filter(Boolean).length / recent.length : 0;
+  const finalOK = Sim.mandateStatus(st, sc).every(m => m.ok);
+  const avgLoss = st.lossN ? st.lossSum / st.lossN : 0;
+  const stability = clamp(1 - avgLoss / (sc.lossBudget * 1.6), 0, 1);
+  const score = Math.round(100 * (0.5 * compliance + 0.2 * (finalOK ? 1 : 0) + 0.3 * stability));
+  const grade = score >= 90 ? "S" : score >= 75 ? "A" : score >= 60 ? "B" : score >= 45 ? "C" : "D";
+  return { score, grade, compliance, finalOK, avgLoss, stability, window, recentHits: recent.filter(Boolean).length };
+}
+function reportNarrative(g) {
+  const st = App.st, sc = App.sc, p = App.p;
+  if (g.grade === "S") return `稳定、可信、可持续。你把 ${esc(sc.name)} 带进了一个罕见的良性循环：通胀锚定在 ${pct(sc.target)} 附近，失业与产出缺口都受控。${esc(p.name)}的传导假设在这个经济体里得到了验证——至少在这 ${st.t} 个季度里。`;
+  if (g.grade === "A") return `你成功地把经济带回了目标区间，代价可控。政策并非每次都完美，但方向与节奏大体正确。历史会记住 ${esc(sc.name)} 的这次软着陆。`;
+  if (g.grade === "B") return `任期结束时的数字尚可，但过程留下了伤痕：某些季度明显偏离目标，损失累积。你证明了工具有效，也证明了时点与信誉的重要性。`;
+  if (g.grade === "C") return `经济避开了最坏的结果，但稳定目标只完成了一半。通胀、失业与债务之间存在真实的取舍；下一任顾问会继承你的遗产。`;
+  return `这是一次代价高昂的实验。模型没有道德判断，但它记录了每个选择的后果：通胀、失业、债务与信誉。重开一局，或者先在公式实验室里把传导机制拆开看看。`;
+}
+function openReport() {
+  if (!App.st) return;
+  const g = scoreGame();
+  const st = App.st, sc = App.sc, p = App.p;
+  const mandate = Sim.mandateStatus(st, sc);
+  const body = `
+    <div class="grade-wrap">
+      <div class="grade"><b>${g.grade}</b><span>GRADE / ${g.score}</span></div>
+      <div class="grade-text">${reportNarrative(g)}</div>
+    </div>
+    <div class="table-wrap"><table class="score-table">
+      <thead><tr><th>项目</th><th>结果</th><th>目标 / 预算</th><th>判定</th></tr></thead>
+      <tbody>
+        <tr><td>通胀</td><td class="num">${pct(st.pi)}</td><td>${mandate.find(m => m.id === "pi") ? esc(mandate.find(m => m.id === "pi").label) : "—"}</td><td>${mandate.find(m => m.id === "pi")?.ok ? "达标" : "未达标"}</td></tr>
+        <tr><td>失业率</td><td class="num">${pct(st.u)}</td><td>${mandate.find(m => m.id === "u") ? esc(mandate.find(m => m.id === "u").label) : "—"}</td><td>${mandate.find(m => m.id === "u")?.ok ? "达标" : "未达标"}</td></tr>
+        <tr><td>产出缺口</td><td class="num">${fmtSigned(st.x, 1)}%</td><td>模型自然率 ${pct(st.uStar)}</td><td>${Math.abs(st.x) < 1 ? "接近" : "偏离"}</td></tr>
+        <tr><td>债务 / GDP</td><td class="num">${fmt(st.debt, 0)}%</td><td>${mandate.find(m => m.id === "debt") ? esc(mandate.find(m => m.id === "debt").label) : "—"}</td><td>${mandate.find(m => m.id === "debt")?.ok ? "达标" : "未达标"}</td></tr>
+        <tr><td>政策可信度</td><td class="num">${(st.cred * 100).toFixed(0)}</td><td>初始 ${(sc.start.cred * 100).toFixed(0)}</td><td>${st.cred >= sc.start.cred ? "提升" : "受损"}</td></tr>
+        <tr><td>平均季度损失</td><td class="num">${fmt(g.avgLoss, 2)}</td><td>预算 ${fmt(sc.lossBudget, 1)}</td><td>${g.avgLoss <= sc.lossBudget ? "可接受" : "超支"}</td></tr>
+        <tr><td>后半程目标命中</td><td class="num">${g.recentHits} / ${g.window} 季</td><td>${fmt(g.compliance * 100, 0)}%</td><td>${g.compliance >= 0.8 ? "稳定" : g.compliance >= 0.5 ? "一般" : "薄弱"}</td></tr>
+        <tr><td>全程目标命中</td><td class="num">${st.hits} / ${st.t} 季</td><td>${fmt(st.t ? st.hits / st.t * 100 : 0, 0)}%</td><td>参考</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout ${g.grade === "S" || g.grade === "A" ? "olive" : "clay"}">
+      <span class="co-lab">判词</span>
+      ${sc.winNote} 你以 <b>${esc(p.name)}</b> 执政 ${st.t} 个季度，最终得分 <b>${g.score}</b>（${g.grade}）。
+    </div>
+    <div class="report-quote">“经济学家和政治哲学家的思想，无论对错，都比通常所理解的更有力量。” — 约翰·梅纳德·凯恩斯</div>
+    <p class="fine">评分 = 50% 后半程目标命中率 + 20% 期末达标 + 30% 损失预算内的稳定表现。前半程的过渡与学习成本不计入命中率，但仍计入平均损失。不同范式的传导参数不同，因此难度也不同；分数不是理论正确性的证明。</p>`;
+  const canContinue = true;
+  openModal({
+    kicker: "TERM REPORT · 述职报告",
+    title: `${sc.name} · 任期报告`,
+    sub: `${qLabel(-1)} · ${st.t} 个季度 · ${p.name}`,
+    body, wide: true, closable: true,
+    footer: `${canContinue ? `<button class="btn ghost" id="continueTerm">继续执政 8 季</button>` : ""}<span class="spacer"></span><button class="btn ghost" id="reportCodex">查看图鉴</button><button class="btn ghost" data-close="1">关闭</button><button class="btn primary" id="reportNew">再来一局 →</button>`,
+    onMount(root) {
+      $("#reportNew", root).addEventListener("click", openScenarioPicker);
+      $("#reportCodex", root).addEventListener("click", () => openCodex());
+      $("#continueTerm", root).addEventListener("click", () => {
+        App.st.finished = false;
+        App.st.horizonBonus = (App.st.horizonBonus || 0) + 8;
+        saveGame();
+        closeModal(true);
+        renderAll();
+        toast("<b>任期延长</b> · 新增 8 个季度", "good");
+      });
+    }
+  });
+}
+
+/* ============================================================
+   CODEX / TIMELINE
+   ============================================================ */
+const FAMILY_LABEL = { classical: "古典 / 新古典", keynesian: "凯恩斯传统", monetarist: "货币主义", newclassical: "新古典宏观", newkeynesian: "新凯恩斯", heterodox: "异端 / 制度" };
+function codexUnlocked(e) { return App.studyMode || (App.st && App.st.unlocked.includes(e.id)); }
+function openCodex(entryId) {
+  if (!App.st) return;
+  checkUnlocks();
+  let query = "";
+  let current = codexId(entryId) || null;
+  const total = CODEX.length;
+  const unlockedCount = () => CODEX.filter(codexUnlocked).length;
+  const mapNode = (id, label) => `<button class="map-node" data-map="${id}">${label}</button>`;
+  const body = `
+    <div class="school-map" aria-label="学派关系示意">
+      <div class="map-cap"><span>主线 / MAINSTREAM</span><span class="map-hint">点击节点阅读</span></div>
+      <div class="map-line">
+        ${mapNode("classical", "古典")}<span class="map-arrow" aria-hidden="true">→</span>
+        ${mapNode("keynes", "凯恩斯")}<span class="map-arrow" aria-hidden="true">→</span>
+        ${mapNode("synthesis", "新古典综合")}<span class="map-arrow" aria-hidden="true">→</span>
+        ${mapNode("monetarist", "货币主义")}<span class="map-arrow" aria-hidden="true">→</span>
+        ${mapNode("newclassical", "新古典宏观")}<span class="map-arrow" aria-hidden="true">→</span>
+        ${mapNode("newkeynesian", "新凯恩斯")}<span class="map-arrow" aria-hidden="true">→</span>
+        ${mapNode("hank", "HANK")}
+      </div>
+      <div class="map-line alt">
+        <span class="map-label">批判 / 替代</span>
+        ${mapNode("postkeynesian", "后凯恩斯")}
+        ${mapNode("mmt", "MMT")}
+        ${mapNode("austrian", "奥地利")}
+        ${mapNode("behavioral", "行为")}
+        ${mapNode("secular", "长期停滞")}
+        ${mapNode("zlb", "零利率下限")}
+      </div>
+      <p class="fine" style="margin:5px 0 0">主线是综合与反综合的往复；异端持续追问主流忽略的盲点，而危机负责让这些追问变得紧迫。</p>
+    </div>
+    <div class="codex-tools">
+      <input class="search" id="codexSearch" type="search" placeholder="搜索学派、概念、人名…" aria-label="搜索图鉴" data-autofocus>
+      <span class="codex-count" id="codexCount">已解锁 ${unlockedCount()} / ${total}</span>
+      <button class="btn ghost small" id="studyBtn" aria-pressed="${App.studyMode ? "true" : "false"}">研习模式：${App.studyMode ? "开" : "关"}</button>
+    </div>
+    <div id="codexBody"></div>`;
+  const footer = `<button class="btn ghost" id="codexTimeline">打开年表 ⌁</button><span class="fine">框架：Mankiw《宏观经济学》· Keynes《通论》· 扩展原典</span><span class="spacer"></span><button class="btn" data-close="1">关闭</button>`;
+  openModal({
+    kicker: "CODEX · 宏观思想图鉴",
+    title: "知识图谱",
+    sub: "点击卡片阅读。理论不是答案，而是一组可比较的假设。",
+    body, wide: true, closable: true, footer,
+    onMount(root) {
+      const bodyEl = $("#codexBody", root);
+      const search = $("#codexSearch", root);
+      const study = $("#studyBtn", root);
+      const count = $("#codexCount", root);
+      function cardHtml(e) {
+        const ok = codexUnlocked(e);
+        return `<button class="cx ${ok ? "" : "locked"}" data-family="${e.family}" data-cx="${ok ? e.id : ""}" data-lock="${ok ? "0" : "1"}" ${ok ? "" : "aria-disabled=\"true\""}>
+          <span class="cx-era">${esc(String(e.era))} · ${esc(FAMILY_LABEL[e.family] || "")}</span>
+          <span class="cx-name">${esc(e.title)}</span>
+          <span class="cx-en">${esc(e.en)}</span>
+          <span class="cx-foot"><span>${ok ? (e.tags[0] || "词条") : "未解锁"}</span><span>${ok ? "阅读 →" : "—"}</span></span>
+        </button>`;
+      }
+      function detailHtml(e) {
+        return `<div class="cx-detail">
+          <button class="back" data-back="1">← 返回图鉴</button>
+          <div class="cx-head">
+            <div class="era">${esc(String(e.era))} · ${esc(FAMILY_LABEL[e.family] || "")}</div>
+            <h3>${esc(e.title)}</h3>
+            <div class="en">${esc(e.en)}</div>
+          </div>
+          <div class="cx-sec"><div class="lab">核心命题</div><p>${esc(e.thesis)}</p></div>
+          <div class="cx-sec"><div class="lab">数理表达</div>${e.math.map(m => `<div class="math-block">${esc(m.eq)}<span class="mnote">${esc(m.note)}</span></div>`).join("")}</div>
+          <div class="cx-sec"><div class="lab">政策含义</div><p>${esc(e.policy)}</p></div>
+          <div class="cx-sec"><div class="lab">批评与边界</div><p>${esc(e.critique)}</p></div>
+          <div class="cx-sec"><div class="lab">在 Meridia 沙盘中</div><p>${esc(e.ingame)}</p></div>
+          <div class="cx-sec"><div class="lab">关联词条</div><div class="cx-links">${e.links.filter(id => CODEX_BY_ID[id]).map(id => `<button data-link="${id}">${esc(CODEX_BY_ID[id].title)} →</button>`).join("")}</div></div>
+          <div class="tagrow">${e.tags.map(t => `<span class="tg">${esc(t)}</span>`).join("")}</div>
+        </div>`;
+      }
+      function render() {
+        count.textContent = `已解锁 ${unlockedCount()} / ${total}${App.studyMode ? " · 研习模式" : ""}`;
+        if (current) {
+          const e = CODEX_BY_ID[current];
+          if (!e) { current = null; render(); return; }
+          if (!codexUnlocked(e)) {
+            bodyEl.innerHTML = `<button class="back" data-back="1">← 返回图鉴</button>
+              <div class="callout clay"><span class="co-lab">尚未解锁</span>这个词条会在任期推进中解锁。你也可以打开右上角的研习模式，立即阅读全部内容。</div>`;
+          } else {
+            bodyEl.innerHTML = detailHtml(e);
+          }
+          bodyEl.scrollTop = 0;
+          return;
+        }
+        const q = query.trim().toLowerCase();
+        const list = CODEX.filter(e => {
+          if (!q) return true;
+          const hay = codexUnlocked(e)
+            ? (e.title + " " + e.en + " " + e.thesis + " " + e.tags.join(" ") + " " + e.policy).toLowerCase()
+            : (e.title + " " + e.en + " " + e.tags.join(" ")).toLowerCase();
+          return hay.includes(q);
+        });
+        bodyEl.innerHTML = list.length
+          ? `<div class="codex-grid">${list.map(cardHtml).join("")}</div>`
+          : `<div class="empty-note" style="padding:18px 0">没有匹配的词条。试试“通胀”“预期”“明斯基”或“IS”。</div>`;
+      }
+      search.addEventListener("input", () => { query = search.value; current = null; render(); });
+      study.addEventListener("click", () => {
+        App.studyMode = !App.studyMode;
+        writePrefs();
+        study.textContent = `研习模式：${App.studyMode ? "开" : "关"}`;
+        study.setAttribute("aria-pressed", App.studyMode ? "true" : "false");
+        render();
+      });
+      bodyEl.addEventListener("click", ev => {
+        const card = ev.target.closest("[data-cx]");
+        const link = ev.target.closest("[data-link]");
+        const back = ev.target.closest("[data-back]");
+        if (back) { current = null; render(); return; }
+        if (link) { current = link.dataset.link; render(); return; }
+        if (card) {
+          if (card.dataset.lock === "1") {
+            toast("<b>尚未解锁</b> · 推进任期，或开启研习模式", "bad");
+            return;
+          }
+          current = card.dataset.cx;
+          render();
+        }
+      });
+      root.addEventListener("click", ev => {
+        const m = ev.target.closest("[data-map]");
+        if (!m) return;
+        const entry = CODEX_BY_ID[codexId(m.dataset.map)];
+        if (!entry) return;
+        if (!codexUnlocked(entry)) { toast("<b>尚未解锁</b> · 推进任期，或开启研习模式", "bad"); return; }
+        current = entry.id;
+        render();
+      });
+      $("#codexTimeline", root).addEventListener("click", openTimeline);
+      render();
+    }
+  });
+}
+function openTimeline() {
+  const body = `<p class="lead">从萨伊到 AI。宏观经济学不是一条直线，而是一连串对危机与反常事实的回应。</p>
+    <div class="tl">
+      ${TIMELINE.map(t => `<div class="tl-item ${t.hot ? "hot" : ""}">
+        <div class="tl-year">${esc(String(t.y))}</div>
+        <div class="tl-name">${esc(t.name)}</div>
+        <div class="tl-text">${esc(t.text)}</div>
+        <button class="tl-link" data-codex="${esc(t.codex)}">在词库中查看 →</button>
+      </div>`).join("")}
+    </div>`;
+  openModal({
+    kicker: "TIMELINE · 学说沿革",
+    title: "宏观经济学的地层",
+    sub: "1776—今天 · 关键著作、危机与范式转移",
+    body, mid: true, closable: true,
+    footer: `<span class="fine">年表是简化的；思想史总有交叉与反复。</span><span class="spacer"></span><button class="btn" data-close="1">关闭</button>`,
+    onMount(root) {
+      $$("[data-codex]", root).forEach(b => b.addEventListener("click", () => openCodex(b.dataset.codex)));
+    }
+  });
+}
+
+/* ============================================================
+   FORMULAS + INTERACTIVE LABS
+   ============================================================ */
+function eqCard(title, en, expr, note) {
+  return `<div class="eq-card">
+    <div class="eq-top"><b>${title}</b><span>${en}</span></div>
+    <div class="eq-body">${expr}</div>
+    <div class="eq-note">${note}</div>
+  </div>`;
+}
+function openFormulas() {
+  const st = App.st, sc = App.sc, p = App.p;
+  if (!st) return;
+  const r = st.i - st.pie;
+  const t = taylorNow();
+  const a = anchorNow();
+  const f = Sim.forecast(st, p, sc);
+  const fiscal = (st.g - sc.start.g) - 0.5 * (st.tau - sc.start.tau);
+  const primary = st.g - st.tau * (1 + st.x / 100);
+  const debtAnnual = ((st.iAvg - (st.pi + st.growth)) / 100) * st.debt + primary;
+  const uOkun = st.uStar - 0.5 * st.x;
+  const slope = 0.30 * p.slope;
+  const gStar = sc.start.potGrowth + st.potBonus;
+  const formulas = [
+    eqCard("费雪方程", "FISHER", `r = i − πe = ${fmt(st.i, 2)} − ${fmt(st.pie, 2)} = <span class="hl">${fmt(r, 2)}%</span>`,
+      "名义利率与实际利率的桥梁。通胀预期上升而名义利率不变时，实际利率下降，需求被刺激。"),
+    eqCard("泰勒规则", "TAYLOR 1993", `i* = r* + π + 0.5(π − π*) + 0.5x<br>= ${fmt(sc.start.rStar, 2)} + ${fmt(st.pi, 2)} + 0.5(${fmt(st.pi - sc.target, 2)}) + 0.5(${fmt(st.x, 2)}) = <span class="hl">${fmt(clamp(t, 0, 20), 2)}%</span>`,
+      st.i <= 0.5 ? "零利率下限：规则值可能为负，但名义利率不能低于现金收益率，政策被约束。" : "机械参考值，不含金融稳定、汇率与政治约束。"),
+    eqCard("奥肯定律", "OKUN", `u ≈ u* − 0.5x = ${fmt(st.uStar, 1)} − 0.5(${fmt(st.x, 1)}) = <span class="hl">${fmt(uOkun, 1)}%</span><br>实际 u = ${fmt(st.u, 1)}%`,
+      "产出缺口每改善 1pp，失业率约下降 0.5pp。模型中的系数是简化校准。"),
+    eqCard("菲利普斯曲线", "PHILLIPS", `π′ ≈ πe + 0.30 × ${fmt(p.slope, 2)} × x<br>= ${fmt(st.pie, 2)} + ${fmt(slope, 3)} × ${fmt(st.x, 2)} = <span class="hl">${fmt(f.pi, 2)}%</span>`,
+      "预期越锚定，曲线越靠近目标；供给冲击会整体移动曲线。预测不含随机扰动。"),
+    eqCard("财政脉冲与乘数", "FISCAL IMPULSE", `脉冲 = (G−G₀) − 0.5(τ−τ₀)<br>= (${fmt(st.g, 1)}−${fmt(sc.start.g, 1)}) − 0.5(${fmt(st.tau, 1)}−${fmt(sc.start.tau, 1)}) = <span class="hl">${fmtSigned(fiscal, 2)}</span><br>需求影响 ≈ 0.30 × ${fmt(p.fiscal, 2)} × ${fmt(fiscal, 2)} = <span class="hl">${fmtSigned(0.30 * p.fiscal * fiscal, 2)}pp</span>`,
+      "这是单季传导的近似。乘数不是常数：它随范式、闲置产能、利率反应与预期而变。"),
+    eqCard("债务动态", "DEBT DYNAMICS", `Δd / 年 ≈ (i − π − g)d + pb<br>= (${fmt(st.iAvg, 2)} − ${fmt(st.pi, 2)} − ${fmt(st.growth, 2)})% × ${fmt(st.debt, 0)} + ${fmtSigned(primary, 1)} = <span class="hl">${fmtSigned(debtAnnual, 1)}pp</span>`,
+      "r > g 且存在基本赤字时，债务比率会自我膨胀。利率与增长的赛跑比赤字本身更重要。"),
+    eqCard("部门余额", "SECTORAL BALANCES", `(S − I) + (T − G) + (M − X) = 0<br>T − G ≈ <span class="hl">${fmtSigned(-primary, 1)}pp GDP</span>`,
+      "三个部门的净金融资产之和为零。财政盈余对应私人部门盈余或外部赤字——这是会计恒等式，不是因果。"),
+    eqCard("中性实际利率缺口", "r-STAR GAP", `i − πe − r* = ${fmt(st.i, 2)} − ${fmt(st.pie, 2)} − (${fmt(sc.start.rStar, 2)}) = <span class="hl">${fmtSigned(r - sc.start.rStar, 2)}pp</span>`,
+      "缺口为正代表政策偏紧，需求会收缩；为负代表偏松。自然利率本身不可观测。"),
+    eqCard("增长与缺口", "GROWTH", `g ≈ g* + 4Δx = ${fmt(gStar, 2)} + 4(${fmt(st.x, 2)} − ${fmt(st.series.x.length > 1 ? st.series.x[st.series.x.length - 2] : st.x, 2)}) = <span class="hl">${fmt(st.growth, 1)}%</span>`,
+      "季度缺口的年化变化。潜在增长是长期预算约束，短期增长则围绕它波动。"),
+    eqCard("索洛稳态", "SOLOW", `k* = [s/(δ+n+g)]^{1/(1−α)}<br>y* = (k*)^α`,
+      "储蓄率只有水平效应；长期增长率由技术进步与制度决定。实验室暂不估计索洛参数。")
+  ].join("");
+  const body = `
+    <p class="lead">方程不是装饰。它们把“政策 → 实际利率 → 产出缺口 → 通胀与失业 → 债务”这条链条拆开。所有数值都来自你当前的经济体。</p>
+    <h3 style="margin-top:6px">本季方程 · 实时代入</h3>
+    ${formulas}
+    <h3>交互实验台</h3>
+    <p class="fine" style="margin-top:-3px">实验室不改变存档，只用于拆解机制。拖动滑块，观察数字与曲线如何回应。</p>
+    <div class="lab-grid">
+      <div class="lab">
+        <h4>乘数实验室 <span>ΔG = 1</span></h4>
+        <div class="ctl"><label for="lbMpc">MPC b</label><input id="lbMpc" type="range" min="0.2" max="0.95" step="0.01" value="0.8"><output id="lbMpcOut">0.80</output></div>
+        <div class="ctl"><label for="lbTax">税率 t</label><input id="lbTax" type="range" min="0" max="0.6" step="0.01" value="0.25"><output id="lbTaxOut">25%</output></div>
+        <div class="lab-out">简单乘数 <b id="lbK1">5.00</b><br>含税乘数 <b id="lbK2">2.86</b><br><span id="lbKNote">1 单位自主支出最终带来 2.86 单位产出。</span></div>
+      </div>
+      <div class="lab">
+        <h4>泰勒规则实验室 <span>ZLB</span></h4>
+        <div class="ctl"><label for="lbPi">通胀 π</label><input id="lbPi" type="range" min="-2" max="12" step="0.1" value="3.0"><output id="lbPiOut">3.0%</output></div>
+        <div class="ctl"><label for="lbX">缺口 x</label><input id="lbX" type="range" min="-6" max="6" step="0.1" value="0"><output id="lbXOut">0.0%</output></div>
+        <div class="ctl"><label for="lbR">r*</label><input id="lbR" type="range" min="-2" max="4" step="0.1" value="1.0"><output id="lbROut">1.0%</output></div>
+        <div class="lab-out">建议利率 <b id="lbTaylor">4.50</b><br>实际利率 <b id="lbReal">1.50</b><br><span id="lbTaylorNote">规则值高于零，常规政策可用。</span></div>
+      </div>
+      <div class="lab">
+        <h4>债务雪球 <span>10 年</span></h4>
+        <div class="ctl"><label for="lbDebt">债务 D</label><input id="lbDebt" type="range" min="20" max="160" step="1" value="80"><output id="lbDebtOut">80%</output></div>
+        <div class="ctl"><label for="lbRg">r − g</label><input id="lbRg" type="range" min="-4" max="6" step="0.1" value="1.5"><output id="lbRgOut">1.5%</output></div>
+        <div class="ctl"><label for="lbPb">基本余额</label><input id="lbPb" type="range" min="-6" max="6" step="0.1" value="-2"><output id="lbPbOut">−2.0</output></div>
+        <canvas id="lbDebtCanvas" width="320" height="130" aria-label="债务路径预测图"></canvas>
+        <div class="lab-out">年变化 <b id="lbDebtDelta">+1.0pp</b><br>10 年后 <b id="lbDebt10">95%</b><br><span id="lbDebtNote">利率高于增长率，债务在滚动。</span></div>
+      </div>
+      <div class="lab">
+        <h4>IS–LM 实验台 <span>水平值</span></h4>
+        <div class="ctl"><label for="lbG">政府支出 G</label><input id="lbG" type="range" min="10" max="32" step="0.5" value="20"><output id="lbGOut">20.0</output></div>
+        <div class="ctl"><label for="lbT">税收 T</label><input id="lbT" type="range" min="10" max="32" step="0.5" value="20"><output id="lbTOut">20.0</output></div>
+        <div class="ctl"><label for="lbM">货币供给 M/P</label><input id="lbM" type="range" min="10" max="40" step="0.5" value="22"><output id="lbMOut">22.0</output></div>
+        <canvas id="lbIslmCanvas" width="320" height="130" aria-label="IS-LM 曲线与均衡图"></canvas>
+        <div class="lab-out">产出 Y* <b id="lbY">—</b> · 利率 i* <b id="lbI">—</b><br><span id="lbIslmNote">赤字扩大 IS 右移；货币扩张 LM 右移。</span></div>
+      </div>
+    </div>
+    <h3>模型边界</h3>
+    <div class="callout clay">
+      <span class="co-lab">请在此处保持怀疑</span>
+      这是一个线性化、季度频率、半结构的教学模型：没有显式微观基础，没有银行资产负债表，没有开放经济的完整资本流动，也没有资产价格。范式的传导系数是刻意设置的“理论滤镜”，用于比较，不代表经验估计。它的用途是让你对机制做可重复的思想实验——不是预测 Meridia 之外的任何现实。
+    </div>`;
+  openModal({
+    kicker: "MATH · 方程与实验室",
+    title: "把直觉拆成方程",
+    sub: `${App.p.name} · 参数随范式变化 · 所有数值实时读取`,
+    body, wide: true, closable: true,
+    footer: `<span class="fine">实验室不写入存档。方程采用 % 与季度近似。</span><span class="spacer"></span><button class="btn" data-close="1">关闭</button>`,
+    onMount(root) {
+      const num = id => Number($("#" + id, root).value);
+      const out = (id, val) => { const el = $("#" + id, root); if (el) el.textContent = val; };
+      function multiplier() {
+        const b = num("lbMpc"), tax = num("lbTax");
+        const k1 = 1 / (1 - b), k2 = 1 / (1 - b * (1 - tax));
+        out("lbMpcOut", b.toFixed(2)); out("lbTaxOut", (tax * 100).toFixed(0) + "%");
+        out("lbK1", k1.toFixed(2)); out("lbK2", k2.toFixed(2));
+        out("lbKNote", `1 单位自主支出最终带来 ${k2.toFixed(2)} 单位产出；税率越高，漏出越大。`);
+      }
+      function taylorLab() {
+        const pi = num("lbPi"), x = num("lbX"), rr = num("lbR");
+        const i = rr + pi + 0.5 * (pi - 2) + 0.5 * x;
+        out("lbPiOut", pi.toFixed(1) + "%"); out("lbXOut", (x > 0 ? "+" : "") + x.toFixed(1) + "%"); out("lbROut", rr.toFixed(1) + "%");
+        out("lbTaylor", i.toFixed(2) + "%"); out("lbReal", (i - pi).toFixed(2) + "%");
+        out("lbTaylorNote", i <= 0 ? "规则值触零：零利率下限，需要非常规工具。" : `相对于 ${pi.toFixed(1)}% 的通胀，实际利率为 ${(i - pi).toFixed(1)}%。`);
+      }
+      function drawDebtLab() {
+        const D = num("lbDebt"), rg = num("lbRg"), pb = num("lbPb");
+        out("lbDebtOut", D.toFixed(0) + "%"); out("lbRgOut", rg.toFixed(1) + "%"); out("lbPbOut", (pb > 0 ? "+" : "") + pb.toFixed(1));
+        let d = D; const path = [d];
+        for (let y = 1; y <= 10; y++) { d = clamp(d + (rg / 100) * d + pb, 0, 400); path.push(d); }
+        out("lbDebtDelta", `${((rg / 100) * D + pb) >= 0 ? "+" : ""}${(((rg / 100) * D + pb)).toFixed(1)}pp`);
+        out("lbDebt10", `${path[10].toFixed(0)}%`);
+        out("lbDebtNote", rg >= 0 && pb < 0 ? (Math.abs(pb) > rg / 100 * D ? "r ≥ g、基本赤字较大：债务仍在膨胀。需要更大的基本盈余。" : "r ≥ g，但基本赤字小于利息增长：债务缓慢下降。") : (rg > 0 ? "r > g：债务有自我膨胀的惯性，需要更大的基本盈余来抵消。" : "r < g：增长可以稀释债务，基本赤字也未必推高债务率。"));
+        const cv = $("#lbDebtCanvas", root);
+        const dpr = Math.min(2, window.devicePixelRatio || 1);
+        const w = cv.clientWidth || 300, h = 130;
+        cv.width = w * dpr; cv.height = h * dpr;
+        const ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+        const ink = cssVar("--ink"), muted = cssVar("--muted"), line = cssVar("--line"), clay = cssVar("--clay");
+        const pad = { l: 30, r: 8, t: 8, b: 16 };
+        const lo = 0, hi = Math.max(...path, 40) * 1.1;
+        const X = i => pad.l + i / 10 * (w - pad.l - pad.r);
+        const Y = v => pad.t + (h - pad.t - pad.b) * (1 - v / hi);
+        ctx.strokeStyle = line; ctx.fillStyle = muted; ctx.font = "8px monospace"; ctx.textAlign = "right";
+        for (let i = 0; i <= 2; i++) {
+          const v = hi * i / 2; const y = Y(v);
+          ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(w - pad.r, y); ctx.stroke();
+          ctx.fillText(v.toFixed(0), pad.l - 4, y + 3);
+        }
+        ctx.strokeStyle = clay; ctx.lineWidth = 2; ctx.beginPath();
+        path.forEach((v, i) => { const x = X(i), y = Y(v); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+        ctx.stroke();
+        path.forEach((v, i) => { ctx.fillStyle = clay; ctx.fillRect(X(i) - 1.5, Y(v) - 1.5, 3, 3); });
+        ctx.fillStyle = ink; ctx.textAlign = "left"; ctx.fillText("year 0", pad.l, h - 5); ctx.textAlign = "right"; ctx.fillText("year 10", w - pad.r, h - 5);
+      }
+      function drawISLM() {
+        const G = num("lbG"), T = num("lbT"), m = num("lbM");
+        out("lbGOut", G.toFixed(1)); out("lbTOut", T.toFixed(1)); out("lbMOut", m.toFixed(1));
+        const c = 0.75, b = 0.9, k = 0.5, hh = 0.6, C0 = 2, I0 = 6;
+        const A = C0 + I0 + G - c * T;
+        const denom = (1 - c) + b * k / hh;
+        const Y = (A + b * m / hh) / denom;
+        const i = (k * Y - m) / hh;
+        out("lbY", Y.toFixed(1)); out("lbI", i.toFixed(2) + "%");
+        out("lbIslmNote", `G 增加会右移 IS；M/P 增加会右移 LM。当前均衡 i=${i.toFixed(1)}%，Y=${Y.toFixed(0)}。`);
+        const cv = $("#lbIslmCanvas", root);
+        const dpr = Math.min(2, window.devicePixelRatio || 1);
+        const w = cv.clientWidth || 300, h = 130;
+        cv.width = w * dpr; cv.height = h * dpr;
+        const ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+        const ink = cssVar("--ink"), muted = cssVar("--muted"), line = cssVar("--line"), clay = cssVar("--clay"), sky = cssVar("--sky");
+        const pad = { l: 30, r: 8, t: 8, b: 18 };
+        const yMax = 12, xMax = Math.max(70, Y * 1.35);
+        const X = v => pad.l + v / xMax * (w - pad.l - pad.r);
+        const Yf = v => pad.t + (h - pad.t - pad.b) * (1 - v / yMax);
+        ctx.strokeStyle = line; ctx.fillStyle = muted; ctx.font = "8px monospace";
+        ctx.textAlign = "right";
+        [0, 4, 8, 12].forEach(v => { const y = Yf(v); ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(w - pad.r, y); ctx.stroke(); ctx.fillText(v, pad.l - 4, y + 3); });
+        ctx.fillStyle = ink; ctx.textAlign = "left";
+        ctx.fillText("i", 4, 12); ctx.textAlign = "right"; ctx.fillText("Y", w - 4, h - 5);
+        function lineFor(color, fn, label) {
+          ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath();
+          let started = false;
+          for (let yy = 0; yy <= xMax; yy += 0.5) {
+            const ii = fn(yy);
+            if (ii < 0 || ii > yMax) { started = false; continue; }
+            const x = X(yy), y = Yf(ii);
+            if (!started) { ctx.moveTo(x, y); started = true; } else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        }
+        lineFor(clay, yy => (A - (1 - c) * yy) / b, "IS");
+        lineFor(sky, yy => (k * yy - m) / hh, "LM");
+        if (Y >= 0 && Y <= xMax && i >= 0 && i <= yMax) {
+          const x = X(Y), y = Yf(i);
+          ctx.setLineDash([2, 2]); ctx.strokeStyle = muted;
+          ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, Yf(0)); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(pad.l, y); ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.fillStyle = ink; ctx.fillRect(x - 2, y - 2, 4, 4);
+          ctx.fillText(`Y* ${Y.toFixed(0)}`, Math.min(x + 4, w - 45), y - 5);
+        }
+      }
+      ["lbMpc", "lbTax"].forEach(id => $("#" + id, root).addEventListener("input", multiplier));
+      ["lbPi", "lbX", "lbR"].forEach(id => $("#" + id, root).addEventListener("input", taylorLab));
+      ["lbDebt", "lbRg", "lbPb"].forEach(id => $("#" + id, root).addEventListener("input", drawDebtLab));
+      ["lbG", "lbT", "lbM"].forEach(id => $("#" + id, root).addEventListener("input", drawISLM));
+      multiplier(); taylorLab();
+      requestAnimationFrame(() => { drawDebtLab(); drawISLM(); });
+    }
+  });
+}
+
+/* ============================================================
+   HELP / CONFIRM
+   ============================================================ */
+function openConfirm(title, text, yesLabel, cb) {
+  openModal({
+    kicker: "CONFIRM", title, body: `<p>${text}</p>`, closable: true,
+    footer: `<span class="spacer"></span><button class="btn ghost" data-close="1">取消</button><button class="btn danger" id="confirmYes">${yesLabel}</button>`,
+    onMount(root) { $("#confirmYes", root).addEventListener("click", () => { closeModal(true); cb(); }); }
+  });
+}
+function openHelp() {
+  const body = `<p class="lead">Meridia 是一个回合制的宏观策略沙盘。你扮演一个小型开放经济体的政策制定者，在每个季度设定财政与货币组合，然后观察模型如何回应。</p>
+    <div class="help-grid">
+      <div class="help-box">
+        <h4>循环</h4>
+        <ul>
+          <li>拖动三根滑块：政策利率 i、政府支出 G、税率 τ。</li>
+          <li>政策台与右栏会实时显示下一季预测、Taylor 参考值与目标完成度。</li>
+          <li>用政治资本执行制度行动（前瞻指引、QE、供给侧改革等）。</li>
+          <li>点击「推进一个季度」。随机事件会先要你做出选择。</li>
+          <li>任期结束后生成述职报告。可以继续执政或重开。</li>
+        </ul>
+      </div>
+      <div class="help-box">
+        <h4>读数</h4>
+        <ul>
+          <li><b>通胀 π</b>：同比。目标是 2%。预期 πe 决定通胀的惯性。</li>
+          <li><b>失业 u</b>：由产出缺口通过 Okun 关系推导，自然率会缓慢漂移。</li>
+          <li><b>产出缺口 x</b>：实际产出相对潜在产出的百分比。</li>
+          <li><b>债务</b>：政府债务 / GDP。利息与名义增长决定它的路径。</li>
+          <li><b>信誉</b>：越高，通胀预期越锚定在目标附近。预测会欺骗你，模型不会。</li>
+        </ul>
+      </div>
+      <div class="help-box">
+        <h4>快捷键</h4>
+        <div class="kbdrow"><span>推进一个季度</span><kbd>N</kbd></div>
+        <div class="kbdrow"><span>知识图鉴</span><kbd>K</kbd></div>
+        <div class="kbdrow"><span>学说年表</span><kbd>T</kbd></div>
+        <div class="kbdrow"><span>公式与实验室</span><kbd>F</kbd></div>
+        <div class="kbdrow"><span>帮助</span><kbd>?</kbd></div>
+        <div class="kbdrow"><span>关闭弹窗</span><kbd>Esc</kbd></div>
+      </div>
+      <div class="help-box">
+        <h4>事件与范式</h4>
+        <ul>
+          <li>事件通常有 2—3 个选项，没有“什么都不做”的按钮。读清效果再决定。</li>
+          <li>切换范式会改变财政乘数、货币传导、Phillips 斜率与预期锚定，并短期损失信誉。</li>
+          <li>评分只看经济结果，不看理论是否“正确”。不同范式的难度不同。</li>
+          <li>研习模式会解锁全部图鉴，不影响游戏进度。</li>
+        </ul>
+      </div>
+    </div>
+    <h3>模型的数学骨架</h3>
+    <div class="callout olive">
+      <span class="co-lab">简化到可以辩论</span>
+      <div class="mono" style="font-size:10px;line-height:1.9">
+        x′ = 0.72x + 0.30·财政脉冲·mult − 0.45·mon·(r−r*) + 0.12·汇率 + 扰动<br>
+        π′ = πe + 0.30·slope·x′ + 供给冲击<br>
+        πe′ = a·π* + (1−a)·π′，a = 可信度 × 锚定参数<br>
+        u′ = u* − 0.5x′；g = g* + 4Δx<br>
+        d′ = d + [(i−π−g)d/100 + 基本赤字]/4
+      </div>
+    </div>
+    <h3>来源与边界</h3>
+    <p>知识框架主要取自 N. Gregory Mankiw 的《宏观经济学》（IS–LM、Phillips 曲线、Solow、政策争论）、John Maynard Keynes 的《就业、利息和货币通论》（有效需求、乘数、不确定性），并扩展了 Friedman、Lucas、Kydland–Prescott、Taylor、Minsky、Wray/MMT、Summers 与 HANK 等线索。所有叙述都经过压缩，适合建立框架，不替代原典。</p>
+    <p class="fine">本作是独立的教学模拟，不代表任何机构、教材作者或政治立场。模型使用年度化的百分比与季度近似；参数是被刻意选择的，不是经验估计。不要用它预测现实。</p>
+    <div class="callout olive"><span class="co-lab">一条阅读路径</span>曼昆的教科书提供骨架：古典 → 凯恩斯 → IS–LM → 菲利普斯曲线 → 自然率 → 新凯恩斯 → 政策规则与争论。凯恩斯提供问题意识：《通论》关心的是当需求不足时，为什么市场不会自动恢复。沿着图鉴的主线读，再进入异端与危机文献，会比按年份死记更有效。</div>
+    <div class="callout"><span class="co-lab">存档</span>进度自动保存在浏览器的 localStorage。清除存档会删除当前任期、图鉴进度与偏好设置。若浏览器禁止本地文件写入存储，请通过本地服务器打开，或把页面保持在当前标签页内游玩。</div>`;
+  openModal({
+    kicker: "FIELD MANUAL · 操作手册",
+    title: "如何统治一个模型",
+    sub: "先读规则，再读理论；最后两者都忘掉，看数字。",
+    body, wide: true, closable: true,
+    footer: `<button class="btn ghost" id="helpStudy">研习模式：${App.studyMode ? "开" : "关"}</button><button class="btn danger" id="helpReset">清除存档</button><span class="spacer"></span><button class="btn primary" data-close="1">明白</button>`,
+    onMount(root) {
+      $("#helpStudy", root).addEventListener("click", (e) => {
+        App.studyMode = !App.studyMode; writePrefs();
+        e.currentTarget.textContent = `研习模式：${App.studyMode ? "开" : "关"}`;
+        toast(`<b>研习模式</b> · ${App.studyMode ? "已解锁全部图鉴" : "恢复进度解锁"}`, "good");
+      });
+      $("#helpReset", root).addEventListener("click", () => {
+        openConfirm("清除全部存档？", "这会删除当前任期、图鉴解锁进度与主题偏好。此操作不可撤销。", "确认清除", () => {
+          try { localStorage.removeItem(LS_SAVE); localStorage.removeItem(LS_PREFS); } catch (e) {}
+          location.reload();
+        });
+      });
+    }
+  });
+}
+
+/* ============================================================
+   WIRING
+   ============================================================ */
+function onPolicyInput() {
+  if (!App.st) return;
+  App.st.i = Number($("#rate").value);
+  App.st.g = Number($("#spend").value);
+  App.st.tau = Number($("#tax").value);
+  $("#rateOut").innerHTML = `${fmt(App.st.i, 2)}<span class="unit">%</span>`;
+  $("#spendOut").innerHTML = `${fmt(App.st.g, 1)}<span class="unit">% GDP</span>`;
+  $("#taxOut").innerHTML = `${fmt(App.st.tau, 1)}<span class="unit">%</span>`;
+  $("#rate").setAttribute("aria-valuetext", `${App.st.i.toFixed(2)}%`);
+  $("#spend").setAttribute("aria-valuetext", `${App.st.g.toFixed(1)}% GDP`);
+  $("#tax").setAttribute("aria-valuetext", `${App.st.tau.toFixed(1)}%`);
+  renderRuleHint();
+  renderKPIs();
+  renderForecast();
+  renderGauges();
+  renderCityTexts();
+}
+function onPolicyCommit() {
+  if (!App.st) return;
+  saveGame();
+}
+function toggleTheme() {
+  const root = document.documentElement;
+  root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+  App.cityPal = cityPalette();
+  writePrefs();
+  drawCity();
+  setTimeout(() => { drawChart(); }, 40);
+}
+function debounce(fn, ms) {
+  let t;
+  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+}
+function trapFocus(e) {
+  const root = $(".overlay");
+  if (!root) return;
+  const nodes = $$("button:not([disabled]), [href], input:not([disabled]), select, textarea, [tabindex]:not([tabindex='-1'])", root)
+    .filter(el => el.offsetParent !== null);
+  if (!nodes.length) return;
+  const first = nodes[0], last = nodes[nodes.length - 1];
+  if (!root.contains(document.activeElement)) { first.focus(); e.preventDefault(); return; }
+  if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+  else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+}
+function onKey(e) {
+  if (App.modalOpen) {
+    if (e.key === "Escape" && App.modalClosable) { e.preventDefault(); closeModal(); return; }
+    if (e.key === "Tab") trapFocus(e);
+    return;
+  }
+  if (e.target && e.target.matches && e.target.matches("input, textarea, select, [contenteditable]")) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const k = e.key;
+  if (k === "n" || k === "N") { e.preventDefault(); advance(); }
+  else if (k === "k" || k === "K") { e.preventDefault(); openCodex(); }
+  else if (k === "t" || k === "T") { e.preventDefault(); openTimeline(); }
+  else if (k === "f" || k === "F") { e.preventDefault(); openFormulas(); }
+  else if (k === "?") { e.preventDefault(); openHelp(); }
+}
+function bindEvents() {
+  $("#rate").addEventListener("input", onPolicyInput);
+  $("#spend").addEventListener("input", onPolicyInput);
+  $("#tax").addEventListener("input", onPolicyInput);
+  ["#rate", "#spend", "#tax"].forEach(id => $(id).addEventListener("change", onPolicyCommit));
+  $("#advanceBtn").addEventListener("click", advance);
+  $("#actionList").addEventListener("click", e => {
+    const b = e.target.closest("[data-act]");
+    if (b && !b.disabled) doAction(b.dataset.act);
+  });
+  $$("[data-modal]").forEach(b => b.addEventListener("click", () => {
+    const which = b.dataset.modal;
+    if (which === "codex") openCodex();
+    else if (which === "timeline") openTimeline();
+    else if (which === "formulas") openFormulas();
+    else if (which === "help") openHelp();
+  }));
+  $("#newGameBtn").addEventListener("click", openScenarioPicker);
+  $("#themeBtn").addEventListener("click", toggleTheme);
+  $("#tickerPause").addEventListener("click", () => {
+    App.tickerPaused = !App.tickerPaused;
+    writePrefs();
+    renderTicker();
+  });
+  $("#councilBtn").addEventListener("click", openCouncil);
+  $("#paradigmBox").addEventListener("click", e => {
+    const b = e.target.closest("[data-codex]");
+    if (b) { openCodex(b.dataset.codex); return; }
+    if (e.target.closest("#paradigmSwitchInline")) openCouncil();
+  });
+  $(".tabs").addEventListener("click", e => {
+    const b = e.target.closest("[data-chart]");
+    if (!b) return;
+    App.chartTab = b.dataset.chart;
+    $$(".tab").forEach(t => t.setAttribute("aria-selected", t === b ? "true" : "false"));
+    drawChart();
+  });
+  $(".tabs").addEventListener("keydown", e => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    const tabs = $$(".tab");
+    const idx = tabs.indexOf(document.activeElement);
+    if (idx < 0) return;
+    e.preventDefault();
+    const next = tabs[(idx + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length];
+    next.focus();
+    next.click();
+  });
+  document.addEventListener("keydown", onKey);
+  window.addEventListener("resize", debounce(() => { drawChart(); }, 160));
+}
+function boot() {
+  readPrefs();
+  App.cityPal = cityPalette();
+  bindEvents();
+  const loaded = loadGame();
+  if (!loaded) {
+    App.st = Sim.init("golden", "keynesian", 20261022);
+    App.sc = getScenario("golden");
+    App.p = getParadigm("keynesian");
+    App.started = false;
+    App.st.log = [];
+    App.st.unlocked = Array.from(new Set([...(App.sc.unlocked || []), "classical", "keynes", "phillips", "taylor", "solow"]));
+    renderAll();
+    setTimeout(openScenarioPicker, 350);
+  } else {
+    renderAll();
+    setTimeout(() => toast(`<b>存档已恢复</b> · ${qLabel(0)}`, "good"), 300);
+  }
+  $$(".tab").forEach(t => t.setAttribute("aria-selected", t.dataset.chart === App.chartTab ? "true" : "false"));
+  requestAnimationFrame(cityLoop);
+}
+boot();
+</script>
+</body>
+</html>
