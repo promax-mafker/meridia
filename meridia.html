@@ -234,6 +234,51 @@ input[type=range]::-moz-range-thumb{
 }
 input[type=range]:disabled{opacity:.45}
 .ticks{display:flex;justify-content:space-between;font:8.5px var(--mono);color:var(--muted);letter-spacing:.06em;margin-top:1px}
+.tools-head{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--line);margin:4px 0 11px;padding-top:9px;font:8.5px/1.3 var(--mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.tools-head span:last-child{font-size:7.5px;letter-spacing:.08em;color:var(--clay-deep)}
+.transmission-card{padding-bottom:10px}
+.tx-flow{display:grid;grid-template-columns:1.18fr 14px 1fr 14px 1.12fr;gap:4px;align-items:stretch;overflow:hidden}
+.tx-node{border:1px solid var(--line);background:var(--panel-2);padding:6px 7px;min-width:0;overflow:hidden}
+.tx-node .tx-lab{font:8px/1.3 var(--mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:5px}
+.tx-node .tx-big{font:500 17px/1.1 var(--mono);color:var(--ink);letter-spacing:-.03em}
+.tx-node .tx-small{font:8px/1.4 var(--mono);color:var(--muted);margin-top:3px;overflow-wrap:anywhere}
+.tx-pairs{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}
+.tx-pair{display:flex;justify-content:space-between;gap:4px;font:8.6px/1.5 var(--mono);border-bottom:1px dotted var(--line);padding:1px 0;min-width:0}
+.tx-pair span{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tx-pair b{font-weight:600;color:var(--ink);white-space:nowrap}
+.tx-node .tx-row{display:flex;justify-content:space-between;gap:6px;font:8.5px/1.5 var(--mono);border-bottom:1px dotted var(--line);padding:2px 0}
+.tx-node .tx-row span{color:var(--muted)} .tx-node .tx-row b{font-weight:600;color:var(--ink)}
+.tx-arrow{display:flex;align-items:center;justify-content:center;color:var(--clay-deep);font:12px/1 var(--mono)}
+.tx-parts{margin-top:8px;display:flex;flex-direction:column;gap:3px}
+.tx-part{display:grid;grid-template-columns:64px 1fr 42px;gap:6px;align-items:center;font:8.5px/1.4 var(--mono);color:var(--muted)}
+.tx-part .tx-bar{height:5px;background:var(--line);position:relative;overflow:hidden}
+.tx-part .tx-bar i{position:absolute;top:0;bottom:0;display:block}
+.tx-part b{text-align:right;font-weight:600;color:var(--ink)}
+.tx-part.pos .tx-bar i{background:var(--good)} .tx-part.neg .tx-bar i{background:var(--clay)}
+.tx-links{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.tx-links button{font:8px/1.3 var(--mono);border:1px solid var(--line);background:transparent;color:var(--muted);padding:3px 5px;cursor:pointer}
+.tx-links button:hover{color:var(--clay-deep);border-color:var(--clay-deep)}
+.tx-note{font:9px/1.5 var(--sans);color:var(--ink-soft);margin:7px 0 0;border-left:2px solid var(--clay);padding-left:7px}
+@media(max-width:900px){.tx-flow{grid-template-columns:1fr 10px 1fr 10px 1fr}.tx-node{padding:5px}.tx-node .tx-big{font-size:14px}.tx-pairs{grid-template-columns:1fr}}
+@media(max-width:700px){.tx-flow{display:block}.tx-arrow{display:none}.tx-node{margin-bottom:4px}.tx-parts{margin-top:6px}}
+.micro-card{padding-bottom:9px}
+.micro-latest{cursor:pointer;border:1px solid var(--line);background:var(--panel-2);padding:8px 9px;text-align:left;width:100%}
+.micro-latest:hover{border-color:var(--clay-deep);background:var(--clay-wash)}
+.micro-latest .mh{display:flex;justify-content:space-between;gap:6px;font:8px/1.3 var(--mono);letter-spacing:.1em;color:var(--clay-deep);text-transform:uppercase}
+.micro-latest .mt{font:600 11px/1.4 var(--sans);margin:4px 0 2px;color:var(--ink)}
+.micro-latest .ms{font:9px/1.5 var(--sans);color:var(--muted)}
+.micro-empty{font:9.5px/1.55 var(--sans);color:var(--muted);margin:0}
+.micro-prompt{margin-top:5px;font:8px/1.4 var(--mono);color:var(--clay-deep)}
+.micro-head{display:flex;gap:10px;align-items:flex-start;margin:0 0 10px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.micro-monogram{width:48px;height:56px;flex:none;background:var(--manilla);border:1px solid var(--ink);display:grid;place-items:center;font:36px/1 var(--serif);color:var(--clay-deep);box-shadow:2px 2px 0 var(--shade)}
+.micro-head .mh{font:8px/1.3 var(--mono);letter-spacing:.12em;color:var(--clay-deep);text-transform:uppercase}
+.micro-head h3{font:500 21px/1.25 var(--serif);margin:2px 0}
+.micro-head .who{font:9px/1.5 var(--mono);color:var(--muted)}
+.micro-prose p{font:11.5px/1.85 var(--serif);color:var(--ink-soft);margin:0 0 8px}
+.micro-prose p:first-child::first-letter{float:left;font:44px/1 var(--serif);padding:2px 5px 0 0;color:var(--clay-deep)}
+.micro-macro{margin:10px 0;border-left:2px solid var(--clay);background:rgba(169,79,52,.05);padding:6px 8px;font:9.5px/1.5 var(--sans);color:var(--ink-soft)}
+.micro-macro b{color:var(--clay-deep)}
+.micro-note{font:8.5px/1.5 var(--mono);color:var(--muted);margin-top:8px}
 .rule-hint{
   background:var(--manilla);border:1px dashed var(--gold);padding:8px 9px;
   font:10.5px/1.5 var(--mono);color:var(--ink-soft);margin:2px 0 10px;
@@ -301,6 +346,18 @@ input[type=range]:disabled{opacity:.45}
 .kpi.good .k-val{color:var(--good)}
 .kpi.target-hit{background:linear-gradient(180deg,var(--good-wash),var(--panel) 65%)}
 .kpi .k-tag{font:8px/1 var(--mono);border:1px solid var(--line);padding:1px 3px;color:var(--muted)}
+.kpi .k-tools{display:flex;align-items:center;gap:3px}
+.kpi .k-info{width:15px;height:15px;border:1px solid var(--line);background:transparent;color:var(--muted);font:8px/1 var(--mono);display:grid;place-items:center;cursor:pointer;padding:0}
+.kpi .k-info:hover{color:var(--clay-deep);border-color:var(--clay-deep)}
+.indicator-hd{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:9px}
+.indicator-hd .iv{font:500 25px/1 var(--mono);color:var(--clay-deep)}
+.indicator-hd .iu{font:9px/1.4 var(--mono);color:var(--muted)}
+.indicator-block{margin:0 0 9px}
+.indicator-block h4{font:600 9px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--clay-deep);margin:0 0 3px}
+.indicator-block p{font:10.5px/1.65 var(--sans);color:var(--ink-soft);margin:0}
+.indicator-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:7px 0}
+.indicator-grid .kv{padding:6px 7px}
+@media(max-width:560px){.indicator-grid{grid-template-columns:1fr}}
 @media(max-width:1180px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
@@ -719,7 +776,7 @@ input[type=range]:disabled{opacity:.45}
   box-shadow:0 26px 65px rgba(0,0,0,.55),0 4px 0 #BFA477,0 8px 0 #9E8560;
   transform-style:preserve-3d;
 }
-.book-kind-schools .book{height:min(68vh,640px)}
+.book-kind-schools .book{height:min(60vh,560px)}
 .book::after{
   content:"";position:absolute;left:8px;right:8px;bottom:-7px;height:6px;
   background:repeating-linear-gradient(90deg,#E8D8B8 0 9px,#C9B48E 9px 11px);
@@ -849,6 +906,105 @@ input[type=range]:disabled{opacity:.45}
 .toc-legend span{font:7.5px/1.4 var(--mono);border:1px solid var(--b-line);padding:2px 4px;color:var(--b-muted)}
 
 /* --- chapter cover --- */
+.hb-prose p{font:9.8px/1.72 var(--sans);color:var(--b-soft);margin:0 0 6px}
+.hb-scene{border:1px solid var(--b-line);background:rgba(169,79,52,.045);padding:6px 8px;margin:7px 0}
+.hb-scene span{display:block;font:6.8px/1.2 var(--mono);letter-spacing:.12em;color:var(--b-clay);text-transform:uppercase;margin-bottom:2px}
+.hb-scene p{font:italic 9.3px/1.6 var(--serif);margin:0;color:var(--b-ink)}
+.hb-note{font:8.4px/1.55 var(--sans);color:var(--b-muted);border-top:1px dotted var(--b-line);margin:8px 0 0;padding-top:5px}
+.hb-pull{border-left:2px solid var(--b-clay);padding:5px 8px;margin:8px 0;font:10px/1.6 var(--sans);color:var(--b-ink);background:rgba(169,79,52,.05)}
+.hb-two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hb-list{margin:0;padding-left:14px}.hb-list li{font:9.3px/1.55 var(--sans);margin:2px 0}
+.hb-question{border:1px solid var(--b-line);background:rgba(62,99,130,.05);padding:7px 8px;margin:0 0 8px}
+.hb-question span{display:block;font:7px/1.2 var(--mono);letter-spacing:.13em;color:var(--b-clay);text-transform:uppercase;margin-bottom:2px}
+.hb-question p{font:italic 11px/1.55 var(--serif);margin:0;color:var(--b-ink)}
+.hb-claim{display:grid;grid-template-columns:15px 1fr;gap:5px;border-top:1px dotted var(--b-line);padding:3px 0}
+.hb-claim>span{font:7.5px/1.4 var(--mono);color:var(--b-clay)}.hb-claim b{display:block;font:600 9.6px/1.4 var(--sans)}.hb-claim p{font:8.8px/1.5 var(--sans);margin:1px 0 0}
+.hb-timeline{margin-top:8px;border-top:1px solid var(--b-line)}
+.hb-timeline>div{display:grid;grid-template-columns:52px 1fr;gap:6px;padding:3px 0;border-bottom:1px dotted var(--b-line)}
+.hb-timeline span{font:7.5px/1.4 var(--mono);color:var(--b-clay)}.hb-timeline p{font:8.6px/1.45 var(--sans);margin:0;color:var(--b-soft)}
+.hb-concepts{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.hb-concept{border:1px solid var(--b-line);background:rgba(255,255,255,.25);padding:6px 7px}
+.hb-concept>span{font:7px/1 var(--mono);color:var(--b-clay)}.hb-concept b{display:block;font:600 9.5px/1.35 var(--sans);margin:2px 0}.hb-concept p{font:8.5px/1.5 var(--sans);margin:0;color:var(--b-soft)}
+.hb-terms{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:8px}
+.hb-terms>span{font:7px/1.2 var(--mono);letter-spacing:.1em;color:var(--b-muted);text-transform:uppercase;margin-right:2px}
+.hb-terms b{font:8px/1.3 var(--mono);border:1px solid var(--b-line);padding:2px 4px;color:var(--b-ink);font-weight:500}
+.hb-terms.small b{font-size:7.5px}
+.hb-mechanism{list-style:none;margin:0;padding:0!important}
+.hb-mechanism li{display:grid;grid-template-columns:20px 1fr;gap:6px;border-top:1px dotted var(--b-line);padding:4px 0}
+.hb-mechanism li>span{font:7px/1.4 var(--mono);color:var(--b-clay)}.hb-mechanism b{font:600 9.4px/1.5 var(--sans)}.hb-mechanism em{display:block;font:7.4px/1.3 var(--mono);font-style:normal;color:var(--b-muted);margin-top:1px}
+.hb-model{display:flex;flex-direction:column;gap:5px}
+.hb-eq-name{font:7px/1.2 var(--mono);letter-spacing:.12em;color:var(--b-clay);text-transform:uppercase}
+.hb-eq .eq-block{margin:2px 0 0}
+.hb-debates{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px}
+.hb-debates>div{border:1px solid var(--b-line);padding:6px 7px;background:rgba(255,255,255,.22)}
+.hb-debates span{font:6.8px/1.2 var(--mono);letter-spacing:.1em;color:var(--b-clay)}.hb-debates b{display:block;font:600 9.2px/1.35 var(--sans);margin:2px 0}.hb-debates p{font:8.3px/1.5 var(--sans);margin:0;color:var(--b-soft)}
+.hb-evidence{margin-top:4px}
+.hb-evidence>div{display:grid;grid-template-columns:43px 1fr;gap:6px;border-top:1px dotted var(--b-line);padding:4px 0}
+.hb-evidence span{font:7px/1.3 var(--mono);color:var(--b-clay)}.hb-evidence b{font:600 9.2px/1.4 var(--sans)}.hb-evidence p{font:8.5px/1.5 var(--sans);margin:1px 0 0;color:var(--b-soft)}
+.hb-questions{margin:4px 0 7px;padding-left:15px}.hb-questions li{font:9px/1.55 var(--sans);margin:2px 0}.hb-questions.small li{font-size:8.4px}
+.hb-reading{border-top:1px solid var(--b-line);padding-top:5px;margin-top:6px}.hb-reading>b{font:7px/1.2 var(--mono);letter-spacing:.12em;color:var(--b-clay);text-transform:uppercase}.hb-reading p{font:8.4px/1.5 var(--sans);margin:3px 0;color:var(--b-soft)}.hb-reading p b{font-size:8.4px}
+.hb-front-links{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-top:7px;padding-top:6px;border-top:1px solid var(--b-line)}
+.hb-front-links>span{font:7px/1.2 var(--mono);letter-spacing:.1em;color:var(--b-muted)}.hb-front-links button{border:0;background:transparent;font:7.5px/1.3 var(--mono);color:var(--b-clay);padding:1px 2px;cursor:pointer}.hb-front-links button:hover{text-decoration:underline}
+.hb-title-page{height:100%;display:flex;flex-direction:column;justify-content:center;padding:2px 10px 10px}
+.hb-title-page .eyebrow{font:8px/1.2 var(--mono);letter-spacing:.18em;color:var(--b-clay);text-transform:uppercase}
+.hb-title-page h1{font:400 64px/1 var(--serif);letter-spacing:-.04em;margin:12px 0 4px;color:var(--b-ink)}
+.hb-title-sub{font:400 17px/1.5 var(--serif);color:var(--b-ink);margin:0 0 7px}.hb-title-sub span{font:9px/1.5 var(--mono);color:var(--b-muted);letter-spacing:.03em}
+.hb-title-rule{height:1px;background:var(--b-ink);width:80px;margin:9px 0 12px}
+.hb-title-page .lede{font:11px/1.75 var(--serif);max-width:90%}
+.hb-title-meta{display:flex;gap:8px;flex-wrap:wrap;font:7.5px/1.3 var(--mono);color:var(--b-muted);letter-spacing:.08em;border-top:1px solid var(--b-line);padding-top:7px;margin-top:10px}
+.hb-title-page blockquote{font:italic 12px/1.5 var(--serif);border-left:2px solid var(--b-clay);padding:2px 0 2px 8px;margin:18px 0 0;color:var(--b-ink)}.hb-title-page blockquote cite{display:block;font:7px/1.3 var(--mono);font-style:normal;color:var(--b-muted);margin-top:3px}
+.hb-steps{display:flex;flex-direction:column;gap:5px;margin:7px 0}
+.hb-steps>div{display:grid;grid-template-columns:20px 1fr;gap:6px;border-top:1px dotted var(--b-line);padding-top:4px}.hb-steps>div>span{font:8px/1.4 var(--mono);color:var(--b-clay)}.hb-steps b{grid-column:2;font:600 10px/1.4 var(--sans)}.hb-steps p{grid-column:2;font:9px/1.6 var(--sans);margin:2px 0 0}
+.hb-two-note{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}.hb-two-note>div{border:1px solid var(--b-line);padding:6px 7px}.hb-two-note b{font:7px/1.2 var(--mono);letter-spacing:.1em;color:var(--b-clay);text-transform:uppercase}.hb-two-note p{font:8.4px/1.5 var(--sans);margin:2px 0 0}
+.hb-ind-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hb-indicator{border:1px solid var(--b-line);padding:7px;background:rgba(255,255,255,.22);min-width:0}
+.hb-ind-head{display:flex;gap:6px;align-items:flex-start;border-bottom:1px solid var(--b-line);padding-bottom:4px;margin-bottom:4px}.hb-glyph{font:400 29px/1 var(--serif);color:var(--b-clay);min-width:30px}.hb-ind-head h3{font:500 13px/1.3 var(--serif);margin:0}.hb-en{font:6.8px/1.3 var(--mono);color:var(--b-muted);letter-spacing:.05em;margin-top:1px}
+.hb-ind-block{margin:0 0 4px}.hb-ind-block>b{font:7px/1.2 var(--mono);letter-spacing:.1em;color:var(--b-clay);text-transform:uppercase}.hb-ind-block p{font:8.2px/1.5 var(--sans);margin:1px 0 0;color:var(--b-soft)}
+.hb-ind-meta{display:flex;flex-direction:column;gap:1px;border-top:1px dotted var(--b-line);padding-top:3px;font:7px/1.35 var(--mono);color:var(--b-muted)}
+.hb-lineage{border-top:1px solid var(--b-line);border-bottom:1px solid var(--b-line);padding:8px 0;margin:6px 0}
+.hb-lineage-row{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin:0 0 6px}.hb-lineage-lab{font:7px/1.2 var(--mono);letter-spacing:.1em;color:var(--b-muted);width:32px}.lineage-node{border:1px solid var(--accent);background:rgba(255,255,255,.3);color:var(--b-ink);font:7.5px/1.3 var(--mono);padding:3px 5px;cursor:pointer}.lineage-node:hover{background:var(--accent);color:#fff}.lineage-arrow{font:9px/1 var(--mono);color:var(--b-muted)}
+.hb-map-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:7px}.hb-map-grid>div{border-top:1px solid var(--b-line);padding-top:4px}.hb-map-grid b{font:7px/1.2 var(--mono);letter-spacing:.1em;color:var(--b-clay);text-transform:uppercase}.hb-map-grid p{font:8.2px/1.5 var(--sans);margin:2px 0 0}
+.hb-tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}.hb-tool-grid>div{border:1px solid var(--b-line);padding:6px 7px}.hb-tool-grid b{font:600 9.2px/1.3 var(--sans)}.hb-tool-grid p{font:8.3px/1.5 var(--sans);margin:2px 0 0}
+.hb-glossary{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;margin-top:5px}.hb-glossary>div{border-top:1px dotted var(--b-line);padding-top:3px}.hb-glossary b{font:600 8.8px/1.3 var(--sans)}.hb-glossary p{font:8px/1.45 var(--sans);margin:1px 0 0}
+.hb-seminar{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:6px 0 8px}.hb-seminar>div{border:1px solid var(--b-line);padding:5px 6px}.hb-seminar b{font:7px/1.2 var(--mono);letter-spacing:.1em;color:var(--b-clay);text-transform:uppercase}.hb-seminar p{font:8px/1.5 var(--sans);margin:2px 0 0}
+.chapter-toc.two-col{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+.chapter-toc.two-col .ct-lab{grid-column:1/-1}.chapter-toc.two-col button{min-width:0}
+@media(max-width:1100px){.hb-ind-grid{grid-template-columns:1fr}.hb-map-grid{grid-template-columns:1fr 1fr}.hb-seminar{grid-template-columns:1fr}.hb-debates{grid-template-columns:1fr}}
+@media(max-width:760px){.hb-two-col,.hb-concepts,.hb-tool-grid,.hb-glossary,.hb-ind-grid{grid-template-columns:1fr}.hb-title-page h1{font-size:48px}.hb-map-grid,.hb-two-note{grid-template-columns:1fr}}
+.fb-cover-glyph{font:400 64px/1 var(--serif);color:var(--accent,var(--b-clay));margin:4px 0 2px;letter-spacing:-.04em}
+.fb-cover .formula-hero{font-size:15px;margin:7px 0 8px}
+.fb-steps{display:flex;flex-direction:column;gap:5px}
+.fb-step{display:grid;grid-template-columns:48px 1fr;gap:6px;border-top:1px solid var(--b-line);padding:5px 0}
+.fb-step-no{font:6.8px/1.3 var(--mono);letter-spacing:.08em;color:var(--b-clay)}
+.fb-step-main>b{font:600 9.4px/1.45 var(--sans);display:block}
+.fb-step-eq{font:9px/1.55 var(--mono);background:rgba(62,99,130,.055);border-left:2px solid var(--b-sky);padding:3px 5px;margin:3px 0;color:var(--b-ink);overflow-wrap:anywhere}
+.fb-step-why{font:8.5px/1.55 var(--sans);color:var(--b-soft)}
+.fb-step-why span{font:6.8px/1.2 var(--mono);letter-spacing:.1em;color:var(--b-clay);text-transform:uppercase;margin-right:4px}
+.fb-final .formula-hero{margin-top:3px}
+.fb-comparative{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:5px 0}
+.fb-comparative>div{border:1px solid var(--b-line);padding:4px 5px;background:rgba(255,255,255,.22)}
+.fb-comparative b{display:block;font:600 8.2px/1.35 var(--sans);color:var(--b-ink)}
+.fb-comparative span{display:block;font:7.6px/1.4 var(--mono);color:var(--b-clay);margin:1px 0}
+.fb-comparative p{font:7.8px/1.45 var(--sans);margin:0;color:var(--b-muted)}
+.fb-map{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:6px 0}
+.fb-map button{text-align:left;border:1px solid var(--b-line);background:rgba(255,255,255,.25);padding:5px 6px;cursor:pointer}
+.fb-map button:hover{border-color:var(--b-clay)}.fb-map b{display:block;font:600 9px/1.3 var(--sans);color:var(--b-ink)}.fb-map span{display:block;font:7.6px/1.4 var(--mono);color:var(--b-muted);margin-top:1px}
+.fb-evidence{font:8.6px/1.6 var(--sans);color:var(--b-soft);margin:0}
+.formula-lab{border:1px solid var(--b-line);background:rgba(255,255,255,.24);padding:7px;margin:4px 0 7px}
+.fl-controls{display:flex;flex-direction:column;gap:3px;margin-bottom:5px}
+.fl-ctl{display:grid;grid-template-columns:112px 1fr 48px;gap:5px;align-items:center;font:7.8px/1.3 var(--mono);color:var(--b-muted)}
+.fl-ctl span{font-size:7.6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fl-ctl input[type=range]{height:16px}
+.fl-ctl input[type=range]::-webkit-slider-runnable-track{height:4px;border:1px solid var(--b-line);background:var(--b-paper)}
+.fl-ctl input[type=range]::-webkit-slider-thumb{width:9px;height:12px;margin-top:-4.5px;background:var(--b-clay);border:1px solid var(--b-ink);box-shadow:none}
+.fl-ctl input[type=range]::-moz-range-track{height:4px;border:1px solid var(--b-line);background:var(--b-paper)}
+.fl-ctl input[type=range]::-moz-range-thumb{width:9px;height:12px;background:var(--b-clay);border:1px solid var(--b-ink);box-shadow:none}
+.fl-ctl output{font:7.6px/1.3 var(--mono);color:var(--b-clay);text-align:right;white-space:nowrap}
+.fl-chart{line-height:0;border:1px solid var(--b-line);background:var(--b-paper)}
+.fl-chart canvas{width:100%;height:190px;display:block}
+.fl-readout{font:8.2px/1.5 var(--mono);color:var(--b-ink);border-top:1px dotted var(--b-line);margin-top:5px;padding-top:4px;min-height:2.6em}
+.fl-readout b{color:var(--b-clay);font-weight:600}
+@media(max-width:760px){.fl-ctl{grid-template-columns:96px 1fr 42px}.fb-comparative,.fb-map{grid-template-columns:1fr}}
 .chapter-cover{height:100%;display:flex;flex-direction:column;min-height:0}
 .chapter-cover .chapter-kicker{font:8px/1.2 var(--mono);letter-spacing:.17em;color:var(--accent,var(--b-clay));text-transform:uppercase}
 .chapter-cover .chapter-art{height:122px;display:flex;align-items:center;justify-content:flex-start;margin:5px 0 1px;color:var(--accent,var(--b-clay))}
@@ -1002,7 +1158,7 @@ input[type=range]:disabled{opacity:.45}
   .book-btn{font-size:8px;padding:7px 7px;min-height:29px}
   .book-stage{padding:0}
   .book{display:block;height:min(72vh,700px);min-height:420px}
-  .book-kind-schools .book{height:min(70vh,620px)}
+  .book-kind-schools .book{height:min(66vh,580px)}
   .book-page.right{display:none}
   .book-page.left{width:100%;height:100%}
   .book-spine{display:none}
@@ -1148,6 +1304,38 @@ input[type=range]:disabled{opacity:.45}
         <span class="sr-only" id="taxHelp">宏观税率，取值 5 到 55 个百分点。</span>
       </div>
 
+      <div class="tools-head"><span>需求、金融与外部工具</span><span>MORE INSTRUMENTS</span></div>
+
+      <div class="control">
+        <div class="control-top">
+          <label for="transfers">家庭转移支付 <em>tr</em></label>
+          <output id="transfersOut" for="transfers">8.0<span class="unit">% GDP</span></output>
+        </div>
+        <input type="range" id="transfers" min="0" max="20" step="0.5" value="8" aria-describedby="transfersHelp">
+        <div class="ticks"><span>0</span><span>8 · 基线</span><span>20</span></div>
+        <span class="sr-only" id="transfersHelp">对家庭的无偿转移支付，占潜在 GDP 的百分比。它直接增加可支配收入，也计入财政赤字。</span>
+      </div>
+
+      <div class="control">
+        <div class="control-top">
+          <label for="ltv">宏观审慎 LTV <em>λ</em></label>
+          <output id="ltvOut" for="ltv">80<span class="unit">%</span></output>
+        </div>
+        <input type="range" id="ltv" min="50" max="100" step="1" value="80" aria-describedby="ltvHelp">
+        <div class="ticks"><span>50 · 紧</span><span>80</span><span>100 · 松</span></div>
+        <span class="sr-only" id="ltvHelp">按揭贷款价值比上限。提高上限会短期刺激信贷与需求，但会累积金融脆弱性。</span>
+      </div>
+
+      <div class="control">
+        <div class="control-top">
+          <label for="fxop">外汇干预 <em>fx</em></label>
+          <output id="fxopOut" for="fxop">0.0<span class="unit">% GDP</span></output>
+        </div>
+        <input type="range" id="fxop" min="-5" max="5" step="0.5" value="0" aria-describedby="fxopHelp">
+        <div class="ticks"><span>−5 · 卖出外汇</span><span>0</span><span>+5 · 买入</span></div>
+        <span class="sr-only" id="fxopHelp">央行净买入外汇占 GDP 的百分比。买入会压低本币、推高进口价格并积累储备；卖出相反。</span>
+      </div>
+
       <div class="rule-hint" id="ruleHint">泰勒规则建议：—</div>
       <button class="btn primary advance" id="advanceBtn"><span id="advanceLabel">推进一个季度</span><span class="arr" aria-hidden="true">▸</span><kbd>N</kbd></button>
 
@@ -1182,6 +1370,15 @@ input[type=range]:disabled{opacity:.45}
     </section>
 
     <div class="kpis" id="kpis" aria-label="核心指标"></div>
+
+    <section class="card transmission-card">
+      <div class="card-head">
+        <h2><span class="sq clay"></span>政策传导链</h2>
+        <span class="tag">Transmission</span>
+      </div>
+      <p class="lede">从左到右读：每个工具先改变一个中间变量，再改变产出、就业、通胀与债务。数字是下一季的无扰动预测。</p>
+      <div id="transmissionBox"></div>
+    </section>
 
     <section class="card chart-card">
       <div class="chart-top">
@@ -1248,6 +1445,14 @@ input[type=range]:disabled{opacity:.45}
       <div id="gaugeBox"></div>
       <div class="memo" id="adviserMemo"></div>
     </section>
+
+    <section class="card micro-card">
+      <div class="card-head">
+        <h2><span class="sq fig"></span>家庭侧写</h2>
+        <span class="tag">Household</span>
+      </div>
+      <div id="microBox"></div>
+    </section>
   </aside>
 
   <div class="colophon">
@@ -1279,6 +1484,8 @@ input[type=range]:disabled{opacity:.45}
    ============================================================ */
 /* ==== SIM-CORE-START ==== */
 const PI_TARGET = 2.0;
+const DEFAULT_TR = 8;      // household transfers, % of potential GDP
+const DEFAULT_LTV = 80;    // macroprudential loan-to-value ceiling, %
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
 const fmt = (n, d = 1, sign = false) => {
   if (n === null || n === undefined || !isFinite(n)) return "—";
@@ -1849,13 +2056,14 @@ const Sim = (() => {
       rng: (seed || 20261022) >>> 0,
       t: 0,
       x: s0.x, pi: s0.pi, pie: s0.pie, u: s0.u, uStar: s0.uStar,
-      i: s0.i, g: s0.g, tau: s0.tau, debt: s0.debt, iAvg: s0.i,
+      i: s0.i, g: s0.g, tau: s0.tau, tr: s0.tr ?? DEFAULT_TR, ltv: s0.ltv ?? DEFAULT_LTV, fxOp: 0,
+      debt: s0.debt, iAvg: s0.i,
       cred: s0.cred, stress: s0.stress, fx: s0.fx || 0,
       potBonus: 0, anchorBonus: s0.anchorBonus || 0,
       growth: s0.potGrowth, pc: 2, cooldowns: {}, used: {},
       mods: [], flags: {}, fired: {}, forcedEvent: null,
-      lossSum: 0, lossN: 0, hits: 0, hitLog: [],
-      series: { pi: [s0.pi], pie: [s0.pie], u: [s0.u], x: [s0.x], debt: [s0.debt], i: [s0.i], growth: [s0.potGrowth], g: [s0.g], tau: [s0.tau] },
+      lossSum: 0, lossN: 0, hits: 0, hitLog: [], microLog: [],
+      series: { pi: [s0.pi], pie: [s0.pie], u: [s0.u], x: [s0.x], debt: [s0.debt], i: [s0.i], growth: [s0.potGrowth], g: [s0.g], tau: [s0.tau], tr: [s0.tr ?? DEFAULT_TR], ltv: [s0.ltv ?? DEFAULT_LTV], fxOp: [0] },
       log: [], unlocked: (sc.unlocked || []).slice(),
       finished: false, last: null, hystCount: 0
     };
@@ -1875,35 +2083,47 @@ const Sim = (() => {
     const m = modsTotal(st);
     const rStar = sc.start.rStar;
     const realRate = st.i - st.pie;
-    const fiscal = (st.g - sc.start.g) - 0.5 * (st.tau - sc.start.tau);
+    const tr0 = sc.start.tr ?? DEFAULT_TR;
+    const ltv0 = sc.start.ltv ?? DEFAULT_LTV;
+    const fiscal = (st.g - sc.start.g) - 0.5 * (st.tau - sc.start.tau) + 0.55 * (st.tr - tr0);
+    const credit = 0.05 * (st.ltv - ltv0);
     const taylor = rStar + st.pi + 0.5 * (st.pi - sc.target) + 0.5 * st.x;
     const a = clamp(st.cred * (p.anchor + st.anchorBonus), 0.05, 0.92);
-    return { m, rStar, realRate, fiscal, taylor, a };
+    return { m, rStar, realRate, fiscal, credit, tr0, ltv0, taylor, a };
   }
 
   function project(st, p, sc, withNoise) {
-    const { m, rStar, realRate, fiscal, a } = mechanics(st, p, sc);
+    const { m, rStar, realRate, fiscal, credit, a } = mechanics(st, p, sc);
     const n = amp => withNoise ? noise(st, amp) : 0;
-    const x1 = clamp(
-      0.72 * st.x + 0.30 * fiscal * p.fiscal - 0.45 * p.mon * (realRate - rStar)
-      + 0.12 * st.fx + m.demand + n(0.32),
-      -12, 8);
+    const xParts = {
+      inertia: 0.72 * st.x,
+      fiscal: 0.30 * fiscal * p.fiscal,
+      credit,
+      monetary: -0.45 * p.mon * (realRate - rStar),
+      fx: 0.12 * st.fx,
+      mods: m.demand,
+      shock: n(0.32)
+    };
+    const x1 = clamp(Object.values(xParts).reduce((a, b) => a + b, 0), -12, 8);
     const supply = m.supply + n(0.22);
-    const pi1 = clamp(st.pie + 0.30 * p.slope * x1 + 0.06 * st.fx + supply, -6, 35);
+    const piParts = { expect: st.pie, gap: 0.30 * p.slope * x1, fx: 0.06 * st.fx, supply };
+    const pi1 = clamp(piParts.expect + piParts.gap + piParts.fx + piParts.supply, -6, 35);
     const pie1 = clamp(a * sc.target + (1 - a) * pi1, -5, 30);
     const u1 = clamp(st.uStar - 0.50 * x1 + n(0.08), 1.5, 24);
     const potGrowth = sc.start.potGrowth + st.potBonus + m.growth;
     const growth = clamp(potGrowth + 4 * (x1 - st.x) + n(0.4), -15, 15);
-    const fx1 = clamp(0.72 * st.fx - 0.10 * (st.i - sc.start.iForeign) + m.fx + n(0.12), -8, 8);
+    const fx1 = clamp(0.72 * st.fx - 0.10 * (st.i - sc.start.iForeign) + 0.35 * st.fxOp + m.fx + n(0.12), -8, 8);
     const iAvg = 0.86 * st.iAvg + 0.14 * st.i;
     const rev = st.tau * (1 + x1 / 100);
-    const primary = st.g - rev;
+    const primary = st.g + st.tr - rev;
     const interest = iAvg / 100 * st.debt;
     const deficit = primary + interest;
     const nominalGrowth = pi1 + growth;
     const debt1 = clamp(st.debt + (deficit - nominalGrowth / 100 * st.debt) / 4 + m.debt, 0, 250);
     const stressTarget = 15 + Math.max(0, st.i - 6) * 3.5 + Math.max(0, debt1 - 85) * 0.45
-      + Math.max(0, -x1) * 2.5 + Math.max(0, 2 - growth) * 2;
+      + Math.max(0, -x1) * 2.5 + Math.max(0, 2 - growth) * 2
+      + Math.max(0, st.ltv - 85) * 0.9 - Math.max(0, 80 - st.ltv) * 0.25
+      - Math.max(0, st.fxOp) * 0.6 + Math.max(0, -st.fxOp) * 0.5;
     const stress1 = clamp(st.stress * 0.82 + stressTarget * 0.18 + m.stress, 0, 100);
     let cred1 = st.cred;
     const miss = Math.abs(pi1 - sc.target);
@@ -1914,8 +2134,11 @@ const Sim = (() => {
     if (x1 < -4) cred1 -= 0.008;
     if (pi1 < st.pi - 0.6) cred1 += 0.018;
     else if (pi1 > st.pi + 0.6) cred1 -= 0.015;
+    if (st.ltv > 94) cred1 -= 0.006;
+    if (st.fxOp < -2) cred1 -= 0.008;
     cred1 = clamp(cred1 + m.cred, 0.06, 1);
-    return { x1, pi1, pie1, u1, growth, fx1, iAvg, debt1, stress1, cred1, deficit, realRate, taylor, a, m };
+    return { x1, pi1, pie1, u1, growth, fx1, iAvg, debt1, stress1, cred1, deficit, realRate, taylor, a, m,
+      primary, interest, fiscal, credit, xParts, piParts };
   }
 
   function forecast(st, p, sc) {
@@ -1923,7 +2146,8 @@ const Sim = (() => {
     return {
       pi: q.pi1, pie: q.pie1, x: q.x1, u: q.u1, growth: q.growth,
       debt: q.debt1, i: st.i, realRate: q.realRate, taylor: q.taylor,
-      deficit: q.deficit, anchor: q.a
+      deficit: q.deficit, anchor: q.a, fx: q.fx1, fiscal: q.fiscal, credit: q.credit,
+      primary: q.primary, interest: q.interest, xParts: q.xParts, piParts: q.piParts
     };
   }
 
@@ -1974,13 +2198,16 @@ const Sim = (() => {
     st.series.pi.push(st.pi); st.series.pie.push(st.pie); st.series.u.push(st.u);
     st.series.x.push(st.x); st.series.debt.push(st.debt); st.series.i.push(st.i);
     st.series.growth.push(st.growth); st.series.g.push(st.g); st.series.tau.push(st.tau);
+    st.series.tr.push(st.tr); st.series.ltv.push(st.ltv); st.series.fxOp.push(st.fxOp);
     st.last = {
       pi: st.pi, u: st.u, x: st.x, debt: st.debt, growth: st.growth, i: st.i,
       stress: st.stress, cred: st.cred, loss: L, prev,
       dPi: st.pi - prev.pi, dU: st.u - prev.u, dX: st.x - prev.x,
       dDebt: st.debt - prev.debt, dGrowth: st.growth - prev.growth,
       realRate: q.realRate, mandate, mandateOK: ok, deficit: q.deficit,
-      anchor: q.a, t: st.t
+      anchor: q.a, t: st.t, fx: q.fx1, fiscal: q.fiscal, credit: q.credit,
+      primary: q.primary, interest: q.interest, xParts: q.xParts, piParts: q.piParts,
+      tr: st.tr, ltv: st.ltv, fxOp: st.fxOp
     };
     if (st.t >= sc.horizon + (st.horizonBonus || 0)) st.finished = true;
     return st.last;
@@ -2360,6 +2587,159 @@ const TIMELINE = [
 ];
 
 /* ============================================================
+   BEGINNER'S INDICATOR DICTIONARY
+   ============================================================ */
+const INDICATORS = [
+  { id: "pi", glyph: "π", name: "通胀率", en: "INFLATION", unit: "% 同比",
+    what: "一篮子居民消费品和服务的价格，比一年前涨了多少。它不是“所有东西都同比例涨价”，而是一个加权平均。",
+    why: "通胀太高会侵蚀工资与储蓄的实际购买力，迫使央行加息；持续为负则可能意味需求崩塌、债务实际负担上升。",
+    how: "目标通常是 2%。1—3% 是温和区间；超过 4% 需要解释原因，低于 0.5% 要警惕通缩。单月数据会受能源与食品扰动。",
+    typical: "2% 目标；模型初始值 1—9.5%", drivers: "需求缺口、通胀预期、供给冲击、汇率与进口价格",
+    current: (st) => fmt(st.pi, 1) + "%", link: "phillips" },
+  { id: "pie", glyph: "πe", name: "通胀预期", en: "EXPECTED INFLATION", unit: "%",
+    what: "家庭、企业和市场对未来一年物价上涨的预期。它不在收银台上，却会进入工资合同、菜单价格和贷款合同。",
+    why: "预期是通胀的惯性。工人按预期通胀谈工资，企业按预期成本定价；预期脱锚后，反通胀要付出更大的失业代价。",
+    how: "看它与目标的距离，以及它与当前通胀的差。预期高于实际，说明公众不相信央行会坚持目标；预期低于实际，说明信誉较强。",
+    typical: "接近 2%；危机时可能高于实际", drivers: "央行信誉、历史通胀、沟通、实际冲击",
+    current: (st) => fmt(st.pie, 1) + "%", link: "phillips" },
+  { id: "u", glyph: "u", name: "失业率", en: "UNEMPLOYMENT", unit: "% 劳动力",
+    what: "想工作、正在找工作却没有工作的人，占劳动力的比例。它不包括放弃找工作的人，也不衡量工时不足。",
+    why: "失业是最直接的社会成本；它也通过劳动市场松紧影响工资与通胀。失业长期偏高还会抬高自然失业率。",
+    how: "要和自然失业率 u* 一起读。低于 u* 说明劳动市场紧，工资压力上升；高于 u* 说明闲置资源多，需求不足。",
+    typical: "4—7% 常见；危机时可到 10% 以上", drivers: "产出缺口、生产率、参与率、匹配效率、滞后效应",
+    current: (st) => fmt(st.u, 1) + "%", link: "okun" },
+  { id: "ustar", glyph: "u*", name: "自然失业率", en: "NATURAL RATE", unit: "%",
+    what: "通胀既不加速也不减速时，经济所能维持的失业率。它由劳动市场结构、匹配效率、制度与技能决定，不是零。",
+    why: "它是判断“失业是高还是低”的尺子。把失业强行压到 u* 以下，短期可能有效，长期只会推高通胀。",
+    how: "不可直接观测，只能估计。模型里它会因长期高失业缓慢上升（滞后效应），所以危机后 u* 可能被抬高。",
+    typical: "4—6%；模型初始 4.3—5.6%", drivers: "人口、技能错配、失业救济、最低工资、长期失业",
+    current: (st) => fmt(st.uStar, 1) + "%", link: "phillips" },
+  { id: "x", glyph: "x", name: "产出缺口", en: "OUTPUT GAP", unit: "% 潜在产出",
+    what: "实际产出与潜在产出之间的差，除以潜在产出。正缺口表示经济在潜在水平之上运行，负缺口表示资源闲置。",
+    why: "它是需求压力的温度计。正缺口推高通胀，负缺口推高失业；财政与货币最终都要通过它起作用。",
+    how: "看符号和大小：+1% 以内接近中性，超过 +2% 往往过热，低于 −2% 是明显的需求不足。潜在产出本身是估计值。",
+    typical: "−4% 到 +3%", drivers: "总需求、财政脉冲、实际利率、汇率、供给能力",
+    current: (st) => fmtSigned(st.x, 1) + "%", link: "okun" },
+  { id: "growth", glyph: "g", name: "实际增长", en: "REAL GROWTH", unit: "% 年化",
+    what: "扣除物价变化后的产出增长率。季度数据通常年化，表示“如果这个速度持续一年”会增长多少。",
+    why: "增长决定就业与收入，也决定债务率的分母。增长低于潜在水平会扩大负缺口；高于潜在水平会积累通胀压力。",
+    how: "和潜在增长 g* 比较。长期看，实际增长围绕 g* 波动；短期缺口变化会让实际增长大幅偏离。",
+    typical: "发达经济体 1—3%；危机可为负", drivers: "潜在增长、缺口变化、技术、人口、投资",
+    current: (st) => fmtSigned(st.growth, 1) + "%", link: "solow" },
+  { id: "i", glyph: "i", name: "政策利率", en: "POLICY RATE", unit: "% 名义",
+    what: "央行设定的短期名义利率，是银行间隔夜资金的基准价格。它通过整条收益率曲线影响借贷、按揭与汇率。",
+    why: "这是最常用的货币政策工具。提高它通常压低需求与通胀；降低它刺激需求，但受零利率下限约束。",
+    how: "看名义利率与实际利率的区别。i 高不代表政策紧：如果通胀更高，实际利率可能仍很低。还要看它相对 r* 与 Taylor 规则的位置。",
+    typical: "0—20%；零下限是硬约束", drivers: "通胀、缺口、r*、金融稳定、汇率、信誉",
+    current: (st) => fmt(st.i, 2) + "%", link: "taylor" },
+  { id: "r", glyph: "r", name: "实际利率", en: "REAL RATE", unit: "%",
+    what: "名义利率减去预期通胀：r = i − πe。它衡量借钱与储蓄的真实购买力成本。",
+    why: "家庭和企业看的是实际利率，而不是名义利率。名义利率为零、通胀为负时，实际利率仍可能很高，政策其实很紧。",
+    how: "与自然利率 r* 比较：r 高于 r* 偏紧，低于 r* 偏松。负实际利率会鼓励借贷、推高资产价格，也会惩罚现金储蓄者。",
+    typical: "−3% 到 +5%", drivers: "i、πe、风险溢价、期限溢价",
+    current: (st) => fmtSigned(st.i - st.pie, 2) + "%", link: "fisher" },
+  { id: "debt", glyph: "D", name: "政府债务 / GDP", en: "PUBLIC DEBT", unit: "% GDP",
+    what: "政府未偿还债务存量占一年 GDP 的比例。用比率而不是绝对金额，是为了和偿付能力、经济规模比较。",
+    why: "债务本身不是坏事，关键是利息负担、币种、期限与增长。债务率高时，利率上升会迅速推高利息支出。",
+    how: "看趋势，不只看水平：Δd ≈ (i−π−g)d + 基本赤字。r > g 且基本赤字为负时，债务会自我膨胀；增长快时可以稀释债务。",
+    typical: "40—120%；没有统一警戒线", drivers: "利率、通胀、增长、基本赤字、汇率、金融抑制",
+    current: (st) => fmt(st.debt, 0) + "%", link: "debt" },
+  { id: "deficit", glyph: "pb", name: "财政赤字", en: "FISCAL DEFICIT", unit: "% GDP/年",
+    what: "政府支出（含利息与转移支付）超过收入的部分。基本赤字则不计利息，只看当前收支。",
+    why: "赤字直接增加债务，也会通过财政脉冲影响需求。经济衰退时赤字会自动扩大（税收下降、支出上升），这部分是稳定器。",
+    how: "区分“结构性/基本”赤字与“周期性”赤字。看它是否在为生产性投资融资，以及利率是否高于增长率。",
+    typical: "3% 是常见规则，不是自然法则", drivers: "G、tr、税率、利息、经济周期",
+    current: (st) => fmtSigned((st.g + st.tr - st.tau * (1 + st.x / 100)) + (st.iAvg / 100) * st.debt, 1) + "%", link: "debt" },
+  { id: "cred", glyph: "C", name: "政策可信度", en: "CREDIBILITY", unit: "0—100",
+    what: "公众和市场相信央行会坚持目标、不会为短期政治利益牺牲价格稳定的程度。它是模型里的一个状态变量。",
+    why: "可信度越高，通胀预期越锚定，反通胀的失业代价越小；可信度低时，同样的政策会被预期成未来更高的通胀。",
+    how: "看预期与目标的距离、政策是否偏离规则、是否有政治干预。它不是一次讲话就能建立的，是一次次兑现承诺积累的。",
+    typical: "越高越好；危机时会快速下降", drivers: "历史、独立性、沟通、财政主导、外部冲击",
+    current: (st) => (st.cred * 100).toFixed(0), link: "taylor" },
+  { id: "stress", glyph: "S", name: "金融压力", en: "FINANCIAL STRESS", unit: "0—100",
+    what: "一个综合指标：利率急升、资产价格下跌、信贷利差扩大、银行融资紧张、债务负担上升时，它会升高。",
+    why: "金融压力会把“宏观政策”变成“金融事故”：即使利率不高，银行惜贷也会让家庭和企业拿不到钱。",
+    how: "超过 60 需要警惕，超过 80 可能触发危机事件。看它和 LTV、债务、利率、汇率的关系，而不是只看水平。",
+    typical: "10—30 正常；>60 警戒", drivers: "利率、杠杆、资产价格、汇率、银行资产负债表",
+    current: (st) => fmt(st.stress, 0), link: "debt" },
+  { id: "fx", glyph: "e", name: "汇率缺口", en: "EXCHANGE RATE GAP", unit: "%",
+    what: "本币汇率相对长期均衡的偏离。正缺口表示本币偏弱（贬值），负缺口表示偏强（升值）。",
+    why: "贬值让出口更便宜、进口更贵：短期提振净出口，却推高进口通胀；升值相反。它还会通过外债与储备影响金融压力。",
+    how: "看它是需求驱动还是资本流动驱动。央行买入外汇会推动贬值并积累储备；卖出外汇会支撑本币但消耗储备。",
+    typical: "−8% 到 +8%", drivers: "利差、资本流动、贸易、干预、风险偏好",
+    current: (st) => fmtSigned(st.fx, 1) + "%", link: "islm" },
+  { id: "tr", glyph: "tr", name: "家庭转移支付", en: "HOUSEHOLD TRANSFERS", unit: "% GDP",
+    what: "政府向家庭提供的无条件或条件性现金转移，例如儿童津贴、养老金补助、失业救济与临时补贴。",
+    why: "它直接增加可支配收入，且领取者的边际消费倾向通常高于高收入者，所以需求效果可能比减税更直接；但它也计入赤字。",
+    how: "看规模、瞄准精度与持续性。一次性转移可能被储蓄；永久性转移更容易进入消费。接近产能时，它会变成通胀。",
+    typical: "5—15% GDP；因国而异", drivers: "政治选择、失业、贫困、老龄化、财政空间",
+    current: (st) => fmt(st.tr, 1) + "%", link: "multiplier" },
+  { id: "ltv", glyph: "λ", name: "按揭 LTV 上限", en: "LOAN-TO-VALUE CAP", unit: "%",
+    what: "银行发放按揭时，贷款金额不得超过抵押品价值的比例。LTV 90% 意味着首付至少 10%。",
+    why: "它是宏观审慎工具：放宽 LTV 会短期刺激购房与信贷，也会让家庭杠杆和房价更脆弱；收紧则相反。",
+    how: "看它和房价、信贷增长、金融压力一起。LTV 不是利率，但它改变信贷可得性，因而有真实的分配效应。",
+    typical: "50—100%；80% 是常见上限", drivers: "监管、房价、银行风险偏好、政治压力",
+    current: (st) => fmt(st.ltv, 0) + "%", link: "islm" },
+  { id: "fxop", glyph: "fx", name: "外汇干预", en: "FX INTERVENTION", unit: "% GDP",
+    what: "央行在外汇市场净买入或卖出外汇的规模。正数表示买入外汇（投放本币），负数表示卖出外汇（回收本币）。",
+    why: "买入外汇通常压低本币、提振出口与进口通胀，同时积累储备；卖出外汇支撑本币、降低进口通胀，但消耗储备并可能推高压力。",
+    how: "看规模、储备充足度与是否冲销。一次性干预只能改变路径，不能改变基本面；持续单向干预会与货币政策冲突。",
+    typical: "−5% 到 +5% GDP", drivers: "汇率目标、资本流动、储备、贸易冲击",
+    current: (st) => fmtSigned(st.fxOp, 1) + "%", link: "islm" },
+  { id: "rstar", glyph: "r*", name: "自然利率", en: "NATURAL RATE", unit: "%",
+    what: "让储蓄等于投资、且通胀稳定在中性水平时的实际利率。它由人口、生产率、储蓄偏好与全球资本流动决定。",
+    why: "它是货币政策的隐形锚。r* 下降会压缩降息空间；如果 r* 为负，零名义利率也可能仍是紧缩的。",
+    how: "不可直接观测，只能估计。看政策利率与实际利率相对 r* 的缺口，而不是看 r* 的绝对值。",
+    typical: "−2% 到 +2%；危机后常被下修", drivers: "人口、生产率、不平等、全球储蓄过剩",
+    current: (st, sc) => fmt(sc.start.rStar, 2) + "%", link: "taylor" },
+  { id: "gspend", glyph: "G", name: "政府支出", en: "GOVERNMENT SPENDING", unit: "% GDP",
+    what: "政府购买商品与服务、支付工资与公共投资的支出。它不同于转移支付：G 直接购买资源。",
+    why: "G 是财政脉冲中最直接的部分。公共投资可能提高潜在增长，经常性支出则主要影响短期需求。",
+    how: "看它的构成与乘数。道路、学校、医院与一般行政的长期效果不同；接近产能时，G 会挤出私人支出或推高价格。",
+    typical: "15—30% GDP", drivers: "政治周期、公共服务、投资需求、债务约束",
+    current: (st) => fmt(st.g, 1) + "%", link: "multiplier" },
+  { id: "tau", glyph: "τ", name: "宏观税率", en: "TAX RATE", unit: "%",
+    what: "税收收入占 GDP 的平均比例，是模型对复杂税制的简化。它影响可支配收入、财政余额与激励。",
+    why: "税率上升会压低私人需求、改善财政；但也可能扭曲劳动与投资。减税短期刺激需求，长期效果取决于税基与供给反应。",
+    how: "看税率变化与赤字的组合，而不是孤立看税率。高税率 + 高支出不一定不可持续，低税率 + 高赤字也可能危险。",
+    typical: "15—40%", drivers: "税制、分配、财政需求、增长",
+    current: (st) => fmt(st.tau, 1) + "%", link: "multiplier" }
+];
+const INDICATOR_BY_ID = Object.fromEntries(INDICATORS.map(x => [x.id, x]));
+
+function indicatorValue(d, st, sc) {
+  if (!st || !sc) return "—";
+  try { return d.current(st, sc); } catch (e) { return "—"; }
+}
+function openIndicator(id) {
+  const d = INDICATOR_BY_ID[id];
+  if (!d) return;
+  const st = App.st, sc = App.sc;
+  const val = indicatorValue(d, st, sc);
+  const body = `
+    <div class="indicator-hd">
+      <div><div class="eyebrow">INDICATOR · ${esc(d.en)}</div><h3 style="margin:2px 0 2px;font:500 22px/1.2 var(--serif)">${esc(d.name)}</h3><div class="iu">${esc(d.unit)}</div></div>
+      <div class="iv">${esc(val)}</div>
+    </div>
+    <div class="indicator-block"><h4>它是什么</h4><p>${esc(d.what)}</p></div>
+    <div class="indicator-block"><h4>为什么重要</h4><p>${esc(d.why)}</p></div>
+    <div class="indicator-block"><h4>怎么读</h4><p>${esc(d.how)}</p></div>
+    <div class="indicator-grid">
+      <div class="kv"><span>常见区间</span><b style="font:9px/1.4 var(--mono)">${esc(d.typical)}</b></div>
+      <div class="kv"><span>主要驱动</span><b style="font:9px/1.4 var(--mono)">${esc(d.drivers)}</b></div>
+    </div>
+    <div class="tx-links">${d.link ? `<button data-formula-link="${d.link}">在公式书里拆开它 →</button>` : ""}<button data-indicator-help>指标之间如何连接？</button></div>
+    <p class="fine" style="margin-top:8px">指标是压缩过的现实。读任何一个数字，都要问：它衡量的是一年还是一个月？是名义还是实际？谁被排除在统计之外？</p>`;
+  openModal({
+    kicker: "FIELD GUIDE · 指标小词典",
+    title: d.name,
+    sub: "先理解它衡量什么，再讨论它应该高还是低。",
+    body, wide: false, closable: true,
+    footer: `<span class="fine">按 H 打开流派手册，读完“指标入门”一章。</span><span class="spacer"></span><button class="btn ghost" data-close="1">关闭</button>`
+  });
+}
+
+/* ============================================================
    APP — state, persistence, rendering.
    ============================================================ */
 const LS_SAVE = "meridia.save.v1";
@@ -2368,7 +2748,7 @@ const App = {
   st: null, sc: null, p: null, started: false,
   chartTab: "phillips", studyMode: false, modalOpen: false, modalClosable: true,
   lastFocus: null, cityFrame: 0, cityPal: null, paused: false, tickerPaused: false,
-  bootedAt: Date.now(), raf: null, lastCity: 0
+  bootedAt: Date.now(), raf: null, lastCity: 0, pendingReport: false
 };
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -2417,6 +2797,13 @@ function loadGame() {
     App.st.horizonBonus = App.st.horizonBonus || 0;
     App.st.mods = App.st.mods || [];
     App.st.hitLog = App.st.hitLog || [];
+    App.st.microLog = Array.isArray(App.st.microLog) ? App.st.microLog : [];
+    App.st.tr = Number.isFinite(App.st.tr) ? App.st.tr : DEFAULT_TR;
+    App.st.ltv = Number.isFinite(App.st.ltv) ? App.st.ltv : DEFAULT_LTV;
+    App.st.fxOp = Number.isFinite(App.st.fxOp) ? App.st.fxOp : 0;
+    App.st.series.tr = Array.isArray(App.st.series.tr) ? App.st.series.tr : App.st.series.x.map(() => App.st.tr);
+    App.st.series.ltv = Array.isArray(App.st.series.ltv) ? App.st.series.ltv : App.st.series.x.map(() => App.st.ltv);
+    App.st.series.fxOp = Array.isArray(App.st.series.fxOp) ? App.st.series.fxOp : App.st.series.x.map(() => 0);
     App.st.unlocked = Array.from(new Set((App.st.unlocked || []).map(codexId))).filter(id => !!CODEX_BY_ID[id]);
     return true;
   } catch (e) { return false; }
@@ -2483,6 +2870,16 @@ function renderPolicy() {
   $("#rateOut").innerHTML = `${fmt(st.i, 2)}<span class="unit">%</span>`;
   $("#spendOut").innerHTML = `${fmt(st.g, 1)}<span class="unit">% GDP</span>`;
   $("#taxOut").innerHTML = `${fmt(st.tau, 1)}<span class="unit">%</span>`;
+  const trEl = $("#transfers"), ltvEl = $("#ltv"), fxEl = $("#fxop");
+  if (trEl) {
+    trEl.value = st.tr; ltvEl.value = st.ltv; fxEl.value = st.fxOp;
+    trEl.setAttribute("aria-valuetext", `${st.tr.toFixed(1)}% GDP`);
+    ltvEl.setAttribute("aria-valuetext", `${Math.round(st.ltv)}%`);
+    fxEl.setAttribute("aria-valuetext", `${fmtSigned(st.fxOp, 1)}% GDP`);
+    $("#transfersOut").innerHTML = `${fmt(st.tr, 1)}<span class="unit">% GDP</span>`;
+    $("#ltvOut").innerHTML = `${fmt(st.ltv, 0)}<span class="unit">%</span>`;
+    $("#fxopOut").innerHTML = `${fmtSigned(st.fxOp, 1)}<span class="unit">% GDP</span>`;
+  }
 
   const pc = st.pc;
   $("#pcPips").innerHTML = Array.from({ length: 4 }, (_, i) => `<i class="${i < pc ? "on" : ""}"></i>`).join("");
@@ -2576,7 +2973,7 @@ function renderKPIs() {
   $("#kpis").innerHTML = cards.map(c => {
     const tone = toneFor(c.id);
     return `<article class="kpi ${tone}" title="${esc(c.en)}">
-      <div class="k-lab"><span>${c.lab} <span style="opacity:.55">/${c.en}</span></span><span class="k-tag">${c.glyph}</span></div>
+      <div class="k-lab"><span>${c.lab} <span style="opacity:.55">/${c.en}</span></span><span class="k-tools"><button class="k-info" data-indicator="${c.id}" aria-label="解释 ${esc(c.lab)}" title="这个指标是什么意思？">?</button><span class="k-tag">${c.glyph}</span></span></div>
       <div class="k-val">${c.val}<small>${c.unit}</small></div>
       <div class="k-delta">${c.delta} <span style="opacity:.6">vs 上季</span></div>
       <div class="k-bar"><i style="width:${c.bar}%"></i><u style="left:${c.mark}%"></u></div>
@@ -2641,6 +3038,96 @@ function renderForecast() {
     机械 Taylor <b>${fmt(clamp(t, 0, 20), 2)}%</b> · 当前 ${fmt(st.i, 2)}% · ${Math.abs(gap) < 0.4 ? "基本一致" : gap < 0 ? "偏宽松" : "偏紧缩"}<br>
     预测采用当前政策与扰动，不含下一季随机冲击。</div>
     ${st.i <= 0.5 ? `<div class="callout clay" style="margin:8px 0 0;padding:7px 8px;font-size:9.5px"><span class="co-lab">ZLB</span>政策利率已触底。常规降息空间耗尽，考虑 QE、财政或转移支付。</div>` : ""}`;
+}
+
+/* ---------- transmission chain ---------- */
+function renderTransmission() {
+  const st = App.st, p = App.p, sc = App.sc;
+  if (!st || !sc) return;
+  const f = Sim.forecast(st, p, sc);
+  const xp = f.xParts || {};
+  const parts = [
+    ["惯性", xp.inertia || 0],
+    ["财政", xp.fiscal || 0],
+    ["信贷", xp.credit || 0],
+    ["货币", xp.monetary || 0],
+    ["汇率", xp.fx || 0],
+    ["其他", (xp.mods || 0) + (xp.shock || 0)]
+  ];
+  const scale = Math.max(0.8, ...parts.map(x => Math.abs(x[1])));
+  const partHtml = parts.map(([lab, v]) => {
+    const w = Math.min(50, Math.abs(v) / scale * 50);
+    const left = v >= 0 ? 50 : 50 - w;
+    return `<div class="tx-part ${v >= 0 ? "pos" : "neg"}"><span>${lab}</span><span class="tx-bar"><i style="left:${left}%;width:${w}%"></i></span><b>${fmtSigned(v, 1)}</b></div>`;
+  }).join("");
+  const sign = f.x >= 0 ? "扩张" : "收缩";
+  const note = f.x > 0.5
+    ? `下一季需求${sign}：财政与信贷贡献为正，产出缺口升至 ${fmtSigned(f.x, 1)}%。若经济已接近产能，这会更多进入价格，而不是产出。`
+    : f.x < -0.5
+      ? `下一季需求${sign}：实际利率、汇率或财政拖累占主导，产出缺口降至 ${fmtSigned(f.x, 1)}%，失业将按 Okun 关系上升。`
+      : `下一季需求大致中性：各渠道相互抵消，缺口 ${fmtSigned(f.x, 1)}%。此时应更多关注供给冲击与预期。`;
+  const pair = (k, v, good = "") => `<div class="tx-pair ${good}"><span>${k}</span><b>${v}</b></div>`;
+  $("#transmissionBox").innerHTML = `
+    <div class="tx-flow">
+      <div class="tx-node">
+        <div class="tx-lab">1 · 工具 → 中间变量</div>
+        <div class="tx-pairs">
+          ${pair("利率 i", fmt(st.i, 2) + "%")}
+          ${pair("实际 r", fmtSigned(st.i - st.pie, 2) + "%")}
+          ${pair("支出 G", fmt(st.g, 1) + "%")}
+          ${pair("财政脉冲", fmtSigned(f.fiscal, 2))}
+          ${pair("转移 tr", fmt(st.tr, 1) + "%")}
+          ${pair("信贷脉冲", fmtSigned(f.credit, 2))}
+          ${pair("LTV λ", fmt(st.ltv, 0) + "%")}
+          ${pair("汇率缺口", fmtSigned(f.fx, 1) + "%")}
+          ${pair("干预 fx", fmtSigned(st.fxOp, 1) + "%")}
+          ${pair("基本余额", fmtSigned(f.primary, 1) + "%")}
+        </div>
+        <div class="tx-small">财政脉冲 = (G−G₀) − 0.5(τ−τ₀) + 0.55(tr−tr₀)；信贷脉冲 = 0.05(λ−λ₀)。</div>
+      </div>
+      <div class="tx-arrow">›</div>
+      <div class="tx-node">
+        <div class="tx-lab">2 · 需求与产出缺口</div>
+        <div class="tx-big">x′ ${fmtSigned(f.x, 1)}%</div>
+        <div class="tx-small">现在 x ${fmtSigned(st.x, 1)}% · 潜在增长 ${fmt(sc.start.potGrowth + st.potBonus, 1)}%</div>
+        <div class="tx-parts">${partHtml}</div>
+        <div class="tx-small">x′ = 0.72x + 财政 + 信贷 − 货币 + 汇率 + 冲击。正缺口推高通胀，负缺口推高失业。</div>
+      </div>
+      <div class="tx-arrow">›</div>
+      <div class="tx-node">
+        <div class="tx-lab">3 · 劳动、价格与债务</div>
+        <div class="tx-row"><span>失业 u′</span><b>${fmt(f.u, 1)}%</b></div>
+        <div class="tx-row"><span>通胀 π′</span><b>${fmt(f.pi, 1)}%</b></div>
+        <div class="tx-row"><span>增长 g′</span><b>${fmtSigned(f.growth, 1)}%</b></div>
+        <div class="tx-row"><span>债务 d′</span><b>${fmt(f.debt, 0)}%</b></div>
+        <div class="tx-small">u′ = u* − 0.5x′；π′ = πe + 0.30·slope·x′ + 供给冲击；d′ 由利率、增长与基本赤字共同决定。</div>
+      </div>
+    </div>
+    <p class="tx-note"><b>为什么？</b> ${note}</p>
+    <div class="tx-links">
+      <button data-indicator="x">产出缺口是什么？</button>
+      <button data-indicator="r">实际利率怎么算？</button>
+      <button data-indicator="fxop">外汇干预怎么传导？</button>
+      <button data-formula-link="islm">拆开 IS–LM</button>
+      <button data-formula-link="phillips">拆开通胀</button>
+      <button data-formula-link="debt">拆开债务</button>
+    </div>`;
+}
+function renderMicroCard() {
+  const st = App.st;
+  if (!st) return;
+  const id = (st.microLog || [])[st.microLog.length - 1];
+  const story = id ? MICRO_BY_ID[id] : null;
+  if (!story) {
+    $("#microBox").innerHTML = `<p class="micro-empty">这里不显示统计数字，而是显示政策落到一个家庭身上的样子。推进一个季度，第一封“家庭侧写”会出现在这里。</p><button class="micro-latest" data-micro-about style="margin-top:6px"><span class="mh">HOUSEHOLD NOTE</span><span class="mt">为什么要有家庭侧写？</span><span class="ms">从普通人视角理解宏观政策的真实重量。</span></button>`;
+    return;
+  }
+  $("#microBox").innerHTML = `<button class="micro-latest" data-micro="${esc(story.id)}">
+    <span class="mh"><span>${esc(story.kicker || "HOUSEHOLD")}</span><span>重读 →</span></span>
+    <span class="mt">${esc(story.title)}</span>
+    <span class="ms">${esc(story.who)} · ${esc(story.excerpt || "")}</span>
+  </button>
+  <div class="micro-prompt">不提供选项，只记录后果。</div>`;
 }
 
 /* ---------- gauges ---------- */
@@ -2738,8 +3225,8 @@ function renderFeed() {
     report = `<div class="report"><div class="report-head"><b>等待第一份公报</b><span>STANDBY</span></div><p class="report-text">${App.started ? "设定政策，然后推进一个季度。" : "选择一个任务，开始你的任期。"}</p></div>`;
   }
   const entries = st.log.slice().reverse().slice(0, 28).map(e => {
-    const pill = e.kind === "event" ? `<span class="pill">事件</span>` : e.kind === "action" ? `<span class="pill">行动</span>` : "";
-    return `<div class="entry ${e.kind === "event" ? "event" : ""}">
+    const pill = e.kind === "event" ? `<span class="pill">事件</span>` : e.kind === "action" ? `<span class="pill">行动</span>` : e.kind === "micro" ? `<span class="pill">家庭</span>` : "";
+    return `<div class="entry ${e.kind === "event" ? "event" : e.kind === "micro" ? "micro" : ""}">
       <span class="q">${esc(e.label || "")}</span>
       <div class="e-main">${pill}${e.text}${e.meta ? `<div class="e-meta">${e.meta}</div>` : ""}</div>
     </div>`;
@@ -2951,7 +3438,9 @@ function renderAll() {
   renderMandate();
   renderParadigm();
   renderForecast();
+  renderTransmission();
   renderGauges();
+  renderMicroCard();
   renderFeed();
   renderTicker();
   renderCityTexts();
@@ -3316,6 +3805,13 @@ function runStep() {
   const meta = `i ${fmt(st.i, 2)}% · G ${fmt(st.g, 1)} · τ ${fmt(st.tau, 1)} · 债务 ${fmt(st.debt, 0)}% · 损失 ${fmt(rep.loss, 2)}`;
   addLog("quarter", `<b>${esc(hl.headline)}</b> — ${hl.text}`, meta);
   const news = checkUnlocks();
+  const story = pickMicroStory(st, sc);
+  if (story) {
+    st.microLog = st.microLog || [];
+    st.microLog.push(story.id);
+    if (st.microLog.length > 20) st.microLog = st.microLog.slice(-20);
+    addLog("micro", `<b>${esc(story.title)}</b> — ${esc(story.excerpt)}`, "家庭侧写 · 无选项");
+  }
   const total = sc.horizon + (st.horizonBonus || 0);
   if (st.stress > 84 && !st.fired.financial_panic && st.t < total - 1) {
     st.forcedEvent = "financial_panic";
@@ -3327,7 +3823,12 @@ function runStep() {
     const titles = news.slice(0, 2).map(n => esc(n.title)).join("、");
     toast(`<b>图鉴解锁 ${news.length}</b> · ${titles}${news.length > 2 ? " 等" : ""}`, "good");
   }
-  if (st.finished) setTimeout(() => { if (!App.modalOpen) openReport(); }, 420);
+  if (story) {
+    if (st.finished) App.pendingReport = true;
+    setTimeout(() => { if (!App.modalOpen) openMicroStory(story, false); }, 520);
+  } else if (st.finished) {
+    setTimeout(() => { if (!App.modalOpen) openReport(); }, 420);
+  }
 }
 function doAction(id) {
   const st = App.st;
@@ -3412,8 +3913,10 @@ function openBriefing(scId) {
           <div class="kv"><span>自然利率 r*</span><b>${fmt(s0.rStar, 1)}%</b></div>
           <div class="kv"><span>潜在增长</span><b>${fmt(s0.potGrowth, 1)}%</b></div>
           <div class="kv"><span>信誉</span><b>${(s0.cred * 100).toFixed(0)}</b></div>
+          <div class="kv"><span>家庭转移 tr</span><b>${fmt(s0.tr ?? DEFAULT_TR, 1)}%</b></div>
+          <div class="kv"><span>按揭 LTV</span><b>${fmt(s0.ltv ?? DEFAULT_LTV, 0)}%</b></div>
         </div>
-        <div class="callout" style="margin-top:10px"><span class="co-lab">你的起点</span>财政 ${fmt(s0.g, 0)}% GDP · 税率 ${fmt(s0.tau, 0)}% · 通胀预期 ${fmt(s0.pie, 1)}%</div>
+        <div class="callout" style="margin-top:10px"><span class="co-lab">你的起点</span>财政 ${fmt(s0.g, 0)}% GDP · 税率 ${fmt(s0.tau, 0)}% · 家庭转移 ${fmt(s0.tr ?? DEFAULT_TR, 1)}% · LTV ${fmt(s0.ltv ?? DEFAULT_LTV, 0)}% · 通胀预期 ${fmt(s0.pie, 1)}%</div>
       </div>
     </div>
     <h3>选择初始范式</h3>
@@ -3449,6 +3952,7 @@ function startGame(scId, pid) {
   App.sc = getScenario(scId);
   App.p = getParadigm(pid);
   App.started = true;
+  App.pendingReport = false;
   App.chartTab = "phillips";
   App.st.pc = 2;
   App.st.log = [];
@@ -3502,6 +4006,186 @@ function openEvent(ev) {
         runStep();
       }));
     }
+  });
+}
+
+/* ---------- household stories: no choices, only consequences ---------- */
+const MICRO_STORIES = [
+  {
+    id: "bread", kicker: "THE BAKER", title: "面包店把价签翻了过来",
+    who: "玛尔塔 · 面包店主", excerpt: "面粉、黄油和电费一起涨，她不能再假装成本没有变。",
+    cond: (st, sc) => st.pi > sc.target + 1 || st.i > 7,
+    text: (st, sc) => `凌晨四点，玛尔塔把第一炉黑麦面包推进烤箱。面粉的进货单比上季贵了 ${fmt(Math.max(4, st.pi * 1.8), 1)}%，黄油更贵，电费单上多了一行她看不懂的附加费。她曾把每只面包的价钱按了又按，想把涨幅咽下去；但这个月，她终于在价签上写下新的数字。
+
+常来的老顾客站在柜台前愣了一下，还是买了。有人在门口看了价签就走。玛尔塔没有解释。她知道，自己的成本里有一部分来自更远的地方：燃料、运输、汇率，还有央行刚刚调高的利率——她的周转贷款每月要多还一点。`,
+    macro: (st, sc) => `你看到的 CPI 里，有她的一枚价签。通胀不是抽象的平均数，而是无数店主在成本、客流与竞争之间做出的微小决定。央行要把通胀压回 ${fmt(sc.target, 1)}%，最终要改变的正是这些价签；而加息会先让她的贷款更贵，再慢慢让需求冷下来。`
+  },
+  {
+    id: "nurse", kicker: "THE NIGHT SHIFT", title: "夜班护士的第七个夜班",
+    who: "伊莲娜 · 公立医院护士", excerpt: "同事被裁，病人没有减少；她用加班费补上了别人的缺口。",
+    cond: (st) => st.u > st.uStar + 0.7 || st.x < -1,
+    text: (st) => `伊莲娜已经连续上了七个夜班。走廊尽头的两张床被推到了一起，因为另一个病区关了，三名护士被裁。院方说这是“效率调整”；她只知道，原来四个人做的事，现在两个人做。
+
+她的加班费比去年多了一点，但时薪没有涨。交完房租和母亲的药费，账户里剩下的数字几乎没变。她在休息室看见新闻里说失业率 ${fmt(st.u, 1)}%，想起同事走的时候没有告别。`,
+    macro: (st, sc) => `失业率上升不是统计表上的一个点。它先变成某个人的排班表、某个家庭的药费，再变成更少的消费和更慢的增长。你选择用衰退换取更低通胀时，代价会先落在伊莲娜这样的家庭身上。`
+  },
+  {
+    id: "firsthome", kicker: "THE FIRST HOME", title: "第一套房的首付",
+    who: "阿德里安与索菲亚 · 年轻夫妇", excerpt: "利率和 LTV 一起决定，他们离一把钥匙有多远。",
+    cond: (st) => st.ltv > 85 || st.ltv < 75 || st.stress > 55,
+    text: (st) => `他们看中了一套两居室，窗户朝东，离地铁站十二分钟。中介说房价还会涨，银行说按揭利率已经到 ${fmt(st.i, 2)}%，而 LTV 上限是 ${fmt(st.ltv, 0)}%。这意味着，他们要先拿出房价的 ${fmt(100 - st.ltv, 0)}% 作为首付。
+
+索菲亚在手机上反复算：如果 LTV 再松一点，首付少一点，他们今年就能搬；如果利率再高一点，每月还款会吃掉她一半的工资。他们最后没有签字，因为不确定明年还在不在 Meridia。`,
+    macro: (st, sc) => `LTV 和利率不是抽象的金融参数。它们决定谁能够进入住房市场，谁只能继续租房，也决定房价与家庭杠杆的分布。放松 LTV 会在短期创造需求，也会把未来的脆弱性写进按揭合同。`
+  },
+  {
+    id: "port", kicker: "THE PORT", title: "港口仓库的汇率",
+    who: "奥马尔 · 港口调度员", excerpt: "本币一贬，出口订单多了，进口零件的账单也厚了。",
+    cond: (st) => Math.abs(st.fx) > 1 || Math.abs(st.fxOp) > 0.5,
+    text: (st) => `奥马尔在晨会上看到两张表。第一张是出口订单：本币走弱 ${fmt(Math.abs(st.fx), 1)}% 之后，欧洲客户追加了三个集装箱的订单，码头临时多招了六个人。第二张是进口零件：同样一批轴承，以本币计价贵了近一成，仓库主管把采购计划往后推了一个月。
+
+他用对讲机协调泊位，心里明白：港口看起来更忙了，但利润不一定更厚。出口商高兴，进口商抱怨，超市里的进口咖啡也换了价签。`,
+    macro: (st, sc) => `汇率是一把双刃剑。贬值让出口更便宜、进口更贵，短期提振净出口，却推高进口通胀；央行买入外汇会加速这一过程，卖出外汇则相反。你看到的是同一枚硬币的两面。`
+  },
+  {
+    id: "pension", kicker: "THE PENSION", title: "养老金账户里的利息",
+    who: "露西亚 · 退休教师", excerpt: "债务与利率的赛跑，最终跑进了她的每月账单。",
+    cond: (st) => st.debt > 85 || st.i > 10,
+    text: (st) => `露西亚每月十号去银行打存折。这个月，她发现利息没有变多，药费却涨了。她的养老金按去年通胀调整，但调整的公式里没有计入她常买的那种进口药。电视上说政府债务已经到 GDP 的 ${fmt(st.debt, 0)}%，利息支出挤占了预算；她听不太懂，只知道社区诊所的预约从两周变成了一个月。
+
+她给孙子打电话，说这个月不要买礼物了。电话那头沉默了一会儿，说好。`,
+    macro: (st, sc) => `债务的利息不是从天上掉下来的。它要从税收、支出或通胀里出。当 r > g 时，债务率会自我膨胀；当政府选择紧缩，退休者、患者和依赖公共服务的人往往先感受到。`
+  },
+  {
+    id: "bus", kicker: "THE NIGHT BUS", title: "被取消的夜班公交",
+    who: "托尼 · 医院清洁工", excerpt: "财政收紧的第一个可见后果，是末班车不再经过他家。",
+    cond: (st, sc) => st.g < sc.start.g - 0.8 || st.tr < 6,
+    text: (st) => `托尼在晚上十一点下班。过去，医院门口的 14 路夜班车会在十一点零七分到，花二十分钟把他送到家。这个月，市政交通局贴出通知：由于预算削减，14 路夜班车取消。
+
+他现在和另外两个清洁工拼车，每人每周多花掉一顿晚饭的钱。如果错过拼车，他就要走四十分钟。他没有上过宏观经济学，但他知道，政府支出减少并不只是报表上的一个数字。`,
+    macro: (st, sc) => `财政整顿会改善预算，也会减少某些具体服务。乘数不只存在于公式里：少一班公交，意味着更少的司机、更少的燃油、更少的夜间消费，以及一个家庭更紧的时间预算。`
+  },
+  {
+    id: "workshop", kicker: "THE WORKSHOP", title: "小工厂的贷款",
+    who: "贝内特 · 金属加工厂老板", excerpt: "利率上升后，他先推迟了新机器，再让两个人提前退休。",
+    cond: (st) => st.i > 6 || st.x < 0,
+    text: (st) => `贝内特的工厂有十四名工人，两台用了十二年的冲床。他原本打算今年换一台数控机床，贷款方案已经谈好；央行把政策利率提到 ${fmt(st.i, 2)}% 之后，银行把利率上浮了，月供多了近两成。
+
+他把新机器的订单往后推，先修旧机器。两周后，两个工人被叫去办公室，拿到了提前退休方案。他们没有闹，只是问了一句：订单不是还在吗？贝内特说，订单在，但钱贵了。`,
+    macro: (st, sc) => `加息通过实际利率影响投资。企业不会因为“利率上升”就立刻裁员，它们会先推迟资本支出、再减少加班、最后才动岗位。这就是货币政策时滞，也是为什么衰退的代价往往比模型预测更慢、更长。`
+  },
+  {
+    id: "market", kicker: "THE MARKET", title: "菜市场的塑料袋",
+    who: "阿米娜 · 菜贩", excerpt: "供应链断裂时，最先变小的不是价格，而是包装。",
+    cond: (st, sc) => st.pi > sc.target + 1.5 || (st.last && st.last.piParts && st.last.piParts.supply > 0.2),
+    text: (st) => `阿米娜的摊位上，西红柿的进价比上周又高了。批发商说，柴油贵了，货车绕路，冷库的电费也涨了。她没有把每斤价格一次提足，而是把塑料袋换小了一号，把最漂亮的几个西红柿摆在最上面。
+
+老顾客说，怎么感觉袋子越来越轻。阿米娜笑笑，没有回答。她知道，通胀不只写在价签上，也写在分量、包装和选择里。`,
+    macro: (st, sc) => `供给冲击会同时推高价格、压低产出。央行无法让柴油变便宜，只能压低总需求，让其他价格涨得慢一些。这就是为什么供给型通胀最难处理：紧缩会先伤到需求，而不是供应链。`
+  },
+  {
+    id: "graduate", kicker: "THE FIRST JOB", title: "毕业生的第一份合同",
+    who: "莱拉 · 应届毕业生", excerpt: "劳动市场紧时，她拿到三个 offer；松时，她连实习都要排队。",
+    cond: (st) => st.u < st.uStar - 0.4 || st.u > st.uStar + 0.8,
+    text: (st) => `莱拉投了四十七份简历。劳动市场紧的时候，她收到三个面试、两个 offer，其中一个是带培训的正式合同；市场松的时候，同样的简历只换来一封自动回复：“感谢您的兴趣，我们已招满。”
+
+她最后去了那家愿意给她培训的公司，起薪不高，但能学到东西。她的室友去了另一家，试用期六个月，没有社保。新闻里说失业率 ${fmt(st.u, 1)}%，莱拉想的却是：为什么同一个数字，落在不同人身上差别这么大。`,
+    macro: (st, sc) => `失业率是平均值。年轻人、低技能者和少数群体通常承受更高的失业风险；劳动市场紧时，他们最先受益，松时也最先出局。自然失业率不是“应该有的人没工作”，而是匹配摩擦与制度的结果。`
+  },
+  {
+    id: "renter", kicker: "THE RENT", title: "房租续约",
+    who: "陈先生 · 租客", excerpt: "房东的按揭利率，最后变成了他的月租。",
+    cond: (st) => st.ltv > 85 || st.i > 6,
+    text: (st) => `陈先生收到房东的消息：下个月起，房租涨 8%。理由是“贷款利率涨了，持有成本太高”。他查了合同，发现涨幅在允许范围内；他也知道，附近新挂出来的房源更贵，因为很多房东都在转嫁成本。
+
+他没有搬。搬家要付中介费、押金和一个月空置，算下来比涨租更贵。他把空调温度调高了一度，取消了周末的外卖。`,
+    macro: (st, sc) => `利率会通过住房市场进入租金。房东的按揭成本、租客的支付能力、住房供给的弹性，共同决定谁承担加息的代价。LTV 放松会刺激房价与租金，也会让租客更依赖未来的收入。`
+  },
+  {
+    id: "saver", kicker: "THE SAVINGS BOOK", title: "存折上的负利率",
+    who: "艾达 · 退休储蓄者", excerpt: "名义利率是正的，但她的购买力在缩水。",
+    cond: (st) => st.i - st.pie < 0 || st.pi > 4,
+    text: (st) => `艾达把一生的积蓄放在银行里，存折上的数字这个月多了几百克朗的利息。她去超市，发现同样的购物车比去年贵了不少。回家后，她拿出计算器：名义利率 ${fmt(st.i, 2)}%，通胀 ${fmt(st.pi, 1)}%，实际利率是 ${fmtSigned(st.i - st.pi, 2)}%。
+
+她不懂“实际利率”这个词，但她懂：钱在变多，能买的东西在变少。她开始把一部分存款换成耐用家电，尽管她并不需要新的冰箱。`,
+    macro: (st, sc) => `费雪方程 r ≈ i − πe 描述的就是这一刻。负实际利率会鼓励借贷和提前消费，惩罚持有现金的人；它也是财富在储蓄者与借款人之间重新分配的过程。`
+  },
+  {
+    id: "migrant", kicker: "THE REMITTANCE", title: "汇款单上的汇率",
+    who: "罗莎 · 医院清洁工", excerpt: "她在这座城市工作，家人隔着一条汇率。",
+    cond: (st) => Math.abs(st.fx) > 1.5,
+    text: (st) => `罗莎每月把三分之一的工资寄回家。这个月，本币贬值 ${fmt(Math.abs(st.fx), 1)}%，同样数额的汇款在家乡能换到更多钱。她本该高兴，但她更担心明年的房租和签证——新闻说，央行在买入外汇，进口的东西会越来越贵。
+
+她在汇款单上写下金额，停顿了一下，又多写了 20。她想，至少这个月，母亲能买得起药。`,
+    macro: (st, sc) => `汇率变化会重新分配收入：出口商、外汇收入者和汇款接收者可能受益，进口依赖者与城市租客可能受损。央行干预可以改变速度，却无法让所有人都受益。`
+  }
+];
+const MICRO_BY_ID = Object.fromEntries(MICRO_STORIES.map(s => [s.id, s]));
+
+function pickMicroStory(st, sc) {
+  const first = st.t === 2 && !(st.microLog || []).length;
+  if (!first && nextRand(st) > 0.52) return null;
+  const recent = (st.microLog || []).slice(-7);
+  const pool = MICRO_STORIES.filter(s => !recent.includes(s.id) && s.cond(st, sc));
+  if (!pool.length) return null;
+  return pool[Math.floor(nextRand(st) * pool.length)];
+}
+function openMicroStory(story, replay) {
+  if (!story) return;
+  const st = App.st, sc = App.sc;
+  if (!st || !sc) return;
+  const paras = story.text(st, sc).split(/\n\n+/).map(p => `<p>${esc(p)}</p>`).join("");
+  const body = `<div class="micro-head">
+      <div class="micro-monogram">${esc((story.who || "?").slice(0, 1))}</div>
+      <div><div class="mh">${esc(story.kicker || "HOUSEHOLD NOTE")} · ${qLabel(0)}</div>
+      <h3>${esc(story.title)}</h3><div class="who">${esc(story.who)}</div></div>
+    </div>
+    <div class="micro-prose">${paras}</div>
+    <div class="micro-macro"><b>宏观连接：</b> ${esc(story.macro(st, sc))}</div>
+    <p class="micro-note">这不是随机故事。它由你的政策与当前经济状态触发；它没有选项，因为后果已经发生。</p>`;
+  openModal({
+    kicker: "HOUSEHOLD · 家庭侧写",
+    title: story.title,
+    sub: `${qLabel(0)} · ${story.who} · ${replay ? "重读" : "无选项，仅记录"}`,
+    body, wide: false, closable: true,
+    footer: `<span class="fine">宏大的政策，最终都要在一个家庭里结算。</span><span class="spacer"></span><button class="btn primary" data-close="1">继续 →</button>`,
+    onClose() {
+      if (App.pendingReport) {
+        App.pendingReport = false;
+        setTimeout(() => { if (!App.modalOpen) openReport(); }, 120);
+      }
+    }
+  });
+}
+function openMicroAbout() {
+  openModal({
+    kicker: "HOUSEHOLD · 家庭侧写",
+    title: "为什么没有选项？",
+    sub: "有些后果，不是用选择来理解的。",
+    body: `<p class="lead">模型里的每一个百分比，最后都会落到某个人身上。家庭侧写是一种“无选项事件”：它不要求你决定，而是让你看见已经发生的决定如何被一个普通人经历。</p>
+      <p>它们由你的政策与当前状态触发：通胀、失业、利率、LTV、汇率、财政支出、转移支付与债务。故事里的数字来自模型，人物与细节是虚构的；宏观连接则是真实的传导逻辑。</p>
+      <div class="callout olive"><span class="co-lab">读法</span>先读故事，不要急着判断政策对错。问三个问题：谁受益？谁承担成本？这个成本在统计里看得见吗？</div>
+      <p class="fine">侧写不会改变游戏状态，也不会给分数。它只是把“宏观”翻译成“家庭”。</p>`,
+    wide: false, closable: true,
+    footer: `<span class="spacer"></span><button class="btn ghost" data-close="1">关闭</button>`
+  });
+}
+function openIndicatorHelp() {
+  openModal({
+    kicker: "FIELD GUIDE · 指标之间",
+    title: "一间房子的六扇窗",
+    sub: "指标不是孤立的数字，而是一条链上的不同位置。",
+    body: `<p class="lead">先抓住一条主线：政策 → 实际利率与需求 → 产出缺口 → 失业与通胀 → 债务与信誉。每个指标都是这条链上的一个观察点。</p>
+      <div class="indicator-grid">
+        <div class="kv"><span>需求端</span><b>i、r、G、tr、LTV、汇率</b></div>
+        <div class="kv"><span>结果端</span><b>x、u、π、g</b></div>
+        <div class="kv"><span>约束端</span><b>d、赤字、stress、cred</b></div>
+        <div class="kv"><span>预期端</span><b>πe、r*、锚定</b></div>
+      </div>
+      <p>读一个数字时，至少问三件事：它是名义还是实际？是水平还是变化？是原因还是结果？例如，利率高可能是紧缩的原因，也可能是通胀预期推高的结果；债务高可能是赤字造成的，也可能是增长崩溃造成的。</p>
+      <p class="fine">想系统读一遍，按 H 打开流派手册的“指标入门”；想拆开公式，按 F 打开公式书。</p>`,
+    wide: false, closable: true,
+    footer: `<span class="spacer"></span><button class="btn ghost" data-close="1">关闭</button>`
   });
 }
 
@@ -3797,8 +4481,8 @@ function openFormulas() {
   const t = taylorNow();
   const a = anchorNow();
   const f = Sim.forecast(st, p, sc);
-  const fiscal = (st.g - sc.start.g) - 0.5 * (st.tau - sc.start.tau);
-  const primary = st.g - st.tau * (1 + st.x / 100);
+  const fiscal = (st.g - sc.start.g) - 0.5 * (st.tau - sc.start.tau) + 0.55 * (st.tr - (sc.start.tr ?? DEFAULT_TR));
+  const primary = st.g + st.tr - st.tau * (1 + st.x / 100);
   const debtAnnual = ((st.iAvg - (st.pi + st.growth)) / 100) * st.debt + primary;
   const uOkun = st.uStar - 0.5 * st.x;
   const slope = 0.30 * p.slope;
@@ -3812,7 +4496,7 @@ function openFormulas() {
       "产出缺口每改善 1pp，失业率约下降 0.5pp。模型中的系数是简化校准。"),
     eqCard("菲利普斯曲线", "PHILLIPS", `π′ ≈ πe + 0.30 × ${fmt(p.slope, 2)} × x<br>= ${fmt(st.pie, 2)} + ${fmt(slope, 3)} × ${fmt(st.x, 2)} = <span class="hl">${fmt(f.pi, 2)}%</span>`,
       "预期越锚定，曲线越靠近目标；供给冲击会整体移动曲线。预测不含随机扰动。"),
-    eqCard("财政脉冲与乘数", "FISCAL IMPULSE", `脉冲 = (G−G₀) − 0.5(τ−τ₀)<br>= (${fmt(st.g, 1)}−${fmt(sc.start.g, 1)}) − 0.5(${fmt(st.tau, 1)}−${fmt(sc.start.tau, 1)}) = <span class="hl">${fmtSigned(fiscal, 2)}</span><br>需求影响 ≈ 0.30 × ${fmt(p.fiscal, 2)} × ${fmt(fiscal, 2)} = <span class="hl">${fmtSigned(0.30 * p.fiscal * fiscal, 2)}pp</span>`,
+    eqCard("财政脉冲与乘数", "FISCAL IMPULSE", `脉冲 = (G−G₀) − 0.5(τ−τ₀) + 0.55(tr−tr₀)<br>= (${fmt(st.g, 1)}−${fmt(sc.start.g, 1)}) − 0.5(${fmt(st.tau, 1)}−${fmt(sc.start.tau, 1)}) + 0.55(${fmt(st.tr, 1)}−${fmt(sc.start.tr ?? DEFAULT_TR, 1)}) = <span class="hl">${fmtSigned(fiscal, 2)}</span><br>需求影响 ≈ 0.30 × ${fmt(p.fiscal, 2)} × ${fmt(fiscal, 2)} = <span class="hl">${fmtSigned(0.30 * p.fiscal * fiscal, 2)}pp</span>`,
       "这是单季传导的近似。乘数不是常数：它随范式、闲置产能、利率反应与预期而变。"),
     eqCard("债务动态", "DEBT DYNAMICS", `Δd / 年 ≈ (i − π − g)d + pb<br>= (${fmt(st.iAvg, 2)} − ${fmt(st.pi, 2)} − ${fmt(st.growth, 2)})% × ${fmt(st.debt, 0)} + ${fmtSigned(primary, 1)} = <span class="hl">${fmtSigned(debtAnnual, 1)}pp</span>`,
       "r > g 且存在基本赤字时，债务比率会自我膨胀。利率与增长的赛跑比赤字本身更重要。"),
@@ -4354,6 +5038,414 @@ const SCHOOL_BOOK_DATA = [
     }
   }
 ];
+/* ============================================================
+   DEEP SCHOOL NOTES — history, architecture, debates, evidence
+   ============================================================ */
+const SCHOOL_DEEP = {
+  classical: {
+    question: "如果价格、工资和利率都能自由调整，为什么还会有人长期失业？市场需要一位总需求管理者吗？",
+    background: {
+      material: [
+        "古典经济学诞生于 18 世纪末的英国，而不是一个抽象的“市场社会”。当时英国仍是农业与商业资本并存的 Economy：圈地运动把大批农民推向城市，手工工场与早期工厂吸收劳动力，伦敦的码头、保险与殖民地贸易积累了大量商业资本。国民财富的增长第一次成为可以公开讨论、测量和比较的对象。",
+        "这是一个稀缺资本、充足劳动、土地贵族仍掌握政治权力的世界。多数人生活在生存线附近，工资基金有限，粮食价格波动会直接引发饥荒与骚乱。正因如此，古典经济学家关心的是“如何让资本积累得更快”，而不是“如何用财政把需求补足”。"
+      ],
+      intellectual: [
+        "启蒙运动提供了新的知识框架：社会不是由君主的意志组织，而是由交换、分工与法律规则自发形成。牛顿式的自然法让经济学家相信，市场也存在可被发现的“规律”。斯密、李嘉图与马尔萨斯争论的是谷物的自由贸易、地租、人口与资本积累，而不是现代意义上的月度 CPI。",
+        "法国重农学派与萨伊把“生产—消费—交换”看作循环；李嘉图则用抽象的比较优势与分配理论把经济学推向演绎科学。古典经济学家并不否认危机或失业，但他们倾向于把持续失业解释为工资刚性、制度障碍或暂时的协调失败，而不是需求不足的均衡。"
+      ],
+      timeline: [
+        { y: "1776", t: "斯密《国富论》出版；自由交换与分工成为新的国民财富叙事。" },
+        { y: "1797—1821", t: "英国暂停金本位、战争融资与物价波动；金块论战检验货币数量论。" },
+        { y: "1815—1846", t: "谷物法争论把地租、自由贸易与阶级分配推上政治中心。" },
+        { y: "1848", t: "欧洲革命与《共产党宣言》；工业化带来的分配冲突无法被“和谐市场”完全吸收。" }
+      ]
+    },
+    model: [
+      { name: "货币数量方程", eq: "M · V = P · Y", meaning: "长期看，货币存量决定价格水平；V 与 Y 由制度与技术给定。" },
+      { name: "可贷资金", eq: "S(r) = I(r)", meaning: "利率使储蓄与投资相等；政府赤字推高利率，挤出私人投资。" },
+      { name: "萨伊恒等式", eq: "供给 = 需求", meaning: "生产创造等量购买力；货币只是交换媒介，不会长期窖藏。" }
+    ],
+    architecture: [
+      { term: "自发秩序", text: "价格不是某个人的命令，而是分散信息的汇总；市场协调无需中央计划。" },
+      { term: "比较优势", text: "即使一方绝对效率更低，分工与贸易仍能让双方受益；这是古典宏观的微观底座。" },
+      { term: "资本积累", text: "利润转化为投资，投资扩大资本存量；长期增长来自节约与生产性投资。" },
+      { term: "货币中性", text: "货币改变名义价格，不改变长期实际产出；货币失控才会破坏真实经济。" }
+    ],
+    debates: [
+      { title: "萨伊定律是否成立？", text: "萨伊与李嘉图认为普遍过剩不可能持续；马尔萨斯与后来的凯恩斯指出，储蓄可能不自动转化为投资，货币可能被窖藏。" },
+      { title: "金本位：规则还是枷锁？", text: "金本位提供可信的名义锚，却把国内政策绑在黄金流动上；危机时，放弃黄金成为恢复增长的前提。" }
+    ],
+    evidence: [
+      { period: "1810s", title: "金块论战", text: "英国暂停金本位后物价上涨，李嘉图等人用货币数量论解释；争论确立了名义锚的重要性。" },
+      { period: "1925—31", title: "英国重返金本位", text: "丘吉尔按战前平价恢复金本位，导致出口萎缩与失业上升；1931 年被迫退出，证明规则也可能成为紧缩的放大器。" },
+      { period: "1930s", title: "大萧条", text: "价格与工资下降没有自动恢复充分就业，反而通过债务通缩放大需求崩溃；这是古典自我修复信念的最大反例。" }
+    ],
+    legacy: "古典学派留下了三个长期遗产：货币长期中性、财政的跨期约束、以及价格作为协调机制的核心地位。它的弱点不是“相信市场”，而是把长期调整的速度当成了短期现实。",
+    terms: ["萨伊定律", "货币数量论", "可贷资金", "比较优势", "金本位", "资本积累"],
+    seminar: ["如果工资完全灵活，大萧条会更快结束还是更深？", "金本位在 1930 年代是可信承诺，还是通缩螺旋的加速器？", "古典经济学家为何很少讨论“总需求不足”？"],
+    reading: [
+      { cite: "Adam Smith, The Wealth of Nations (1776)", note: "读第一卷分工与市场范围，以及第四卷对重商主义的批评。" },
+      { cite: "David Ricardo, Principles of Political Economy and Taxation (1817)", note: "重点读比较优势、地租与货币论战章节。" },
+      { cite: "Barry Eichengreen, Golden Fetters (1992)", note: "理解金本位如何把危机从一国传导到另一国。" }
+    ]
+  },
+  keynes: {
+    question: "当所有人同时想储蓄、企业又不想投资时，什么机制能把经济带回充分就业？如果市场不能，政府应该做什么？",
+    background: {
+      material: [
+        "凯恩斯写作《通论》时的英国，经历了第一次世界大战后的高债务、1925 年重返金本位的紧缩、1926 年大罢工与 1929 年后的全球萧条。传统工业区（煤炭、纺织、造船）长期萎缩，失业率在多个地区超过 15%，而工资与价格并没有像古典理论预测的那样迅速下降。",
+        "这不是一个“价格灵活、市场出清”的世界。工会、失业救济、金本位规则与帝国特惠制共同限制了调整；企业面对不确定的未来，宁愿持有现金也不愿投资。凯恩斯关心的正是这种“低于充分就业的均衡”如何持续。"
+      ],
+      intellectual: [
+        "剑桥传统给了凯恩斯货币、概率与短期分析的工具；马歇尔与庇古的局部均衡、罗宾逊的不完全竞争、卡恩的乘数，都成为《通论》的部件。凯恩斯不是从零发明宏观经济学，而是把“货币—不确定性—预期”放进产出决定的核心。",
+        "《通论》与古典传统的决裂在于：它拒绝把储蓄自动等于投资当作均衡条件，也拒绝把失业解释为工资太高的暂时摩擦。它把“有效需求”提升为一个独立的因果变量，并用乘数说明支出如何自我放大。"
+      ],
+      timeline: [
+        { y: "1925", t: "英国按战前平价重返金本位；出口与就业承压，凯恩斯公开反对。" },
+        { y: "1929—33", t: "全球大萧条；失业与通缩证明价格调整不足以恢复需求。" },
+        { y: "1936", t: "《就业、利息和货币通论》出版；有效需求、乘数与流动性偏好成为新语言。" },
+        { y: "1944", t: "布雷顿森林会议；凯恩斯参与设计战后货币秩序。" }
+      ]
+    },
+    model: [
+      { name: "总需求", eq: "Y = C + I + G", meaning: "短期产出由支出决定，而不是由供给自动创造。" },
+      { name: "消费函数", eq: "C = a + b(Y − T)", meaning: "收入每增加 1 元，消费增加 b 元；b 是边际消费倾向。" },
+      { name: "乘数", eq: "k = 1 / [1 − b(1 − t)]", meaning: "自主支出经过收入—消费循环被放大；税率与储蓄是漏出。" },
+      { name: "流动性偏好", eq: "M/P = L(Y, i)", meaning: "利率由放弃流动性的意愿决定；在流动性陷阱中，货币扩张可能失效。" }
+    ],
+    architecture: [
+      { term: "有效需求", text: "企业愿意生产的数量取决于他们预期能卖出的数量；需求不足可以持续。" },
+      { term: "动物精神", text: "投资依赖对未来的信心，而不是可计算的风险；预期会自我实现。" },
+      { term: "节俭悖论", text: "当所有人同时增加储蓄，收入下降，储蓄反而未必增加。" },
+      { term: "流动性偏好", text: "货币不只是交易媒介，也是应对不确定性的资产；利率是放弃它的补偿。" }
+    ],
+    debates: [
+      { title: "财政乘数到底有多大？", text: "凯恩斯强调乘数大于一；货币主义者担心挤出与时滞；新凯恩斯用零利率下限说明乘数可能更大。乘数不是常数。" },
+      { title: "凯恩斯主义会被通胀摧毁吗？", text: "1970 年代滞胀暴露了需求管理的供给约束；但 2008 与 2020 年危机又证明，在深度衰退中财政仍然不可替代。" }
+    ],
+    evidence: [
+      { period: "1933—37", title: "美国新政", text: "公共工程、金融救助与转移支付降低了失业；1937 年过早收紧又造成二次衰退，说明退出时点同样重要。" },
+      { period: "1940—45", title: "战时动员", text: "大规模政府支出把美国带出大萧条；这是财政乘数最戏剧化的自然实验，但也伴随着配给与价格管制。" },
+      { period: "2008—10", title: "全球财政刺激", text: "G20 协调扩张避免了第二次大萧条；2010 年后过早紧缩使复苏放缓，成为乘数争论的现代表演。" }
+    ],
+    legacy: "凯恩斯没有留下“永远扩大支出”的处方。他留下的是一个更根本的问题：当协调失败可以持续，等待市场自我修复并不是中性选择。乘数、预期与流动性偏好，仍然是现代稳定政策的语法。",
+    terms: ["有效需求", "乘数", "节俭悖论", "流动性偏好", "动物精神", "流动性陷阱"],
+    seminar: ["如果政府支出乘数小于一，凯恩斯主义还成立吗？", "凯恩斯为什么强调“不确定性”而不是“风险”？", "在开放经济中，财政扩张的漏出如何改变乘数？"],
+    reading: [
+      { cite: "John Maynard Keynes, The General Theory (1936)", note: "重点读第 3、10、12、13 章；不必一次读完。" },
+      { cite: "Richard Kahn, “The Relation of Home Investment to Unemployment” (1931)", note: "乘数概念的原始论文。" },
+      { cite: "Paul Krugman, “How Did Economists Get It So Wrong?” (2009)", note: "理解危机后凯恩斯主义的回归与争议。" }
+    ]
+  },
+  monetarist: {
+    question: "如果通胀终究是货币现象，为什么央行不应该直接控制货币增长？货币与产出之间的短期关系又为何如此不稳定？",
+    background: {
+      material: [
+        "货币主义在战后美国成熟。1950—60 年代，布雷顿森林体系固定汇率、石油廉价、生产率快速提高，凯恩斯式需求管理似乎有效；但越南战争、伟大社会计划与宽松货币让通胀从 1960 年代末开始抬升。1973 与 1979 年两次石油危机把通胀推到两位数，失业同时上升，滞胀打破了菲利普斯曲线的菜单。",
+        "金融结构也在变化：商业银行、储蓄机构、欧洲美元市场与货币市场基金创造了新的货币替代品。货币总量不再是一个清晰的、可由央行直接控制的对象，这为货币主义的规则主张埋下了内部矛盾。"
+      ],
+      intellectual: [
+        "芝加哥学派的价格理论、永久收入假说与经济史研究，为货币主义提供了微观与实证基础。弗里德曼与施瓦茨的《美国货币史》试图证明：货币存量的变化不是被动适应，而是大萧条与通胀的重要独立原因。",
+        "货币主义反对“微调”，但不否认短期货币冲击的真实效应。它与凯恩斯主义的分歧在于：财政乘数是否可靠、政策时滞是否可控、以及规则与相机抉择哪个更可信。"
+      ],
+      timeline: [
+        { y: "1956", t: "弗里德曼《货币数量论研究》重新表述货币需求。" },
+        { y: "1963", t: "Friedman & Schwartz《美国货币史》出版。" },
+        { y: "1968", t: "弗里德曼美国经济学会演讲，提出自然率与预期。" },
+        { y: "1979—82", t: "沃尔克紧缩；货币主义政策实验与高失业。" },
+        { y: "1990", t: "新西兰通胀目标制；规则以另一种形式回归。" }
+      ]
+    },
+    model: [
+      { name: "数量方程", eq: "M · V = P · Y", meaning: "货币存量与流通速度共同决定名义收入。" },
+      { name: "增长率形式", eq: "gM + gV = π + gY", meaning: "速度稳定时，货币增长最终体现在通胀上。" },
+      { name: "k% 规则", eq: "gM = π* + gY*", meaning: "货币增长应等于目标通胀加潜在增长，避免主动微调。" },
+      { name: "自然率", eq: "u → u*", meaning: "长期失业由结构决定，货币只能造成暂时偏离。" }
+    ],
+    architecture: [
+      { term: "名义锚", text: "货币增长目标或通胀目标把价格水平锚住，降低预期漂移。" },
+      { term: "政策时滞", text: "识别、决策与生效都有时滞，微调可能在错误时点发力。" },
+      { term: "自然率", text: "长期失业由劳动市场结构决定；需求不能永久改变它。" },
+      { term: "规则", text: "可预测的规则降低不确定性，也约束政治干预。" }
+    ],
+    debates: [
+      { title: "货币总量还能被控制吗？", text: "金融创新让 M1/M2 与名义收入的关系漂移；1980 年代后，央行转向利率规则与通胀目标。" },
+      { title: "大萧条是货币收缩还是需求崩溃？", text: "弗里德曼与施瓦茨强调美联储让货币存量崩溃；凯恩斯主义者强调自发支出与债务通缩。两者并不互斥。" }
+    ],
+    evidence: [
+      { period: "1929—33", title: "美国货币收缩", text: "银行倒闭与美联储不作为使货币存量大幅下降；这成为货币主义最有力的历史证据。" },
+      { period: "1979—82", title: "沃尔克反通胀", text: "高利率把通胀从 14% 压到 4% 以下，也把失业推到 10% 以上；牺牲率成为政治争论。" },
+      { period: "1980s—90s", title: "货币需求不稳定", text: "金融创新使货币总量目标失效；央行转向利率与通胀目标，货币主义以另一种形式被吸收。" }
+    ],
+    legacy: "货币主义把“名义锚”重新放回宏观政策中心，也提醒人们：没有货币约束的财政扩张最终会变成通胀。它低估了金融创新与货币需求的不稳定性，但它的规则精神活在现代央行制度里。",
+    terms: ["货币数量论", "自然率", "政策时滞", "k% 规则", "名义锚", "货币需求"],
+    seminar: ["如果货币流通速度不稳定，数量论还有用吗？", "规则与相机抉择的边界在哪里？", "沃尔克反通胀的失业代价是必要的吗？"],
+    reading: [
+      { cite: "Milton Friedman, A Monetary History of the United States (1963)", note: "读大萧条章节；注意作者如何用历史识别因果。" },
+      { cite: "Milton Friedman, “The Role of Monetary Policy” (1968)", note: "自然率与预期革命的入口。" },
+      { cite: "Michael Bordo & Anna Schwartz, A Retrospective on the Classical Gold Standard (1984)", note: "理解规则、可信度与调整成本。" }
+    ]
+  },
+  newclassical: {
+    question: "如果公众能理解政策规则，并据此形成预期，政策还能系统性地稳定产出吗？计量模型里的参数，在政策改变后还成立吗？",
+    background: {
+      material: [
+        "1970 年代是战后宏观共识的断裂点。石油危机、通胀与失业并存，凯恩斯式需求管理失效；各国央行在通胀与衰退之间反复摇摆。与此同时，大型宏观计量模型被用于政策评估，但它们假设历史估计的行为参数不会随政策规则改变。",
+        "卢卡斯、萨金特与华莱士从芝加哥与明尼苏达的传统出发，把“预期”从误差项提升为模型的核心。他们并不否认波动，而是主张：只有未预期到的政策才有真实效应，系统性政策会被公众的预期提前吸收。"
+      ],
+      intellectual: [
+        "理性预期、市场出清与代表性代理人的组合，让宏观模型第一次拥有明确的微观基础。卢卡斯批判指出：政策规则一变，家庭与企业的决策规则也会变，旧参数不能用来评估新政策。这一批判改变了整个宏观计量经济学。",
+        "真实经济周期（RBC）进一步把波动归因于技术冲击与跨期替代；政府的主要任务从“稳定需求”变成“减少扭曲、提高长期供给”。这是一场关于宏观经济学应该研究什么的争论，而不只是关于系数的争论。"
+      ],
+      timeline: [
+        { y: "1972", t: "卢卡斯《预期与货币中性》；理性预期进入宏观。" },
+        { y: "1976", t: "卢卡斯批判：政策评估必须考虑参数变化。" },
+        { y: "1977", t: "Kydland & Prescott《规则而非相机抉择》；时间不一致。" },
+        { y: "1982", t: "Kydland & Prescott 真实经济周期；技术冲击成为波动主因。" },
+        { y: "1995 / 2004", t: "卢卡斯、Kydland & Prescott 获诺贝尔奖。" }
+      ]
+    },
+    model: [
+      { name: "政策无效命题", eq: "y − y* = α(π − Eπ)", meaning: "只有未预期到的通胀才影响产出；可预期政策只改变价格。" },
+      { name: "卢卡斯批判", eq: "参数 = f(政策规则)", meaning: "政策改变时，历史估计的行为参数不再稳定。" },
+      { name: "时间不一致", eq: "L = (π − π*)² + λ(u − u*)²", meaning: "相机抉择会倾向制造意外通胀；规则与独立性可以约束它。" },
+      { name: "RBC 生产函数", eq: "Y = A K^α L^(1−α)", meaning: "技术冲击 A 驱动周期；衰退可能是有效率的重新配置。" }
+    ],
+    architecture: [
+      { term: "理性预期", text: "主体使用所有可得信息，系统性预测误差不可持续。" },
+      { term: "市场出清", text: "价格与工资灵活调整，市场连续出清；失业是自愿或摩擦性的。" },
+      { term: "代表性代理人", text: "把异质家庭加总为一个优化主体，使模型可解、可检验。" },
+      { term: "政策规则", text: "规则而非临时决策，降低时间不一致与预期漂移。" }
+    ],
+    debates: [
+      { title: "政策真的完全无效吗？", text: "强版本政策无效命题依赖价格灵活与理性预期；新凯恩斯用黏性价格恢复了短期政策空间。" },
+      { title: "RBC 能解释大萧条吗？", text: "把大萧条解释为技术冲击后的有效调整，难以令人信服；金融摩擦、名义黏性与需求外部性被重新引入。" }
+    ],
+    evidence: [
+      { period: "1970s", title: "滞胀与预期", text: "公众开始预期通胀持续，短期菲利普斯曲线向上移动；这支持了预期的重要性。" },
+      { period: "1979—82", title: "沃尔克反通胀", text: "可信的紧缩改变了预期，但代价是深度衰退；说明信誉与牺牲率都真实存在。" },
+      { period: "2008", title: "危机与模型盲点", text: "忽略金融摩擦的代表性代理人模型，未能预见或解释危机；宏观模型被迫重建。" }
+    ],
+    legacy: "卢卡斯批判已经成为所有政策评估的底线：不能假设行为参数不变。新古典的强版本政策无效命题则被现实反复修正；它留下的真正遗产，是预期、规则与微观基础。",
+    terms: ["理性预期", "卢卡斯批判", "政策无效", "时间不一致", "真实经济周期", "代表性代理人"],
+    seminar: ["理性预期是否要求每个人都是经济学家？", "如果价格有黏性，政策无效命题还成立吗？", "RBC 如何解释大萧条中的失业？"],
+    reading: [
+      { cite: "Robert Lucas, “Econometric Policy Evaluation: A Critique” (1976)", note: "理解政策参数与预期。" },
+      { cite: "Kydland & Prescott, “Rules Rather than Discretion” (1977)", note: "时间不一致与规则。" },
+      { cite: "Kydland & Prescott, “Time to Build and Aggregate Fluctuations” (1982)", note: "RBC 的原始模型。" }
+    ]
+  },
+  newkeynesian: {
+    question: "如果价格不能瞬时调整，需求管理为什么仍然有效？央行又该如何在预期、黏性价格与零利率下限之间设定规则？",
+    background: {
+      material: [
+        "新凯恩斯宏观成形于 1980—90 年代。发达国家经历了 1970 年代滞胀后的反通胀，央行独立性提高，通胀目标制从新西兰扩展到许多经济体；1990—2007 年被称为“大稳健”：增长稳定、通胀低、衰退较浅。",
+        "但大稳健也孕育了盲点。低利率、金融创新、全球储蓄过剩与房地产杠杆同时积累；2008 年危机把零利率下限、QE 与金融摩擦推回宏观核心。2021—22 年的通胀回归又暴露了供给冲击与预期管理的边界。"
+      ],
+      intellectual: [
+        "新凯恩斯不是回到旧凯恩斯，而是把凯恩斯结论放进一般均衡：垄断竞争、菜单成本、交错合同与不完全信息使价格不能瞬时出清，因此需求冲击有真实效应。Calvo 定价让黏性价格进入可处理的动态模型。",
+        "Taylor 规则、通胀目标与央行沟通把理论变成可操作的政策语言。新凯恩斯三方程——动态 IS、Phillips 曲线、政策规则——成为央行与教科书的标准框架；但它对金融中介、异质性与供给冲击的处理仍然薄弱。"
+      ],
+      timeline: [
+        { y: "1982—83", t: "Calvo 交错定价、菜单成本与黏性价格进入一般均衡。" },
+        { y: "1990", t: "新西兰通胀目标制；央行独立与透明度成为制度潮流。" },
+        { y: "1993", t: "Taylor 规则提出；简单规则成为政策基准。" },
+        { y: "2008—09", t: "零利率下限、QE 与财政刺激；金融摩擦回到中心。" },
+        { y: "2021—22", t: "供给冲击与通胀回归；软着陆与预期管理再受考验。" }
+      ]
+    },
+    model: [
+      { name: "新凯恩斯 Phillips", eq: "π_t = βE_tπ_{t+1} + κx_t", meaning: "今天的通胀由预期通胀与产出缺口共同决定；预期是前瞻的。" },
+      { name: "动态 IS", eq: "x_t = E_tx_{t+1} − σ(i_t − E_tπ_{t+1} − r*)", meaning: "实际利率相对自然利率的缺口驱动需求。" },
+      { name: "Taylor 规则", eq: "i = r* + π + 0.5(π−π*) + 0.5x", meaning: "系统性回应通胀与缺口；系数大于一体现泰勒原理。" },
+      { name: "零利率下限", eq: "i ≥ 0", meaning: "名义利率不能低于现金收益；必要时用 QE、前瞻指引与财政。" }
+    ],
+    architecture: [
+      { term: "黏性价格", text: "菜单成本与交错合同使价格不能即时调整；需求冲击因此有真实效应。" },
+      { term: "前瞻指引", text: "央行对未来政策的承诺会改变今天的长期利率与支出。" },
+      { term: "通胀目标", text: "公开目标锚定预期；信誉决定预期偏离目标的幅度。" },
+      { term: "金融摩擦", text: "银行资产负债表与抵押品约束会放大冲击；标准三方程对此覆盖不足。" }
+    ],
+    debates: [
+      { title: "规则还是相机抉择？", text: "Taylor 规则提高可预测性，但危机需要例外条款；规则太硬会变成紧缩放大器，太软则失去信誉。" },
+      { title: "QE 是货币政策还是财政政策？", text: "QE 改变期限溢价与资产配置，有分配效应；退出困难与央行独立性争议至今未解。" }
+    ],
+    evidence: [
+      { period: "1990—2007", title: "大稳健", text: "通胀目标与独立央行降低了通胀波动；但低利率与金融杠杆也在积累，稳定本身可能制造不稳定。" },
+      { period: "2008—14", title: "零利率与 QE", text: "常规降息耗尽后，前瞻指引与资产购买避免了更深的通缩；复苏缓慢，财政乘数争议再起。" },
+      { period: "2021—23", title: "通胀回归", text: "供应链、能源与需求反弹让通胀超预期；央行被迫快速加息，暴露了模型对供给冲击的盲点。" }
+    ],
+    legacy: "新凯恩斯给了央行一套可操作的语言，也给了宏观经济学一个可检验的骨架。它最大的教训是：预期很重要，但金融与供给不能被简化掉；稳定政策必须同时管理需求、预期与资产负债表。",
+    terms: ["黏性价格", "Calvo 定价", "Taylor 规则", "通胀目标", "零利率下限", "前瞻指引"],
+    seminar: ["如果预期是前瞻的，央行如何可信地承诺未来？", "QE 的退出为什么会比进入更难？", "新凯恩斯模型为什么低估了 2021—22 年的通胀？"],
+    reading: [
+      { cite: "Michael Woodford, Interest and Prices (2003)", note: "新凯恩斯框架的系统化；重点读政策规则与预期。" },
+      { cite: "John Taylor, “Discretion versus Policy Rules in Practice” (1993)", note: "Taylor 规则的原始论文。" },
+      { cite: "Gali, Monetary Policy, Inflation, and the Business Cycle (2008)", note: "三方程模型的教科书处理。" }
+    ]
+  },
+  postkeynesian: {
+    question: "如果未来不能被概率完全描述，投资与金融为什么会让稳定本身变得不稳定？宏观政策应如何面对根本不确定性？",
+    background: {
+      material: [
+        "后凯恩斯传统在 1970 年代后的剑桥、纽约与欧洲边缘生长。战后黄金年代的结束、1970 年代滞胀、金融自由化与 1980 年代拉美债务危机，让“可微调的一般均衡”显得过于平滑。",
+        "卡莱茨基独立于凯恩斯提出有效需求与利润方程；明斯基把金融结构放进周期；剑桥资本争论则挑战了加总资本与边际生产率的概念。后凯恩斯不是一套单一模型，而是一组共享本体论承诺的研究纲领。"
+      ],
+      intellectual: [
+        "后凯恩斯拒绝把未来压缩成已知概率分布。投资依赖惯例、预期与动物精神；货币是内生的，银行信贷创造存款；分配、金融结构与制度决定总需求。",
+        "它把明斯基的金融不稳定假说、卡莱茨基的利润方程与斯拉法的生产理论放在一起，形成对主流均衡方法的替代。它的弱点是形式化与预测能力，强项是对危机、分配与失业的诊断。"
+      ],
+      timeline: [
+        { y: "1933—35", t: "卡莱茨基独立提出有效需求与利润方程。" },
+        { y: "1950s—60s", t: "剑桥资本争论；加总资本与边际生产率受到挑战。" },
+        { y: "1986", t: "明斯基《稳定不稳定的经济》；金融不稳定假说系统化。" },
+        { y: "2008", t: "全球金融危机；明斯基时刻成为公共语言。" }
+      ]
+    },
+    model: [
+      { name: "卡莱茨基利润方程", eq: "P = I + C_k + (G−T) + (X−M)", meaning: "利润由投资、资本家消费、财政赤字与贸易顺差共同决定。" },
+      { name: "明斯基融资结构", eq: "对冲 → 投机 → 庞氏", meaning: "稳定越久，杠杆与期限错配越深，脆弱性内生累积。" },
+      { name: "内生货币", eq: "贷款 → 存款", meaning: "银行信贷创造存款；央行通过利率与准备金约束，而非直接控制货币乘数。" },
+      { name: "有效需求", eq: "Y = C + I + G + X − M", meaning: "投资与收入分配决定产出，而非自动回到充分就业。" }
+    ],
+    architecture: [
+      { term: "根本不确定性", text: "未来不是可用概率覆盖的风险；决策依赖惯例与想象。" },
+      { term: "金融脆弱性", text: "繁荣内生地抬高杠杆，稳定本身会制造下一次危机。" },
+      { term: "内生货币", text: "信用由银行体系创造，货币供应是贷款的结果，而非外生起点。" },
+      { term: "分配", text: "工资份额、利润与金融化影响总需求与危机倾向。" }
+    ],
+    debates: [
+      { title: "形式化还是不形式化？", text: "后凯恩斯拒绝代表性代理人与均衡方法，但也因此难以做可复现的预测；支持者认为，错误的形式化比诚实的不确定性更危险。" },
+      { title: "财政空间有多大？", text: "后凯恩斯支持充分就业与公共投资，但承认通胀与汇率约束；MMT 把这一主张推到更制度化的方向。" }
+    ],
+    evidence: [
+      { period: "1980s", title: "储贷危机与拉美债务", text: "金融自由化、期限错配与杠杆在繁荣后崩溃；明斯基式机制在多个市场重演。" },
+      { period: "2007—09", title: "全球金融危机", text: "住宅抵押贷款、影子银行与批发融资的脆弱性爆发；主流模型对金融中介的忽略被清算。" },
+      { period: "2010s", title: "紧缩与分配", text: "财政紧缩与工资停滞拖慢复苏；分配与需求的关系重新受到关注。" }
+    ],
+    legacy: "后凯恩斯最持久的贡献，是拒绝把稳定当作理所当然。它提醒宏观经济学：金融结构、分配与不确定性不是摩擦，而是周期的组成部分。",
+    terms: ["金融不稳定假说", "明斯基时刻", "内生货币", "卡莱茨基利润方程", "根本不确定性", "金融化"],
+    seminar: ["稳定为什么会制造不稳定？", "如果货币是内生的，央行还能控制通胀吗？", "后凯恩斯如何解释 2021—22 年的通胀？"],
+    reading: [
+      { cite: "Hyman Minsky, Stabilizing an Unstable Economy (1986)", note: "金融不稳定假说的核心文本。" },
+      { cite: "Michal Kalecki, Selected Essays on the Dynamics of the Capitalist Economy (1971)", note: "利润方程与政治经济周期。" },
+      { cite: "Paul Davidson, Money and the Real World (1972)", note: "不确定性、货币与就业。" }
+    ]
+  },
+  mmt: {
+    question: "一个发行本币、浮动汇率的主权政府，真的会“没钱”吗？如果不会，财政的约束到底是什么？",
+    background: {
+      material: [
+        "MMT 在 1990 年代由莫斯勒、雷、凯尔顿等人系统化。它诞生于对主流财政话语的批评：媒体与政客把政府预算类比为家庭预算，主张“政府必须像家庭一样省钱”，却忽略主权货币发行者的制度差异。",
+        "2008 年危机、日本长期高债务与低通胀、2020 年疫情财政扩张，为 MMT 提供了现实参照；2021—22 年的通胀则给它最严峻的检验。MMT 不是“赤字无害论”，而是关于货币、税收与真实资源的一套制度分析。"
+      ],
+      intellectual: [
+        "MMT 继承 chartalism（货币国定论）、凯恩斯有效需求与后凯恩斯内生货币，强调税收驱动货币、部门余额恒等式与功能性财政。它把“预算约束”换成“真实资源与通胀约束”。",
+        "它的会计洞察是坚实的：主权发行者不会因本币债务违约；税收与债券发行回收购买力。争议在于：汇率、进口通胀、政治约束与央行独立性是否会让“空间”迅速消失。"
+      ],
+      timeline: [
+        { y: "1990s", t: "莫斯勒提出“软货币经济学”；MMT 术语逐渐成形。" },
+        { y: "1998", t: "日本高债务与零利率；MMT 被用来解释“没有通胀的债务”。" },
+        { y: "2012", t: "Randall Wray《现代货币理论》系统化。" },
+        { y: "2020", t: "疫情财政扩张；MMT 进入主流政策辩论。" },
+        { y: "2021—22", t: "通胀回归；MMT 的真实资源约束受到检验。" }
+      ]
+    },
+    model: [
+      { name: "部门余额恒等式", eq: "(S−I) + (T−G) + (M−X) = 0", meaning: "私人、政府、外国三个部门的净金融资产之和为零。" },
+      { name: "政府赤字 = 私人盈余", eq: "G−T = (S−I) + (X−M)", meaning: "政府赤字对应私人净储蓄或外部赤字；这是会计，不是因果。" },
+      { name: "通胀约束", eq: "Y ≤ Y* 且 π ≈ π*", meaning: "真实产能与通胀才是财政的最终约束。" },
+      { name: "税收驱动货币", eq: "税收 → 货币需求", meaning: "政府用税收创造对本币的需求，再发行货币支出。" }
+    ],
+    architecture: [
+      { term: "主权货币", text: "本币发行者不会因本币债务违约；约束是真实资源与政治选择。" },
+      { term: "功能性财政", text: "财政的目标是充分就业与公共目的，而不是账本平衡。" },
+      { term: "部门余额", text: "一个部门的赤字对应另一个部门的盈余；会计恒等式揭示金融资产的分布。" },
+      { term: "最后雇主", text: "就业保障提供缓冲，稳定工资与需求；但设计不当也可能推高通胀。" }
+    ],
+    debates: [
+      { title: "MMT 会引发通胀吗？", text: "MMT 承认通胀是真实约束；批评者认为它低估了政治体系在接近产能时继续支出的倾向。" },
+      { title: "央行独立性还重要吗？", text: "MMT 认为利率是政策变量，不必交给市场“自然”决定；批评者担心财政主导会摧毁名义锚。" }
+    ],
+    evidence: [
+      { period: "1990s—2020", title: "日本的经验", text: "高债务、低通胀与零利率长期并存，说明“债务上限”不是简单的数字；但日本也面临低增长与人口约束。" },
+      { period: "2020—21", title: "疫情财政", text: "大规模转移支付避免了需求崩溃；随后供给瓶颈与需求反弹推高通胀，暴露真实资源约束。" },
+      { period: "2022", title: "英国迷你预算", text: "无资金来源的减税引发债券市场剧烈反应；说明市场约束与政治可信度仍然真实。" }
+    ],
+    legacy: "MMT 的最大贡献，是把“政府像家庭”的隐喻拆开，让财政讨论回到真实资源与部门余额。它最容易被误读成“赤字无害”；实际上，它把约束从账本移到了通胀、汇率与政治。",
+    terms: ["主权货币", "部门余额", "功能性财政", "就业保障", "税收驱动货币", "通胀约束"],
+    seminar: ["如果政府不会违约，为什么还要征税？", "MMT 如何避免“政治体系过度支出”？", "浮动汇率与固定汇率下，MMT 的结论有何不同？"],
+    reading: [
+      { cite: "Randall Wray, Modern Money Theory (2012)", note: "MMT 的系统入门。" },
+      { cite: "Stephanie Kelton, The Deficit Myth (2020)", note: "面向公众的版本；注意其政策语境。" },
+      { cite: "Warren Mosler, Soft Currency Economics (1995)", note: "MMT 的早期文本。" }
+    ]
+  },
+  austrian: {
+    question: "低利率是在配置资源，还是在对资本结构撒谎？当信用扩张制造了错误投资，清算是否不可避免？",
+    background: {
+      material: [
+        "奥地利学派诞生于 1871 年维也纳的边际革命。奥匈帝国是一个多民族、快速工业化、金融与官僚资本交织的经济体；维也纳的咖啡馆与 seminar 文化让经济学、哲学与政治争论高度密集。",
+        "第一次世界大战后的恶性通胀、1920 年代的低利率繁荣与 1929 年崩盘，为米塞斯与哈耶克的商业周期理论提供了历史剧本。他们反对用信用扩张维持繁荣，也反对用通胀解决债务。"
+      ],
+      intellectual: [
+        "门格尔的主观价值、庞巴维克的资本与利息理论、米塞斯的行为学与哈耶克的知识分散论，共同构成奥地利传统。它把经济看作一个由异质资本、时间结构与分散知识组成的过程，而不是总量均衡。",
+        "奥地利学派反对宏观总量与代表性代理人，强调相对价格、资本结构与企业家判断。它的商业周期理论把危机解释为低利率诱导的错误投资被清算；它的弱点是难以解释大规模失业与总需求崩溃。"
+      ],
+      timeline: [
+        { y: "1871", t: "门格尔《国民经济学原理》；边际革命。" },
+        { y: "1912", t: "米塞斯《货币与信用理论》；把货币与资本结构连接。" },
+        { y: "1920s", t: "维也纳循环研究所；哈耶克资本结构与商业周期理论。" },
+        { y: "1929—32", t: "大萧条；奥地利学派与凯恩斯的分歧公开化。" },
+        { y: "1974", t: "哈耶克获诺贝尔奖；奥地利传统复兴。" },
+        { y: "2008", t: "低利率与房地产泡沫；奥地利叙事再次流行。" }
+      ]
+    },
+    model: [
+      { name: "自然利率", eq: "i_market &lt; r*", meaning: "市场利率低于自然利率时，信贷扩张，资本被错误配置。" },
+      { name: "资本结构", eq: "迂回生产 ↑ → 资本结构拉长", meaning: "低利率诱导更长的生产阶段；真实储蓄不足时不可持续。" },
+      { name: "清算", eq: "错误投资 → 破产 → 重新配置", meaning: "衰退是纠正过程；救助会延长扭曲。" },
+      { name: "知识分散", eq: "价格 → 分散信息", meaning: "价格体系汇总分散知识；中央计划难以复制。" }
+    ],
+    architecture: [
+      { term: "异质资本", text: "资本不是同质的“K”，而是有不同用途与时间结构的资本品。" },
+      { term: "时间偏好", text: "利率反映现在消费与未来消费的交换；人为压低利率会扭曲跨期选择。" },
+      { term: "企业家判断", text: "投资依赖对未来的判断；错误判断会被利润与亏损纠正。" },
+      { term: "知识问题", text: "经济所需的信息分散在个体手中，价格是协调机制。" }
+    ],
+    debates: [
+      { title: "清算必须伴随大规模失业吗？", text: "奥地利学派认为清算会重新配置资源；批评者指出，总需求崩溃会让清算变成社会灾难，且自然利率不可观测。" },
+      { title: "2008 年是低利率的错吗？", text: "奥地利学派强调低利率与房地产资本错配；主流观点强调金融中介、监管与全球储蓄过剩。两者可以部分互补。" }
+    ],
+    evidence: [
+      { period: "1920s", title: "美国繁荣与信贷扩张", text: "低利率与信贷增长推动耐用品与房地产投资；1929 年后清算与失业急剧上升。" },
+      { period: "1970s", title: "滞胀与凯恩斯主义危机", text: "奥地利学派用货币扩张与相对价格扭曲解释滞胀；但政策处方难以获得民主支持。" },
+      { period: "2008", title: "房地产泡沫", text: "低利率、抵押信贷与资本错配被广泛讨论；奥地利叙事解释了泡沫，却难以解释危机后的需求崩溃。" }
+    ],
+    legacy: "奥地利学派最有力的贡献，是提醒人们资本结构、相对价格与企业家判断不能被总量模型完全吸收。它最脆弱的地方，是把清算的失业成本交给政治系统，却缺少对总需求的可行回应。",
+    terms: ["自然利率", "资本结构", "迂回生产", "时间偏好", "知识问题", "清算"],
+    seminar: ["自然利率不可观测，奥地利学派如何避免事后叙事？", "清算的失业成本应该由谁承担？", "低利率一定导致错误投资吗？"],
+    reading: [
+      { cite: "Ludwig von Mises, The Theory of Money and Credit (1912)", note: "货币、信用与资本结构的连接。" },
+      { cite: "Friedrich Hayek, Prices and Production (1931)", note: "奥地利商业周期理论的核心文本。" },
+      { cite: "Eugen Böhm-Bawerk, Capital and Interest (1884—89)", note: "迂回生产与利息理论。" }
+    ]
+  }
+};
+SCHOOL_BOOK_DATA.forEach(s => Object.assign(s, SCHOOL_DEEP[s.id] || {}));
+const SCHOOL_SCENES = {
+  classical: "1811 年，诺丁汉的织袜工把新机器砸进夜色。他们不是反对技术本身，而是害怕机器把养家糊口的活计夺走。古典经济学家在伦敦的俱乐部里讨论分工与自由交换，却很少听见这些织机被砸碎的声音。",
+  keynes: "1932 年，南威尔士的矿工排队领取救济。矿井没有煤可挖，码头没有货可卸，但价格并没有下降到足以让工厂重新雇人。凯恩斯在剑桥的房间里写：问题不是工资太高，而是没有人愿意花钱。",
+  monetarist: "1979 年 10 月，美联储决定不再试图微调利率，而是盯住货币增长。底特律的汽车工人和堪萨斯的农场主都感受到利率飙升的寒意；通胀预期开始松动，但代价是失业与破产。",
+  newclassical: "1978 年，明尼阿波利斯的 seminar 里，一位年轻经济学家问：如果公众知道央行要印钱，为什么还会把工资合同签在旧价格上？这个问题让整个宏观计量模型的前提开始摇晃。",
+  newkeynesian: "1997 年，惠灵顿的央行行长在通胀目标协议上签字。此后每一次会议都要回答：通胀预期是否仍然锚定？在低通胀、低波动的年代，规则与沟通变成了新的政策艺术。",
+  postkeynesian: "1987 年，纽约的金融圈还在为杠杆收购欢呼。明斯基在华盛顿的办公室里提醒：繁荣越久，融资结构越脆弱。没有人愿意听，直到 2008 年他的旧书被重新翻开。",
+  mmt: "1998 年，东京的官员为巨额债务与零利率发愁。莫斯勒在堪萨斯城的课堂上说：日本政府不会因为日元债务而破产，真正的问题是真实资源与通胀。听众半信半疑，但这句话改变了财政辩论的语言。",
+  austrian: "1922 年，维也纳的咖啡馆里，一杯咖啡的价格要用一叠克朗支付。米塞斯看着货币印刷机，写下：信用扩张先把利率压低，再把资本引向错误的方向。街上的普通人只看见价格在飞。"
+};
+SCHOOL_BOOK_DATA.forEach(s => { if (SCHOOL_SCENES[s.id] && s.background) s.background.scene = SCHOOL_SCENES[s.id]; });
+
+
 /* ==== HANDBOOK-DATA-END ==== */
 
 /* ============================================================
@@ -4652,14 +5744,277 @@ const FORMULA_BOOK_DATA = [
     ],
     case: {
       title: "政府赤字去了哪里？",
-      setup: "政府赤字 3% GDP（T−G=−3），贸易顺差 1% GDP（X−M=+1）。",
-      steps: ["代入恒等式：(S−I) −3 +1 = 0。", "所以 S−I = 2% GDP：私人部门净盈余。", "若私人部门同时想增加储蓄，而政府收紧赤字，恒等式会迫使贸易或收入调整。"],
+      setup: "政府赤字 3% GDP（T−G=−3），贸易逆差 1% GDP（X−M=−1，所以 M−X=+1）。",
+      steps: ["代入恒等式：(S−I) + (−3) + (+1) = 0。", "所以 S−I = 2% GDP：私人部门净盈余。", "若私人部门同时想增加储蓄，而政府收紧赤字，恒等式会迫使贸易或收入调整。"],
       result: "恒等式不证明“赤字无害”或“赤字必然挤出”。它只说明：一个部门的净金融资产，必然对应另一个部门的净负债。"
     },
     pitfalls: ["把会计恒等式误读为因果", "忽略估值效应、资本利得与部门分类", "开放经济中汇率与资本流动会改变调整路径", "MMT 的规范结论超出恒等式本身"],
     related: "与 MMT、后凯恩斯和 2022 供给冲击一起读；沙盘中的财政赤字会进入债务动态。"
   }
 ];
+/* ============================================================
+   DEEP FORMULA NOTES — beginner stories, step meanings, labs
+   ============================================================ */
+const FORMULA_DEEP = {
+  multiplier: {
+    story: "财政部长决定在河上修一座桥。承包商先拿到一笔钱，付给工人和水泥厂；工人拿到工资后，去面包店、理发店和房东那里花掉一部分；面包店老板又去进货。第一笔支出没有消失，它像水波一样一轮一轮传下去。",
+    question: "为什么一笔 1 亿元的支出，最终可能让总收入增加超过 1 亿元？哪些地方会让这笔钱漏掉？",
+    whyFormula: "乘数把“支出—收入—再支出”的循环压缩成一个倍数。它让你判断财政刺激的规模，也提醒你：乘数不是魔法，漏出、产能与预期决定它有多大。",
+    whys: [
+      "这是支出恒等式：它告诉我们钱花到哪里去了，但没有说明因果方向。凯恩斯的关键一步，是把 C、I、G 视为决定 Y 的力量，而不是反过来。",
+      "消费函数把可支配收入与消费连起来。b 是边际消费倾向：多 1 元收入，家庭会花掉 b 元；剩下的 1−b 元是储蓄漏出。",
+      "把消费函数代回恒等式，就得到“收入影响消费、消费又影响收入”的反馈环。没有这个反馈，乘数就只剩 1。",
+      "把含 Y 的项移到左边，得到均衡产出的闭式解。分母 1−b(1−t) 是每一轮没有漏出的比例；它越小，乘数越大。",
+      "对 G 求导就是乘数。它是对“小幅变化”的局部近似；当经济接近产能、利率上升或进口增加时，这个导数会变小。"
+    ],
+    comparative: [
+      ["边际消费倾向 b ↑", "乘数 ↑", "家庭把更多收入转化为消费，反馈环更强。"],
+      ["税率 t ↑", "乘数 ↓", "税收是漏出；可支配收入减少，消费反馈变弱。"],
+      ["进口/储蓄漏出 ↑", "乘数 ↓", "需求漏到国外或储蓄，不再形成国内收入。"],
+      ["接近产能", "乘数 ↓", "更多支出变成价格与进口，而不是实际产出。"]
+    ],
+    lab: { type: "multiplier", controls: [
+      { key: "b", label: "边际消费倾向 b", min: 0.2, max: 0.95, step: 0.01, value: 0.8, fmt: v => v.toFixed(2) },
+      { key: "t", label: "税率 t", min: 0, max: 0.6, step: 0.01, value: 0.25, fmt: v => (v * 100).toFixed(0) + "%" },
+      { key: "dG", label: "政府支出变化 ΔG", min: 0, max: 10, step: 0.5, value: 4, fmt: v => v.toFixed(1) }
+    ], note: "拖动 b、t 与 ΔG：看每一轮支出如何衰减，以及最终产出增加多少。" },
+    evidence: "2009 年与 2020 年的财政刺激提供了自然实验：乘数在深度衰退、利率接近零时更大；在接近充分就业、进口开放的经济体中更小。地方财政乘数研究还发现，衰退地区的乘数高于繁荣地区。",
+    exercises: ["若 b=0.75、t=0.2，乘数是多少？ΔG=6 时 ΔY 约多少？", "如果进口漏出为每轮 0.1，乘数会怎样变化？", "为什么充分就业附近的乘数不能简单用公式外推？"]
+  },
+  islm: {
+    story: "财政部关心产品市场：产出、消费、投资与政府支出要相等。央行关心货币市场：给定货币供给，收入越高，交易所需的货币越多，利率就被推高。两张图必须同时成立，经济才能停在某个产出与利率的组合上。",
+    question: "财政扩张与货币扩张，为什么都会移动产出，却对利率产生相反影响？两条曲线谁更陡，决定了政策效果。",
+    whyFormula: "IS–LM 把凯恩斯的短期分析与货币市场放在同一个坐标系里。它让你看到财政与货币不是两个独立的按钮，而是通过利率相互影响。",
+    whys: [
+      "产品需求由消费、投资与政府支出组成。这是“计划支出”，不是实际产出；均衡要求计划支出等于产出。",
+      "把消费函数与投资函数代入均衡条件，得到 IS：产出越高，需要越低的利率来刺激投资，才能让计划支出追上产出。所以 IS 向下倾斜。",
+      "货币市场均衡要求实际货币供给等于货币需求。收入越高，交易性货币需求越大；给定货币供给，利率必须上升来压低投机性货币需求。所以 LM 向上倾斜。",
+      "把 LM 的利率表达式代入 IS，得到同时满足两个市场的产出。这里出现了财政乘数与货币乘数的组合：分母同时包含边际消费倾向与利率敏感度。",
+      "回代得到均衡利率。财政扩张右移 IS，产出上升、利率上升；货币扩张右移 LM，产出上升、利率下降。这就是“财政—货币”相互作用的骨架。"
+    ],
+    comparative: [
+      ["政府支出 G ↑", "Y ↑，i ↑", "IS 右移；利率上升挤出部分投资。"],
+      ["实际货币供给 M/P ↑", "Y ↑，i ↓", "LM 右移；利率下降刺激投资。"],
+      ["投资对利率更敏感 d ↑", "财政乘数 ↓", "利率上升挤出更多投资，IS 更平。"],
+      ["货币需求对利率更敏感 h ↑", "LM 更平", "货币扩张对利率的压低效果更强。"]
+    ],
+    lab: { type: "islm", controls: [
+      { key: "G", label: "政府支出 G", min: 10, max: 34, step: 0.5, value: 20, fmt: v => v.toFixed(1) },
+      { key: "T", label: "税收 T", min: 10, max: 34, step: 0.5, value: 20, fmt: v => v.toFixed(1) },
+      { key: "m", label: "实际货币供给 M/P", min: 10, max: 40, step: 0.5, value: 22, fmt: v => v.toFixed(1) },
+      { key: "d", label: "投资对利率敏感度 d", min: 2, max: 18, step: 0.5, value: 8, fmt: v => v.toFixed(1) },
+      { key: "h", label: "货币需求利率敏感度 h", min: 0.5, max: 5, step: 0.5, value: 2, fmt: v => v.toFixed(1) }
+    ], note: "拖动 G、T、M/P，观察 IS 或 LM 移动；再改 d、h，看曲线斜率如何改变政策效果。" },
+    evidence: "希克斯 1937 年把《通论》浓缩为 IS–LM；1960 年代它成为教科书与政策制定的共同语言。2008 年后，零利率下限让 LM 失效，央行转向资产负债表与前瞻指引，但 IS–LM 仍是理解“财政—利率—投资”相互作用的入口。",
+    exercises: ["G 增加 2、d=8、h=2 时，为什么产出增加小于简单乘数？", "如果 h 趋于无穷，LM 变成什么形状？对应什么现实？", "零利率下限下，IS–LM 的哪一部分需要改写？"]
+  },
+  phillips: {
+    story: "央行行长面前有一张菜单：失业率低一点，通胀可能高一点。但工人和企业会观察价格，调整工资合同与预期。菜单会移动，甚至可能没有长期取舍。",
+    question: "失业与通胀之间的短期替代关系从哪里来？为什么长期它会在自然失业率处垂直？",
+    whyFormula: "菲利普斯曲线把劳动市场、工资谈判与价格加成连到通胀上。它解释了为什么需求管理可以短期降低失业，也解释了为什么这种效果会消失。",
+    whys: [
+      "工人关心实际工资，但名义工资是按预期价格谈的。失业率越低，工人的谈判力量越强，工资设定越高。",
+      "企业按成本加成定价。工资上升会推高价格；加成 μ 决定企业把多少成本转嫁给消费者。",
+      "把工资设定代入价格设定，得到实际通胀与预期通胀、失业缺口的关系。未被预期到的通胀会暂时压低实际工资，刺激就业。",
+      "对失业缺口做线性化，得到 β 斜率。β 越大，同样的失业变化对通胀的影响越大；它取决于制度与劳动市场。",
+      "长期中预期追上现实，πe=π，失业回到 u*，曲线垂直。短期可以用通胀换失业，长期只能换来更高的通胀。"
+    ],
+    comparative: [
+      ["β ↑", "短期曲线更陡", "劳动市场对失业缺口更敏感，通胀反应更大。"],
+      ["πe ↑", "整条曲线向上", "预期通胀上升，同样的失业对应更高通胀。"],
+      ["u* ↑", "曲线右移", "自然失业率上升，通胀稳定的失业水平更高。"],
+      ["供给冲击 s ↑", "曲线向上", "油价、供应链等成本冲击直接推高通胀。"]
+    ],
+    lab: { type: "phillips", controls: [
+      { key: "beta", label: "斜率 β", min: 0.1, max: 1.5, step: 0.05, value: 0.5, fmt: v => v.toFixed(2) },
+      { key: "pie", label: "预期通胀 πe", min: 0, max: 10, step: 0.1, value: 3, fmt: v => v.toFixed(1) + "%" },
+      { key: "uStar", label: "自然失业率 u*", min: 3, max: 8, step: 0.1, value: 5, fmt: v => v.toFixed(1) + "%" },
+      { key: "u", label: "当前失业率 u", min: 2, max: 12, step: 0.1, value: 5, fmt: v => v.toFixed(1) + "%" },
+      { key: "shock", label: "供给冲击 s", min: -2, max: 4, step: 0.1, value: 0, fmt: v => fmtSigned(v, 1) }
+    ], note: "拖动 πe 让整条曲线移动；拖动 β 改变斜率；把 u 放到 u* 左右，观察通胀压力。" },
+    evidence: "1958 年菲利普斯发现英国工资与失业的负相关；1960 年代政策制定者把它当成菜单。1970 年代滞胀打破了稳定替代关系；弗里德曼与费尔普斯的自然率假说解释了预期如何让曲线移动。2021—22 年再次证明：供给冲击可以让通胀与失业同时上升。",
+    exercises: ["若 β=0.5、u−u*=2、πe=4，通胀是多少？", "要把通胀从 6% 降到 2%，在 πe 不变时需要多大的失业缺口？", "为什么长期菲利普斯曲线是垂直的？"]
+  },
+  okun: {
+    story: "工厂订单减少，老板先取消加班、再减少临时工，最后才裁员。产出下降 4%，失业率可能只上升 2 个百分点。奥肯定律试图把这两个数字连起来。",
+    question: "产出缺口每下降 1 个百分点，失业率会上升多少？为什么这个系数不是固定的？",
+    whyFormula: "Okun 定律是用产出推断劳动市场松紧的桥梁。它让你把 GDP 数字翻译成家庭能否找到工作。",
+    whys: [
+      "产出由劳动投入与生产率决定。劳动投入等于就业人数乘以工时；失业率上升会减少就业。",
+      "潜在产出使用潜在就业与潜在生产率。实际与潜在的比率，可以写成就业率与生产率的比率。",
+      "取对数并线性化，得到产出缺口与失业缺口的负向关系。理论系数接近 1，因为就业率大约在 0.95 左右。",
+      "但企业会调整工时、参与率与人力囤积。产出下降不一定立刻变成裁员，所以经验系数通常只有 0.5 左右。",
+      "因此 Okun 系数是经验校准，不是恒等式。生产率、工时与参与率变化会让同样的产出缺口产生不同的失业反应。"
+    ],
+    comparative: [
+      ["产出缺口 x ↓", "失业率 u ↑", "需求不足导致工时与就业下降。"],
+      ["生产率 ↑", "同样的 x 对应更少就业", "企业用更少劳动生产同样产出。"],
+      ["工时调整更灵活", "Okun 系数 ↓", "企业先减工时，不立刻裁员。"],
+      ["长期失业/滞后", "自然失业率 ↑", "失业持续越久，匹配与技能越受损。"]
+    ],
+    lab: { type: "okun", controls: [
+      { key: "x", label: "产出缺口 x", min: -8, max: 6, step: 0.1, value: -4, fmt: v => fmtSigned(v, 1) + "%" },
+      { key: "uStar", label: "自然失业率 u*", min: 3, max: 8, step: 0.1, value: 5, fmt: v => v.toFixed(1) + "%" },
+      { key: "coef", label: "Okun 系数", min: 0.2, max: 0.9, step: 0.05, value: 0.5, fmt: v => v.toFixed(2) }
+    ], note: "拖动产出缺口：失业率沿直线移动；改变系数，观察同样的衰退在不同劳动市场中的代价。" },
+    evidence: "Okun 1962 年用美国数据估计产出与失业的关系；2008 与 2020 年危机中，工时与参与率的变化让系数再次漂移。它适合做方向判断，不适合精确到小数点的预测。",
+    exercises: ["x=−5、系数 0.5、u*=5 时，u 是多少？", "为什么企业先减工时而不是立刻裁员？", "长期失业为什么会抬高 u*？"]
+  },
+  fisher: {
+    story: "退休教师把一生积蓄存进银行，存折上的利息是 4%；但超市里的价格涨了 6%。她的钱变多了，能买的东西却变少了。",
+    question: "名义利率与实际利率有什么区别？为什么央行把利率降到零，政策仍可能很紧？",
+    whyFormula: "费雪方程把名义合同与真实购买力分开。它是理解储蓄、投资、债务与零利率下限的起点。",
+    whys: [
+      "名义利率衡量一年后拿到多少额外货币；它没有考虑这些货币能买多少东西。",
+      "把名义金额按预期通胀折算成购买力，得到实际回报。1 元明天的购买力是 1/(1+πe)。",
+      "实际总回报 = 名义回报 × 购买力调整，得到精确的费雪方程。",
+      "当 i 与 πe 都较小时，交叉项可忽略，得到 r≈i−πe。这个近似在通胀高时误差会变大。",
+      "预期通胀与实际通胀不同。事后实现的实际利率取决于真实通胀；事前决策取决于预期。"
+    ],
+    comparative: [
+      ["名义利率 i ↑", "实际利率 r ↑", "借贷成本上升，储蓄回报改善。"],
+      ["预期通胀 πe ↑", "实际利率 r ↓", "同样的名义利率变得更宽松。"],
+      ["负通胀（通缩）", "实际利率 ↑", "即使 i=0，r 仍可能为正，政策偏紧。"],
+      ["税收与风险溢价", "税后/风险调整 r 变化", "名义合同之外的摩擦会改变真实成本。"]
+    ],
+    lab: { type: "fisher", controls: [
+      { key: "i", label: "名义利率 i", min: 0, max: 16, step: 0.1, value: 6, fmt: v => v.toFixed(1) + "%" },
+      { key: "pie", label: "预期通胀 πe", min: -3, max: 12, step: 0.1, value: 2.5, fmt: v => v.toFixed(1) + "%" }
+    ], note: "拖动 i 与 πe：看名义与实际利率的差距；当 πe 超过 i，实际利率变为负。" },
+    evidence: "1970 年代美国名义利率很高，但通胀更高，实际利率一度为负；2022 年央行快速加息，实际利率从负转正。费雪方程不能解释风险溢价与期限溢价，但它是理解这些现象的第一把尺。",
+    exercises: ["i=7%、πe=4% 时，精确与近似实际利率各是多少？", "为什么零利率下限下，通缩会让政策更紧？", "税收会如何改变税后实际利率？"]
+  },
+  taylor: {
+    story: "央行会议桌上放着通胀与产出缺口两张表。行长说：如果通胀高于目标，我们就加息；如果缺口为负，就少加一点。泰勒规则把这句话写成一条可预测的反应函数。",
+    question: "央行应该对通胀和产出缺口作出多大反应？规则与相机抉择，哪个更能稳定预期？",
+    whyFormula: "Taylor 规则把政策意图变成可沟通、可问责的基准。它不是自然规律，而是一个透明的政策反应函数。",
+    whys: [
+      "先设定目标实际利率：通胀高于目标时，实际利率应上升；缺口为负时，应下降。系数 0.5 是政策反应强度。",
+      "用费雪方程把目标实际利率转换为名义利率。名义利率必须同时补偿通胀。",
+      "整理得到经典 Taylor 规则。它把 r*、当前通胀、通胀缺口与产出缺口放在同一个公式里。",
+      "对通胀求导，系数为 1.5，大于 1。这就是泰勒原理：名义利率必须比通胀反应更强，实际利率才会上升。",
+      "零利率下限会截断规则。当规则值小于零，央行需要 QE、前瞻指引或财政来补充，而不是机械执行。"
+    ],
+    comparative: [
+      ["通胀 π ↑", "i ↑，且幅度大于 1", "实际利率上升，抑制需求。"],
+      ["产出缺口 x ↑", "i ↑", "经济过热时提前收紧。"],
+      ["自然利率 r* ↑", "整条规则上移", "同样的通胀需要更高的名义利率。"],
+      ["政策平滑 ρ ↑", "利率调整更慢", "央行更重视可预测性，但可能落后于曲线。"]
+    ],
+    lab: { type: "taylor", controls: [
+      { key: "pi", label: "通胀 π", min: -2, max: 12, step: 0.1, value: 4, fmt: v => v.toFixed(1) + "%" },
+      { key: "x", label: "产出缺口 x", min: -6, max: 6, step: 0.1, value: 0, fmt: v => fmtSigned(v, 1) + "%" },
+      { key: "rstar", label: "自然利率 r*", min: -2, max: 4, step: 0.1, value: 1, fmt: v => v.toFixed(1) + "%" }
+    ], note: "拖动通胀与缺口：看点沿规则线移动；把 r* 调低，观察零利率下限何时出现。" },
+    evidence: "Taylor 1993 年提出规则时，美国通胀与利率的关系大致符合；1990 年代通胀目标制把它变成制度语言。2008 年后零利率下限与 QE 证明规则需要例外条款；2022 年快速加息则是对规则的一次回归。",
+    exercises: ["π=5、π*=2、x=−1、r*=1 时，规则值是多少？", "为什么系数必须大于 1？", "零利率下限下，规则还剩下多少信息？"]
+  },
+  debt: {
+    story: "财政部的债务像一只雪球：利率是雪的黏性，增长是地面的坡度。雪球会不会越滚越大，不只看今年借了多少，还要看利率与名义增长谁跑得快。",
+    question: "债务/GDP 为什么会自我膨胀？基本赤字、利率与增长各自贡献多少？",
+    whyFormula: "债务动态把流量赤字与存量债务连起来。它让你判断“赤字是否危险”，而不是只看债务水平的绝对值。",
+    whys: [
+      "债务在一年后的变化等于利息加基本赤字。利息取决于平均利率与存量债务。",
+      "名义 GDP 按通胀与实际增长扩张。债务率的分母变大，会稀释债务。",
+      "两边除以名义 GDP，得到债务率的递推公式。滚动效应是 (1+i)/(1+π+g)，基本赤字是新增流量。",
+      "在低利率、低通胀下做一阶近似，得到 Δd≈(i−π−g)d+pb。r−g 是雪球的黏性。",
+      "r>g 且基本赤字为负时，债务率会上升；r<g 时，增长可以稀释债务。r、g、pb 都是内生的，政策会同时改变它们。"
+    ],
+    comparative: [
+      ["利率 i ↑", "Δd ↑", "利息负担上升，滚动效应更强。"],
+      ["增长率 g ↑", "Δd ↓", "分母扩大，债务率被稀释。"],
+      ["通胀 π ↑", "Δd ↓（名义）", "名义增长上升，但会伤害实际收入与预期。"],
+      ["基本赤字 pb ↑", "Δd ↑", "新增借款直接推高债务率。"]
+    ],
+    lab: { type: "debt", controls: [
+      { key: "d0", label: "初始债务 d₀", min: 20, max: 160, step: 1, value: 80, fmt: v => v.toFixed(0) + "%" },
+      { key: "i", label: "平均利率 i", min: 0, max: 12, step: 0.1, value: 4, fmt: v => v.toFixed(1) + "%" },
+      { key: "g", label: "实际增长 g", min: -4, max: 8, step: 0.1, value: 2, fmt: v => v.toFixed(1) + "%" },
+      { key: "pi", label: "通胀 π", min: -2, max: 10, step: 0.1, value: 2, fmt: v => v.toFixed(1) + "%" },
+      { key: "pb", label: "基本余额 pb", min: -8, max: 8, step: 0.1, value: -2, fmt: v => fmtSigned(v, 1) + "%" }
+    ], note: "拖动 i、g、pb：看债务路径向上或向下弯折；把 r−g 调到负值，观察增长如何稀释债务。" },
+    evidence: "二战后美国债务率从 106% 降到 1970 年代的 25%，靠的是增长与通胀，而不是快速偿债；2010 年代日本高债务与低利率并存；2022 年利率上升让利息支出重新成为政治问题。",
+    exercises: ["d=90、i=5、π=2、g=3、pb=−1 时，Δd 约多少？", "为什么通胀降低债务率不是免费的午餐？", "平均利率与边际利率为什么不同？"]
+  },
+  quantity: {
+    story: "央行印了很多钱，但超市里的价格没有立刻同比例上涨。钱可能被窖藏、进入资产市场，或者被更高的产出吸收。数量论描述的是长期约束，而不是短期精确预测。",
+    question: "货币增长与通胀之间是什么关系？为什么速度与产出也会变化？",
+    whyFormula: "数量方程把货币、价格与交易量放在同一个恒等式里。它是理解名义锚、通胀与货币政策的长期框架。",
+    whys: [
+      "名义支出等于货币存量乘流通速度。V 衡量同一单位货币在一年中被使用的次数。",
+      "两边取对数，把乘法变成加法。这样可以用增长率来讨论长期关系。",
+      "对时间求导，得到 gM+gV=π+gY。货币增长、速度增长、通胀与产出增长必须相加平衡。",
+      "长期假设速度相对稳定、产出由供给面决定，于是 π≈gM−gY*。货币增长超过潜在增长，最终会变成通胀。",
+      "短期速度会波动，货币也可能被资产需求吸收。数量论给出的是长期约束，不是季度预测器。"
+    ],
+    comparative: [
+      ["货币增长 gM ↑", "π ↑（长期）", "名义支出增加，价格水平上升。"],
+      ["流通速度 gV ↑", "π ↑", "同样的货币被更频繁地使用。"],
+      ["实际增长 gY ↑", "π ↓", "更多交易由产出吸收，而非价格。"],
+      ["货币需求不稳定", "关系弱化", "金融创新与资产需求改变 V，使规则失效。"]
+    ],
+    lab: { type: "quantity", controls: [
+      { key: "gM", label: "货币增长 gM", min: -2, max: 18, step: 0.1, value: 7, fmt: v => v.toFixed(1) + "%" },
+      { key: "gV", label: "速度增长 gV", min: -4, max: 4, step: 0.1, value: 0, fmt: v => fmtSigned(v, 1) + "%" },
+      { key: "gY", label: "实际增长 gY", min: -4, max: 8, step: 0.1, value: 2.5, fmt: v => v.toFixed(1) + "%" }
+    ], note: "拖动货币增长与速度：看通胀如何被产出吸收；把速度调高，同样的货币增长会带来更高通胀。" },
+    evidence: "1970 年代货币增长与通胀同步上升，支持数量论；1980 年代金融创新让货币需求函数漂移，货币总量目标失效。2008 与 2020 年 QE 没有立刻带来高通胀，因为速度下降、储备被窖藏；2021—22 年速度与需求恢复后，通胀才显现。",
+    exercises: ["gM=8、gV=1、gY=2 时，π 约多少？", "为什么 QE 不必然立刻推高通胀？", "货币内生如何削弱数量论的预测力？"]
+  },
+  solow: {
+    story: "一个国家把很大一部分产出用于储蓄和投资，资本存量不断积累；但每一台新机器带来的额外产出越来越少，折旧、人口增长与技术增长又在稀释人均资本。最终，经济会收敛到一个稳态。",
+    question: "储蓄率提高能否永久提高增长率？为什么长期增长最终依赖技术？",
+    whyFormula: "索洛模型把资本积累、人口、折旧与技术放在一个可解的动态系统里。它解释了“水平效应”与“增长效应”的区别。",
+    whys: [
+      "资本存量按储蓄减去折旧演化。储蓄越多，资本积累越快；折旧越多，资本消耗越快。",
+      "除以有效劳动 AL，把人口增长与技术增长放进分母。人均有效资本 k 的稳态要求投资刚好抵消折旧、人口与技术增长。",
+      "稳态时 k 不再变化：储蓄等于 (δ+n+g)k。这是索洛模型的核心条件。",
+      "代入 Cobb–Douglas 生产函数，解出稳态 k* 与 y*。储蓄率提高会提高稳态水平。",
+      "但稳态增长率仍是 g，不是 s。储蓄率只有水平效应；持续增长需要技术进步或制度改进。"
+    ],
+    comparative: [
+      ["储蓄率 s ↑", "k*、y* ↑", "稳态水平提高，但增长率不永久提高。"],
+      ["折旧 δ ↑", "k* ↓", "资本更快消耗，需要更多投资维持。"],
+      ["人口增长 n ↑", "k* ↓", "资本被更多工人分摊。"],
+      ["技术进步 g ↑", "y* ↑，长期增长 ↑", "有效劳动增加，生活水平持续提高。"]
+    ],
+    lab: { type: "solow", controls: [
+      { key: "s", label: "储蓄率 s", min: 0.05, max: 0.4, step: 0.01, value: 0.2, fmt: v => (v * 100).toFixed(0) + "%" },
+      { key: "dep", label: "折旧率 δ", min: 0.01, max: 0.12, step: 0.01, value: 0.05, fmt: v => (v * 100).toFixed(0) + "%" },
+      { key: "n", label: "人口增长 n", min: 0, max: 0.04, step: 0.005, value: 0.01, fmt: v => (v * 100).toFixed(1) + "%" },
+      { key: "g", label: "技术进步 g", min: 0, max: 0.05, step: 0.005, value: 0.02, fmt: v => (v * 100).toFixed(1) + "%" },
+      { key: "alpha", label: "资本份额 α", min: 0.2, max: 0.5, step: 0.01, value: 0.3, fmt: v => v.toFixed(2) }
+    ], note: "拖动储蓄率：看稳态资本与产出上升；改变折旧或人口增长，看稳态如何被稀释。" },
+    evidence: "东亚高储蓄高投资经济体在数十年里快速增长，但增速最终放缓，符合边际报酬递减；跨国回归发现，储蓄率与收入水平相关，但制度、人力资本与技术扩散同样重要。",
+    exercises: ["s=0.25、δ=0.05、n=0.01、g=0.02、α=0.3 时，k* 与 y* 是多少？", "为什么储蓄率提高没有永久增长效应？", "索洛模型忽略了什么？"]
+  },
+  sectors: {
+    story: "政府赤字、私人储蓄与贸易顺差不是三个独立的故事。它们像三本账，必须同时平衡：一个部门的净金融资产，必然对应另一个部门的净负债。",
+    question: "政府赤字到底去了哪里？私人部门想净储蓄时，谁来提供净金融资产？",
+    whyFormula: "部门余额是一个会计恒等式。它不能单独证明因果，但能排除一些不可能的组合，并揭示金融资产的分布。",
+    whys: [
+      "支出法 GDP 恒等式把消费、投资、政府支出与净出口加总。它是定义，不是行为方程。",
+      "私人储蓄等于可支配收入减去消费。可支配收入是产出减税收。",
+      "把消费代入 GDP 恒等式，消去产出，得到私人储蓄—投资、政府余额与贸易余额的关系。",
+      "移项得到三个部门余额之和为零。政府赤字对应私人盈余或外部赤字。",
+      "恒等式不说明因果方向：是政府赤字推动了私人储蓄，还是私人储蓄意愿迫使政府赤字？这需要行为理论。"
+    ],
+    comparative: [
+      ["政府赤字 ↑", "私人盈余或贸易赤字 ↑", "在其他条件不变时，政府净负债对应私人净金融资产。"],
+      ["私人储蓄意愿 ↑", "政府赤字或贸易顺差 ↑", "私人想净储蓄，必须有部门提供净负债。"],
+      ["贸易顺差 ↑", "私人或政府盈余 ↑", "外部部门净借款，对应国内净金融资产。"],
+      ["估值效应", "恒等式复杂化", "资产价格变化会改变部门净值，但不改变流量恒等式。"]
+    ],
+    lab: { type: "sectors", controls: [
+      { key: "gov", label: "政府余额 T−G", min: -8, max: 8, step: 0.5, value: -3, fmt: v => fmtSigned(v, 1) + "%" },
+      { key: "trade", label: "贸易余额 X−M", min: -6, max: 6, step: 0.5, value: 1, fmt: v => fmtSigned(v, 1) + "%" }
+    ], note: "拖动政府与贸易余额：私人余额自动调整，使三个部门之和为零。看谁在为谁提供净金融资产。" },
+    evidence: "2008 年后，美国财政赤字与私人去杠杆同时出现；2020 年财政转移支付让私人部门获得净储蓄。MMT 用部门余额批评“政府像家庭”的隐喻；主流则提醒，恒等式不说明因果，通胀与汇率仍是约束。",
+    exercises: ["政府赤字 4%、贸易顺差 2% 时，私人余额是多少？", "为什么部门余额不能证明“赤字无害”？", "开放经济中，汇率如何改变调整路径？"]
+  }
+};
+FORMULA_BOOK_DATA.forEach(f => Object.assign(f, FORMULA_DEEP[f.id] || {}));
+
 /* ==== FORMULA-DATA-END ==== */
 
 /* ============================================================
@@ -4762,24 +6117,259 @@ function schoolCritiquePage(s) {
     <p class="play-note"><b>在 Meridia 里：</b>${s.critique.play}</p>
     ${s.critique.quote ? `<blockquote>“${s.critique.quote.text}”<cite>${s.critique.quote.cite}</cite></blockquote>` : ""}`;
 }
-function buildSchoolBook() {
-  const starts = new Map(SCHOOL_BOOK_DATA.map((s, i) => [s.id, 2 + i * 6]));
+/* ---- second edition: front matter + long-form school chapters ---- */
+const HB_FRONT = 18;
+const HB_SCHOOL_PAGES = 11;
+const HB_TOTAL = HB_FRONT + 8 * HB_SCHOOL_PAGES;
+
+function hbProse(paras) {
+  return `<div class="hb-prose">${(paras || []).map(p => `<p>${esc(p)}</p>`).join("")}</div>`;
+}
+function hbTocCard(s, start) {
+  return `<button class="toc-card" data-goto="${start}" style="--accent:${s.color}" aria-label="进入 ${s.name} 章节">
+    <span class="toc-symbol">${schoolSymbol(s.symbol, 50)}</span>
+    <span class="toc-copy"><b>${esc(s.name)}</b><em>${esc(s.en)}</em><small>${esc(s.tagline)}</small><span class="toc-more">${esc(s.thesis)}</span></span>
+    <span class="toc-era">${esc(s.era)}</span>
+    <span class="toc-page">${String(start + 1).padStart(2, "0")}</span>
+  </button>`;
+}
+function hbTocPage(left, starts) {
+  const slice = left ? SCHOOL_BOOK_DATA.slice(0, 4) : SCHOOL_BOOK_DATA.slice(4);
+  return `<div class="toc-head"><div class="eyebrow">CONTENTS / 目录 ${left ? "I" : "II"}</div>
+    <h2>${left ? "八种看经济的方式" : "从争论到判断"}</h2>
+    <p>${left ? "这不是八篇百科词条。每一章都从一个历史处境出发，经过假设、概念、机制与模型，最后回到证据和边界。" : "读流派时，先看它假设什么、解释什么、忽略了什么。然后把同一个政策放进沙盘，观察代价如何变化。"}</p></div>
+    <div class="toc-grid">${slice.map(s => hbTocCard(s, starts.get(s.id))).join("")}</div>
+    <div class="hb-front-links">
+      <span>前置阅读</span>
+      <button data-goto="1">如何读这本书 · 02</button>
+      <button data-goto="4">指标入门 · 05</button>
+      <button data-goto="14">理论地图 · 15</button>
+      <button data-goto="15">数学预备 · 16</button>
+      <button data-goto="16">术语小词典 · 17</button>
+      <button data-goto="17">研讨与书目 · 18</button>
+    </div>
+    <div class="toc-note">${left ? "图版按思想谱系排列；页码为章节起始页。章内还有十节小目录。" : "建议路径：古典 → 凯恩斯 → 货币主义 → 新古典 → 新凯恩斯；再用后凯恩斯、MMT 与奥地利作为对照。"}</div>`;
+}
+function hbIndicatorCard(d) {
+  return `<div class="hb-indicator">
+    <div class="hb-ind-head"><span class="hb-glyph">${esc(d.glyph)}</span><div><h3>${esc(d.name)}</h3><div class="hb-en">${esc(d.en)} · ${esc(d.unit)}</div></div></div>
+    <div class="hb-ind-block"><b>它是什么</b><p>${esc(d.what)}</p></div>
+    <div class="hb-ind-block"><b>为什么重要</b><p>${esc(d.why)}</p></div>
+    <div class="hb-ind-block"><b>怎么读</b><p>${esc(d.how)}</p></div>
+    <div class="hb-ind-meta"><span>常见：${esc(d.typical)}</span><span>驱动：${esc(d.drivers)}</span></div>
+  </div>`;
+}
+function hbIndicatorPages() {
+  const out = [];
+  for (let i = 0; i < INDICATORS.length; i += 2) {
+    const pair = INDICATORS.slice(i, i + 2);
+    out.push({
+      section: "指标入门", head: `INDICATORS ${Math.floor(i / 2) + 1} / ${Math.ceil(INDICATORS.length / 2)}`,
+      accent: "#3B6B64",
+      html: `<h2>先看懂数字</h2><p class="lede">这些指标不是考试名词，而是你每次做决策时会反复遇到的六个问题：价格、就业、需求、利率、债务、预期。</p>
+        <div class="hb-ind-grid">${pair.map(hbIndicatorCard).join("")}</div>
+        <div class="hb-note">读指标时先问：它是名义还是实际？是流量还是存量？是水平还是变化？是原因还是结果？</div>`
+    });
+  }
+  return out;
+}
+function hbFrontMatter(starts) {
   const pages = [
-    { kind: "toc", section: "目录 / CONTENTS", head: "I", accent: "#A94F34", html: schoolTocPage(true, starts) },
-    { kind: "toc", section: "目录 / CONTENTS", head: "II", accent: "#A94F34", html: schoolTocPage(false, starts) }
+    { section: "MÉRIDIA · FIELD NOTES", head: "第二版", accent: "#A94F34", html: `<div class="hb-title-page">
+      <div class="eyebrow">MERIDIA · FIELD NOTES · SECOND EDITION</div>
+      <h1>流派手册</h1>
+      <div class="hb-title-sub">八种看经济的方式<br><span>从历史条件、人物与争论，到模型、证据与边界</span></div>
+      <div class="hb-title-rule"></div>
+      <p class="lede">写给第一次认真读宏观的人。你不必先会微积分，也不必先相信任何一个学派；你只需要愿意追问：这个理论在什么世界里成立？它为谁解决问题？它又让谁承担代价？</p>
+      <div class="hb-title-meta"><span>8 个流派 · 106 页</span><span>历史 / 理论 / 证据 / 研讨</span><span>2026</span></div>
+      <blockquote>“经济学是一门研究人类日常事务的学问。”<cite>阿尔弗雷德·马歇尔</cite></blockquote>
+    </div>` },
+    { section: "导读", head: "HOW TO READ", accent: "#A94F34", html: `<h2>如何读这本书</h2>
+      <p class="lede">不要从“哪个学派是对的”开始。先学会看清一个理论的条件、机制与代价。</p>
+      <div class="hb-steps">
+        <div><span>01</span><b>先读历史处境</b><p>每个理论都诞生在具体的经济困境里：高失业、通胀、战争债务、金融崩溃。先问它在回答什么现实问题。</p></div>
+        <div><span>02</span><b>再读假设与机制</b><p>假设不是装饰。价格是否灵活、货币是否中性、预期是否理性，会直接决定政策结论。</p></div>
+        <div><span>03</span><b>最后读证据与边界</b><p>一个理论能解释什么，不能解释什么？它的政策在哪些历史时刻奏效，又在哪些时刻失败？</p></div>
+      </div>
+      <div class="hb-two-note"><div><b>初学者可以跳过</b><p>章节中的形式模型可以先跳过，只读“核心问题”“因果机制”和“边界”。第二遍再回来。</p></div><div><b>不要做的事</b><p>不要用“市场永远正确”或“政府永远无能”代替论证；不要把模型里的参数当成现实常数。</p></div></div>
+      <div class="hb-note">每章固定十一节：历史条件、思想语境、核心问题、概念建筑、因果机制、形式模型、人物、争论与关系、证据与政策、边界与研讨。</div>` },
+    { section: "目录 / CONTENTS", head: "I", accent: "#A94F34", html: hbTocPage(true, starts) },
+    { section: "目录 / CONTENTS", head: "II", accent: "#A94F34", html: hbTocPage(false, starts) }
   ];
+  pages.push(...hbIndicatorPages());
+  pages.push({
+    section: "理论地图", head: "MAP", accent: "#8C4F68", html: `<h2>一张不完整的地图</h2>
+      <p class="lede">谱系不是血统。它记录的是问题的继承、方法的借用与立场的反抗。</p>
+      <div class="hb-lineage">
+        <div class="hb-lineage-row"><span class="hb-lineage-lab">古典</span>${["classical","keynes","monetarist","newclassical","newkeynesian"].map(id => { const s = SCHOOL_BY_ID[id]; return `<button class="lineage-node" data-goto="${starts.get(id)}" style="--accent:${s.color}">${esc(s.name)}</button>`; }).join('<span class="lineage-arrow">→</span>')}</div>
+        <div class="hb-lineage-row"><span class="hb-lineage-lab">批判</span><button class="lineage-node" data-goto="${starts.get("postkeynesian")}" style="--accent:#7A4A36">后凯恩斯</button><span class="lineage-arrow">→</span><button class="lineage-node" data-goto="${starts.get("mmt")}" style="--accent:#3B6B64">MMT</button><span class="lineage-arrow">·</span><button class="lineage-node" data-goto="${starts.get("austrian")}" style="--accent:#6B5B3E">奥地利</button></div>
+      </div>
+      <div class="hb-map-grid">
+        <div><b>共同问题</b><p>产出由供给还是需求决定？货币是中性的吗？市场能自我修复吗？政府应该做什么？</p></div>
+        <div><b>主要分岔</b><p>价格灵活性、预期形成、货币与信用、金融摩擦、财政空间、分配与制度。</p></div>
+        <div><b>不要寻找“唯一正确”</b><p>不同理论在不同时间尺度与制度环境下有不同解释力。比较，而不是站队。</p></div>
+      </div>
+      <div class="hb-note">点击节点可跳到对应章节；没有出现的“新古典综合”“RBC”“HANK”等，在正文中作为流派内部的分支讨论。</div>`
+  });
+  pages.push({
+    section: "数学预备", head: "TOOLKIT", accent: "#5D7046", html: `<h2>只需要一点算术</h2>
+      <p class="lede">宏观公式大多不是高深数学，而是把“变化率、比例、恒等式”写清楚。先掌握下面六件事。</p>
+      <div class="hb-tool-grid">
+        <div><b>百分比 vs 百分点</b><p>从 2% 到 4% 是上升 2 个百分点，不是 2%。通胀从 2% 到 4%，物价水平多涨了约 2%。</p></div>
+        <div><b>实际 vs 名义</b><p>实际值 = 名义值 ÷ 价格指数。实际利率 ≈ 名义利率 − 预期通胀。</p></div>
+        <div><b>流量 vs 存量</b><p>赤字是每年流量，债务是存量。利息 = 利率 × 债务存量。</p></div>
+        <div><b>增长率近似</b><p>两个变量相乘时，增长率近似相加：g(MV) ≈ gM + gV。</p></div>
+        <div><b>恒等式不是因果</b><p>Y = C + I + G 永远成立；它不告诉你 C 增加会不会导致 Y 增加。</p></div>
+        <div><b>均衡与稳定</b><p>均衡是“没有内生变化趋势”的状态；稳定是受冲击后能否回到均衡。两者不是一回事。</p></div>
+      </div>
+      <div class="hb-note">例：债务/GDP 从 80% 升到 84%，是上升 4 个百分点；若 Nominal GDP 增长 5%，债务存量增长 9%，则债务率大致上升 (9−5)=4 个百分点。</div>`
+  });
+  pages.push({
+    section: "术语", head: "GLOSSARY", accent: "#8E6E24", html: `<h2>术语小词典</h2>
+      <p class="lede">这些词会在不同章节反复出现。先建立一个粗略的坐标，读到具体语境时再细化。</p>
+      <div class="hb-glossary">${[
+        ["有效需求", "企业愿意生产、家庭愿意购买的总量；凯恩斯认为它可以长期低于潜在产出。"],
+        ["自然率", "通胀稳定时经济所能维持的失业率或利率；不可直接观测。"],
+        ["通胀预期", "家庭与企业对未来价格的预期；进入工资与定价。"],
+        ["实际利率", "名义利率减去预期通胀；影响借贷与储蓄的真实成本。"],
+        ["财政乘数", "自主支出变化引起的总产出变化倍数；随制度与环境变化。"],
+        ["挤出", "政府借款推高利率，减少私人投资；不是必然发生。"],
+        ["流动性陷阱", "名义利率接近零，货币扩张无法再压低利率。"],
+        ["金融脆弱性", "繁荣中杠杆与期限错配累积，使系统更容易崩溃。"],
+        ["部门余额", "私人、政府、外国部门的净金融资产之和为零。"],
+        ["主权货币", "政府以本币发行债务，不会因本币不足而违约。"],
+        ["自然利率 r*", "使储蓄等于投资、通胀稳定的实际利率。"],
+        ["牺牲率", "降低通胀一个百分点所需的累计失业或产出损失。"]
+      ].map(([t, d]) => `<div><b>${esc(t)}</b><p>${esc(d)}</p></div>`).join("")}</div>`
+  });
+  pages.push({
+    section: "研讨", head: "SEMINAR", accent: "#A94F34", html: `<h2>怎样提出一个好问题</h2>
+      <p class="lede">读完之后，不要只问“我同意谁”。试着问：在什么条件下，这个结论会被推翻？</p>
+      <div class="hb-seminar">
+        <div><b>事实层</b><p>哪些是数据？数据的定义、频率与修订会怎样影响结论？</p></div>
+        <div><b>机制层</b><p>从政策到结果，中间经过哪些行为主体？哪一步最容易断裂？</p></div>
+        <div><b>规范层</b><p>谁受益、谁承担成本？效率与分配之间如何取舍？</p></div>
+      </div>
+      <h3>八个可以带进沙盘的问题</h3>
+      <ol class="hb-questions">
+        <li>如果价格完全灵活，凯恩斯主义的结论还剩下什么？</li>
+        <li>如果预期完全理性，央行还能系统性地稳定产出吗？</li>
+        <li>财政乘数在产能闲置与充分就业时为什么不同？</li>
+        <li>为什么同一个通胀率，对不同家庭意味着不同的生活？</li>
+        <li>金融压力是周期的原因，还是结果？</li>
+        <li>主权货币的“空间”为什么会受到汇率与政治约束？</li>
+        <li>低利率是在配置资源，还是在推迟清算？</li>
+        <li>你愿意用多少失业，换回一个百分点的通胀？</li>
+      </ol>
+      <div class="hb-reading"><b>进一步阅读</b><p>Mankiw《宏观经济学》提供骨架；Keynes《通论》提供问题意识；Friedman & Schwartz《美国货币史》展示证据；Minsky《稳定不稳定的经济》提供金融视角；Wray《现代货币理论》与 Hayek《价格与生产》代表两种激进替代。</p></div>`
+  });
+  return pages;
+}
+function hbCover(s, start) {
+  const toc = [
+    ["时代与物质条件", start + 1], ["思想与政治语境", start + 2], ["核心问题与假设", start + 3],
+    ["概念建筑", start + 4], ["因果机制", start + 5], ["形式模型", start + 6],
+    ["人物与思想", start + 7], ["争论与关系", start + 8], ["证据与政策", start + 9],
+    ["边界与研讨", start + 10]
+  ];
+  return `<div class="chapter-cover" style="--accent:${s.color}">
+    <div class="chapter-kicker">CHAPTER ${s.no} · ${esc(s.era)}</div>
+    <div class="chapter-art">${schoolSymbol(s.symbol, 145)}</div>
+    <h2>${esc(s.name)}</h2><div class="chapter-en">${esc(s.en)}</div>
+    <p class="chapter-thesis">${esc(s.thesis)}</p>
+    <blockquote class="chapter-quote">“${esc(s.quote.text)}”<cite>${esc(s.quote.cite)}</cite></blockquote>
+    <div class="chapter-toc two-col"><div class="ct-lab">本章目录</div>
+      ${toc.map(([label, page]) => `<button data-goto="${page}" aria-label="跳到${label}"><span>${label}</span><span>${String(page + 1).padStart(2, "0")}</span></button>`).join("")}
+    </div>
+  </div>`;
+}
+function hbBackground(s, part) {
+  const b = s.background || {};
+  const paras = part === 1 ? b.material : b.intellectual;
+  const head = part === 1 ? "时代与物质条件" : "思想与政治语境";
+  const lede = part === 1 ? "理论不是从真空里长出来的。先看人们靠什么生活、什么稀缺、什么在崩溃。" : "同一组现实，可以被不同的语言、学科与政治立场描述。";
+  return `<h2>${head}</h2><p class="lede">${lede}</p>${hbProse(paras)}
+    ${part === 1 && b.timeline ? `<div class="hb-timeline">${b.timeline.map(x => `<div><span>${esc(x.y)}</span><p>${esc(x.t)}</p></div>`).join("")}</div>` : ""}
+    ${part === 2 ? `<div class="hb-pull">${esc(s.core ? s.core.lede : s.thesis)}</div>${b.scene ? `<div class="hb-scene"><span>历史现场</span><p>${esc(b.scene)}</p></div>` : ""}<div class="hb-note">读历史条件时，注意区分“理论当时面对的问题”和“理论后来被用来解决的问题”。</div>` : ""}`;
+}
+function hbCore(s) {
+  return `<h2>核心问题与假设</h2>
+    <div class="hb-question"><span>本章问题</span><p>${esc(s.question || s.tagline)}</p></div>
+    <p class="lede">${esc(s.core.lede)}</p>
+    <div class="hb-two-col">
+      <div><h4>核心命题</h4>${s.core.claims.map((c, i) => `<div class="hb-claim"><span>0${i + 1}</span><div><b>${esc(c.t)}</b><p>${esc(c.d)}</p></div></div>`).join("")}</div>
+      <div><h4>关键假设</h4><ul class="hb-list">${s.theory.assumptions.map(a => `<li>${esc(a)}</li>`).join("")}</ul></div>
+    </div>
+    <p>${esc(s.core.closing)}</p>
+    <div class="core-deep"><h4>再深一层</h4><p>${esc(s.core.deeper || "")}</p></div><div class="hb-reading"><b>停下来想一想</b><p>${esc((s.seminar && s.seminar[0]) || "")}</p></div>`;
+}
+function hbArchitecture(s) {
+  return `<h2>概念建筑</h2><p class="lede">先掌握四块基石。它们会在后面的机制与模型里反复出现。</p>
+    <div class="hb-concepts">${(s.architecture || []).map((c, i) => `<div class="hb-concept"><span>0${i + 1}</span><b>${esc(c.term)}</b><p>${esc(c.text)}</p></div>`).join("")}</div>
+    <div class="hb-terms"><span>关键词</span>${(s.terms || []).map(t => `<b>${esc(t)}</b>`).join("")}</div>
+    <div class="hb-note">概念不是标签。每读一个术语，试着用一个现实例子解释它；如果解释不了，说明还没有真正理解。</div>`;
+}
+function hbMechanism(s) {
+  return `<h2>因果机制</h2><p class="lede">把理论拆成一条可以检查的链：谁先行动，谁改变预期，谁承担后果。</p>
+    <ol class="hb-mechanism">${s.theory.steps.map((step, i) => `<li><span>${String(i + 1).padStart(2, "0")}</span><div><b>${esc(step)}</b>${i < s.theory.steps.length - 1 ? `<em>→ 下一步</em>` : `<em>→ 新均衡（或持续失衡）</em>`}</div></li>`).join("")}</ol>
+    <div class="hb-note"><b>反事实：</b>如果其中一步不成立，结论会怎样变化？例如价格不灵活、预期不跟随、或金融中介崩溃。</div>
+    ${s.model && s.model[0] ? `<div class="eq-block">${s.model[0].eq}<span class="eq-note">${esc(s.model[0].meaning)}</span></div>` : ""}`;
+}
+function hbModel(s) {
+  return `<h2>形式模型</h2><p class="lede">方程是把机制压缩成可比较的语言。先读每一项的经济含义，再读符号。</p>
+    <div class="hb-model">${(s.model || s.theory.eqs).map((m, i) => `<div class="hb-eq"><div class="hb-eq-name">${esc(m.name || `方程 ${i + 1}`)}</div><div class="eq-block">${m.eq}<span class="eq-note">${esc(m.meaning || m.note || "")}</span></div></div>`).join("")}</div>
+    <div class="hb-note"><b>模型的边界：</b>这些方程是教学简化，不是经验估计。它们假设的因果方向、参数稳定性与代表性主体，正是各流派争论的焦点。</div>
+    <div class="hb-terms"><span>读方程</span><b>先看因变量</b><b>再看假设</b><b>最后看比较静态</b></div>`;
+}
+function hbFigures(s) {
+  return `<h2>人物与思想</h2><p class="lede">思想不是从真空里长出来的。下面三个人物，分别代表这一传统的不同侧面：问题的提出、机制的构造与政策的延伸。</p>
+    <div class="bio-stack">${s.figures.map(f => `<div class="bio-card"><div class="bio-head"><b>${esc(f.name)}</b><span>${esc(f.years)}</span></div><div class="bio-role">${esc(f.role)}</div><p>${esc(f.text)}</p></div>`).join("")}</div>
+    <div class="hb-note">人物小传只保留与思想相关的生平与代表作，不追求完整传记。</div>`;
+}
+function hbDebates(s, starts) {
+  const link = item => {
+    const target = item.id ? SCHOOL_BY_ID[item.id] : null;
+    const label = target ? target.name : (item.label || item.id || "");
+    if (!target) return `<div class="rel-link"><b>${esc(label)}</b><span>${esc(item.text)}</span></div>`;
+    return `<button class="rel-link" data-goto="${starts.get(target.id)}"><b>${esc(label)} →</b><span>${esc(item.text)}</span></button>`;
+  };
+  return `<h2>争论与关系</h2><p class="lede">一个流派的位置，由它继承谁、反对谁、又被谁吸收来定义；也由它内部没有解决的争论来定义。</p>
+    <div class="hb-debates">${(s.debates || []).map((d, i) => `<div><span>DEBATE 0${i + 1}</span><b>${esc(d.title)}</b><p>${esc(d.text)}</p></div>`).join("")}</div>
+    <div class="rel-grid"><div class="rel-col"><h4>亲缘 / 共鸣</h4>${s.relations.allies.map(link).join("")}</div><div class="rel-col tension"><h4>张力 / 批评</h4>${s.relations.tensions.map(link).join("")}</div></div>
+    <div class="rel-note"><b>一句定位：</b>${esc(s.relations.note)}</div>`;
+}
+function hbEvidence(s) {
+  return `<h2>证据与政策</h2><p class="lede">理论的说服力，最终要在历史记录里接受检验。注意：相关不等于因果，反事实也往往不可观测。</p>
+    <div class="hb-evidence">${(s.evidence || []).map(e => `<div><span>${esc(e.period)}</span><div><b>${esc(e.title)}</b><p>${esc(e.text)}</p></div></div>`).join("")}</div>
+    <div class="hb-pull"><b>留下的遗产：</b>${esc(s.legacy || "")}</div>
+    <div class="hb-note">读证据时问：如果当时采用另一套政策，结果会更好吗？我们能否找到可信的反事实？</div>`;
+}
+function hbCritique(s) {
+  return `<h2>边界与研讨</h2>
+    <div class="limit-list">${s.critique.limits.map(x => `<div><i>×</i><span>${esc(x)}</span></div>`).join("")}</div>
+    <div class="hb-two-col"><div><h4>术语</h4><div class="hb-terms small">${(s.terms || []).map(t => `<b>${esc(t)}</b>`).join("")}</div></div><div><h4>研讨问题</h4><ol class="hb-questions small">${(s.seminar || []).map(q => `<li>${esc(q)}</li>`).join("")}</ol></div></div>
+    <div class="hb-reading"><b>延伸阅读</b>${(s.reading || []).map(r => `<p><b>${esc(r.cite)}</b><br>${esc(r.note)}</p>`).join("")}</div>`;
+}
+function buildSchoolBook() {
+  const starts = new Map(SCHOOL_BOOK_DATA.map((s, i) => [s.id, HB_FRONT + i * HB_SCHOOL_PAGES]));
+  const pages = hbFrontMatter(starts);
   SCHOOL_BOOK_DATA.forEach(s => {
     const start = starts.get(s.id);
     pages.push(
-      { kind: "cover", section: s.name, head: `CHAPTER ${s.no}`, accent: s.color, html: schoolCoverPage(s, start) },
-      { kind: "content", section: s.name, head: "核心思想", accent: s.color, html: schoolCorePage(s) },
-      { kind: "content", section: s.name, head: "人物与思想", accent: s.color, html: schoolFiguresPage(s) },
-      { kind: "content", section: s.name, head: "关系网络", accent: s.color, html: schoolRelationsPage(s, starts) },
-      { kind: "content", section: s.name, head: "理论论证", accent: s.color, html: schoolTheoryPage(s) },
-      { kind: "content", section: s.name, head: "边界与沙盘", accent: s.color, html: schoolCritiquePage(s) }
+      { kind: "cover", section: s.name, head: `CHAPTER ${s.no}`, accent: s.color, html: hbCover(s, start) },
+      { kind: "content", section: s.name, head: "历史条件 I", accent: s.color, html: hbBackground(s, 1) },
+      { kind: "content", section: s.name, head: "历史条件 II", accent: s.color, html: hbBackground(s, 2) },
+      { kind: "content", section: s.name, head: "核心问题", accent: s.color, html: hbCore(s) },
+      { kind: "content", section: s.name, head: "概念建筑", accent: s.color, html: hbArchitecture(s) },
+      { kind: "content", section: s.name, head: "因果机制", accent: s.color, html: hbMechanism(s) },
+      { kind: "content", section: s.name, head: "形式模型", accent: s.color, html: hbModel(s) },
+      { kind: "content", section: s.name, head: "人物与思想", accent: s.color, html: hbFigures(s) },
+      { kind: "content", section: s.name, head: "争论与关系", accent: s.color, html: hbDebates(s, starts) },
+      { kind: "content", section: s.name, head: "证据与政策", accent: s.color, html: hbEvidence(s) },
+      { kind: "content", section: s.name, head: "边界与研讨", accent: s.color, html: hbCritique(s) }
     );
   });
-  return { id: "schools", title: "流派手册", sub: "八种看经济的方式 · SCHOOLS HANDBOOK", footer: "SCHOOLS HANDBOOK", pages, starts };
+  return { id: "schools", title: "流派手册", sub: "八种看经济的方式 · 106 页 · SCHOOLS HANDBOOK", footer: "SCHOOLS HANDBOOK", pages, starts };
 }
 
 function formulaTocRow(f, start) {
@@ -4822,20 +6412,209 @@ function formulaPageTwo(f) {
     </div>
     <div class="pitfall-box"><div class="case-lab">不要误读</div><ul>${f.pitfalls.map(x => `<li>${x}</li>`).join("")}</ul></div>`;
 }
-function buildFormulaBook() {
-  const starts = new Map(FORMULA_BOOK_DATA.map((f, i) => [f.id, 2 + i * 2]));
-  const pages = [
-    { kind: "toc", section: "目录 / CONTENTS", head: "I", accent: "#A94F34", html: formulaTocPage(true, starts) },
-    { kind: "toc", section: "目录 / CONTENTS", head: "II", accent: "#A94F34", html: formulaTocPage(false, starts) }
+/* ---- second edition: formula front matter and nine-page chapters ---- */
+const FB_FRONT = 12;
+const FB_CHAPTER_PAGES = 10;
+const FB_TOTAL = FB_FRONT + FORMULA_BOOK_DATA.length * FB_CHAPTER_PAGES;
+
+function fbTocPage(left, starts) {
+  const slice = left ? FORMULA_BOOK_DATA.slice(0, 5) : FORMULA_BOOK_DATA.slice(5);
+  return `<div class="toc-head"><div class="eyebrow">CONTENTS / 目录 ${left ? "I" : "II"}</div>
+    <h2>${left ? "把直觉拆成方程" : "从公式到判断"}</h2>
+    <p>${left ? "十次推导，十个可以拖动、可以检验的机制。每一章先从一个故事开始，再写符号、假设与中间步骤，最后才给出结论。" : "不要跳过中间公式。它们是经济含义最密集的地方；每个中间式后面都有一句“这意味着什么”。"}</p></div>
+    <div class="formula-toc">${slice.map(f => formulaTocRow(f, starts.get(f.id))).join("")}</div>
+    <div class="hb-front-links"><span>前置</span><button data-goto="1">如何使用 · 02</button><button data-goto="4">符号与单位 · 05</button><button data-goto="5">读图 · 06</button><button data-goto="6">推导语法 · 07</button><button data-goto="8">公式地图 · 09</button><button data-goto="11">边界 · 12</button></div>
+    <div class="toc-note">${left ? "每章第 7 页是交互实验：拖动滑块，曲线与读数会实时变化。" : "建议顺序：乘数 → IS–LM → Phillips → Okun → Fisher → Taylor → 债务 → 数量论 → Solow → 部门余额。"}</div>`;
+}
+function fbFrontMatter(starts) {
+  return [
+    { section: "MÉRIDIA · FORMULA CODEX", head: "第二版", accent: "#A94F34", html: `<div class="hb-title-page">
+      <div class="eyebrow">MERIDIA · FORMULA CODEX · SECOND EDITION</div>
+      <h1>公式书</h1>
+      <div class="hb-title-sub">十个公式，十次推导<br><span>符号、假设、中间步骤、经济含义与可拖动的实验</span></div>
+      <div class="hb-title-rule"></div>
+      <p class="lede">公式不是用来背的。它是把一个问题、一组假设和一个机制压缩成可以检查的语言。本书会慢慢展开每一步，并把每一步翻译回经济学。</p>
+      <div class="hb-title-meta"><span>10 个公式 · 112 页</span><span>推导 / 图形 / 案例 / 实验室</span><span>2026</span></div>
+      <blockquote>“数学是一种语言，不是答案。”<cite>给初学者的一句提醒</cite></blockquote>
+    </div>` },
+    { section: "导读", head: "HOW TO USE", accent: "#A94F34", html: `<h2>怎样读，才算真的懂</h2>
+      <p class="lede">先看故事，再看符号；先跟推导，再拖滑块。不要在第一次读的时候就试图背下公式。</p>
+      <div class="hb-steps">
+        <div><span>01</span><b>先问它在回答什么</b><p>每个公式都对应一个现实问题：一笔支出会放大多少？财政扩张为什么推高利率？通胀为什么有惯性？</p></div>
+        <div><span>02</span><b>把中间式读成句子</b><p>例如“收入越高，货币需求越大，所以在货币供给不变时利率必须上升”。这比记住 LM 的斜率更重要。</p></div>
+        <div><span>03</span><b>拖动滑块，检验直觉</b><p>第 7 页的实验室不写入存档。改变一个参数，观察曲线与读数，再回到假设问：这符合现实吗？</p></div>
+      </div>
+      <div class="hb-two-note"><div><b>每章结构</b><p>故事 → 符号与假设 → 推导 I/II/III → 最终公式与比较静态 → 实验室 → 案例 → 证据、误区与练习。</p></div><div><b>初学者提示</b><p>如果推导卡住，先看每步后面的“这意味着什么”，再回到符号表。不要跳过单位与符号方向。</p></div></div>
+      <div class="hb-note">所有数值都是教学校准，不是经验估计。实验室中的曲线用于理解机制，不用于预测现实。</div>` },
+    { section: "目录 / CONTENTS", head: "I", accent: "#A94F34", html: fbTocPage(true, starts) },
+    { section: "目录 / CONTENTS", head: "II", accent: "#A94F34", html: fbTocPage(false, starts) },
+    { section: "符号与单位", head: "NOTATION", accent: "#3E6382", html: `<h2>字母不是密码</h2>
+      <p class="lede">宏观公式里的每个字母都有经济含义。先分清“水平值、变化率、比率、预期值”，再开始推导。</p>
+      <div class="hb-tool-grid">
+        <div><b>水平值</b><p>Y、C、I、G 是数量或金额；P 是价格水平；M 是货币存量。</p></div>
+        <div><b>比率</b><p>i、π、u、g 是百分比；r 是实际利率；x 是产出缺口（% 潜在产出）。</p></div>
+        <div><b>变化</b><p>Δ 表示变化量；gM 表示增长率；πe 表示预期通胀；E 表示预期。</p></div>
+        <div><b>参数</b><p>b、t、d、h、β、s、δ、α 是行为或技术参数；它们不是政策工具。</p></div>
+        <div><b>下标</b><p>t 表示时间；t+1 表示下一期；* 通常表示自然率、目标或潜在值。</p></div>
+        <div><b>单位</b><p>利率与通胀用百分点；债务用 GDP 的百分比；时间用年或季度，季度值需年化。</p></div>
+      </div>
+      <div class="hb-note">例：i=5%、πe=2%，则 r≈3%。若写 r=3，不要误读成 3 倍；它是 3 个百分点。</div>` },
+    { section: "读图", head: "GRAPH READING", accent: "#5D7046", html: `<h2>先看轴，再看线</h2>
+      <p class="lede">经济学图形不是装饰。它把两个变量的关系画出来，但曲线的位置、斜率与移动方向都依赖假设。</p>
+      <div class="hb-tool-grid">
+        <div><b>横轴与纵轴</b><p>先确认每个轴代表什么、单位是什么。IS–LM 的横轴是产出 Y，纵轴是利率 i。</p></div>
+        <div><b>沿曲线移动</b><p>当横轴变量变化时，点沿曲线移动；当其他参数变化时，整条曲线移动。</p></div>
+        <div><b>斜率</b><p>斜率是“横轴增加一单位，纵轴变化多少”。IS 向下、LM 向上，是由行为假设决定的。</p></div>
+        <div><b>交点</b><p>交点表示两个市场同时均衡；它不保证充分就业，也不保证社会福利最大。</p></div>
+        <div><b>比较静态</b><p>移动一条曲线，看新交点相对旧交点如何变化；这就是政策效果的几何表达。</p></div>
+        <div><b>动态路径</b><p>债务、资本与通胀路径不是一条曲线，而是随时间变化的轨迹；看方向和拐点。</p></div>
+      </div>
+      <div class="hb-note">在实验室里，先只改一个参数。一次改多个，你会看不清是哪条曲线在动。</div>` },
+    { section: "推导语法", head: "DERIVATION", accent: "#8C4F68", html: `<h2>推导的四种动作</h2>
+      <p class="lede">绝大多数宏观推导只反复做四件事：代入、移项、取变化率、做比较静态。</p>
+      <div class="hb-tool-grid">
+        <div><b>代入</b><p>把行为方程放进恒等式。例：把 C=a+b(Y−T) 代入 Y=C+I+G。</p></div>
+        <div><b>移项</b><p>把含未知数的项移到一边，解出闭式。例：Y[1−b(1−t)]=A。</p></div>
+        <div><b>取变化率</b><p>乘法取对数后变成加法。例：MV=PY 变为 gM+gV=π+gY。</p></div>
+        <div><b>比较静态</b><p>对参数求导，看均衡如何变化。例：∂Y/∂G=1/[1−b(1−t)]。</p></div>
+        <div><b>线性化</b><p>在稳态附近把非线性关系近似成直线；β、κ 等系数来自这一步。</p></div>
+        <div><b>识别假设</b><p>每一步都在用假设：价格固定、预期给定、参数不变。推导结束时要回看它们。</p></div>
+      </div>
+      <div class="hb-note">推导不是“算出答案”，而是“把假设的后果展开”。中间式往往比最终式更能说明机制。</div>` },
+    { section: "符号总表", head: "SYMBOLS", accent: "#8E6E24", html: `<h2>常见符号总表</h2>
+      <div class="hb-glossary">${[
+        ["Y / Y*", "实际产出 / 潜在产出"], ["x", "产出缺口 (Y−Y*)/Y*"], ["C / I / G", "消费 / 投资 / 政府支出"],
+        ["T / τ", "税收 / 税率"], ["i / r", "名义利率 / 实际利率"], ["π / πe", "通胀 / 预期通胀"],
+        ["u / u*", "失业率 / 自然失业率"], ["M / P", "货币存量 / 价格水平"], ["d / pb", "债务/GDP / 基本余额"],
+        ["b / t", "边际消费倾向 / 税率"], ["d / h", "投资利率敏感度 / 货币需求利率敏感度"], ["β / κ", "Phillips 斜率 / 通胀对缺口的敏感度"],
+        ["s / δ / n / g", "储蓄率 / 折旧 / 人口增长 / 技术增长"], ["r*", "自然实际利率"], ["E", "预期算子"]
+      ].map(([t, d]) => `<div><b>${esc(t)}</b><p>${esc(d)}</p></div>`).join("")}</div>
+      <div class="hb-note">同一个字母在不同章节可能有不同含义；本书在每章符号表中重新定义。</div>` },
+    { section: "公式地图", head: "MAP", accent: "#A94F34", html: `<h2>十个公式，一条链</h2>
+      <p class="lede">它们不是十个孤立的工具，而是从政策到结果的一条链上的不同接口。</p>
+      <div class="fb-map">${[
+        ["乘数", "财政 → 需求", "multiplier"], ["IS–LM", "财政/货币 → 产出与利率", "islm"],
+        ["Phillips", "缺口 → 通胀", "phillips"], ["Okun", "缺口 → 失业", "okun"],
+        ["Fisher", "名义利率 → 实际利率", "fisher"], ["Taylor", "通胀/缺口 → 政策利率", "taylor"],
+        ["债务", "利率/增长/赤字 → 债务率", "debt"], ["数量论", "货币 → 价格（长期）", "quantity"],
+        ["Solow", "储蓄/技术 → 长期水平", "solow"], ["部门余额", "三部门金融资产恒等式", "sectors"]
+      ].map(([t, d, id]) => `<button data-goto="${starts.get(id)}"><b>${esc(t)}</b><span>${esc(d)}</span></button>`).join("")}</div>
+      <div class="hb-note">点击任一公式跳到对应章节。先读整条链，再回到单个公式，理解它在系统中的位置。</div>` },
+    { section: "常见错误", head: "PITFALLS", accent: "#8C4F68", html: `<h2>十个常见误读</h2>
+      <div class="hb-glossary">${[
+        ["把相关当因果", "两个变量一起动，不一定是谁导致谁；需要机制与识别。"],
+        ["把名义当实际", "工资涨 5%、物价涨 6%，实际工资下降 1%。"],
+        ["把百分点当百分比", "从 2% 到 4% 是 2 个百分点，不是 2%。"],
+        ["把恒等式当行为", "Y=C+I+G 永远成立，但不说明 C 增加会推高 Y。"],
+        ["把乘数当常数", "乘数随产能、利率、进口与预期变化。"],
+        ["把自然率当固定", "u* 会因制度、技能与长期失业漂移。"],
+        ["把模型当现实", "模型是筛选过的世界；参数不是经验估计。"],
+        ["忽略预期", "政策改变预期，预期又改变政策效果。"],
+        ["忽略金融", "银行资产负债表会让利率传导断裂。"],
+        ["忘记时间尺度", "短期与长期的结论可以相反。"]
+      ].map(([t, d]) => `<div><b>${esc(t)}</b><p>${esc(d)}</p></div>`).join("")}</div>
+      <div class="hb-note">每次推导结束，回到这张表检查一遍。</div>` },
+    { section: "练习方法", head: "EXERCISES", accent: "#5D7046", html: `<h2>怎样做一道宏观题</h2>
+      <p class="lede">不要一上来就代数。先写单位、画方向、估量级，再动笔。</p>
+      <div class="hb-steps">
+        <div><span>01</span><b>写清变量与单位</b><p>哪个是水平、哪个是变化率？利率是年化还是季度？债务是占 GDP 还是绝对额？</p></div>
+        <div><span>02</span><b>画一张方向图</b><p>政策先动哪个变量，再动哪个？哪条曲线移动？方向是否符合直觉？</p></div>
+        <div><span>03</span><b>做量级检查</b><p>乘数 2.5 意味着 ΔG=1 带来 ΔY=2.5；如果算出 250，先检查小数点。</p></div>
+        <div><span>04</span><b>回到假设</b><p>如果价格不灵活、预期不理性、金融中介崩溃，答案会怎样变化？</p></div>
+      </div>
+      <div class="hb-note">每章末尾有三道练习；先自己写，再看本章的“边界”页。</div>` },
+    { section: "边界", head: "BOUNDARIES", accent: "#3B6B64", html: `<h2>公式书不做什么</h2>
+      <p class="lede">它不提供预测，不替代计量，也不证明某个学派正确。它只把机制展开，让你看见假设与后果。</p>
+      <div class="hb-two-note"><div><b>这是教学模型</b><p>参数是刻意选择的，不是经验估计；曲线是机制示意，不是现实数据。</p></div><div><b>现实更复杂</b><p>异质家庭、银行资产负债表、开放经济资本流动、政治约束与分配冲突，都只能部分进入模型。</p></div></div>
+      <div class="hb-note">读完公式，回到流派手册与沙盘：同一个机制在不同制度下会有不同的重量。</div>` }
   ];
+}
+function fbCover(f, start) {
+  const toc = [
+    ["故事与问题", start + 1], ["符号与假设", start + 2], ["推导 I", start + 3],
+    ["推导 II", start + 4], ["推导 III", start + 5], ["最终式与比较静态", start + 6],
+    ["交互实验室", start + 7], ["数值案例", start + 8], ["证据、误区与练习", start + 9]
+  ];
+  return `<div class="chapter-cover fb-cover" style="--accent:${f.accent}">
+    <div class="chapter-kicker">FORMULA ${f.no} · ${esc(f.en)}</div>
+    <div class="fb-cover-glyph">${esc(f.glyph)}</div>
+    <h2>${esc(f.title)}</h2>
+    <div class="formula-hero">${f.eq}<small>${esc(f.eqNote)}</small></div>
+    <p class="chapter-thesis">${esc(f.meaning)}</p>
+    <div class="chapter-toc two-col"><div class="ct-lab">本章目录</div>${toc.map(([label, page]) => `<button data-goto="${page}"><span>${esc(label)}</span><span>${String(page + 1).padStart(2, "0")}</span></button>`).join("")}</div>
+  </div>`;
+}
+function fbStory(f) {
+  return `<h2>从一个问题开始</h2><p class="lede">${esc(f.story || "")}</p>
+    <div class="hb-question"><span>本章要回答</span><p>${esc(f.question || f.meaning)}</p></div>
+    <p>${esc(f.whyFormula || "")}</p>
+    <div class="hb-note">先不要急着看公式。试着用自己的话回答上面的问题；推导只是把直觉写得更精确。</div>`;
+}
+function fbSymbols(f) {
+  return `<h2>符号与假设</h2><p class="lede">${esc(f.meaning)}</p>
+    <h4>符号的经济含义</h4><div class="symbol-table">${f.symbols.map(s => `<div class="sym-row"><b>${esc(s.s)}</b><span>${esc(s.d)} <em>${esc(s.u)}</em></span></div>`).join("")}</div>
+    <h4>关键假设</h4><ul class="hb-list">${f.assumptions.map(a => `<li>${esc(a)}</li>`).join("")}</ul>
+    <div class="hb-note">假设不是“不现实的废话”。它们是模型的边界条件；改变其中一条，结论可能反转。</div>`;
+}
+function fbDerivation(f, part) {
+  const from = part * 2, to = part === 2 ? f.derivation.length : from + 2;
+  const steps = f.derivation.slice(from, to);
+  const head = part === 0 ? "推导 I" : part === 1 ? "推导 II" : "推导 III 与结论";
+  return `<h2>${head}</h2><p class="lede">${part === 0 ? "先把假设写成方程，再让两个市场或两个变量相遇。" : part === 1 ? "中间式不是过渡；它已经包含了一个经济学判断。" : "把最后一步接上，得到可以比较静态的闭式解。"}</p>
+    <div class="fb-steps">${steps.map((d, i) => {
+      const idx = from + i;
+      return `<div class="fb-step"><div class="fb-step-no">STEP ${String(idx + 1).padStart(2, "0")}</div><div class="fb-step-main"><b>${esc(d.t)}</b><div class="fb-step-eq">${d.e}</div><div class="fb-step-why"><span>这意味着什么</span>${esc((f.whys && f.whys[idx]) || "这一步把前一步的假设转化为可比较的关系。")}</div></div></div>`;
+    }).join("")}</div>
+    ${part === 2 ? `<div class="fb-final"><span>最终式</span><div class="formula-hero">${f.eq}<small>${esc(f.eqNote)}</small></div></div>` : ""}`;
+}
+function fbFinal(f) {
+  return `<h2>得到公式</h2><div class="formula-hero">${f.eq}<small>${esc(f.eqNote)}</small></div>
+    <p>${esc(f.meaning)}</p>
+    <h4>比较静态</h4>
+    <div class="fb-comparative">${(f.comparative || []).map(([a, b, c]) => `<div><b>${esc(a)}</b><span>${esc(b)}</span><p>${esc(c)}</p></div>`).join("")}</div>
+    <div class="hb-note">比较静态只说明方向，不说明幅度；幅度取决于参数与制度。</div>`;
+}
+function fbLab(f) {
+  const controls = f.lab.controls.map(c => `<label class="fl-ctl"><span>${esc(c.label)}</span><input type="range" data-fl-key="${esc(c.key)}" min="${c.min}" max="${c.max}" step="${c.step}" value="${c.value}"><output data-fl-out="${esc(c.key)}">${c.fmt(c.value)}</output></label>`).join("");
+  return `<h2>把公式拖一拖</h2><p class="lede">${esc(f.lab.note)}</p>
+    <div class="formula-lab" data-lab="${f.id}">
+      <div class="fl-controls">${controls}</div>
+      <div class="fl-chart"><canvas data-fl-canvas width="320" height="190" aria-label="${esc(f.title)}交互图"></canvas></div>
+      <div class="fl-readout" data-fl-readout>拖动滑块开始。</div>
+    </div>
+    <div class="hb-note">实验室不写入存档。它只改变这里的参数，不会改变你的任期；按顶部“目录”回到书首。</div>`;
+}
+function fbCase(f) {
+  return `<h2>一个理想化案例</h2><div class="case-box"><div class="case-lab">MERIDIA CASE · ${esc(f.case.title)}</div>
+    <p>${esc(f.case.setup)}</p><ol>${f.case.steps.map(x => `<li>${esc(x)}</li>`).join("")}</ol><div class="case-eq">${esc(f.case.result)}</div></div>
+    <div class="hb-note">案例里的数字是虚构的，但代数关系与模型一致。先自己算一遍，再读结果。</div>`;
+}
+function fbBoundary(f) {
+  return `<h2>证据、误区与练习</h2>
+    <div class="hb-two-col"><div><h4>不要误读</h4><div class="pitfall-box"><ul>${f.pitfalls.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div></div><div><h4>历史与证据</h4><p class="fb-evidence">${esc(f.evidence || "")}</p></div></div>
+    <h4>练习</h4><ol class="hb-questions">${(f.exercises || []).map(x => `<li>${esc(x)}</li>`).join("")}</ol>
+    <div class="hb-reading"><b>接着读</b><p>${esc(f.related || "")}</p></div>`;
+}
+
+function buildFormulaBook() {
+  const starts = new Map(FORMULA_BOOK_DATA.map((f, i) => [f.id, FB_FRONT + i * FB_CHAPTER_PAGES]));
+  const pages = fbFrontMatter(starts);
   FORMULA_BOOK_DATA.forEach(f => {
     const start = starts.get(f.id);
     pages.push(
-      { kind: "content", section: f.title, head: `FORMULA ${f.no}`, accent: f.accent, html: formulaPageOne(f) },
-      { kind: "content", section: f.title, head: "推导 · 案例", accent: f.accent, html: formulaPageTwo(f) }
+      { kind: "cover", section: f.title, head: `FORMULA ${f.no}`, accent: f.accent, html: fbCover(f, start) },
+      { kind: "content", section: f.title, head: "故事与问题", accent: f.accent, html: fbStory(f) },
+      { kind: "content", section: f.title, head: "符号与假设", accent: f.accent, html: fbSymbols(f) },
+      { kind: "content", section: f.title, head: "推导 I", accent: f.accent, html: fbDerivation(f, 0) },
+      { kind: "content", section: f.title, head: "推导 II", accent: f.accent, html: fbDerivation(f, 1) },
+      { kind: "content", section: f.title, head: "推导 III", accent: f.accent, html: fbDerivation(f, 2) },
+      { kind: "content", section: f.title, head: "最终式", accent: f.accent, html: fbFinal(f) },
+      { kind: "content", section: f.title, head: "交互实验室", accent: f.accent, html: fbLab(f) },
+      { kind: "content", section: f.title, head: "数值案例", accent: f.accent, html: fbCase(f) },
+      { kind: "content", section: f.title, head: "证据与练习", accent: f.accent, html: fbBoundary(f) }
     );
   });
-  return { id: "formulas", title: "公式书", sub: "十次推导 · FORMULA CODEX", footer: "FORMULA CODEX", pages, starts };
+  return { id: "formulas", title: "公式书", sub: "十次推导 · 112 页 · FORMULA CODEX", footer: "FORMULA CODEX", pages, starts };
 }
 
 const BOOK_CACHE = {};
@@ -4884,6 +6663,176 @@ function bookShellHTML(book) {
   </div>`;
 }
 
+/* ---- in-book formula labs: slider + chart, no modal ---- */
+const LAB_STATE = {};
+const FL = { ink: "#342A20", muted: "#8A765F", line: "#D6C5A6", paper: "#F6EDD9", clay: "#A94F34", sky: "#3E6382", olive: "#5D7046", gold: "#8E6E24", fig: "#8C4F68" };
+
+function flFrame(ctx, w, h, pad, o = {}) {
+  const xMin = o.xMin ?? 0, xMax = o.xMax ?? 10, yMin = o.yMin ?? 0, yMax = o.yMax ?? 10;
+  const X = v => pad.l + (v - xMin) / (xMax - xMin || 1) * (w - pad.l - pad.r);
+  const Y = v => pad.t + (1 - (v - yMin) / (yMax - yMin || 1)) * (h - pad.t - pad.b);
+  ctx.strokeStyle = FL.line; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const x = pad.l + i / 4 * (w - pad.l - pad.r);
+    const y = pad.t + i / 4 * (h - pad.t - pad.b);
+    ctx.beginPath(); ctx.moveTo(x, pad.t); ctx.lineTo(x, h - pad.b); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(w - pad.r, y); ctx.stroke();
+  }
+  ctx.fillStyle = FL.muted; ctx.font = "7px monospace"; ctx.textAlign = "right";
+  for (let i = 0; i <= 4; i++) {
+    const v = yMin + (yMax - yMin) * i / 4, y = Y(v);
+    ctx.fillText(Math.abs(v) >= 100 ? v.toFixed(0) : v.toFixed(1), pad.l - 3, y + 2);
+  }
+  ctx.textAlign = "left";
+  if (o.xLab) ctx.fillText(o.xLab, w - pad.r - 20, h - 3);
+  if (o.yLab) { ctx.save(); ctx.translate(8, pad.t + (h - pad.t - pad.b) / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillText(o.yLab, 0, 0); ctx.restore(); }
+  return { X, Y };
+}
+function flLine(ctx, pts, color, width = 2) {
+  if (!pts.length) return;
+  ctx.strokeStyle = color; ctx.lineWidth = width; ctx.beginPath();
+  pts.forEach((p, i) => { if (i) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); });
+  ctx.stroke();
+}
+function flPoint(ctx, x, y, color, label) {
+  ctx.fillStyle = color; ctx.fillRect(x - 2.5, y - 2.5, 5, 5);
+  if (label) { ctx.font = "7px monospace"; ctx.fillText(label, x + 5, y - 5); }
+}
+function flSet(box, html) { const r = box.querySelector("[data-fl-readout]"); if (r) r.innerHTML = html; }
+function flCanvas(box) {
+  const cv = box.querySelector("[data-fl-canvas]");
+  if (!cv) return null;
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const w = cv.clientWidth || 320, h = 190;
+  cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+  const ctx = cv.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = FL.paper; ctx.fillRect(0, 0, w, h);
+  return { ctx, w, h };
+}
+function drawFormulaLab(f, box, s) {
+  const c = flCanvas(box); if (!c) return;
+  const { ctx, w, h } = c;
+  const pad = { l: 32, r: 12, t: 12, b: 20 };
+  if (f.lab.type === "multiplier") {
+    const k = 1 / (1 - s.b * (1 - s.t));
+    let cum = 0; const pts = [[0, 0]], bars = [];
+    for (let n = 0; n < 8; n++) { cum += s.dG * Math.pow(s.b * (1 - s.t), n); pts.push([n + 1, cum]); bars.push([n, s.dG * Math.pow(s.b * (1 - s.t), n)]); }
+    const max = Math.max(k * s.dG * 1.05, 1);
+    const { X, Y } = flFrame(ctx, w, h, pad, { xMin: 0, xMax: 8, yMin: 0, yMax: max, xLab: "轮次", yLab: "产出" });
+    bars.forEach(([n, v]) => { const x = X(n + 0.15), y = Y(v); ctx.fillStyle = "rgba(169,79,52,.35)"; ctx.fillRect(x, y, (w - pad.l - pad.r) / 8 * .7, Y(0) - y); });
+    flLine(ctx, pts.map(([x, y]) => [X(x), Y(y)]), FL.clay, 2);
+    flPoint(ctx, X(8), Y(cum), FL.ink, "累计");
+    flSet(box, `乘数 k = <b>${k.toFixed(2)}</b> · 最终 ΔY ≈ <b>${(k * s.dG).toFixed(1)}</b><br>第 1 轮 ${s.dG.toFixed(1)}，第 2 轮 ${(s.dG * s.b * (1 - s.t)).toFixed(2)}，之后每轮按 b(1−t)=${(s.b * (1 - s.t)).toFixed(2)} 衰减。`);
+  } else if (f.lab.type === "islm") {
+    const b = 0.75, a = 20, I0 = 20, kk = 0.5;
+    const A = a + I0 + s.G - b * s.T;
+    const denom = (1 - b) + s.d * kk / s.h;
+    const Yeq = (A + (s.d / s.h) * s.m) / denom;
+    const ieq = (kk * Yeq - s.m) / s.h;
+    const xMax = Math.max(160, Yeq * 1.3), yMax = 12;
+    const { X, Y } = flFrame(ctx, w, h, pad, { xMin: 0, xMax, yMin: 0, yMax, xLab: "产出 Y", yLab: "利率 i" });
+    const isPts = [], lmPts = [];
+    for (let y = 0; y <= xMax; y += 1) {
+      const iIS = (A - (1 - b) * y) / s.d, iLM = (kk * y - s.m) / s.h;
+      if (iIS >= 0 && iIS <= yMax) isPts.push([X(y), Y(iIS)]);
+      if (iLM >= 0 && iLM <= yMax) lmPts.push([X(y), Y(iLM)]);
+    }
+    flLine(ctx, isPts, FL.clay, 2); flLine(ctx, lmPts, FL.sky, 2);
+    if (Yeq >= 0 && Yeq <= xMax && ieq >= 0 && ieq <= yMax) flPoint(ctx, X(Yeq), Y(ieq), FL.ink, "E");
+    flSet(box, `均衡 <b>Y* = ${Yeq.toFixed(1)}</b> · <b>i* = ${ieq.toFixed(2)}%</b><br>G 增加使 IS 右移；M/P 增加使 LM 右移。当前财政乘数约 <b>${(1 / denom).toFixed(2)}</b>。`);
+  } else if (f.lab.type === "phillips") {
+    const { X, Y } = flFrame(ctx, w, h, pad, { xMin: 2, xMax: 12, yMin: -4, yMax: 12, xLab: "失业率 u", yLab: "通胀 π" });
+    const pts = [];
+    for (let u = 2; u <= 12; u += .1) pts.push([X(u), Y(s.pie - s.beta * (u - s.uStar) + s.shock)]);
+    flLine(ctx, pts, FL.fig, 2);
+    const pi = s.pie - s.beta * (s.u - s.uStar) + s.shock;
+    flPoint(ctx, X(s.u), Y(pi), FL.ink, "当前");
+    flSet(box, `给定 πe=${s.pie.toFixed(1)}%，u=${s.u.toFixed(1)}% 时 π≈<b>${pi.toFixed(2)}%</b><br>β 越大，曲线越陡；πe 上升会整条曲线上移。`);
+  } else if (f.lab.type === "okun") {
+    const { X, Y } = flFrame(ctx, w, h, pad, { xMin: -8, xMax: 6, yMin: 2, yMax: 10, xLab: "产出缺口 x", yLab: "失业率 u" });
+    flLine(ctx, [[X(-8), Y(s.uStar + s.coef * 8)], [X(6), Y(s.uStar - s.coef * 6)]], FL.sky, 2);
+    const u = s.uStar - s.coef * s.x;
+    flPoint(ctx, X(s.x), Y(u), FL.ink, "当前");
+    flSet(box, `x=${fmtSigned(s.x, 1)}% → u≈<b>${u.toFixed(1)}%</b><br>同样的产出缺口，系数越大，失业反应越大；工时与参与率会削弱它。`);
+  } else if (f.lab.type === "fisher") {
+    const { X, Y } = flFrame(ctx, w, h, pad, { xMin: -2, xMax: 12, yMin: 0, yMax: 16, xLab: "预期通胀 πe", yLab: "利率" });
+    const nom = [], real = [];
+    for (let p = -2; p <= 12; p += .2) { nom.push([X(p), Y(s.i)]); real.push([X(p), Y((1 + s.i / 100) / (1 + p / 100) * 100 - 100)]); }
+    flLine(ctx, nom, FL.clay, 2); flLine(ctx, real, FL.olive, 2);
+    const rex = (1 + s.i / 100) / (1 + s.pie / 100) * 100 - 100;
+    flPoint(ctx, X(s.pie), Y(rex), FL.ink, "实际 r");
+    flSet(box, `名义 i=<b>${s.i.toFixed(1)}%</b> · 精确实际 r=<b>${rex.toFixed(2)}%</b> · 近似 <b>${(s.i - s.pie).toFixed(2)}%</b><br>当 πe > i 时，实际利率为负；通缩时相反。`);
+  } else if (f.lab.type === "taylor") {
+    const { X, Y } = flFrame(ctx, w, h, pad, { xMin: -2, xMax: 12, yMin: -2, yMax: 18, xLab: "通胀 π", yLab: "政策利率 i" });
+    const pts = [];
+    for (let p = -2; p <= 12; p += .2) pts.push([X(p), Y(s.rstar + p + .5 * (p - 2) + .5 * s.x)]);
+    flLine(ctx, pts, FL.clay, 2);
+    flLine(ctx, [[X(-2), Y(0)], [X(12), Y(0)]], "rgba(52,42,32,.35)", 1);
+    const i = s.rstar + s.pi + .5 * (s.pi - 2) + .5 * s.x;
+    flPoint(ctx, X(s.pi), Y(Math.max(0, i)), FL.ink, i < 0 ? "ZLB" : "规则");
+    flSet(box, `规则值 <b>${i.toFixed(2)}%</b> · 实际（含下限）<b>${Math.max(0, i).toFixed(2)}%</b><br>通胀每升 1pp，名义利率升 1.5pp；当规则值为负，零下限截断。`);
+  } else if (f.lab.type === "debt") {
+    let d = s.d0; const path = [d];
+    for (let y = 1; y <= 10; y++) { d = clamp(d + ((s.i - s.pi - s.g) / 100) * d + s.pb, 0, 400); path.push(d); }
+    const { X, Y } = flFrame(ctx, w, h, pad, { xMin: 0, xMax: 10, yMin: 0, yMax: Math.max(40, ...path) * 1.1, xLab: "年", yLab: "债务/GDP" });
+    flLine(ctx, path.map((v, i) => [X(i), Y(v)]), FL.gold, 2);
+    flPoint(ctx, X(10), Y(path[10]), FL.ink, "10 年");
+    flSet(box, `r−g = <b>${(s.i - s.pi - s.g).toFixed(2)}pp</b> · 10 年后 d≈<b>${path[10].toFixed(0)}%</b><br>初始变化 ≈ ${(((s.i - s.pi - s.g) / 100) * s.d0 + s.pb).toFixed(1)}pp。`);
+  } else if (f.lab.type === "quantity") {
+    const pi = s.gM + s.gV - s.gY;
+    const items = [["gM", s.gM, FL.clay], ["gV", s.gV, FL.gold], ["gY", s.gY, FL.olive], ["π", pi, FL.fig]];
+    const { X, Y } = flFrame(ctx, w, h, pad, { xMin: 0, xMax: 4, yMin: Math.min(0, ...items.map(x => x[1])), yMax: Math.max(12, ...items.map(x => x[1])) * 1.1, xLab: "", yLab: "%" });
+    items.forEach(([lab, v, col], i) => {
+      const x = X(i + .2), y = Y(Math.max(0, v)), y0 = Y(0);
+      ctx.fillStyle = col; ctx.globalAlpha = .55; ctx.fillRect(x, Math.min(y, y0), (w - pad.l - pad.r) / 4 * .6, Math.abs(y0 - y));
+      ctx.globalAlpha = 1; ctx.fillStyle = FL.ink; ctx.font = "8px monospace"; ctx.fillText(lab, x + 3, y0 + 11);
+    });
+    flSet(box, `π ≈ gM + gV − gY = <b>${pi.toFixed(1)}%</b><br>货币增长与速度推高名义支出；实际增长吸收一部分。长期关系，不是季度精确预测。`);
+  } else if (f.lab.type === "solow") {
+    const kStar = Math.pow(s.s / (s.dep + s.n + s.g), 1 / (1 - s.alpha));
+    const yStar = Math.pow(kStar, s.alpha);
+    let k = 1; const path = [k];
+    for (let t = 1; t <= 30; t++) { k = clamp(k + s.s * Math.pow(k, s.alpha) - (s.dep + s.n + s.g) * k, 0.01, 50); path.push(k); }
+    const { X, Y } = flFrame(ctx, w, h, pad, { xMin: 0, xMax: 30, yMin: 0, yMax: Math.max(kStar, ...path) * 1.15, xLab: "时间", yLab: "k" });
+    flLine(ctx, path.map((v, i) => [X(i), Y(v)]), FL.olive, 2);
+    flPoint(ctx, X(30), Y(kStar), FL.ink, "k*");
+    flSet(box, `稳态 <b>k*=${kStar.toFixed(2)}</b> · <b>y*=${yStar.toFixed(2)}</b><br>储蓄率提高会抬高稳态；折旧、人口或技术增长会改变分母。增长率仍由 g 决定。`);
+  } else if (f.lab.type === "sectors") {
+    const priv = s.trade - s.gov;
+    const items = [["私人 S−I", priv, FL.clay], ["政府 T−G", s.gov, FL.sky], ["外国 M−X", -s.trade, FL.olive]];
+    const { X, Y } = flFrame(ctx, w, h, pad, { xMin: 0, xMax: 3, yMin: -8, yMax: 8, xLab: "", yLab: "% GDP" });
+    items.forEach(([lab, v, col], i) => {
+      const x = X(i + .2), y = Y(Math.max(0, v)), y0 = Y(0);
+      ctx.fillStyle = col; ctx.globalAlpha = .6; ctx.fillRect(x, Math.min(y, y0), (w - pad.l - pad.r) / 3 * .6, Math.abs(y0 - y));
+      ctx.globalAlpha = 1; ctx.fillStyle = FL.ink; ctx.font = "8px monospace"; ctx.fillText(lab, x, y0 + 13); ctx.fillText(fmtSigned(v, 1), x, v >= 0 ? y - 3 : y + 10);
+    });
+    flSet(box, `私人 <b>${fmtSigned(priv, 1)}%</b> + 政府 <b>${fmtSigned(s.gov, 1)}%</b> + 外国 <b>${fmtSigned(-s.trade, 1)}%</b> = 0<br>拖动政府或贸易余额，私人余额自动调整；恒等式不说明因果。`);
+  }
+}
+function mountFormulaLabs(root) {
+  $$("[data-lab]", root).forEach(box => {
+    const f = FORMULA_BY_ID[box.dataset.lab];
+    if (!f || !f.lab) return;
+    const state = LAB_STATE[f.id] || (LAB_STATE[f.id] = {});
+    f.lab.controls.forEach(c => {
+      if (!(c.key in state)) state[c.key] = c.value;
+      const input = box.querySelector(`[data-fl-key="${c.key}"]`);
+      if (!input) return;
+      input.value = state[c.key];
+      const out = box.querySelector(`[data-fl-out="${c.key}"]`);
+      if (out) out.textContent = c.fmt(state[c.key]);
+      input.addEventListener("input", () => {
+        state[c.key] = Number(input.value);
+        if (out) out.textContent = c.fmt(state[c.key]);
+        drawFormulaLab(f, box, state);
+      });
+    });
+    requestAnimationFrame(() => drawFormulaLab(f, box, state));
+  });
+}
+
 const BookState = {
   kind: null, book: null, pages: [], current: 0, root: null,
   flipping: false, onKey: null, onResize: null, stage: null, touchStart: null,
@@ -4927,7 +6876,7 @@ function openBook(book, startPage) {
         if (e.target.closest("[data-book-next]")) { bookTurn(1); return; }
         if (e.target.closest("[data-book-lab]")) { openFormulas(); return; }
         const page = e.target.closest(".book-page");
-        if (page && !e.target.closest("button, a")) {
+        if (page && !e.target.closest("button, a, input, select, textarea, label, [data-no-turn]")) {
           if (bookMode() === "spread") bookTurn(page.classList.contains("left") ? -1 : 1);
           else {
             const r = page.getBoundingClientRect();
@@ -5018,6 +6967,7 @@ function renderBook() {
   $$("[data-book-prev]", root).forEach(b => { b.disabled = atStart; });
   $$("[data-book-next]", root).forEach(b => { b.disabled = atEnd; });
   bookEl.classList.remove("turning");
+  mountFormulaLabs(root);
 }
 function bookGoTo(index) {
   if (!BookState.book || BookState.flipping) return;
@@ -5112,10 +7062,10 @@ function openHelp() {
       <div class="help-box">
         <h4>循环</h4>
         <ul>
-          <li>拖动三根滑块：政策利率 i、政府支出 G、税率 τ。</li>
-          <li>政策台与右栏会实时显示下一季预测、Taylor 参考值与目标完成度。</li>
+          <li>拖动六根滑块：政策利率 i、政府支出 G、税率 τ、家庭转移 tr、按揭 LTV λ、外汇干预 fx。</li>
+          <li>政策台与右栏会实时显示下一季预测、Taylor 参考值与目标完成度；“政策传导链”会拆开每个工具先改变哪个中间变量。</li>
           <li>用政治资本执行制度行动（前瞻指引、QE、供给侧改革等）。</li>
-          <li>点击「推进一个季度」。随机事件会先要你做出选择。</li>
+          <li>点击「推进一个季度」。随机事件会先要你做出选择；季度结束后，家庭侧写可能以“无选项”的方式出现。</li>
           <li>任期结束后生成述职报告。可以继续执政或重开。</li>
         </ul>
       </div>
@@ -5127,6 +7077,7 @@ function openHelp() {
           <li><b>产出缺口 x</b>：实际产出相对潜在产出的百分比。</li>
           <li><b>债务</b>：政府债务 / GDP。利息与名义增长决定它的路径。</li>
           <li><b>信誉</b>：越高，通胀预期越锚定在目标附近。预测会欺骗你，模型不会。</li>
+          <li>每个指标卡右上角的 <b>?</b> 会打开“指标小词典”：它是什么、为什么重要、怎么读。</li>
         </ul>
       </div>
       <div class="help-box">
@@ -5143,9 +7094,17 @@ function openHelp() {
       <div class="help-box">
         <h4>两本书</h4>
         <ul>
-          <li><b>流派手册</b>：摊开的图版目录与八个章节，每章有核心思想、人物小传、流派关系、理论论证与沙盘参数。</li>
-          <li><b>公式书</b>：十个公式的符号解释、逐步推导、理想化案例与常见误读。</li>
-          <li>两本书都支持点击页面左右两侧、← / → 翻页；顶部“目录”随时回到目录。</li>
+          <li><b>流派手册</b>：106 页。八个流派，每章十一节：历史条件、思想语境、核心问题、概念建筑、因果机制、形式模型、人物、争论、证据、边界。</li>
+          <li><b>公式书</b>：112 页。十个公式各十页：故事、符号、假设、三段推导、最终式、可拖动实验室、案例、证据与练习。</li>
+          <li>两本书都支持点击页面左右两侧、← / → 翻页；公式书实验页的滑块不会触发翻页。</li>
+        </ul>
+      </div>
+      <div class="help-box">
+        <h4>家庭侧写</h4>
+        <ul>
+          <li>一种新的“无选项事件”：不要求你选择，只从一个普通人或家庭的角度，描述政策落地后的生活。</li>
+          <li>它由你的政策与当前状态触发；文中的数字来自模型，宏观连接解释因果。</li>
+          <li>最新一篇会保留在右栏“家庭侧写”，可以重读。</li>
         </ul>
       </div>
       <div class="help-box">
@@ -5162,11 +7121,13 @@ function openHelp() {
     <div class="callout olive">
       <span class="co-lab">简化到可以辩论</span>
       <div class="mono" style="font-size:10px;line-height:1.9">
-        x′ = 0.72x + 0.30·财政脉冲·mult − 0.45·mon·(r−r*) + 0.12·汇率 + 扰动<br>
-        π′ = πe + 0.30·slope·x′ + 供给冲击<br>
+        x′ = 0.72x + 0.30·财政脉冲·mult + 信贷脉冲 − 0.45·mon·(r−r*) + 0.12·汇率 + 扰动<br>
+        财政脉冲 = (G−G₀) − 0.5(τ−τ₀) + 0.55(tr−tr₀)；信贷脉冲 = 0.05(λ−λ₀)<br>
+        π′ = πe + 0.30·slope·x′ + 0.06·汇率 + 供给冲击<br>
         πe′ = a·π* + (1−a)·π′，a = 可信度 × 锚定参数<br>
         u′ = u* − 0.5x′；g = g* + 4Δx<br>
-        d′ = d + [(i−π−g)d/100 + 基本赤字]/4
+        汇率′ = 0.72·汇率 − 0.10·(i−i外) + 0.35·外汇干预 + 扰动<br>
+        d′ = d + [(i−π−g)d/100 + 基本赤字]/4，基本赤字 = G + tr − 税收
       </div>
     </div>
     <h3>来源与边界</h3>
@@ -5204,15 +7165,31 @@ function onPolicyInput() {
   App.st.i = Number($("#rate").value);
   App.st.g = Number($("#spend").value);
   App.st.tau = Number($("#tax").value);
+  if ($("#transfers")) {
+    App.st.tr = Number($("#transfers").value);
+    App.st.ltv = Number($("#ltv").value);
+    App.st.fxOp = Number($("#fxop").value);
+  }
   $("#rateOut").innerHTML = `${fmt(App.st.i, 2)}<span class="unit">%</span>`;
   $("#spendOut").innerHTML = `${fmt(App.st.g, 1)}<span class="unit">% GDP</span>`;
   $("#taxOut").innerHTML = `${fmt(App.st.tau, 1)}<span class="unit">%</span>`;
+  if ($("#transfers")) {
+    $("#transfersOut").innerHTML = `${fmt(App.st.tr, 1)}<span class="unit">% GDP</span>`;
+    $("#ltvOut").innerHTML = `${fmt(App.st.ltv, 0)}<span class="unit">%</span>`;
+    $("#fxopOut").innerHTML = `${fmtSigned(App.st.fxOp, 1)}<span class="unit">% GDP</span>`;
+  }
   $("#rate").setAttribute("aria-valuetext", `${App.st.i.toFixed(2)}%`);
   $("#spend").setAttribute("aria-valuetext", `${App.st.g.toFixed(1)}% GDP`);
   $("#tax").setAttribute("aria-valuetext", `${App.st.tau.toFixed(1)}%`);
+  if ($("#transfers")) {
+    $("#transfers").setAttribute("aria-valuetext", `${App.st.tr.toFixed(1)}% GDP`);
+    $("#ltv").setAttribute("aria-valuetext", `${Math.round(App.st.ltv)}%`);
+    $("#fxop").setAttribute("aria-valuetext", `${fmtSigned(App.st.fxOp, 1)}% GDP`);
+  }
   renderRuleHint();
   renderKPIs();
   renderForecast();
+  renderTransmission();
   renderGauges();
   renderCityTexts();
 }
@@ -5261,10 +7238,23 @@ function onKey(e) {
   else if (k === "?") { e.preventDefault(); openHelp(); }
 }
 function bindEvents() {
-  $("#rate").addEventListener("input", onPolicyInput);
-  $("#spend").addEventListener("input", onPolicyInput);
-  $("#tax").addEventListener("input", onPolicyInput);
-  ["#rate", "#spend", "#tax"].forEach(id => $(id).addEventListener("change", onPolicyCommit));
+  ["#rate", "#spend", "#tax", "#transfers", "#ltv", "#fxop"].forEach(id => {
+    const el = $(id);
+    if (el) {
+      el.addEventListener("input", onPolicyInput);
+      el.addEventListener("change", onPolicyCommit);
+    }
+  });
+  document.addEventListener("click", e => {
+    const ind = e.target.closest("[data-indicator]");
+    if (ind) { e.preventDefault(); openIndicator(ind.dataset.indicator); return; }
+    const fl = e.target.closest("[data-formula-link]");
+    if (fl) { e.preventDefault(); openFormulaBook(fl.dataset.formulaLink); return; }
+    if (e.target.closest("[data-indicator-help]")) { e.preventDefault(); openIndicatorHelp(); return; }
+    const mb = e.target.closest("[data-micro]");
+    if (mb) { e.preventDefault(); openMicroStory(MICRO_BY_ID[mb.dataset.micro], true); return; }
+    if (e.target.closest("[data-micro-about]")) { e.preventDefault(); openMicroAbout(); return; }
+  });
   $("#advanceBtn").addEventListener("click", advance);
   $("#actionList").addEventListener("click", e => {
     const b = e.target.closest("[data-act]");
